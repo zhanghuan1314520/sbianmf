@@ -1,0 +1,24 @@
+@import "1.wxss";
+
+.echart-content {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+.echart-content .block-head {
+    font-size: 28rpx;
+    height: 80rpx;
+    font-weight: bold;
+    color: #366AB3;
+    background-color: #E7F4FA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.echart-content .echart-body {
+    width: 100%;
+}

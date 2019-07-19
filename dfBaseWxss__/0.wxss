@@ -1,0 +1,20 @@
+.bar-content {
+    height: 80rpx;
+    width: 100%;
+    display: flex;
+    font-size: 24rpx;
+    background-color: #366AB3;
+    color: #ffffff;
+}
+
+.bar-content .select-body {
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+    background-color: #ffffff;
+    color: #366AB3;
+    height: 50rpx;
+    line-height: 50rpx;
+    vertical-align: middle;
+    border-bottom-right-radius: 10rpx;
+    border-top-right-radius: 10rpx;
+}

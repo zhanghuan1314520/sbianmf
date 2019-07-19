@@ -1,0 +1,50 @@
+.deal-list-content {
+    width: 100%;
+}
+
+.deal-list-content .list-item:last-of-type {
+    border-bottom: none!important;
+}
+
+.deal-list-content .list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #EAE9E9;
+    width: 100%;
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+}
+
+.deal-list-content .list-item .item-flex {
+    flex: 1;
+}
+
+.deal-list-content .list-item .item .item-top {
+    font-size: 24rpx;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deal-list-content .list-item .item .item-top-border {
+    font-weight: bold;
+    color: #366AB3;
+}
+
+.deal-list-content .list-item .item .item-bottom {
+    margin: auto;
+    font-size: 24rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20rpx;
+}
+
+.deal-list-content .list-item .item .item-bottom>view {
+    color: #8A8D91;
+    background-color: #EAE9E9;
+    padding: 5rpx 10rpx 5rpx 10rpx;
+    border-radius: 5rpx;
+}

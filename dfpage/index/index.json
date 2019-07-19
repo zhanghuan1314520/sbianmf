@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "ec-canvas": "../../ec-canvas/ec-canvas"
+  },  
+  "navigationBarTitleText": "手边买房",
+  "navigationBarBackgroundColor": "#366AB3",
+  "navigationBarTextStyle": "white" ,
+  "backgroundColor": "#366AB3"
+ 
+}

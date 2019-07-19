@@ -1,0 +1,4 @@
+ec-canvas,.ec-canvas {
+    display: block;
+    box-sizing: border-box;
+}

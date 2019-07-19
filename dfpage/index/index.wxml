@@ -1,0 +1,248 @@
+<loading wx:if="{{!show}}">加载中...</loading>
+<view class="model" wx:if="{{modelShow}}">
+  <view class="inner">
+    <view class="title">用户未授权</view>
+    <view class="image">
+      <image src="{{imgUrl+'plugin/app/static/images/wxapp/shouquan.png'}}"></image>
+    </view>
+    <view class="subtitle">您需要先开启【用户信息】，才能使用此功能哦~</view>
+    <view class="model-btns">
+      <view bindtap="cancelclick" class="cancel">取消</view>
+      <view bindtap="confirmclick" class="confirm">去设置</view>
+    </view>
+  </view>
+</view>
+
+<view class="container"  >
+  <view class="container-top">
+    <view class="wrap">
+      <view bindtap="get_homechart" class="item" data-xswitch="1">
+        <image mode="widthFix" src="https://sbmf.zhaokele.com/dfimages/{{xswitch==1?'a3active.png':'a3.png'}}"></image>
+        <view class="{{xswitch==1?'house-type-selected':''}}">供应</view>
+      </view>
+      <view bindtap="get_homechart" class="item" data-xswitch="2">
+        <image mode="widthFix" src="https://sbmf.zhaokele.com/dfimages/{{xswitch==2?'a4active.png':'a4.png'}}"></image>
+        <view class="{{xswitch==2?'house-type-selected':''}}">需求</view>
+      </view>
+      <view bindtap="get_homechart" class="item" data-xswitch="3">
+        <image mode="widthFix" src="https://sbmf.zhaokele.com/dfimages/{{xswitch==3?'a5active.png':'a5.png'}}"></image>
+        <view class="{{xswitch==3?'house-type-selected':''}}">交易</view>
+      </view>
+    </view>
+    <view class="shangbianju"></view>
+  </view>
+  <view class="container-body">
+    <view style="height: 600rpx;">
+      <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ecLine}}"></ec-canvas>
+    </view>
+    <view class="chart-body">
+      <view class="echart-content">
+        <view class="block-head">
+          需求热度
+        </view>
+      </view>
+    </view>
+    <view class="data-content">
+      <view class="shuxian" style=" background-color: #E7F4FA;">
+        带看
+        <br></br>
+        数据
+      </view>
+      <view class="shuxian">
+      <navigator openType="navigate" url="../looklog/index?cid=0">
+        <view class="data-content-num">
+          {{lookjcount}}
+          <view class="data-content-num-unit">次</view>
+        </view>
+        <view class="data-content-desc" style="padding-bottom: 20rpx">
+          今天带看
+        </view>
+      </navigator>  
+        <view class="data-content-num data-content-num-topline">
+          {{prejcount}}
+          <view class="data-content-num-unit">个</view>
+        </view>
+        <view class="data-content-desc">
+          昨天降价
+        </view>
+      </view>
+
+      <view class="shuxian">
+      <navigator openType="navigate" url="../looklog/index?cid=1">
+        <view class="data-content-num">
+          {{lookzcount}}
+          <view class="data-content-num-unit">次</view>
+        </view>
+        <view class="data-content-desc" style="padding-bottom: 20rpx">
+          昨天带看
+        </view>
+        </navigator>
+        <view class="data-content-num data-content-num-topline">
+          {{prezcount}}
+          <view class="data-content-num-unit">套</view>
+        </view>
+        <view class="data-content-desc">
+          昨天涨价
+        </view>
+      </view>
+
+      <view>
+       <navigator openType="navigate" url="../looklog/index?cid=7">
+        <view class="data-content-num">
+          {{lookcount15}}
+          <view class="data-content-num-unit">万次</view>
+        </view>
+        <view class="data-content-desc" style="padding-bottom: 20rpx">
+          15天内带看
+        </view>
+        <view class="data-content-num data-content-num-topline">
+          {{tjsum}}
+          <view class="data-content-num-unit">万</view>
+        </view>
+        <view class="data-content-desc">
+          活跃房源套均
+        </view>
+         </navigator>
+      </view>
+      
+    </view>
+    <view class="chart-body">
+      <view class="echart-content">
+        <view class="block-head">
+          交易数据
+        </view>
+      </view>
+    </view>
+
+    <view class="data-content">
+      <view class="shuxian" style=" background-color: #E7F4FA;">
+        交易
+        <br></br>
+        日报
+      </view>
+
+      <view class="shuxian">
+        <navigator openType="navigate" url="../dealday/index?cid=1">
+          <view class="data-content-num">
+            {{anum}}
+            <view class="data-content-num-unit">套</view>
+          </view>
+          <view class="data-content-desc" style="padding-bottom: 20rpx">
+            昨天成交
+          </view>
+          <view class="data-content-num data-content-num-topline">
+            {{ahtmj}}
+            <view class="data-content-num-unit">元</view>
+          </view>
+          <view class="data-content-desc">
+            昨天均价
+          </view>
+        </navigator>
+      </view>
+
+
+      <view class="shuxian">
+        <navigator openType="navigate" url="../dealday/index?cid=2">
+          <view class="data-content-num">
+            {{anum2}}
+            <view class="data-content-num-unit">套</view>
+          </view>
+          <view class="data-content-desc" style="padding-bottom: 20rpx">
+            前天成交
+          </view>
+          <view class="data-content-num data-content-num-topline">
+            {{ahtmj2}}
+            <view class="data-content-num-unit">元</view>
+          </view>
+          <view class="data-content-desc">
+            前天均价
+          </view>
+        </navigator>
+      </view>
+      <view>
+        <navigator openType="navigate" url="../dealday/index?cid=7">
+          <view class="data-content-num">
+            {{anum3}}
+            <view class="data-content-num-unit">套</view>
+          </view>
+          <view class="data-content-desc" style="padding-bottom: 20rpx">
+            七天总成交
+          </view>
+          <view class="data-content-num data-content-num-topline">
+            {{ahtmj3}}
+            <view class="data-content-num-unit">元</view>
+          </view>
+          <view class="data-content-desc">
+            七天成交均价
+          </view>
+        </navigator>
+      </view>
+
+    </view>
+
+    <view class="chart-body">
+      <view class="echart-content">
+        <view class="block-head">
+          挂牌预期
+        </view>
+      </view>
+    </view>
+    <view class="data-content">
+      <view class="shuxian" style=" background-color: #E7F4FA;">
+        二手
+        <br></br>
+        房源
+      </view>
+      <view class="shuxian">
+        <view class="data-content-num">
+          {{jcount}}
+          <view class="data-content-num-unit">套</view>
+        </view>
+        <view class="data-content-desc" style="padding-bottom: 20rpx">
+          今天新增
+        </view>
+        <view class="data-content-num data-content-num-topline">
+          {{jcprice}}
+          <view class="data-content-num-unit">元</view>
+        </view>
+        <view class="data-content-desc">
+          挂牌均价
+        </view>
+      </view>
+      <view class="shuxian">
+        <view class="data-content-num">
+          {{zcount}}
+          <view class="data-content-num-unit">套</view>
+        </view>
+        <view class="data-content-desc" style="padding-bottom: 20rpx">
+          昨天新增
+        </view>
+        <view class="data-content-num data-content-num-topline">
+          {{zcprice}}
+          <view class="data-content-num-unit">元</view>
+        </view>
+        <view class="data-content-desc">
+          挂牌均价
+        </view>
+      </view>
+      <view>
+        <view class="data-content-num">
+          {{scount}}
+          <view class="data-content-num-unit">套</view>
+        </view>
+        <view class="data-content-desc" style="padding-bottom: 20rpx">
+          15天挂牌
+        </view>
+        <view class="data-content-num data-content-num-topline">
+          {{acount}}
+          <view class="data-content-num-unit">万套</view>
+        </view>
+        <view class="data-content-desc">
+          总共存量
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+</view>

@@ -1,0 +1,68 @@
+@import "1.wxss";
+
+.echart-content {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+.echart-content .block-head {
+    font-size: 28rpx;
+    height: 80rpx;
+    font-weight: bold;
+    color: #366AB3;
+    background-color: #E7F4FA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.echart-content .echart-body {
+    width: 100%;
+    position: relative;
+}
+
+.echart-content .echart-body .echart-selected-content {
+    position: absolute;
+    left: 53%;
+    top: 35%;
+    z-index: 999;
+}
+
+.echart-content .echart-body .legend-content {
+    position: absolute;
+    left: 43%;
+    top: 20%;
+    width: 70rpx;
+    height: 60%;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.echart-content .echart-body .legend-content .btn-none {
+    height: 50rpx;
+    width: 0;
+}
+
+.echart-content .echart-body .legend-content .item-block {
+    width: 100%;
+    height: 50rpx;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+}
+
+.echart-content .echart-body .legend-content .item-block .item {
+    display: inline-block;
+    width: 30rpx;
+    height: 30rpx;
+    border-radius: 2rpx;
+    cursor: pointer;
+}
+
+.echart-content .echart-body .legend-content .item-block .item.item-active {
+    position: absolute;
+    width: 40rpx;
+}
