@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+      "filter-radio-item": "/newhouse/components/axb-checkbox/axb-checkbox-item"
+  }
+}

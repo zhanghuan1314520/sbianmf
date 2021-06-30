@@ -1,0 +1,389 @@
+@import "app.wxss";
+
+.item.data-v-1468a178 {
+    display: block;
+    position: relative;
+    margin: 0 24rpx 24rpx;
+    background-color: #fff;
+    border-radius: 8rpx;
+}
+
+.main.data-v-1468a178 {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    padding: 24rpx;
+}
+
+.footer.data-v-1468a178,.main.data-v-1468a178 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.footer.data-v-1468a178 {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 24rpx 0;
+    color: #888;
+    font-size: 22rpx;
+    box-shadow: inset 0 3rpx 8rpx 0 rgba(223,215,249,.25);
+}
+
+.footer.data-v-1468a178::before {
+    position: absolute;
+    content: "｜";
+    font-size: 22rpx;
+    color: #ebebeb;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.footer-item.data-v-1468a178 {
+    -webkit-box-flex: 1;
+    flex: 1;
+    text-align: center;
+}
+
+.customized_price.data-v-1468a178 {
+    margin-bottom: 5rpx;
+    font-size: 26rpx;
+}
+
+.default-house-img.data-v-1468a178 {
+    width: 258rpx;
+    height: 168rpx;
+    border-radius: 8rpx;
+}
+
+.right.data-v-1468a178 {
+    width: 100%;
+    min-height: 168rpx;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.right .top.data-v-1468a178 {
+    width: 356rpx;
+    margin-bottom: 9rpx;
+}
+
+.right .tags.data-v-1468a178 {
+    line-height: 36rpx;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.center.data-v-1468a178 {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.desc.data-v-1468a178 {
+    margin-bottom: 5rpx;
+}
+
+.rank-order.data-v-1468a178 {
+    position: absolute;
+    top: 0;
+    right: 12rpx;
+    width: 41rpx;
+    height: 45rpx;
+    color: #666;
+    font-weight: 700;
+    font-size: 24rpx;
+    text-align: center;
+    background-image: url(https://cdn.vip-wifi.com/hzfangchan/version-img/1.14.25/activity_a/building_rank/rank-bga.png?v=1);
+    background-size: 100% 100%;
+}
+
+.rank-order.top1.data-v-1468a178 {
+    background-image: url(https://cdn.vip-wifi.com/hzfangchan/version-img/1.14.25/activity_a/building_rank/rank-1.png);
+    background-size: 100% 100%;
+}
+
+.rank-order.top2.data-v-1468a178 {
+    background-image: url(https://cdn.vip-wifi.com/hzfangchan/version-img/1.14.25/activity_a/building_rank/rank-2.png);
+    background-size: 100% 100%;
+}
+
+.rank-order.top3.data-v-1468a178 {
+    background-image: url(https://cdn.vip-wifi.com/hzfangchan/version-img/1.14.25/activity_a/building_rank/rank-3.png);
+    background-size: 100% 100%;
+}
+
+.probability.data-v-1468a178 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    margin-top: 12rpx;
+    font-size: 22rpx;
+    color: #444;
+    height: 30rpx;
+    line-height: 30rpx;
+}
+
+.probability .icon.data-v-1468a178 {
+    height: 28rpx;
+    width: 28rpx;
+    background-image: url(https://cdn.vip-wifi.com/hzfangchan/version-img/1.14.25/icons/rate.png);
+    background-position: 50%;
+    background-size: cover;
+    margin-right: 8rpx;
+}
+
+.probability_item.data-v-1468a178 {
+    margin-right: 1em;
+}
+
+.price.data-v-1468a178 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    margin-top: 4rpx;
+    margin-bottom: 4rpx;
+}
+
+.comment-bottom.data-v-1468a178 {
+    margin-top: 6rpx;
+}
+
+
+.common-img.data-v-264f4da8 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 1rpx;
+    z-index: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.auto.data-v-264f4da8 {
+    height: auto;
+    min-height: 1rpx;
+} 
+
+.imgschool.data-v-264f4da8 {
+    background: #c5c3c3;
+    width: 284rpx;
+    height: 168rpx;
+    border-radius: 4rpx;
+}
+
+.white-shadow.data-v-264f4da8 {
+    background-color: #fff;
+}
+
+.opacity-background-color.data-v-264f4da8 {
+    background-color: transparent;
+}
+
+.img-wrap.data-v-0499d828 {
+    position: relative;
+    width: 278rpx;
+    height: 168rpx;
+    margin-right: 20rpx;
+    border-radius: 8rpx;
+    overflow: hidden;
+}
+
+.img-wrap.data-v-0499d828::after {
+    content: "";
+    position: absolute;
+    height: 70rpx;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    opacity: .5;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(transparent),to(#000));
+    background-image: linear-gradient(180deg,transparent,#000);
+}
+
+.default-img.data-v-0499d828 {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: 20rpx;
+}
+
+.top-tag.data-v-0499d828 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 99rpx;
+    height: 32rpx;
+    padding: 3rpx 0;
+    color: #fff;
+    text-align: center;
+    font-size: 20rpx;
+    background-image: -webkit-gradient(linear,left top,right top,from(#6cd89e),to(#37b89e));
+    background-image: linear-gradient(90deg,#6cd89e,#37b89e);
+    border-radius: 0 0 8rpx 0;
+    box-sizing: border-box;
+}
+
+.img-icons.data-v-0499d828 {
+    width: 32rpx;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 8rpx;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+.img-icons--item.data-v-0499d828 {
+    margin-bottom: 8rpx;
+}
+
+.view-wrap.data-v-0499d828 {
+    bottom: 0rpx;
+    z-index: 1;
+}
+
+.red-building.data-v-0499d828 {
+    width: 80rpx;
+    background: #ff5a5a;
+    background-image: url(https://cdn.vip-wifi.com/hzfangchan/version-img/1.14.25/building/red_building.png);
+    background-size: 100% 100%;
+}
+
+.live-status.data-v-0499d828,.red-building.data-v-0499d828 {
+    position: absolute;
+    top: 6rpx;
+    left: 6rpx;
+    height: 32rpx;
+    border-radius: 4rpx;
+}
+
+.live-status.data-v-0499d828 {
+    width: 100rpx;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    background-color: #ff5348;
+    line-height: 1;
+}
+
+.live-status.forcoming.data-v-0499d828 {
+    background-color: #ffa033;
+}
+
+.live-status.end.data-v-0499d828 {
+    background-color: #69c;
+}
+
+.live-status text.data-v-0499d828 {
+    color: #fff;
+    font-family: PingFangSC-Semibold;
+    font-size: 20rpx;
+    line-height: 28rpx;
+    vertical-align: middle;
+}
+
+.liveing-line.data-v-0499d828 {
+    width: 15rpx;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    height: 17rpx;
+    margin-left: 6rpx;
+}
+
+.liveing-line>view.data-v-0499d828 {
+    width: 3rpx;
+    border-radius: 1rpx;
+    background-color: #fff;
+}
+
+.liveing-line>view.data-v-0499d828:nth-of-type(1) {
+    animation: line-grow-data-v-0499d828 .5s ease infinite alternate;
+}
+
+.liveing-line>view.data-v-0499d828:nth-of-type(2) {
+    animation: line-grow-data-v-0499d828 .5s ease .2s infinite alternate;
+}
+
+.liveing-line>view.data-v-0499d828:nth-of-type(3) {
+    animation: line-grow-data-v-0499d828 .5s ease .4s infinite alternate;
+}
+
+@-webkit-keyframes line-grow-data-v-0499d828 {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 75%;
+    }
+}
+
+@keyframes line-grow-data-v-0499d828 {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 75%;
+    }
+}
+ 

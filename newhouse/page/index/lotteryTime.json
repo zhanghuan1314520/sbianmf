@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "摇号时刻表",
+  "usingComponents": {
+      "search": "/newhouse/page/common/search",
+      "house": "/newhouse/page/common/house"
+  }
+}

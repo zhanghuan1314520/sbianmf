@@ -22,11 +22,11 @@ Page({
         });
     },
     inputPrickChange: function(e) {
-        var s = this, r = s.data.express_list, t = e.detail.value, a = r[t].name, i = r[t].express;
-        s.setData({
-            expresscom: a,
+        var s = this.data.express_list, r = e.detail.value, t = s[r].name, i = s[r].express;
+        this.setData({
+            expresscom: t,
             express: i,
-            index: t
+            index: r
         });
     },
     inputChange: function(e) {
@@ -39,32 +39,33 @@ Page({
         wx.navigateBack();
     },
     submit: function(e) {
-        var t = this, a = e.currentTarget.dataset.refund, i = t.data.express_number, a = t.data.options.refundid, n = t.data.options.id;
+        var t = e.currentTarget.dataset.refund, i = this.data.express_number, a = (t = this.data.options.refundid, 
+        this.data.options.id);
         if ("" != i) {
-            var o = t.data.express, d = t.data.expresscom;
-            void 0 === t.data.options.singlerefund ? s.get("order/express_number", {
+            var n = this.data.express, o = this.data.expresscom;
+            void 0 === this.data.options.singlerefund ? s.get("order/express_number", {
                 submit: 1,
-                refundid: a,
-                orderid: n,
+                refundid: t,
+                orderid: a,
                 express_number: i,
-                express: o,
-                expresscom: d
+                express: n,
+                expresscom: o
             }, function(e) {
                 0 == e.error && wx.navigateTo({
-                    url: "/pages/order/detail/index?id=" + n
+                    url: "/pages/order/detail/index?id=" + a
                 });
             }) : s.get("order/single_express_number", {
                 submit: 1,
-                refundid: a,
-                orderid: n,
+                refundid: t,
+                orderid: a,
                 express_number: i,
-                express: o,
-                expresscom: d
+                express: n,
+                expresscom: o
             }, function(e) {
                 0 == e.error && wx.navigateTo({
-                    url: "/pages/order/detail/index?id=" + n
+                    url: "/pages/order/detail/index?id=" + a
                 });
             });
-        } else r.toast(t, "请填写快递单号");
+        } else r.toast(this, "请填写快递单号");
     }
 });

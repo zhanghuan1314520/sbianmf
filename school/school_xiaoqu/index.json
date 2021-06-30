@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "手边买房",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {   
+    "busi-school-card-info-all": "/school/components/xqb/BusiSchoolCardInfoAll",
+    "add-tips": "/components/weplug-add-tips/index",
+    "wxc-icon": "/min/@minui/wxc-icon/dist/index"
+  
+}
+}

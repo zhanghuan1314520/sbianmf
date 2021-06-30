@@ -1,0 +1,76 @@
+<view class="container " style="padding-top:{{statusH}}">
+    <view class="desc">
+        <view class="li house_list {{data.is_gold?'gold':''}}" data-id="{{data.Id}}">
+            <view class="t-box">
+                <view class="info">
+                    <view class="info-top">
+                        <view class="name">{{userinfo.uname}}</view>
+                        <view class="name-pos">
+                            <image class="zygw_bq1" src="https://sbmf.ww2ss.com/dfimages/jifen/gold_bq.png" wx:if="{{data.is_gold}}"></image>
+                            <image class="zygw_bq2" src="https://sbmf.ww2ss.com/dfimages/jifen/zygw_icon.png" wx:else></image>
+                        </view>
+                    </view>
+                    <view class="info-bottom">
+                        <view>{{userinfo.organization}}</view>
+                    </view>
+                    <view class="phone-number">手机号：{{userinfo.mobile}}</view>
+                    <view class="wx-number">微信号：{{userinfo.wxname}}</view>
+                </view>
+                <view class="user">
+                    <view class="avtor">
+                        <image src="{{userinfo.qrcode}}"></image>
+                    </view>
+                    <view bindtap="_guanzhu" class="guanzhu " data-userid="{{userid}}" data-adid="{{adid}}" data-isguanzhu="{{1}}" wx:if="{{isguanzhu==0}}">
+                        为Ta点赞</view>
+                    <view bindtap="_guanzhu" class="guanzhu " data-userid="{{userid}}" data-adid="{{adid}}" data-isguanzhu="{{0}}" wx:else>
+                        {{guanzhunum}}个赞</view>
+                </view>
+            </view>
+
+            <view class="b-box xiaxian" wx:if="{{1}}">
+                <view catchtap="handleCall" class="iphone1" data-phone="{{userinfo.mobile}}">
+                    <view class="phone-info">
+                        <image src="https://sbmf.ww2ss.com/dfimages/jifen/call_gold.png" wx:if="{{false}}"></image>
+                        <image src="https://sbmf.ww2ss.com/dfimages/jifen/call.png" wx:else></image>
+                        <view>打电话</view>
+                    </view>
+                </view>
+                <view class="wx">
+                    <view catchtap="_addZygw" class="wx-info" data-id="{{userinfo.wxname}}">
+                        <image src="https://sbmf.ww2ss.com/dfimages/jifen/wx_gold.png" wx:if="{{false}}"></image>
+                        <image src="https://sbmf.ww2ss.com/dfimages/jifen/wx.png" wx:else></image>
+                        <view>加微信</view>
+                    </view>
+                </view>
+            </view>
+            <view class="b-box xiaxian {{data.is_gold?'gold':''}}" wx:else>该置业顾问身份已过期~</view>
+
+            <view class="b-box xiaxian xleft {{data.is_gold?'gold':''}}"> 注意：1.点赞人数越多，排名越靠前。 2.同一经纪人多个楼盘，只选取一个首页置顶。</view>
+        </view>
+    </view>
+ 
+    <view class="day_msg_list">
+        <view class="day_msg_item">
+          
+        <text>入驻楼盘</text>
+           <view class="hot-content">
+            
+                <view bindtap="_goDetail" data-houseid="{{item.houseid}}"   class="hot-content-item" wx:for="{{loupanlist}}" wx:key="item">
+                  {{index+1}}. {{item.community}}
+                </view>
+            </view>   
+
+        </view>
+    </view>
+
+
+
+    <view class="nav {{isIpx?'fix-iphonex-button':''}}">
+
+        <view bindtap="_goDetail" data-houseid="{{houseid}}" class="house">查看楼盘详情</view>
+        <view class="share">
+            <button openType="share">分享名片</button>
+        </view>
+    </view>
+
+</view>

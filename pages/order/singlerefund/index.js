@@ -22,12 +22,16 @@ Page({
     get_list: function() {
         var e = this;
         t.get("order/single_refund", e.data.options, function(a) {
-            e.setData({
+            if (e.setData({
                 show: !0
-            }), 0 == a.error ? (a.order.status < 2 && a.order.sendtime <= 0 && (a.rtypeArr = [ "退款(仅退款不退货)" ]), 
-            e.setData(a)) : (t.toast(a.message, "none"), setTimeout(function() {
+            }), 0 == a.error) {
+                a.order.status < 2 && a.order.sendtime <= 0 && (a.rtypeArr = [ "退款(仅退款不退货)" ]);
+                var i = [];
+                for (var r in a.rtypeArr) i.push(a.rtypeArr[r]);
+                a.rtypeArr = i, e.setData(a);
+            } else t.toast(a.message, "none"), setTimeout(function() {
                 wx.navigateBack();
-            }, 1500));
+            }, 1500);
         });
     },
     submit: function() {
@@ -48,16 +52,16 @@ Page({
         a[t.data(e).name] = e.detail.value, this.setData(a);
     },
     upload: function(e) {
-        var a = this, i = t.data(e), n = i.type, r = a.data.images, s = a.data.imgs, o = i.index;
-        "image" == n ? t.upload(function(e) {
-            r.push(e.filename), s.push(e.url), a.setData({
-                images: r,
+        var a = this, i = t.data(e), r = i.type, n = a.data.images, s = a.data.imgs, o = i.index;
+        "image" == r ? t.upload(function(e) {
+            n.push(e.filename), s.push(e.url), a.setData({
+                images: n,
                 imgs: s
             });
-        }) : "image-remove" == n ? (r.splice(o, 1), s.splice(o, 1), a.setData({
-            images: r,
+        }) : "image-remove" == r ? (n.splice(o, 1), s.splice(o, 1), a.setData({
+            images: n,
             imgs: s
-        })) : "image-preview" == n && wx.previewImage({
+        })) : "image-preview" == r && wx.previewImage({
             current: s[o],
             urls: s
         });

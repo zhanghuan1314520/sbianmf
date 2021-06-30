@@ -1,0 +1,32 @@
+.item-trend.data-v-7ee8f5b1 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    font-size: 28rpx;
+    color: #fa4b00;
+    width: 100rpx;
+    height: 20rpx;
+    line-height: 20rpx;
+}
+
+.down {
+    color: #00b08d;
+}
+
+.item-trend .item-none.data-v-7ee8f5b1 {
+    color: #333;
+}
+
+.item-trend .item.data-v-7ee8f5b1 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+}

@@ -1,4 +1,4 @@
-@import "../../__wuBaseWxss__/0.wxss";
+@import "../../../wxss/0.wxss";
 
 .com-log .fui-cell-group .fui-cell .fui-cell-label {
     width: auto;

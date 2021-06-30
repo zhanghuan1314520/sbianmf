@@ -15,7 +15,7 @@
 .apply .fui-cell .price {
     font-size: 40rpx;
     width: 40rpx;
-    color: #366AB3;
+    color: #ff8000;
 }
 
 .fui-cell-group .fui-cell::before {

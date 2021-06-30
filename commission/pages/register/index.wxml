@@ -107,7 +107,7 @@
             </view>
         </view>
     </block>
-    <view class="fui-list-group" wx:if="{{set['open_protocol']=='1'&&set['applytitle']!=''}}">
+    <view class="fui-list-group" wx:if="{{set['open_protocol']==1&&set['become']==1&&set['applytitle']!=''}}">
         <view class="fui-list">
             <view class="fui-list-media">
                 <text class="icox icox-vip" style="color: #feb312;"></text>
@@ -156,24 +156,26 @@
                 <image src="/static/images/icon/nolist.png"></image>
                 <text class="remind">友情提醒</text>
             </view>
-            <navigator url="/pages/goods/detail/index?id={{buy_goods['id']}}">
-                <view class="fui-list">
-                    <view class="fui-list-media">
-                        <image src="{{buy_goods['thumb']}}"></image>
+            <view wx:for="{{buy_goods}}" wx:key="index">
+                <navigator url="/pages/goods/detail/index?id={{item.id}}">
+                    <view class="fui-list">
+                        <view class="fui-list-media">
+                            <image src="{{item.thumb}}"></image>
+                        </view>
+                        <view class="fui-list-inner">
+                            <view class="text">{{item.title}}</view>
+                            <view class="text">{{item.marketprice}}</view>
+                        </view>
                     </view>
-                    <view class="fui-list-inner">
-                        <view class="text">{{buy_goods['title']}}</view>
-                        <view class="text">{{buy_goods['marketprice']}}</view>
-                    </view>
-                </view>
-            </navigator>
+                </navigator>
+            </view>
             <view class="fui-list">
                 <view class="fui-list-inner">
                     <view class="text">本店需购买此商品才可成为<text class="text-danger text-bold">{{shopname}}</text>购物中心{{set['texts']['agent']}}，请现在去购买吧！</view>
                 </view>
             </view>
         </view>
-        <navigator class="btn btn-danger block" url="/pages/goods/detail/index?id={{buy_goods['id']}}">现在就去购买</navigator>
+        <navigator class="btn btn-danger block" url="/pages/goods/detail/index?id={{buy_goods[0]['id']}}">现在就去购买</navigator>
     </block>
     <view class="wait" wx:if="{{member['status']==0&&member['isagent']==1}}">
         <image src="/static/images/icon/wait-128.png"></image>

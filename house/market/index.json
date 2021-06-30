@@ -1,0 +1,16 @@
+{
+  "usingComponents": {
+        "wxc-toast": "../../min/@minui/wxc-toast/dist/index",
+        "wxc-icon": "../../min/@minui/wxc-icon/dist/index",
+        "wxc-tab": "../../min/@minui/wxc-tab/dist/index",
+        "wxc-tab-panel": "../../min/@minui/wxc-tab/dist/panel",
+        "wxc-loading": "../../min/@minui/wxc-loading/dist/index",
+        "add-tips": "/components/weplug-add-tips/index"
+  },
+  "navigationBarTitleText": "手边买房",
+  "navigationBarBackgroundColor": "#366AB3",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#366AB3"
+  
+}
+ 

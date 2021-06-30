@@ -2,35 +2,22 @@
 <view class="page navbar" wx:if="{{show}}">
     <view class="fui-cell-group {{code?'toggleSend-group':''}}" wx:if="{{order.single_refundstate>0}}">
         <view class="fui-cell" data-id="{{code}}" hoverClass="none" url="">
-            <view class="fui-cell-info color" style="font-size:32rpx">
-                {{refund.status==0?'等待商家处理'+(refund.rtype==0?'退款':'维权')+'申请':''}}
-                {{refund.status>=3?'商家已经通过'+(refund.rtype==0?'退款':'维权')+'申请':''}}
-                {{refund.status==-1?'商家已经拒绝'+(refund.rtype==0?'退款':'维权')+'申请':''}}
-                {{refund.status==1?'已维权':''}}
-            </view>
+            <view class="fui-cell-info color" style="font-size:32rpx">                {{refund.status==0?'等待商家处理'+(refund.rtype==0?'退款':'维权')+'申请':''}}                {{refund.status>=3?'商家已经通过'+(refund.rtype==0?'退款':'维权')+'申请':''}}                {{refund.status==-1?'商家已经拒绝'+(refund.rtype==0?'退款':'维权')+'申请':''}}                {{refund.status==1?'已维权':''}}            </view>
         </view>
         <view class="apply send-code" style="padding-top:0;color: #999;font-size: 26rpx;line-height: 48rpx\"">
-            <block wx:if="{{refund.status==-1}}">
-                拒绝详情：{{refund.reply}}
-            </block>
+            <block wx:if="{{refund.status==-1}}">                拒绝详情：{{refund.reply}}            </block>
             <block wx:if="{{refund.rtype==0&&refund.status!=-1}}">
-                <block wx:if="{{refund.status==0}}">
-                    退款申请流程：
-                    <view>1、发起退款申请</view>
+                <block wx:if="{{refund.status==0}}">                    退款申请流程：                    <view>1、发起退款申请</view>
                     <view>2、商家确认后退款到您的账户</view>
                     <view>如果商家未处理：请及时与商家联系</view>
                 </block>
             </block>
-            <block wx:elif="{{refund.rtype==1&&refund.status!=-1}}">
-                退款退货申请流程：
-                <view>1、发起退款退货申请</view>
+            <block wx:elif="{{refund.rtype==1&&refund.status!=-1}}">                退款退货申请流程：                <view>1、发起退款退货申请</view>
                 <view>2、退货需将退货商品邮寄至商家指定地址，并在系统内输入快递单号</view>
                 <view>3、商家后货后确认无误</view>
                 <view>4、退款到您的账户</view>
             </block>
-            <block wx:elif="{{refund.rtype==2&&refund.status!=-1}}">
-                换货申请流程：
-                <view>1、发起换货申请，并把快递单号录入系统</view>
+            <block wx:elif="{{refund.rtype==2&&refund.status!=-1}}">                换货申请流程：                <view>1、发起换货申请，并把快递单号录入系统</view>
                 <view>2、将需要换货的商品邮寄至商家指定地址，并在系统内输入快递单号</view>
                 <view>3、商家确认后货后重新发出商品</view>
                 <view>4、签收确认商品</view>
@@ -76,14 +63,10 @@
             </view>
         </view>
     </block>
-    <view class="fui-title" wx:if="{{order.single_refundstate==1}}">
-        协商详情
-    </view>
+    <view class="fui-title" wx:if="{{order.single_refundstate==1}}">        协商详情    </view>
     <view class="fui-cell-group">
         <view class="fui-cell" hoverClass="none">
-            <view class="fui-cell-label">
-               处理方式
-            </view>
+            <view class="fui-cell-label">               处理方式            </view>
             <view class="fui-cell-info">
                 <picker bindchange="change" class="{{order.single_refundstate==0?'':'hidden'}}" data-name="rtypeIndex" range="{{rtypeArr}}" value="{{rtypeIndex}}">{{rtypeArr[rtypeIndex]}}</picker>
             </view>
@@ -91,9 +74,7 @@
             <view class="fui-cell-remark {{order.single_refundstate==0?'':'hidden'}}"></view>
         </view>
         <view class="fui-cell" hoverClass="none" url="">
-            <view class="fui-cell-label">
-                {{rtypeArrText[rtypeIndex]}}原因
-            </view>
+            <view class="fui-cell-label">                {{rtypeArrText[rtypeIndex]}}原因            </view>
             <view class="fui-cell-info">
                 <picker bindchange="change" class="{{order.single_refundstate==0?'':'hidden'}}" data-name="reasonIndex" range="{{reasonArr}}" value="{{reasonIndex}}">{{reasonArr[reasonIndex]}}</picker>
             </view>
@@ -118,7 +99,7 @@
         <view class="fui-cell">
             <view class="fui-cell-label">上传凭证</view>
             <view class="fui-images fui-images-sm">
-                <image catchtap="upload" class="image image-sm" data-index="{{index}}" data-type="image-preview" src="{{item}}" wx:for="{{images}}">
+                <image catchtap="upload" class="image image-sm" data-index="{{index}}" data-type="image-preview" src="{{item}}" wx:for="{{images}}" wx:key="{{index}}">
                     <text catchtap="upload" class="image-remove" data-index="{{index}}" data-type="image-remove" wx:if="{{order.single_refundstate==0}}">
                         <text class="icox icox-close"></text>
                     </text>

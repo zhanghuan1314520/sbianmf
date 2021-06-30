@@ -11,21 +11,21 @@
                         <view class="title">{{item.name}}</view>
                         <view class="subtitle">
                             <block wx:if="{{item.startbuy==0}}">{{item.validate}}</block>
-                            <block wx:else>享受{{item.rightsnum}}项特权</block>
+                            <block wx:else>提供数据统计、分析服务</block>
                         </view>
                         <view bindtap="submit" class="opencard" data-id="{{item.id}}" data-startbuy="{{item.startbuy}}" data-stock="{{item.stock}}" data-val="{{item.validate}}">
-                            <block wx:if="{{item.startbuy==1}}">立即开通</block>
+                            <block wx:if="{{item.startbuy==1}}">立即下单</block>
                             <block wx:if="{{item.startbuy==-1}}">永久有效</block>
-                            <block wx:if="{{item.startbuy==2}}">重新购买</block>
-                            <block wx:if="{{item.startbuy==0}}">{{item.validate=='永久有效'?'永久有效':'续费'}}</block>
+                            <block wx:if="{{item.startbuy==2}}">重新下单</block>
+                            <block wx:if="{{item.startbuy==0}}">{{item.validate=='永久有效'?'永久有效':'下单'}}</block>
                         </view>
                     </view>
                 </view>
             </swiper-item>
         </swiper>
     </view>
-    <view class="card-group nomargin" style="padding-bottom: 36rpx;">
-        <view class="card-title">会员特权</view>
+    <view class="card-group nomargin" style="padding-bottom: 36rpx;" wx:if="{{false}}">
+        <view class="card-title">服务内容</view>
         <view class="card-btn-group">
             <view class="card-btn-item" wx:if="{{list[current].shipping==1}}">
                 <view class="card-btn-icon">
@@ -49,7 +49,7 @@
                         <i class="icox icox-kaiqiasongquan"></i>
                     </view>
                 </view>
-                <view class="card-btn-text">开卡送券</view>
+                <view class="card-btn-text"> </view>
             </view>
             <view class="card-btn-item" wx:if="{{list[current].is_card_points==1}}">
                 <view class="card-btn-icon">
@@ -57,7 +57,7 @@
                         <i class="icox icox-kaiqiajifen"></i>
                     </view>
                 </view>
-                <view class="card-btn-text">开卡送积分</view>
+                <view class="card-btn-text"> </view>
             </view>
             <view class="card-btn-item" wx:if="{{list[current].is_month_coupon==1}}">
                 <view class="card-btn-icon">
@@ -86,28 +86,29 @@
         </view>
     </view>
     <view class="card-group" style="padding-bottom: 34rpx;" wx:if="{{list[current].member_discount==1}}">
-        <view class="card-title">会员折扣</view>
-        <view class="card-subtitle">会员可享受折扣价格</view>
+        <view class="card-title">用户折扣</view>
+        <view class="card-subtitle">用户可享受折扣价格</view>
         <view class="card-fiche gary">
             <view class="fiche-icon">
                 <i class="icox icox-huiyuanzhuanxiangzhekou"></i>
             </view>
             <view class="fiche-inner">
-                <view class="title">会员专享折扣</view>
+                <view class="title">用户专享折扣</view>
             </view>
             <view class="fiche-btn">全场
-        <span>{{list[current].discount_rate}}</span>折</view>
+                <span>{{list[current].discount_rate}}</span>折</view>
         </view>
     </view>
     <view class="card-group" wx:if="{{list[current].is_card_coupon==1||list[current].is_card_points==1}}">
         <view class="card-title">开卡赠送</view>
-        <view class="card-subtitle">会员开卡即送优惠券、积分</view>
+        <view class="card-subtitle">用户开卡即送优惠券、积分</view>
         <view class="coupon-list left">
             <view class="coupon-list-item" wx:for="{{list[current].card_coupon}}" wx:for-item="idx" wx:key="coupon_key">
                 <view class="circle-l"></view>
                 <view class="circle-r"></view>
                 <view class="coupon-inner">
-                    <view class="price" wx:if="{{idx.backtype==0}}">￥<span>{{idx.deduct}}</span>
+                    <view class="price" wx:if="{{idx.backtype==0}}">￥
+                        <span>{{idx.deduct}}</span>
                     </view>
                     <view class="price" wx:if="{{idx.backtype==1}}">
                         <span>{{idx.discount}}</span>折</view>
@@ -124,25 +125,26 @@
                 <i class="icox icox-kaiqiajifen"></i>
             </view>
             <view class="fiche-inner">
-                <view class="title">开通立享积分</view>
+                <view class="title">下单立享积分</view>
                 <view class="subtitle">{{list[current].card_points}}
-          <span>积分</span>
+                    <span>积分</span>
                 </view>
             </view>
             <view class="fiche-btn">
-                <view class="btn-submit border">{{list[current].startbuy==0?'已发放':'开通送积分'}}</view>
+                <view class="btn-submit border">{{list[current].startbuy==0?'已发放':'下单送积分'}}</view>
             </view>
         </view>
     </view>
     <view class="card-group" style="padding-bottom: 34rpx;" wx:if="{{list[current].is_month_coupon==1||list[current].is_month_points==1}}">
         <view class="card-title">每月领取</view>
-        <view class="card-subtitle">会员可每月领取优惠券、积分</view>
+        <view class="card-subtitle">用户可每月领取优惠券、积分</view>
         <view class="coupon-list left" wx:if="{{list[current].startbuy!=0}}">
             <view class="coupon-list-item" wx:for="{{list[current].month_coupon}}" wx:for-item="ide" wx:key="key1">
                 <view class="circle-l"></view>
                 <view class="circle-r"></view>
                 <view class="coupon-inner">
-                    <view class="price" wx:if="{{ide.backtype==0}}">￥<span>{{ide.deduct}}</span>
+                    <view class="price" wx:if="{{ide.backtype==0}}">￥
+                        <span>{{ide.deduct}}</span>
                     </view>
                     <view class="price" wx:if="{{ide.backtype==1}}">
                         <span>{{ide.discount}}</span>折</view>
@@ -160,7 +162,8 @@
                 <view class="circle-r"></view>
                 <view class="coupon-inner">
                     <view class="coupon-inner-media">
-                        <view class="price" wx:if="{{ide.backtype==0}}">￥<span>{{ide.deduct}}</span>
+                        <view class="price" wx:if="{{ide.backtype==0}}">￥
+                            <span>{{ide.deduct}}</span>
                         </view>
                         <view class="price" wx:if="{{ide.backtype==1}}">
                             <span>{{ide.discount}}</span>折</view>
@@ -183,9 +186,9 @@
                 <i class="icox icox-meiyuejifen"></i>
             </view>
             <view class="fiche-inner">
-                <view class="title">会员每月领取积分</view>
+                <view class="title">用户每月领取积分</view>
                 <view class="subtitle">{{list[current].month_points}}
-          <span>积分</span>
+                    <span>积分</span>
                 </view>
             </view>
             <view class="fiche-btn">
@@ -194,15 +197,31 @@
         </view>
     </view>
     <view class="card-group" wx:if="{{list[current].description!=''}}">
-        <view class="card-title">使用说明</view>
-        <view class="card-explain" style="white-space: pre-line">{{list[current].description}}</view>
+        <view class="card-title">联系客服</view>
+        <view class="card-explain" style="white-space: pre-line">
+            <view class="left-item-l">
+                <view class="left-item-l-top">
+                    <image src="https://sbmf.ww2ss.com/dfimages/logo2.jpg" style="height: 180rpx; width: 180rpx;" bindtap="imgYu"></image>
+                </view>
+
+            </view>
+            <view class="left-item-r">
+                <view class="item-top">
+                    <view class="item-top-top" bindtap="copyText" data-text="{{'vxjbugcea'}}">微信号：vxjbugcea</view>
+                </view>
+                <view class="item-bottom">
+                    <view class="item-bottom-top" bindtap="copyText" data-text="{{'vxjbugcea'}}">点击复制微信号</view>
+
+                </view>
+            </view>
+        </view>
     </view>
 </view>
 <view class="card-modal" wx:if="{{modal}}">
     <view class="inner">
         <view class="title">优惠券</view>
         <view class="text">每月1号发放，需手动领取</view>
-        <view class="text">尊享会员每月可领取5张优惠券</view>
+        <view class="text">尊享用户每月可领取5张优惠券</view>
         <view class="text">优惠券种类包括折扣券与满减券</view>
         <view bindtap="submit" class="submit">确定</view>
     </view>
@@ -213,15 +232,16 @@
         <view class="item"></view>
     </view>
     <view class="btn-footbar {{isIpx?'iphonex':''}}">
-        <view class="btn-text">￥<span>{{list[current].price}}</span>/{{list[current].card_validate}}</view>
+        <view class="btn-text">￥
+            <span>{{list[current].price}}</span>/{{list[current].card_validate}}</view>
         <view bindtap="submit" class="btn-submit" data-id="{{list[current].id}}" data-startbuy="{{list[current].startbuy}}">
-            <block wx:if="{{list[current].startbuy==1}}">立即开通</block>
-            <block wx:if="{{list[current].startbuy==2}}">重新购买</block>
+            <block wx:if="{{list[current].startbuy==1}}">立即下单</block>
+            <block wx:if="{{list[current].startbuy==2}}">重新下单</block>
             <i class="icox icox-qianjin-copy"></i>
         </view>
     </view>
 </block>
-<view bindtap="submit" class="renew {{isIpx?'iphonex':''}}" data-id="{{list[current].id}}" data-startbuy="{{list[current].startbuy}}" wx:if="{{list[current].startbuy==0}}">续费</view>
+<view bindtap="submit" class="renew {{isIpx?'iphonex':''}}" data-id="{{list[current].id}}" data-startbuy="{{list[current].startbuy}}" wx:if="{{list[current].startbuy==0}}">重新下单</view>
 <view class="fui-toast {{FoxUIToast.show?'in':'out'}}">
     <view class="text">{{FoxUIToast.text}}</view>
 </view>

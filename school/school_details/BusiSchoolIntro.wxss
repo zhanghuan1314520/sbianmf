@@ -1,0 +1,154 @@
+.school-intro_wrap.data-v-14a36d6a {
+    width: 100vw;
+    background: #fff;
+    border-radius: 32rpx 32rpx 0rpx 0rpx;
+    margin-top: -32rpx;
+    padding: 36rpx 30rpx 24rpx;
+    box-sizing: border-box;
+    z-index: 70;
+    position: relative;
+}
+
+.school-intro_wrap .school-name.data-v-14a36d6a {
+    width: 520rpx;
+    color: #000;
+    font-weight: 700;
+    line-height: 52rpx;
+}
+
+.school-intro_wrap .second-info.data-v-14a36d6a {
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.school-intro_wrap .second-info .area.data-v-14a36d6a,.school-intro_wrap .second-info .nature.data-v-14a36d6a,.school-intro_wrap .second-info .tag.data-v-14a36d6a,.school-intro_wrap .second-info .type.data-v-14a36d6a {
+    padding: 0 8rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    text-align: center;
+    color: #6577aa;
+    margin-right: 12rpx;
+    background-color: rgba(101,119,170,.1);
+}
+
+.school-intro_wrap .second-info .tag.data-v-14a36d6a:last-child {
+    margin-right: 0;
+}
+
+.school-intro_wrap .second-info .nature.data-v-14a36d6a {
+    margin-left: 0rpx!important;
+    background: rgba(20,120,255,.1);
+    color: #1478ff;
+}
+
+.school-intro_wrap .second-info .nature-green.data-v-14a36d6a {
+    background: rgba(10,197,153,.1);
+    color: #0ac599;
+}
+
+.school-intro_wrap .thrid-info .icon.data-v-14a36d6a,.school-intro_wrap .thrid-info .txt.data-v-14a36d6a {
+    color: #bfc2cc;
+}
+
+.school-intro_wrap .fourth-info.data-v-14a36d6a {
+    height: 52rpx;
+}
+
+.school-intro_wrap .fourth-info .position-icon.data-v-14a36d6a {
+    width: 28rpx;
+    height: 30rpx;
+    position: relative;
+    top: -2rpx;
+    color: #bfc2cc;
+}
+
+.school-intro_wrap .fourth-info .address.data-v-14a36d6a {
+    width: 490rpx;
+    line-height: 40rpx;
+    height: 40rpx;
+    color: #303133;
+}
+
+.school-intro_wrap .fourth-info .right-wrap.data-v-14a36d6a {
+    line-height: 40rpx;
+    height: 40rpx;
+    color: #909399;
+}
+
+.school-intro_wrap .fourth-info .right-wrap image.data-v-14a36d6a {
+    border: none;
+}
+
+.school-intro_wrap .fourth-info .position_wrap.data-v-14a36d6a {
+    width: 56rpx;
+    height: 56rpx;
+    line-height: 56rpx;
+    background: #fff;
+    border: 2rpx solid #d6d7d9;
+    text-align: center;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+.school-intro_wrap .fifth-info.data-v-14a36d6a {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    height: 120rpx;
+    overflow: hidden;
+}
+
+.school-intro_wrap .fifth-info .intro-icon.data-v-14a36d6a {
+    color: #303133;
+}
+
+.school-intro_wrap .fifth-info .intro_wrap.data-v-14a36d6a {
+    color: #303133;
+    line-height: 40rpx;
+    word-wrap: break-word;
+}
+
+.school-intro_wrap .view-more_wrap.data-v-14a36d6a {
+    color: #909399;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+.school-intro_wrap .view-more_wrap .txt.data-v-14a36d6a {
+    height: 34rpx;
+    width: 100rpx;
+}
+
+.school-intro_wrap .tool-btn.data-v-14a36d6a {
+    position: absolute;
+    top: 38rpx;
+    right: 30rpx;
+}
+
+.school-intro_wrap .tool-btn .btn.data-v-14a36d6a {
+    height: 92rpx;
+}
+
+.school-intro_wrap .tool-btn .btn .icon.data-v-14a36d6a {
+    color: #303133;
+}
+
+.school-intro_wrap .tool-btn .btn .txt.data-v-14a36d6a {
+    line-height: 32rpx;
+    color: #909399;
+}
+
+.school-intro_wrap .tool-btn .btn .attentioned.data-v-14a36d6a {
+    color: #ee3f4d!important;
+}
+
+.school-intro_wrap .tool-btn .share-btn.data-v-14a36d6a {
+    line-height: unset;
+    border-radius: unset;
+    -webkit-tap-highlight-color: transparent;
+    overflow: unset;
+    color: unset;
+    background-color: unset;
+}

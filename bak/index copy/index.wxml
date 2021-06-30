@@ -1,0 +1,269 @@
+<loading wx:if="{{!show}}">加载中...</loading>
+<add-tips text="点击【添加我的小程序】,及时获取信息" duration="30" />
+<view class="model" wx:if="{{modelShow}}">
+	<view class="inner">
+		<view class="title">用户未授权</view>
+		<view class="image">
+			<image src="{{imgUrl+'plugin/app/static/images/wxapp/shouquan.png'}}"></image>
+		</view>
+		<view class="subtitle">您需要先开启【用户信息】，才能使用此功能哦~</view>
+		<view class="model-btns">
+			<view bindtap="cancelclick" class="cancel">取消</view>
+			<view bindtap="confirmclick" class="confirm">去设置</view>
+		</view>
+	</view>
+</view> 
+<view class="container">
+	<view class="container-top">
+		<view class="search-box">
+			<view bindtap="searchClick" class="search">
+				<view class="serch_content" style="color:#366AB3;background-color:#fff;">
+					<wxc-icon color="font-size:28rpx; color:#366AB3;" size="28" type="search"></wxc-icon>
+					<input bindtap="toSearch" class="search_input" name="search_input" placeholder="请输入板块名、楼盘名看房源" placeholderStyle="font-size:28rpx; color:#366AB3;" type="text" value="{{searchCon}}"></input>
+
+					<div class="search_line"></div>
+					<wxc-icon bindtap="handleGoT" data-go="/house/house_map/index" type="address" color="#366AB3" size="28"></wxc-icon>
+					<view bindtap="handleGoT" data-go="/house/house_map/index" class="search_map" size="28">地图找房</view>
+				</view>
+			</view>
+		</view>
+ 
+		<!-- <view class="shangbianju"></view> -->
+	</view>
+
+	<view class="container-body" style="position: relative;">
+		<view style="height: 600rpx;">
+			<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ecLine}}" wx:if="{{show}}"></ec-canvas>
+		</view>
+
+		<view class="wrap">
+			<view bindtap="get_homechart" class="item" data-xswitch="4">
+			 	<image class="indexico" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==4?'n1.png':'n1.png'}}"></image>
+				<view class="{{xswitch==4?'house-type-selected':''}}">区域库存</view>
+			</view>
+			<view bindtap="get_homechart" class="item" data-xswitch="1">
+				<image class="indexico" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==1?'n2.png':'n2.png'}}"></image>
+				<view class="{{xswitch==1?'house-type-selected':''}}">每日供应</view>
+			</view>
+			<view bindtap="get_homechart" class="item" data-xswitch="3">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==3?'n4.png':'n4.png'}}"></image>
+				<view class="{{xswitch==3?'house-type-selected':''}}">每日交易</view>
+			</view> 
+			<view bindtap="get_homechart" class="item" data-xswitch="2">
+				<image  src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==2?'n3.png':'n3.png'}}"></image>
+				<view class="{{xswitch==2?'house-type-selected':''}}">全城带看</view>
+			</view>
+		
+			<view bindtap="handleGoT" data-go="/project/pages/reportsa/index" class="item" data-xswitch="3">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==3?'n5.png':'n5.png'}}"></image>
+				<view class="{{xswitch==3?'house-type-selected':''}}">成交报告</view>
+			</view>
+ 
+		</view>
+		<view class="wrap">
+			<view bindtap="handleGoT" data-go="/house/house_map/index" class="item" data-xswitch="4">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==4?'n6.png':'n6.png'}}"></image>
+				<view class="{{xswitch==4?'house-type-selected':''}}">学区地图</view>
+			</view>
+			<view bindtap="handleGoT" data-go="/school/xuequ/index" class="item" class="item" data-xswitch="2">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==2?'n8.png':'n8.png'}}"></image>
+				<view class="{{xswitch==2?'house-type-selected':''}}">学区报表</view>
+			</view>
+			<view bindtap="handleGoT" data-go="/house/rank/index" class="item" data-xswitch="1">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==1?'n7.png':'n7.png'}}"></image>
+				<view class="{{xswitch==1?'house-type-selected':''}}">排行榜</view>
+			</view>  
+			<view bindtap="toNearby" data-nearby="0" class="item" data-xswitch="3">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==3?'n9.png':'n9.png'}}"></image>
+				<view class="{{xswitch==3?'house-type-selected':''}}">附近带看</view>
+			</view>
+			<view bindtap="handleGoTab" data-go="/house/searchHouse/index" class="item" data-xswitch="3">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==3?'n10.png':'n10.png'}}"></image>
+				<view class="{{xswitch==3?'house-type-selected':''}}">查房价</view>
+			</view> 
+    
+		</view>   
+
+		<view class="wrap">
+			<view bindtap="get_homechart" class="item" data-xswitch="4">
+			 	<image class="indexico" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==4?'n1.png':'n1.png'}}"></image>
+				<view class="{{xswitch==4?'house-type-selected':''}}">区域库存</view>
+			</view>
+			<view bindtap="get_homechart" class="item" data-xswitch="1">
+				<image class="indexico" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==1?'n2.png':'n2.png'}}"></image>
+				<view class="{{xswitch==1?'house-type-selected':''}}">每日供应</view>
+			</view>
+			<view bindtap="get_homechart" class="item" data-xswitch="3">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==3?'n4.png':'n4.png'}}"></image>
+				<view class="{{xswitch==3?'house-type-selected':''}}">每日交易</view>
+			</view> 
+			<view bindtap="get_homechart" class="item" data-xswitch="2">
+				<image  src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==2?'n3.png':'n3.png'}}"></image>
+				<view class="{{xswitch==2?'house-type-selected':''}}">全城带看</view>
+			</view>
+		
+			<view bindtap="handleGoT" data-go="/project/pages/reportsa/index" class="item" data-xswitch="3">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==3?'n5.png':'n5.png'}}"></image>
+				<view class="{{xswitch==3?'house-type-selected':''}}">成交报告</view>
+			</view>
+ 
+		</view>
+		<view class="wrap">
+			<view bindtap="handleGoT" data-go="/house/house_map/index" class="item" data-xswitch="4">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==4?'n6.png':'n6.png'}}"></image>
+				<view class="{{xswitch==4?'house-type-selected':''}}">学区地图</view>
+			</view>
+			<view bindtap="handleGoT" data-go="/school/xuequ/index" class="item" class="item" data-xswitch="2">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==2?'n8.png':'n8.png'}}"></image>
+				<view class="{{xswitch==2?'house-type-selected':''}}">学区报表</view>
+			</view>
+			<view bindtap="handleGoT" data-go="/house/rank/index" class="item" data-xswitch="1">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==1?'n7.png':'n7.png'}}"></image>
+				<view class="{{xswitch==1?'house-type-selected':''}}">排行榜</view>
+			</view>  
+			<view bindtap="toNearby" data-nearby="0" class="item" data-xswitch="3">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==3?'n9.png':'n9.png'}}"></image>
+				<view class="{{xswitch==3?'house-type-selected':''}}">附近带看</view>
+			</view>
+			<view bindtap="handleGoTab" data-go="/house/searchHouse/index" class="item" data-xswitch="3">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==3?'n10.png':'n10.png'}}"></image>
+				<view class="{{xswitch==3?'house-type-selected':''}}">查房价</view>
+			</view> 
+    
+		</view>   
+
+		<view class="wrap">
+			<view bindtap="get_homechart" class="item" data-xswitch="4">
+			 	<image class="indexico" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==4?'n1.png':'n1.png'}}"></image>
+				<view class="{{xswitch==4?'house-type-selected':''}}">区域库存</view>
+			</view>
+			<view bindtap="get_homechart" class="item" data-xswitch="1">
+				<image class="indexico" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==1?'n2.png':'n2.png'}}"></image>
+				<view class="{{xswitch==1?'house-type-selected':''}}">每日供应</view>
+			</view>
+			<view bindtap="get_homechart" class="item" data-xswitch="3">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==3?'n4.png':'n4.png'}}"></image>
+				<view class="{{xswitch==3?'house-type-selected':''}}">每日交易</view>
+			</view> 
+			<view bindtap="get_homechart" class="item" data-xswitch="2">
+				<image  src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==2?'n3.png':'n3.png'}}"></image>
+				<view class="{{xswitch==2?'house-type-selected':''}}">全城带看</view>
+			</view>
+		
+			<view bindtap="handleGoT" data-go="/project/pages/reportsa/index" class="item" data-xswitch="3">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==3?'n5.png':'n5.png'}}"></image>
+				<view class="{{xswitch==3?'house-type-selected':''}}">成交报告</view>
+			</view>
+ 
+		</view>
+		<view class="wrap">
+			<view bindtap="handleGoT" data-go="/house/house_map/index" class="item" data-xswitch="4">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==4?'n6.png':'n6.png'}}"></image>
+				<view class="{{xswitch==4?'house-type-selected':''}}">学区地图</view>
+			</view>
+			<view bindtap="handleGoT" data-go="/school/xuequ/index" class="item" class="item" data-xswitch="2">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==2?'n8.png':'n8.png'}}"></image>
+				<view class="{{xswitch==2?'house-type-selected':''}}">学区报表</view>
+			</view>
+			<view bindtap="handleGoT" data-go="/house/rank/index" class="item" data-xswitch="1">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==1?'n7.png':'n7.png'}}"></image>
+				<view class="{{xswitch==1?'house-type-selected':''}}">排行榜</view>
+			</view>  
+			<view bindtap="toNearby" data-nearby="0" class="item" data-xswitch="3">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==3?'n9.png':'n9.png'}}"></image>
+				<view class="{{xswitch==3?'house-type-selected':''}}">附近带看</view>
+			</view>
+			<view bindtap="handleGoTab" data-go="/house/searchHouse/index" class="item" data-xswitch="3">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==3?'n10.png':'n10.png'}}"></image>
+				<view class="{{xswitch==3?'house-type-selected':''}}">查房价</view>
+			</view> 
+    
+		</view>   
+
+		<view class="wrap">
+			<view bindtap="get_homechart" class="item" data-xswitch="4">
+			 	<image class="indexico" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==4?'n1.png':'n1.png'}}"></image>
+				<view class="{{xswitch==4?'house-type-selected':''}}">区域库存</view>
+			</view>
+			<view bindtap="get_homechart" class="item" data-xswitch="1">
+				<image class="indexico" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==1?'n2.png':'n2.png'}}"></image>
+				<view class="{{xswitch==1?'house-type-selected':''}}">每日供应</view>
+			</view>
+			<view bindtap="get_homechart" class="item" data-xswitch="3">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==3?'n4.png':'n4.png'}}"></image>
+				<view class="{{xswitch==3?'house-type-selected':''}}">每日交易</view>
+			</view> 
+			<view bindtap="get_homechart" class="item" data-xswitch="2">
+				<image  src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==2?'n3.png':'n3.png'}}"></image>
+				<view class="{{xswitch==2?'house-type-selected':''}}">全城带看</view>
+			</view>
+		
+			<view bindtap="handleGoT" data-go="/project/pages/reportsa/index" class="item" data-xswitch="3">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==3?'n5.png':'n5.png'}}"></image>
+				<view class="{{xswitch==3?'house-type-selected':''}}">成交报告</view>
+			</view>
+ 
+		</view>
+		<view class="wrap">
+			<view bindtap="handleGoT" data-go="/house/house_map/index" class="item" data-xswitch="4">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==4?'n6.png':'n6.png'}}"></image>
+				<view class="{{xswitch==4?'house-type-selected':''}}">学区地图</view>
+			</view>
+			<view bindtap="handleGoT" data-go="/school/xuequ/index" class="item" class="item" data-xswitch="2">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==2?'n8.png':'n8.png'}}"></image>
+				<view class="{{xswitch==2?'house-type-selected':''}}">学区报表</view>
+			</view>
+			<view bindtap="handleGoT" data-go="/house/rank/index" class="item" data-xswitch="1">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==1?'n7.png':'n7.png'}}"></image>
+				<view class="{{xswitch==1?'house-type-selected':''}}">排行榜</view>
+			</view>  
+			<view bindtap="toNearby" data-nearby="0" class="item" data-xswitch="3">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==3?'n9.png':'n9.png'}}"></image>
+				<view class="{{xswitch==3?'house-type-selected':''}}">附近带看</view>
+			</view>
+			<view bindtap="handleGoTab" data-go="/house/searchHouse/index" class="item" data-xswitch="3">
+				<image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/ico/{{xswitch==3?'n10.png':'n10.png'}}"></image>
+				<view class="{{xswitch==3?'house-type-selected':''}}">查房价</view>
+			</view> 
+    
+		</view>   
+      
+		<view class="line1"></view>
+  
+ 
+
+		<!-- <navigator openType="navigate" url="/school/school_map/index">
+			<view class="schoolad">
+				<image class="adimages" src="https://sbmf.ww2ss.com/dfimages/schoolad.png"></image>
+			</view>
+		</navigator> -->
+ 
+
+
+
+		<view class="line1"></view>
+ 
+		<view class="line1"></view>
+  
+	 
+ 
+		<view class="line1"></view>
+ 
+
+		<view class="line1"></view>
+  
+		
+		<view class="line1"></view>
+ 
+
+ 
+
+	</view>
+
+
+	<button class="share-btn data-v-13be682a"  openType="share">
+        <image class="data-v-13be682a" src="https://sbmf.ww2ss.com/dfimages/share-btn.png">
+        </image>
+    </button>
+
+</view>

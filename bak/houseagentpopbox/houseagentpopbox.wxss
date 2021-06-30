@@ -1,0 +1,79 @@
+.zhezao {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background: rgba(0,0,0,.4);
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.txtsure {
+    width: 750rpx;
+    height: 1334rpx;
+    display: flex;
+}
+
+.modal_view {
+    height: 816rpx;
+    margin: 200rpx auto;
+    background: #fff;
+    border-radius: 18rpx;
+    flex-direction: column;
+    position: relative;
+}
+
+.modal_up,.modal_view {
+    width: 612rpx;
+    display: flex;
+    align-items: center;
+}
+
+.modal_up {
+    height: 408rpx;
+    background: linear-gradient(270deg,#116ad7,#2a8dff);
+    border-radius: 16rpx 16rpx 0 0;
+    justify-content: center;
+}
+
+.modal_title {
+    margin-top: 38rpx;
+    color: #2a8dff;
+    font-size: 36rpx;
+    font-weight: 700;
+}
+
+.modal_text {
+    margin-top: 28rpx;
+    color: #333;
+    font-size: 30rpx;
+}
+
+.modal_close {
+    position: absolute;
+    color: #999;
+    bottom: 48rpx;
+    font-size: 30rpx;
+}
+
+.modal_up_circle {
+    width: 256rpx;
+    height: 256rpx;
+    border-radius: 128rpx;
+    background: hsla(0,0%,100%,.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.txtbutton {
+    position: absolute;
+    width: 300rpx;
+    height: 72rpx;
+    bottom: 120rpx;
+    font-size: 34rpx;
+    line-height: 72rpx;
+    color: #fff;
+    background: #2a8dff;
+    border-radius: 50px;
+}

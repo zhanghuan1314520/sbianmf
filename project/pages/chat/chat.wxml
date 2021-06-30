@@ -1,0 +1,91 @@
+<view class="chat {{isIpx?'ipx-fix':''}}">
+
+	<view bindtap="toggleChatHandler" class="container_chat" data-type="0">
+		<view class="broker" style="top:0px">
+			<view class="broker__card">
+				<view class="broker__info {{brokerCardStatus?'':'broker__info-hidden'}}">
+					<!-- <view bindtap="toggleFocus" class="focus {{broker.IsFollow?'hasFocused':''}}">{{chatInfo.IsFollow?'已点赞':'点赞'}}</view> -->
+					<view class="img-wrap">
+						<image class="img" mode="aspectFill" src="{{broker.qrcode || '/project/pages/images/chat/agent_default@3x.png'}}"></image>
+					</view>
+					<view class="info">
+						<view class="name">{{broker.uname}}
+							<text   class="building-tag">{{broker.organization}}</text>
+						</view>
+						<view class="intro">为您解答房源的相关问题！</view>
+					</view>
+				</view>
+				<view class="handler">
+					<view bindtap="callBroker" class="handler-item" style="border-right:1rpx solid #EAEAEA">
+						<image class="handler-icon" src="/project/pages/images/chat/icon_telephone@3x.png"></image>
+						<view class="handler-name">电话咨询</view>
+					</view>
+					<view bindtap="copyWechat" class="handler-item">
+						<image class="handler-icon" src="/project/pages/images/chat/icon_wechat@3x.png"></image>
+						<view class="handler-name">微信联系</view>
+					</view>
+				</view>
+				<view class="broker__handler-trigger">
+					<text bindtap="toggleBrokerStatus" class="broker__handler-trigger-text">{{brokerCardStatus?'收起':'展开'}}</text>
+					<image bindtap="toggleBrokerStatus" class="broler__handler-trigger-icon {{brokerCardStatus?'':'broler__handler-trigger-icon-on'}}" src="/project/pages/images/chat/chat_icon_packup@3x.png"></image>
+				</view>
+			</view>
+		</view>
+		<view class="chat__tip">开始在线咨询，如回复慢请致电经纪人！</view>
+		<view class="chat__list" wx:if="{{messageList&&messageList.length>0}}">
+			<view class="chat__item {{item.toAccount===userInfoTo.msgid?'chat__send':'chat__reception'}}" wx:for="{{messageList}}" wx:key="index">
+				<view class="chat__time" wx:if="{{item._payLoad.time}}">{{item._payLoad.time}}</view>
+				<view class="chat__info">
+					<image class="chat__avatar" mode="aspectFill" src="{{item._payLoad.avatarUrl||'/project/pages/images/chat/agent_default@3x.png'}}"></image>
+
+					<view class="chat__msg chat__content" wx:if="{{item.bizType==='TEXT'}}">{{item._payLoad.content}}
+						<image class="chat__loading" src="/project/pages/images/chat/loading.gif" wx:if="{{item.loading}}"></image>
+					</view>
+					<view class="chat__content" wx:if="{{item.bizType==='IMAGE'}}">
+						<image binderror="imgLoadError" bindtap="checkImage" class="chat__image" data-index="{{index}}" data-url="{{item._payLoad.content||''}}" mode="widthFix" src="{{item._payLoad.content||'/project/pages/images/chat/chat_icon_nopic@3x.png'}}"></image>
+						<image class="chat__loading" src="/project/pages/images/chat/loading.gif" wx:if="{{item.loading}}"></image>
+					</view>
+					<view class="chat__content" wx:if="{{item.bizType==='HOME'}}" bindtap="handleGoT" data-go="/house/house/house?cid={{item._payLoad.houseId}}">
+						<image binderror="imgLoadError" class="chat_house_img" data-index="{{index}}" mode="widthFix" src="{{item._payLoad.houseImage}}"></image>
+						<view class="chat_house_title">{{item._payLoad.houseTitle}}</view>
+						<view class="chat_house_mode">{{item._payLoad.houseModel}} {{item._payLoad.houseArea}}/㎡</view>
+						<view class="chat_house_sale">{{item._payLoad.houseSale}}万</view>
+						<image class="chat__loading" src="/project/pages/images/chat/loading.gif" wx:if="{{item.loading}}"></image>
+					</view>
+					<view class="chat__content" wx:if="{{item.bizType==='COMMUNITY'}}" bindtap="handleGoT" data-go="/house/community/index?cid={{item._payLoad.houseId}}">						
+						<view class="chat_cid_title">{{item._payLoad.houseTitle}}</view>
+						<view class="chat_cid_mode">挂牌:{{item._payLoad.houseModel}}套/均价:{{item._payLoad.houseSale}}/㎡</view>
+						<view class="chat_cid_img">90天成交：</view>
+						<view class="chat_cid_sale">{{item._payLoad.houseArea}}套/均价:{{item._payLoad.houseImage}}元</view>
+					 
+						<image class="chat__loading" src="/project/pages/images/chat/loading.gif" wx:if="{{item.loading}}"></image>
+					</view>
+				</view>
+			</view>
+
+		</view>
+	</view>
+	<view class="chat__handler {{chatHandlerStatus===1?'up':''}}" style="bottom:{{keyBoardH}}px;duration:{{keyBoardDuration}}s">
+		<view class="chat__input-wrap" style="padding-bottom:{{isIpx?20:0}}rpx">
+			<view catchtap="toggleChatHandler" class="chat__common" data-type="2">常用语</view>
+			<input adjustPosition="{{false}}" bindblur="onBlur" bindconfirm="sendMessage" bindfocus="onFocus" bindinput="inputing" bindkeyboardheightchange="borderHeightChange" class="chat__input" confirmType="send" cursorSpacing="10" placeholder="在此输入聊天内容" value="{{inputContent}}"></input>
+			<image catchtap="toggleChatHandler" class="chat__more-btn" data-type="1" src="/project/pages/images/chat/chat_more@3x.png"></image>
+			<!-- <image catchtap="sendMessage" class="chat__send-btn {{inputContent?'':'chat__send-btn-disable'}}" src="/project/pages/images/chat/chat_icon_send@3x.png"></image> -->
+		</view>
+		<scroll-view class="chat__handler-more {{chatHandlerStatus?chatHandlerStatus==1?'photo-up':'common-up':''}}" scrollY="{{true}}">
+			<view class="handler__more-items" wx:if="{{chatHandlerStatus==1}}">
+				<view bindtap="chooseImageFromAlbum" class="handler__more-item">
+					<image class="handler__more-icon" src="/project/pages/images/chat/handler_ablum@3x.png"></image>
+					<view class="handler__more-text">相册</view>
+				</view>
+				<view bindtap="chooseImageFromCamera" class="handler__more-item">
+					<image class="handler__more-icon" src="/project/pages/images/chat/handler_photo@3x.png"></image>
+					<view class="handler__more-text">拍摄</view>
+				</view>
+			</view>
+			<view class="handler__more-commons" wx:if="{{chatHandlerStatus==2}}">
+				<view bindtap="sendCommonMsg" class="common" data-index="{{index}}" wx:for="{{commonList}}" wx:key="index">{{item}}</view>
+			</view>
+		</scroll-view>
+	</view>
+</view>

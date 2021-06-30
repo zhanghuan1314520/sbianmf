@@ -1,0 +1,246 @@
+page {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+}
+
+.over_hidden {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.top {
+    width: 750rpx;
+    background: #fff;
+    height: 88rpx;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.searchBox {
+    width: 620rpx;
+    height: 70rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    border-radius: 50px;
+    background: #F5F7FA;
+    border: 0.5rpx #E5E8EE solid;
+}
+
+.searchIcon {
+    width: 600rpx;
+    height: 66rpx;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 36rpx;
+    height: 36rpx;
+    margin-left: 20rpx;
+    margin-right: 18rpx;
+    display: inline-block;
+}
+
+.clear2 {
+    width: 22rpx;
+    height: 22rpx;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 11rpx;
+    z-index: 22;
+    padding: 16rpx;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.searchIcon .search {
+    display: inline-block;
+    height: 68rpx;
+    color: #A1A5AE;
+    text-align: left;
+    line-height: 88rpx;
+    font-size: 30rpx;
+}
+
+.suggestList {
+    position: absolute;
+    bottom: -22rpx;
+    background: #fff;
+    width: 750rpx;
+    transform: translateY(100%);
+    z-index: 334;
+    font-size: 28rpx;
+    line-height: 88rpx;
+    color: #8C8F96;
+    overflow-y: scroll;
+}
+
+.suggestListItem {
+    padding-left: 70rpx;
+    font-size: 28rpx;
+    color: #3B3F4B;
+    line-height: 92rpx;
+    height: 92rpx;
+    border-bottom: 1rpx solid #e8e8e8;
+    box-sizing: border-box;
+}
+
+.suggestListItemWords {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.redColor {
+    color: red;
+}
+
+.list_search {
+    width: 24rpx;
+    height: 24rpx;
+    margin-right: 16rpx;
+}
+
+.tips {
+    color: #b2b2b2;
+}
+
+.searchHistory {
+    background: #fff;
+    display: block;
+    width: 750rpx;
+    border-bottom: 1px solid #f1f1f1;
+    overflow-y: scroll;
+    position: absolute;
+    top: 88rpx;
+    background: #fff;
+    z-index: 44;
+}
+
+.searchHistoryHead {
+    display: flex;
+    justify-content: space-between;
+    padding: 46rpx 34rpx 10rpx 34rpx;
+}
+
+.searchHistoryTitle {
+    font-size: 28rpx;
+    color: #8E98B6;
+    line-height: 52rpx;
+    height: 52rpx;
+    padding: 0 60rpx;
+    display: flex;
+    width: 50%;
+    font-weight: bold;
+}
+
+.historyList {
+    width: 100%;
+    font-size: 28rpx;
+    line-height: 92rpx;
+    height: 92rpx;
+    color: #3B3F4B;
+    border-bottom: 1rpx solid #e8e8e8;
+    box-sizing: border-box;
+    padding-left: 70rpx;
+    display: flex;
+    align-items: center;
+}
+
+.historyImage {
+    width: 24rpx;
+    height: 24rpx;
+    margin-right: 16rpx;
+}
+
+.cleanSearchHistory {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 26rpx;
+    height: 36rpx;
+    line-height: 36rpx;
+    align-items: center;
+    color: #8C8F96;
+}
+
+.cleanSearchHistoryImage {
+    width: 25rpx;
+    height: 25rpx;
+    margin-left: 12rpx;
+}
+
+.hotSchoolBox {
+    min-height: 400rpx;
+}
+
+.hotSchoolBoxTitle {
+    font-size: 28rpx;
+    color: #8E98B6;
+    line-height: 100rpx;
+    height: 100rpx;
+    display: flex;
+    width: 85%;
+    margin: 0 auto;
+    font-weight: bold;
+    align-items: center;
+}
+
+.hotSchoolBoxTitleImage {
+    width: 52rpx;
+    height: 52rpx;
+    margin-right: 12rpx;
+}
+
+.hotSchoolList {
+    width: 100%;
+    background: #fff;
+    padding: 0 72rpx;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    min-height: 480rpx;
+}
+
+.hotSchoolItem {
+    height: 32rpx;
+    width: 50%;
+    line-height: 32rpx;
+    font-size: 28rpx;
+    overflow: hidden;
+    display: inline-block;
+    margin-bottom: 48rpx;
+    color: #3B3F4B;
+}
+
+.hotSchoolItemName {
+    max-width: 270rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.advbox {
+    height: 500rpx;
+}
+
+.adv {
+    width: 700rpx;
+    margin-left: 25rpx;
+    margin-top: 20rpx;
+    border-radius: 12rpx;
+}

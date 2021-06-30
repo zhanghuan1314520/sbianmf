@@ -1,0 +1,6 @@
+<view class="join-us">
+    <navigator class="placeholder-picture see-hourse" openType="navigate" url="{{seeHourseUrl}}" wx:if="{{longpageAdvertId}}">
+        <image class="placeholder_img" src="https://sbmf.ww2ss.com/dfimages/lpxq_img_yykf.png"></image>
+    </navigator>
+ 
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {  
+    "add-tips": "/components/weplug-add-tips/index",
+    "wxc-icon": "/min/@minui/wxc-icon/dist/index"
+  }
+}

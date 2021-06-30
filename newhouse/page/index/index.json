@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "手边买房",
+  "usingComponents": {
+      "drag-ball": "/newhouse/components/drag-ball/drag-ball",
+      "uni-swiper-dot": "/newhouse/components/uni-swiper-dot/uni-swiper-dot",
+      "axb-check-box": "/newhouse/components/axb-checkbox/axb-checkbox",
+      "house": "/newhouse/page/common/house",
+      "search": "/newhouse/page/common/search",
+      "broadcast": "/newhouse/page/index/broadcast"
+  }
+}

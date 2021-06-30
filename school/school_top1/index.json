@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "base-cricle-share-btn": "/school/components/xqb/BaseCricleShareBtn",
+    "base-school-single-list": "/school/components/xqb/BaseSchoolSingleList"
+  }
+}

@@ -14,9 +14,7 @@
         </view>
     </view>
     <view class="fui-list-group">
-        <view bindtap="pay" class="btn btn-danger block" data-type="credit" style="margin-top:1.25rem" wx:if="{{list.credit.success&&list.order.price==0}}">
-           确认支付
-        </view>
+        <view bindtap="pay" class="btn btn-danger block" data-type="credit" style="margin-top:1.25rem" wx:if="{{list.order.price==0}}">           确认支付        </view>
         <view bindtap="pay" class="fui-list" data-type="wechat" wx:if="{{list.wechat.success&&list.order.price!=0}}">
             <view class="fui-list-media">
                 <image class="round" src="/static/images/icon-white/wx.png"></image>
@@ -97,7 +95,7 @@
             <view class="fui-cell-remark"></view>
         </view>
         <view class="send-code fui-list-group">
-            <view class="fui-list" wx:for="{{successData.stores}}">
+            <view class="fui-list" wx:for="{{successData.stores}}" wx:key="{{index}}">
                 <view class="fui-list-media">
                     <text class="icox icox-dianpu1"></text>
                 </view>
@@ -162,32 +160,35 @@
     </view>
     <block wx:if="{{order.virtual>0&&order.virtual_str!=''}}">
         <block wx:if="{{ordervirtualtype&&ordervirtual.length>0}}">
-            <view class="fui-cell-group {{toggleCode?'toggleSend-group':''}}" wx:for="{{ordervirtual}}">
+            <view class="fui-cell-group {{toggleCode?'toggleSend-group':''}}" wx:for="{{ordervirtual}}" wx:key="{{index}}">
                 <view class="fui-cell-title">发货信息{{ordervirtual.length>1?index+1:''}}</view>
-                <view class="fui-cell" wx:for="{{item}}" wx:for-item="item2">
+                <view class="fui-cell" wx:for="{{item}}" wx:for-item="item2" wx:key="{{index}}">
                     <view class="fui-cell-label">
                         <text class="fui-cell-label" selectable="true">{{item2.key}}</text>
                     </view>
-                    <view class="fui-cell-info">
-                        <text class="fui-cell-label" selectable="true">{{item2.value}}</text>
+                    <view class="wrapview" style="font-size:28rpx;color:#666;">
+                        <text selectable="true" wx:if="{{item2.value!=''&&item2.value!=null}}">{{item2.value}}</text>
                     </view>
+                    <view bindtap="bindCopy" class="pull-right copyText" data-content="{{item2}}" wx:if="{{item2.value!=''&&item2.value!=null}}">复制</view>
                 </view>
             </view>
         </block>
         <view class="fui-cell-group" wx:else>
-            <view class="fui-cell-title">发货信息</view>
+            <view class="fui-cell-title">发货信息              <view bindtap="bindCopyText" class="pull-right copyText" data-content="{{order.virtual_str}}">复制</view>
+            </view>
             <view class="fui-cell">
-                <view class="fui-cell-info">
-                    <text class="fui-cell-label" selectable="true">{{order.virtual_str}}</text>
+                <view class="">
+                    <text class="fui-cell-label" selectable="true" style="color:#666;width:100%;font-size: 28rpx;">{{order.virtual_str}}</text>
                 </view>
             </view>
         </view>
     </block>
     <view class="fui-cell-group" wx:if="{{order.isvirtualsend>0&&order.virtualsend_info!=null}}">
-        <view class="fui-cell-title">发货信息</view>
+        <view class="fui-cell-title">发货信息          <view bindtap="bindCopyText" class="pull-right copyText" data-content="{{order.virtualsend_info}}">复制</view>
+        </view>
         <view class="fui-cell">
-            <view class="fui-cell-info" style="white-space:normal">
-                <text class="fui-cell-text" selectable="true">{{order.virtualsend_info}}</text>
+            <view class="">
+                <text class="fui-cell-text" selectable="true" style="color:#666;width:100%;font-size: 28rpx;">{{order.virtualsend_info}}</text>
             </view>
         </view>
     </view>

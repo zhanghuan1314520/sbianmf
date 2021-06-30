@@ -5,8 +5,11 @@
       <text>——登录后即可查看——</text>
 
     </view>
-    
-    <button bindgetuserinfo="bindGetUserInfo" class="btn" openType="getUserInfo" wx:if="{{!close}}">微信登录授权</button>
+    <block wx:if="{{!close}}">
+        <button wx:if="{{canIUseGetUserProfile}}" class="btn" bindtap="getUserProfile">微信登录授权 </button> 
+
+        <button wx:else bindgetuserinfo="bindGetUserInfo" class="btn" openType="getUserInfo">微信登录授权</button>
+  </block>
     <view class="text" wx:if="{{close}}">{{text}}</view>
     <view class="text1" wx:if="{{!close}}">
       <text>手边买房真实、专业的地产大数据</text>

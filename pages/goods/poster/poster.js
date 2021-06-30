@@ -17,7 +17,7 @@ Page({
         t.json("goods/poster/getimage", {
             id: e
         }, function(e) {
-            0 != e.error ? o.toast(s, e.message) : s.setData({
+            console.log(e), 0 != e.error ? o.toast(s, e.message) : s.setData({
                 Image: e.url
             });
         });

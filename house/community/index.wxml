@@ -1,0 +1,747 @@
+<loading wx:if="{{!show}}">加载中...</loading>
+<add-tips text="点击【添加我的小程序】,及时获取信息" duration="30" />
+<view class="house-content">
+
+	<view class="nav _div data-v-3e913807">
+		<view class="_p data-v-3e913807">
+			<label class="house-name _span data-v-3e913807">{{community.communityName}}
+			</label>
+			<view bindtap="favorite" data-isfavorite="{{countArray.isfavorite?1:0}}" wx:if="{{countArray.isfavorite==0}}">
+				<wxc-icon color="#8A8D91" type="star"></wxc-icon> 自选
+			</view>
+			<view bindtap="favorite" data-isfavorite="{{countArray.isfavorite?1:0}}" wx:else>
+				<wxc-icon color="#8A8D91" type="star-active"></wxc-icon> 已自选
+			</view>
+		</view>
+		<view class="detail _div data-v-3e913807">
+			<view class="first part _div data-v-3e913807">
+				<label class="detail-name _span data-v-3e913807">预期指数</label>
+				<label class="trend unit _span data-v-3e913807">{{community.gpprice}}</label>
+				<label class="unit _span data-v-3e913807">元/㎡</label>
+			</view>
+			<view class="sec part _div data-v-3e913807">
+				<label class="detail-name _span data-v-3e913807">环比上月</label>
+				<percent bind:__l="__l" class="data-v-3e913807" item="{{community}}" vueId="427b4b92-1"></percent>
+			</view>
+		</view>
+		<view class="detail _div data-v-3e913807">
+			<view class="first part _div data-v-3e913807">
+				<label class="detail-name _span data-v-3e913807">最高挂牌</label>
+				<label class="trend unit_gp _span data-v-3e913807">{{community.maxgpprice}}</label>
+				<label class="unit_gp _span data-v-3e913807">元/㎡</label>
+			</view>
+			<view class="first part _div data-v-3e913807" wx:if="{{community.maxwqprice}}">
+				<label class="detail-name _span data-v-3e913807">最高网签</label>
+				<label class="trend unit_gp _span data-v-3e913807">{{community.maxwqprice}}</label>
+				<label class="unit_gp _span data-v-3e913807">元/㎡</label>
+			</view>
+		</view>
+
+		<!-- /* 添加部分开始 */ -->
+		<view class="tip">
+			<view class="tip_item">
+				<text>挂牌：</text>
+				<text>{{countArray.gpcount}}套</text>
+			</view>
+			<view class="tip_item">
+				<text>涨价：</text>
+				<text style="color: rgb(202, 2, 2);">{{community.upprice_sum}}套</text>
+			</view>
+			<view class="tip_item">
+				<text>涨比：</text>
+				<text>{{community.upprice_bi==null?'-':community.upprice_bi}}%</text>
+			</view>
+			<view class="tip_item">
+				<text>跌价：</text>
+				<text style="color: #129617;">{{community.downprice_sum}}套</text>
+			</view>
+
+		</view>
+		<!-- /* 添加部分结束 */ -->
+
+	</view>
+
+
+	<view class="line1"></view>
+
+	<view class="chart-body">
+		<view class="echart-content">
+			<view class="trend-title _div data-v-1890e21c">
+				<label class="_span data-v-1890e21c">{{community.communityName}}-热度指数</label>
+
+			</view>
+			<view class="trend-title _div data-v-1890e21c">
+
+				<view class="trend-time _div data-v-1890e21c">
+					<view bindtap="chartSwitch" class="{{[ 'item _div data-v-1890e21c ',''+(chart_activeItem==1?'active':'') ]}}"
+						data-text="1">{{'周指数'}}</view>
+					<view bindtap="chartSwitch"
+						class="{{[ 'item _div data-v-1890e21c mar10 ',''+(chart_activeItem==2?'active':'') ]}}" data-text="2">
+						{{'月指数'}}</view>
+					<view class="line"></view>
+					<view bindtap="chartSwitch_year"
+						class="{{[ 'item _div data-v-1890e21c',''+(chart_activeItem_year==1?'active':'') ]}}" data-text="1">{{'季度'}}
+					</view>
+					<view bindtap="chartSwitch_year"
+						class="{{[ 'item _div data-v-1890e21c',''+(chart_activeItem_year==2?'active':'') ]}}" data-text="2">{{'一年'}}
+					</view>
+					<view bindtap="chartSwitch_year"
+						class="{{[ 'item _div data-v-1890e21c',''+(chart_activeItem_year==3?'active':'') ]}}" data-text="3">{{'全部'}}
+					</view>
+
+				</view>
+			</view>
+
+			<view class="echart-body" style="height:500rpx">
+				<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ecLinets}}"></ec-canvas>
+			</view>
+
+			<view class="echart-body" style="height:700rpx">
+				<cover-view class="box_img_2wm" style="margin:46rpx 0 0 580rpx">
+					<cover-image src="{{qrcode_img}}"></cover-image>
+				</cover-view>
+
+
+				<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ecLinets_gp_pie}}"></ec-canvas>
+
+				<cover-view class="item_show" style="height: 85%;" wx:if="{{member.needbind==1 || member.error==10003}}">
+					<cover-view class="item_show_1"></cover-view>
+					<cover-view class="item_show_2"></cover-view>
+					<button style="padding:0px 5px;color: #fff;" class="item_show_3" open-type="getPhoneNumber" bindgetphonenumber="pn_getPhoneNumber">免费解锁面积占比报告</button>
+				</cover-view>
+
+			</view>
+
+			<view class="echart-body" style="height:600rpx">
+				<cover-view class="box_img_2wm" style="margin:46rpx 0 0 580rpx">
+					<cover-image src="{{qrcode_img}}"></cover-image>
+				</cover-view>
+				<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ecLinets_gp_time}}"></ec-canvas>
+
+				<cover-view class="item_show" style="height: 85%;" wx:if="{{member.needbind==1 || member.error==10003}}">
+					<cover-view class="item_show_1"></cover-view>
+					<cover-view class="item_show_2"></cover-view>
+					<button style="padding:0px 5px;color: #fff;" class="item_show_3" open-type="getPhoneNumber" bindgetphonenumber="pn_getPhoneNumber">免费解锁挂牌时长分析报告</button>
+				</cover-view>
+
+			</view>
+ 
+		</view>
+	</view>
+
+	<view class="line1"></view>
+	<view class="chart-body" wx:if="{{member.level>1}}">
+		<view class="echart-content">
+			<view class="trend-title _div data-v-1890e21c">
+				<label class="_span data-v-1890e21c">{{community.communityName}}-热度指数同比({{chart_activeItem_tongbi}}年)</label>
+			</view>
+			<view class="trend-title _div data-v-1890e21c">
+				<view class="echart_box">
+					<view class="echart_box_r">
+						<view class="trend-time_tongbi _div data-v-1890e21c">
+							时间范围：
+						</view>
+					</view>
+					<view class="echart_box_l">
+						<view class="echart_box_bg">
+							<view bindtap="chartSwitch_tongbi_hot" wx:for="{{select_year_hot}}" wx:key="item"
+								class="{{[ 'echart_box_bc ',''+(chart_activeItem_tongbi_hot_index==index?'active':'') ]}}"
+								data-text="{{item.tjdate_year}}" data-index="{{index}}">{{item.tjdate_year}}</view>
+						</view>
+					</view>
+				</view>
+			</view>
+
+			<view class="echart-body" style="height:500rpx">
+				<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ecLinets_hot_tongbi}}"></ec-canvas>
+			</view>
+		</view>
+	</view>
+
+	<join-us bind:__l="__l"></join-us>
+	<view class="line1"></view>
+	<view class="house-body">
+		<!--	<view class="house-body-header">
+			<view class="house-isfirst">{{community.communityName}}</view>
+		 <view bindtap="favorite" data-isfavorite="{{countArray.isfavorite?1:0}}" wx:if="{{countArray.isfavorite==0}}">
+				<wxc-icon color="#8A8D91" type="star"></wxc-icon> 自选
+			</view>
+			<view bindtap="favorite" data-isfavorite="{{countArray.isfavorite?1:0}}" wx:else>
+				<wxc-icon color="#8A8D91" type="star-active"></wxc-icon> 自选
+			</view>
+		</view>-->
+		<view class="house-body-item-content">
+			<view class="house-body-item">
+				<view class="house-body-item-block">
+					<view class="title"> 区域</view>
+					<view class="content">{{community.areaname}}</view>
+				</view>
+				<view class="house-body-item-block">
+					<view class="title"> 容积率</view>
+					<view class="content"> {{community.plotratio}}</view>
+				</view>
+			</view>
+			<view class="house-body-item">
+				<view class="house-body-item-block">
+					<view class="title"> 物业公司</view>
+					<view class="content"> {{community.communityRealname}}</view>
+				</view>
+
+			</view>
+
+			<view class="house-body-item">
+				<view class="house-body-item-block">
+					<view class="title"> 地址</view>
+					<navigator openType="navigate"
+						url="/house/house_map/index?lat={{community.baidumaplat}}&lng={{community.baidumaplng}}">
+						<view class="content"> {{community.address}}</view>
+						<wxc-icon color="#366ab3" type="address"></wxc-icon>
+					</navigator>
+				</view>
+			</view>
+			<view class="house-body-item" wx:if="{{houseInfo.open_date_detail}}">
+				<view class="house-body-item-block>">
+					<view class="title"> 开盘日期</view>
+					<view class="content"> {{community.fitment}}</view>
+				</view>
+			</view>
+			<view class="house-body-item">
+				<view class="house-body-item-block>">
+					<view class="title"> 开发商</view>
+					<view class="content" style="display: flex;flex-wrap: wrap"> {{community.forward}}</view>
+				</view>
+			</view>
+			<!---
+            <view class="house-body-item">
+                <view class="house-body-item-block" wx:if="{{ad==false}}">
+                    <view class="title"> 加微信群</view>
+                    <view class="hot-content-img">
+                        <image src="https://sbmf.ww2ss.com/dfimages/logo2.jpg" class='img' bindtap="imgYu" data-image="{{'https://sbmf.ww2ss.com/dfimages/logo2.jpg'}}"></image>
+                    </view>
+                    <view class="content1" bindtap="copyText" data-text="{{'vxjbugcea'}}"> 与我们近距离交流！点击加群</view>
+                </view>
+                <view class="house-body-item-block" wx:else>
+                    <view class="title"> 加好友</view>
+                    <view class="hot-content-img">
+                        <image src="{{ad.images}}" class='img' bindtap="imgYu" data-image="{{ad.images}}"></image>
+                    </view>
+                    <view class="content1" bindtap="copyText" data-text="{{ad.wxname}}"> 加微信号，查楼盘历史成交记录！</view>
+                </view>
+            </view>
+            --->
+		</view>
+	</view>
+	<view class="margin-bottom"></view>
+	<view wx:if="{{!1}}">
+		<view class="data-contentph" wx:if="{{member.needbind==1 || member.error==10003}}">
+			<button class="getPhoneNumber" open-type="getPhoneNumber"
+				bindgetphonenumber="pn_getPhoneNumber">免费获取半年内楼市告成交报</button>
+		</view>
+		<view class="data-contentph" wx:else>
+			<view class="getPhoneNumber" bindtap="pn_hotLink">查看半年内楼市成交报告</view>
+		</view>
+	</view>
+	<view class="detail__panel detail__surroundings " wx:if="{{true}}">
+		<view class="activity_title" bindtap="handleGoT"
+			data-go="/project/pages/house_map/house_map?houseid={{community.id}}&name={{community.communityName}}&maplng={{maplng}}&maplat={{maplat}}">
+			<view class="activity_title_name">周边配套</view>
+			<view class="rel_more">
+				<wxc-icon color="#8A8D91" type="arrow-right"></wxc-icon>
+			</view>
+		</view>
+		<view class="detail__panel-body" style="padding-bottom:0">
+			<view class="map__img-wrap">
+				<!--<view class="map__marker">{{house.community}}</view>
+                <image binderror="addressImageUrlError" class="map-img" mode="aspectFill" src="{{mapImageUrl}}"></image>-->
+				<view class="map-img">
+					<map latitude="{{maplat}}" longitude="{{maplng}}" markers="{{map_markers}}" polygons="{{map_polygons}}"
+						scale="{{map_scale}}" subkey="FLNBZ-J3GKX-UC74A-7K3XU-QOEX2-XGBRC" style="width: 100%; height:320rpx;"
+						id="map"></map>
+				</view>
+			</view>
+			<view class="detail__map-switch-wrap">
+				<view class="map-switch-item" wx:for="{{mapFacility}}" wx:key="index" bindtap="handleGoT"
+					data-go="/project/pages/house_map/house_map?houseid={{community.id}}&name={{community.communityName}}&maplng={{maplng}}&maplat={{maplat}}&index={{index+1}}">
+					<image class="map-switch-item-icon" src="/dfimages/map_detail_{{item.mtype}}.png"></image>
+					<view class="map-switch-item-text">{{item.title}}
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+
+	<view class="detail__panel detail__surroundings " wx:if="{{chuzhonglist}}">
+		<view class="activity_title">
+			<view class="activity_title_name">对口小学</view>
+		</view>
+		<view class="middle data-v-6b3386dc">
+			<view class="data-content">
+				<view class="plan-house data-v-744937ef">
+					<view class="plan-house data-v-dbe5ffe8">
+						<view class="plan-house__item data-v-dbe5ffe8" wx:for="{{chuzhonglist}}" wx:key="item">
+							<navigator openType="navigate" url="/school/school_details/index?cid={{item.schoolcode}}">
+								<view class="plan-house__left data-v-dbe5ffe8">
+									<image class="plan-house__headIcon data-v-dbe5ffe8"
+										src="{{item.thumbs?item.thumbs:'https://sbmf.ww2ss.com/dfimages/photono.png'}}"></image>
+									<view class="image__gradient data-v-dbe5ffe8"></view>
+								</view>
+							</navigator>
+							<view class="plan-house__info data-v-dbe5ffe8">
+								<navigator openType="navigate" url="/school/school_details/index?cid={{item.schoolcode}}">
+									<view class="house__info__name .ellipsis-line-1 color-item-name data-v-dbe5ffe8">{{''+item.title+''}}
+									</view>
+									<view class="flex_layout_b mar-top-28 data-v-dbe5ffe8">
+										<text class="house__info__cont data-v-dbe5ffe8" wx:if="{{item.adname}}">{{''+item.adname+''}}</text>
+										<text class="card__info__distance nature_type  data-v-dbe5ffe8"
+											wx:if="{{item.school_type}}">{{''+item.school_type+''}}</text>
+									</view>
+									<view class="flex_layout_b mar-top-36 data-v-dbe5ffe8">
+										<view class="house__info__price data-v-dbe5ffe8">
+											<text class="fz-15 color-prize fb-bold data-v-dbe5ffe8"
+												wx:if="{{item.price}}">{{item.price+'元/㎡'}}</text>
+										</view>
+										<view class="data-v-dbe5ffe8">
+											<view class="flex_layout_c card__info__commnet data-v-dbe5ffe8">
+												<text class="iconfont iconliulan fz-16 mar-right-4 data-v-dbe5ffe8"></text>
+												<text class="mar-right-12 data-v-dbe5ffe8">学区成交报告>></text>
+											</view>
+										</view>
+									</view>
+								</navigator>
+							</view>
+						</view>
+					</view>
+
+				</view>
+			</view>
+		</view>
+	</view>
+
+
+
+	<view class="margin-bottom"></view>
+	<view class="zygw_hot">
+		<view class="activity_title">
+			<view class="activity_title_name">优秀经纪人</view>
+			<view bindtap="handleGoT" class="rel_more" data-go="/house/guwen/gw-list/index?houseid={{community.id}}"
+				wx:if="{{noList==1}}">
+				<text></text>
+				<wxc-icon color="#8A8D91" type="arrow-right"></wxc-icon>
+			</view>
+		</view>
+		<view class="zygw_hot_list">
+
+			<view catchtap="handleGo" data-cid="{{community.id}}" data-go="/pages/guwen/gw-no/index"
+				class="zygw_hot_item relative_class" wx:if="{{noList==0}}">
+				<view class="avtor_luzhu" style="height:84rpx;">
+					<image src="https://sbmf.ww2ss.com/dfimages/select/uploads.png"></image>
+				</view>
+				<view class="name">经纪人</view>
+				<view class="name"></view>
+				<view class="lianxi">
+					我要入驻
+				</view>
+			</view>
+
+			<view catchtap="handleGoT" class="zygw_hot_item relative_class"
+				data-go="/project/pages/chat/chat?userid={{item.userid}}&adid={{item.adid}}&cid={{community.id}}"
+				wx:for="{{ad}}" wx:key="index">
+				<view class="avtor">
+					<image src="{{item.qrcode}}"></image>
+					<image class="bq" src="https://sbmf.ww2ss.com/dfimages/jifen/tj_1.png" wx:if="{{index<1}}"></image>
+					<image class="bq" src="https://sbmf.ww2ss.com/dfimages/jifen/tj_2.png" wx:else></image>
+				</view>
+				<view class="name">{{item.uname}}</view>
+				<view class="name">{{item.organization}}</view>
+				<view class="lianxi">
+					<wxc-icon color="#ffffff" size="28" type="message"></wxc-icon>
+					在线咨询
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="house-body" style="margin-top:20rpx">
+		<view class="activity_title">
+			<view class="activity_title_name">{{community.communityName}}-主要数据指标</view>
+
+		</view>
+
+		<view class="data-content">
+			<view class="shuxian">
+				<view class="data-content-num">
+					{{countArray.clookb}}
+					<view class="data-content-num-unit">次</view>
+				</view>
+				<view class="data-content-desc" style="padding-bottom: 20rpx">
+					7天内楼盘带看
+				</view>
+				<view class="data-content-num data-content-num-topline">
+					{{countArray.clooka}}
+					<view class="data-content-num-unit">次</view>
+				</view>
+				<view class="data-content-desc">
+					30天内楼盘带看
+				</view>
+			</view>
+			<view class="shuxian">
+				<view class="data-content-num">
+					{{countArray.cjcount}}
+					<view class="data-content-num-unit">套</view>
+				</view>
+				<view class="data-content-desc" style="padding-bottom: 20rpx">
+					90天内成交
+				</view>
+				<view class="data-content-num data-content-num-topline">
+					{{countArray.cjsale}}
+					<view class="data-content-num-unit">元</view>
+				</view>
+				<view class="data-content-desc">
+					90天成交均价
+				</view>
+			</view>
+			<view bindtap="hotLinkFn" data-communityid="{{community}}">
+				<view class="data-content-num ">
+					{{countArray.gpcount}}
+					<view class="data-content-num-unit">套</view>
+				</view>
+				<view class="data-content-desc" style="padding-bottom: 20rpx">
+					楼盘挂牌总量
+				</view>
+				<view class="data-content-num data-content-num-topline">
+					{{countArray.gpsale}}
+					<view class="data-content-num-unit">元</view>
+				</view>
+				<view class="data-content-desc">
+					楼盘挂牌均价
+				</view>
+			</view>
+
+		</view>
+	</view>
+
+
+
+	<form bind:submit="copyText" reportSubmit="{{true}}" data-text="{{'vxjbugcea'}}">
+		<view bindtap="copyText" class="lp__qrcode" data-text="{{'vxjbugcea'}}">
+			<button class="formid__btn" formType="submit"></button>
+			<image class="lp__qrcode-icon" src="https://sbmf.ww2ss.com/dfimages/jiaoliu.png"></image>
+			<view class="lp__qrcode-content">
+				<view class="lp__qrcode-title">杭州购房交流群</view>
+				<view class="lp__qrcode-text">
+					<text>买房问题全解决</text>
+					<view class="lp__qrcode-btn">复制客服微信</view>
+				</view>
+			</view>
+			<image class="lp__qrcode-img" src="https://sbmf.ww2ss.com/dfimages/logo2.jpg"></image>
+		</view>
+	</form>
+	<view class="line1"></view>
+
+	<view class="chart-body">
+		<view class="echart-content">
+			<view class="trend-title _div data-v-1890e21c">
+				<label class="_span data-v-1890e21c">{{community.communityName}}楼盘成交报告</label>
+			</view>
+			<view class="trend-title _div data-v-1890e21c">
+				<view class="trend-time _div data-v-1890e21c">
+					<view bindtap="chartSwitch" class="{{[ 'item _div data-v-1890e21c ',''+(chart_activeItem==1?'active':'') ]}}"
+						data-text="1">{{'周指数'}}</view>
+					<view bindtap="chartSwitch"
+						class="{{[ 'item _div data-v-1890e21c mar10 ',''+(chart_activeItem==2?'active':'') ]}}" data-text="2">
+						{{'月指数'}}</view>
+					<view class="line"></view>
+					<view bindtap="chartSwitch_year"
+						class="{{[ 'item _div data-v-1890e21c',''+(chart_activeItem_year==1?'active':'') ]}}" data-text="1">{{'季度'}}
+					</view>
+					<view bindtap="chartSwitch_year"
+						class="{{[ 'item _div data-v-1890e21c',''+(chart_activeItem_year==2?'active':'') ]}}" data-text="2">{{'一年'}}
+					</view>
+					<view bindtap="chartSwitch_year"
+						class="{{[ 'item _div data-v-1890e21c',''+(chart_activeItem_year==3?'active':'') ]}}" data-text="3">{{'全部'}}
+					</view>
+
+				</view>
+			</view>
+			<view class="echart-body" style="height:500rpx">
+				<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ecLinet}}"></ec-canvas>
+			</view>
+
+			<view class="echart-body" style="height:700rpx">
+				<cover-view class="box_img_2wm" style="margin:46rpx 0 0 580rpx">
+					<cover-image src="{{qrcode_img}}"></cover-image>
+				</cover-view>
+				<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ecLinets_pie}}"></ec-canvas>
+
+			<cover-view class="item_show" style="height: 85%;" wx:if="{{member.needbind==1 || member.error==10003}}">
+					<cover-view class="item_show_1"></cover-view>
+					<cover-view class="item_show_2"></cover-view>
+					<button style="padding:0px 5px;color: #fff;" class="item_show_3" open-type="getPhoneNumber" bindgetphonenumber="pn_getPhoneNumber">免费解锁面积占比报告</button>
+				</cover-view>
+			</view>
+
+		</view>
+	</view>
+	<view class="line1"></view>
+	<view class="chart-body" wx:if="{{member.level>1}}">
+		<view class="echart-content">
+			<view class="trend-title _div data-v-1890e21c">
+				<label class="_span data-v-1890e21c">{{community.communityName}}-成交报告同比({{chart_activeItem_tongbi}}年)</label>
+			</view>
+			<view class="trend-title _div data-v-1890e21c">
+
+				<view class="echart_box">
+					<view class="echart_box_r">
+						<view class="trend-time_tongbi _div data-v-1890e21c">
+							同比年份：
+						</view>
+					</view>
+					<view class="echart_box_l">
+						<view class="echart_box_bg">
+							<view bindtap="chartSwitch_tongbi" wx:for="{{select_year}}" wx:key="item"
+								class="{{[ 'echart_box_bc ',''+(chart_activeItem_tongbi_index==index?'active':'') ]}}"
+								data-text="{{item.tjdate_year}}" data-index="{{index}}">{{item.tjdate_year}}</view>
+						</view>
+					</view>
+				</view>
+			</view>
+
+			<view class="echart-body" style="height:500rpx">
+				<ec-canvas id="mychart_log_tongbi" canvas-id="mychart-bar" ec="{{ecLinets_tongbi}}"></ec-canvas>
+			</view>
+
+		</view>
+	</view>
+
+	<view class="deal-body" style="margin-bottom:{{isShare?'100rpx':'0'}}">
+
+		<view class="box_img_2wm">
+			<image src="{{qrcode_img}}"></image>
+		</view>
+		<view class="activity_title" bindtap="handleGoT" data-go="/house/dealog/index?cid={{community.id}}"
+			wx:if="{{islogin=='yes'}}">
+			<view class="activity_title_name">{{community.communityName}}-楼盘成交明细</view>
+			<view class="rel_more">
+				<wxc-icon color="#8A8D91" type="arrow-right"></wxc-icon>
+			</view>
+		</view>
+		<view class="activity_title" bindtap="handleGoT" data-go="../../pages/member/membercard/index" wx:else>
+			<view class="activity_title_name">{{community.communityName}}-楼盘成交明细</view>
+			<view class="rel_more">
+				<wxc-icon color="#8A8D91" type="arrow-right"></wxc-icon>
+			</view>
+		</view>
+
+		<view class="schoollist data-v-75f46631">
+			<view class="list__nav flex_layout_b data-v-75f46631">
+				<view bindtap="handleSwitch"
+					class="{{[ 'data-v-75f46631','list__nav__item '+(activeItem==1?'list__nav__acitve':'') ]}}" data-text="1">
+					最近成交</view>
+				<view bindtap="handleSwitch"
+					class="{{[ 'data-v-75f46631','list__nav__item '+(activeItem==2?'list__nav__acitve':'') ]}}" data-text="2">
+					均价排行榜</view>
+				<view bindtap="handleSwitch"
+					class="{{[ 'data-v-75f46631','list__nav__item '+(activeItem==3?'list__nav__acitve':'') ]}}" data-text="3">
+					总价排行榜</view>
+			</view>
+		</view>
+		<view class="deal-list-content">
+			<view class="list-item" wx:for="{{deallist}}" wx:key="item">
+				<view class="item item-flex">
+					<view class="item-top  item-top-border">
+						{{item.htje}}万
+					</view>
+					<view class="item-bottom">
+						<view>{{item.title}}</view>
+					</view>
+				</view>
+				<view class="item item-flex">
+					<view class="item-top">{{item.htjj}}元/㎡</view>
+					<view class="item-bottom">
+						<view> {{item.htmj}}㎡</view>
+					</view>
+				</view>
+				<view class="item item-flex ">
+					<view class="item-top">
+						{{item.szlcname}}/{{item.zcs}}
+					</view>
+					<view class="item-bottom">
+						<view>{{item.tjdate}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<vip-msgbox bind:__l="__l" dataApi="{{member}}" wx:if="{{member.viplevel==0}}"></vip-msgbox>
+
+		<navigator openType="navigate" url="/house/dealog/index?cid={{community.id}}" wx:if="{{islogin=='yes'}}">
+			<view class="deal-more">查看更多历史成交</view>
+		</navigator>
+		<navigator openType="navigate" url="../../pages/member/membercard/index" wx:else>
+			<view class="deal-more">查看更多历史成交</view>
+		</navigator>
+	</view>
+
+
+	<view class="house-body" style="margin-top:20rpx">
+
+
+		<view class="activity_title" bindtap="hotLinkFn" data-communityid="{{community}}">
+			<view class="activity_title_name"> {{community.communityName}}30天内调价概况</view>
+			<view class="rel_more">
+				<wxc-icon color="#8A8D91" type="arrow-right"></wxc-icon>
+			</view>
+		</view>
+
+		<view bindtap="toDetail" class="list-item flexbox" data-index="{{index}}" wx:for="{{lppricelist}}" wx:key="index">
+			<view class="item-img">
+				<navigator openType="navigate" url="/house/house/house?cid={{item.government_code}}&jigou={{item.jigou}}">
+					<image binderror="imgError" lazyLoad="true"
+						src="{{!item.house_img?'https://sbmf.ww2ss.com/dfimages/404.png':item.house_img}}"></image>
+				</navigator>
+			</view>
+			<view class="item-con flex1">
+				<navigator openType="navigate" url="/house/house/house?cid={{item.cid}}&jigou={{item.jigou}}">
+					<text class="item-tit">{{item.model}} 面积{{item.area}}㎡</text>
+					<view class="item-info">
+						<text>带看:</text>
+						<text class="daikan">{{item.numlook}}</text>
+						<text>次</text>
+						<text class="dian"></text>
+						<text>调价:</text>
+						<text class="daikan">{{item.numpric}}</text>
+						<text>次</text>
+						<text class="dian"></text>
+						<text>时间:</text>
+						<text class="daikan">{{item.utime}}</text>
+					</view>
+
+					<view class="item-price">
+						<view class="wan-price">
+							<text class="num">{{item.sale}}</text>
+							<text class="wan">万</text>
+						</view>
+						<text class="ping">{{item.htjj}}元/㎡</text>
+						<text class="ping"></text>
+						<view class="wan-price_z" wx:if="{{item.uprice>0}}">
+							<text class="num">涨{{item.uprice}}</text>
+							<text class="wan">万</text>
+						</view>
+						<view class="wan-price_j" wx:if="{{item.uprice<0}}">
+							<text class="num">降{{item.uprice}}</text>
+							<text class="wan">万</text>
+						</view>
+					</view>
+				</navigator>
+			</view>
+		</view>
+		<view bindtap="hotLinkFn" data-communityid="{{community}}" class="deal-more">更多房源</view>
+
+	</view>
+	<view class="house-body" style="margin-top:20rpx">
+		<view class="block-head">
+			周边小区30天内调价概况
+		</view>
+		<view class="right">
+			<view class="top-bar">
+				<view>楼盘名</view>
+				<view>挂牌</view>
+				<view>调价</view>
+				<view>涨价</view>
+				<view>降价</view>
+				<view>2室or3室</view>
+			</view>
+
+			<navigator openType="navigate" url="../../pages/member/membercard/index" wx:if="{{zbpricelist==0}}">
+				<view class="right-content">查看更多
+
+				</view>
+			</navigator>
+			<view bindtap="goCommunity" class="right-content" data-cid="{{item.cid}}" wx:for="{{zbpricelist}}" wx:key="item">
+				<view>{{index+1}}.{{item.community}}</view>
+				<view>{{item.anum}}套</view>
+				<view>{{item.num}}套</view>
+				<view style='color:#df3106'>{{item.zprice}}套</view>
+				<view style='color:#08ac33'>{{item.jprice}}套</view>
+				<view>{{item.fangnum}}套</view>
+
+				<wxc-icon class="goto-icon" color="#8A8D91" type="arrow-right"></wxc-icon>
+			</view>
+
+		</view>
+	</view>
+
+	<view class="data-content"></view>
+
+	<!--分享按钮-->
+	<sharebnt bind:__l="__l"></sharebnt>
+
+	<cover-view class="bottom-select-bar" wx:if="{{false}}">
+		<cover-view bindtap="goPage" class="bottom-select-bar-item" data-page="dfpage/index/index">
+
+			<cover-view> 行情</cover-view>
+		</cover-view>
+		<cover-view bindtap="goPage" class="bottom-select-bar-item" data-page="house/market/index">
+
+			<cover-view>笋盘</cover-view>
+		</cover-view>
+		<cover-view bindtap="goPage" class="bottom-select-bar-item" data-page="house/searchHouse/index">
+			<cover-view>搜索</cover-view>
+		</cover-view>
+		<cover-view bindtap="goPage" class="bottom-select-bar-item" data-page="/house/rank/index">
+			<cover-view>排行</cover-view>
+		</cover-view>
+		<cover-view bindtap="goPage" class="bottom-select-bar-item" data-page="pages/member/index/index">
+
+			<cover-view>我的</cover-view>
+		</cover-view>
+	</cover-view>
+
+</view>
+
+<cover-view class="nav-bottom2" style="bottom:{{isIpx?'68rpx':''}};" wx:if="{{show}}">
+
+	<cover-view class="fun">
+		<cover-view class="guanzhu2 relative_class" data-phone="{{ad.mobile}}">
+			<cover-image class="images2" src="{{'https://sbmf.ww2ss.com/dfimages/logo2.jpg'}}" bindtap="imgYu"
+				data-image="{{'https://sbmf.ww2ss.com/dfimages/logo2.jpg'}}"></cover-image>
+
+		</cover-view>
+		<cover-view catchtap="goSee" class="guanzhu1 relative_class" data-phone="{{ad.mobile}}" wx:if="{{false}}">
+			<cover-view class="ntext" catchtap="goSee">{{ad.uname}}</cover-view>
+			<cover-view class="ntext1">{{ad.organization}}</cover-view>
+		</cover-view>
+		<cover-view class="guanzhu1 relative_class" wx:else>
+			<cover-view class="ntext">联系客服</cover-view>
+			<cover-view class="ntext1">{{ad.organization}}</cover-view>
+		</cover-view>
+	</cover-view>
+	<cover-view catchtap="handleCall" class="tell relative_class" data-phone="{{ad.mobile}}" wx:if="{{false}}">
+		<cover-view>联系经纪人</cover-view>
+	</cover-view>
+	<cover-view catchtap="handleGo" data-cid="{{community.id}}" class="tell relative_class"
+		data-go="/pages/guwen/gw-no/index" wx:else>
+		<cover-view>入驻楼盘</cover-view>
+	</cover-view>
+</cover-view>
+
+<cover-view bindtap="_closeGetPhone" class="mask_bg getphone_dialog" wx:if="{{see}}">
+	<cover-view catchtap="_white" class="getphone_content">
+		<cover-view class="info">
+			<cover-image src="{{ad.qrcode}}"></cover-image>
+			<cover-view>您好，我是金牌经纪人{{ad.uname}} </cover-view>
+		</cover-view>
+
+		<cover-view class="desc">免费查询历史成交记录！可以加我微信！
+			<cover-image src="{{ad.images}}" data-image="{{ad.images}}" style="height: 150rpx;width: 150rpx;" bindtap="imgYu">
+			</cover-image>
+		</cover-view>
+		<cover-view class="btns">
+			<button catchtap="closeSee" class="cancel">暂不需要</button>
+			<button catchtap="handleCall" data-phone="{{ad.mobile}}" class="ok" wx:if="{{has_phone}}">好的</button>
+			<button catchtap="handleCall" data-phone="{{ad.mobile}}" class="ok" wx:else>好的</button>
+		</cover-view>
+	</cover-view>
+</cover-view>
+<cover-view class="button-group {{isIpx?'fix-iphonex-button':''}}"></cover-view>

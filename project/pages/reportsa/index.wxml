@@ -1,0 +1,274 @@
+<wxs module="filters" src="../reportsa/filter.wxs"></wxs>
+<loading wx:if="{{!show}}">加载中...</loading>
+<view class="model" wx:if="{{modelShow}}">
+    <view class="inner">
+        <view class="title">用户未授权</view>
+        <view class="image">
+            <image src="{{imgUrl+'plugin/app/static/images/wxapp/shouquan.png'}}"></image>
+        </view>
+        <view class="subtitle">您需要先开启【用户信息】，才能使用此功能哦~</view>
+        <view class="model-btns">
+            <view bindtap="cancelclick" class="cancel">取消</view>
+            <view bindtap="confirmclick" class="confirm">去设置</view>
+        </view>
+    </view>
+</view>
+<view class="house-list-box">
+    <view bindtap="filterMaskFn" catchtouchmove="preventTouchMove" class="filter-mask" hidden="{{filterMask}}" style="z-index:{{zindex}};"></view>
+    <view class="list-top">
+        <!-- {{!tab[2]?'more-box':''}}-->
+        <view class="search-box">
+            <view bindtap="searchClick" class="search">
+                <view class="serch_content" style="color:#366AB3;background-color:#fff;">
+                    <wxc-icon color="font-size:28rpx; color:#366AB3;" size="28" type="search"></wxc-icon>
+                    <input bindtap="toSearch" class="search_input" name="search_input" placeholder="请输入板块名、楼盘名" placeholderStyle="font-size:28rpx; color:#366AB3;" type="text" value="{{searchCon}}"></input>
+                    <wxc-icon bindtap="delText" style="font-size:28rpx; color:#000;" size="28" type="no" wx:if="{{searchCon!='请输入板块名、楼盘名'}}"></wxc-icon>
+                </view>
+            </view>
+        </view>
+        <view class="filter-box flexbox flex_al_center">
+            <view bindtap="filterTabFn" class="filter-nav flex1 {{filnav==item.name||item.newname?'filter-cur':''}}" data-index="{{index}}" data-name="{{item.name}}" wx:for="{{tabTxt}}" wx:key="index">
+                <text class="name">{{item.newname||item.name}}</text>
+                <text class="arrow"></text>
+            </view>
+        </view>
+        <view catchtouchmove="preventTouchMove" class="filter-con-box">
+            <view class="filter-con quyu" hidden="{{tab[0]}}">
+                <view class="quyu-nav1">
+                    <view class="filter-info">
+                        <text bindtap="quyuFn" class="{{nameCur1=='区域'?'sub1-cur':''}}" data-barid="1" data-name="区域">区域</text>
+                        <!--<text bindtap="quyuFn" class="{{nameCur1=='地铁'?'sub1-cur':''}}" data-barid="2" data-name="地铁">地铁</text>-->
+                        <text bindtap="quyuFn" class="{{nameCur1=='学区'?'sub1-cur':''}}" data-barid="4" data-name="学区">学区</text>
+                        <text bindtap="quyuFn" class="{{nameCur1=='附近'?'sub1-cur':''}}" data-barid="3" data-name="附近">附近</text>
+
+
+                    </view>
+                </view>
+                <view class="quyu-nav2" hidden="{{quyuNav2}}">
+                    <scroll-view class="filter-info" scrollY="true">
+                        <view bindtap="buxianFn2" data-barid="{{barid}}" class="qy{{nameCur2=='不限'?'sub2-cur':''}}" data-name="不限">
+                            <text>不限</text>
+                        </view>
+                        <view bindtap="quyuFn2" class="{{nameCur11==item.id?'sub2-cur':''}}" data-barid="{{quYuBar2}}" data-districtid="{{item.id}}" data-index="{{index}}" data-name="{{item.name}}" wx:if="{{!item.lineid&&!item.nearid}}" wx:for="{{filterArea}}" wx:key="index">
+                            <text>{{item.name}}</text>
+                        </view>
+                        <view bindtap="quyuFn2" class="{{nameCur21==item.lineid?'sub2-cur':''}}" data-barid="{{quYuBar2}}" data-dtlineid="{{item.lineid}}" data-index="{{index}}" data-name="{{item.name}}" wx:if="{{item.lineid}}" wx:for="{{filterArea}}" wx:key="index">
+                            <text>{{item.name}}</text>
+                        </view>
+                        <view bindtap="quyuFn2" class="{{nameCur31==item.nearid?'sub2-cur':''}}" data-barid="{{quYuBar2}}" data-index="{{index}}" data-name="{{item.name}}" data-nearid="{{item.nearid}}" wx:if="{{item.nearid}}" wx:for="{{filterArea}}" wx:key="index">
+                            <text>{{item.name}}</text>
+                        </view>
+                    </scroll-view>
+                </view>
+                <view class="quyu-nav3" hidden="{{quyuNav3}}">
+                    <scroll-view class="filter-info" scrollY="true">
+                        <view bindtap="buxianFn3" class="{{nameCur3=='不限'?'sub2-cur':''}}" data-bxbarid="{{quYuBxBar3}}" data-barid="{{barid}}" data-districtid="{{quyuId}}" data-districtname="{{quyuName}}" data-name="不限">
+                            <text>不限</text>
+                        </view>
+                        <view bindtap="quyuFn3" class="{{nameCur3==item.id?'sub2-cur':''}}" data-barid="{{quYuBar3}}" data-districtid="{{quyuId}}" data-index="{{index}}" data-name="{{item.name}}" data-sqid="{{item.id}}" wx:for="{{filterArea2}}" wx:key="index">
+                            <text>{{item.name}}</text>
+                        </view>
+                    </scroll-view>
+                </view>
+            </view>
+            <view class="filter-con filter-price" hidden="{{tab[1]}}" wx:if="{{list_param==1}}">
+                <view class="filter-info">
+                    <view class="extends">
+                        <view class="zdy">
+                            <text class="zdy-name">日期</text>
+                            <text class="unit">(天)</text>
+                        </view>
+                        <view class="price-inp">
+                            <picker mode="date" fields="day" value="{{sdate}}" start="2016-01-01" end="2019-12-31" bindchange="getDateTimes">
+                                <view class="selectDate">
+                                    {{sdate}}
+                                </view>
+                            </picker>
+                            <!---
+                            <input bindinput="timeMin" maxlength="8" placeholder="开始日期" type="number" value="{{inpVal}}"></input>--->
+                            <text class="heng">-</text>
+                            <picker mode="date" fields="day" value="{{edate}}" start="2016-01-01" end="2019-12-31" bindchange="getDateTimee">
+                                <view class="selectDate">
+                                    {{edate}}
+                                </view>
+                            </picker>
+                            <!---
+                            <input bindinput="timeMax" maxlength="8" placeholder="结束日期" type="number" value="{{inpVal}}"></input>--->
+                        </view>
+                    </view>
+                    <view class="filtag-con">
+                        <text bindtap="filterTimeFn" class="{{timeCurName==item.name?'sub-cur':''}}" data-code="{{item.code}}" data-name="{{item.name}}" wx:for="{{filterTime}}" wx:key="index">{{item.name}}</text>
+                    </view>
+                    <view class="filter-btn">
+                        <text bindtap="emptyTimeFn" class="qingkong" data-name="清空">清空</text>
+                        <text bindtap="timeConfirm" class="filconfirm" data-value="{{valTime}}" data-valuemax="{{maxTime}}" data-valuemin="{{minTime}}">确定</text>
+                    </view>
+                </view>
+            </view>
+
+            <view class="filter-con filter-price" hidden="{{tab[2]}}" wx:if="{{list_param==1}}">
+                <view class="filter-info">
+                    <view class="extends">
+                        <view class="zdy">
+                            <text class="zdy-name">自定义</text>
+                            <text class="unit">(万)</text>
+                        </view>
+                        <view class="price-inp">
+                            <input bindinput="priceMin" maxlength="5" placeholder="最低价" type="number" value="{{inpVal}}"></input>
+                            <text class="heng">-</text>
+                            <input bindinput="priceMax" maxlength="5" placeholder="最高价" type="number" value="{{inpVal}}"></input>
+                        </view>
+                    </view>
+                    <view class="filtag-con">
+                        <text bindtap="filterPricesFn" class="{{priceCurName==item.name?'sub-cur':''}}" data-code="{{item.code}}" data-name="{{item.name}}" wx:for="{{filterPrices}}" wx:key="index">{{item.name}}</text>
+                    </view>
+                    <view class="filter-btn">
+                        <text bindtap="emptyPriceFn" class="qingkong" data-name="清空">清空</text>
+                        <text bindtap="priceConfirm" class="filconfirm" data-value="{{valPrice}}" data-valuemax="{{maxPrice}}" data-valuemin="{{minPrice}}">确定</text>
+                    </view>
+                </view>
+            </view>
+
+            <view class="filter-con filter-price" hidden="{{tab[3]}}" wx:if="{{list_param==1}}">
+                <view class="filter-info">
+                    <view class="filtag-con">
+                        <text bindtap="filterFxingFn" class="{{item.selected?'sub-cur':''}}" data-broom="{{item.broom}}" data-index="{{index}}" data-name="{{item.name}}" wx:for="{{filterFxing}}" wx:key="index">{{item.name}}</text>
+                    </view>
+                    <view class="filter-btn">
+                        <text bindtap="emptyFxingFn" class="qingkong" data-name="清空">清空</text>
+                        <text bindtap="fxingConfirm" class="filconfirm" data-fxingname="{{fxname}}">确定</text>
+                    </view>
+                </view>
+            </view>
+
+        </view>
+    </view>
+</view>
+<view class="container" wx:if="{{show}}">
+    <view class="container-body">
+        <view class="pricecount-data-content">
+            <view class="left">
+                <view class="left-bottom">
+                    <view class="left-item-r">
+                        <view class="item-top">
+                            <view class="item-top-top">统计时间：{{timewhere}}</view>
+                        </view>
+                        <view class="item-bottom">
+                            <view class="item-bottom-bottom">自定义日期查询不能统计环比数据;</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+        </view>
+        <view class="data-content">
+            <view class="carousel" style="background-color: #E7F4FA;">
+                <view bindtap="goReportsa" data-cid="{{datalista}}" class="carousel_swiper_body">
+                    <view class="ldata-content-title-left">
+                        <!--<navigator openType="navigate" url="/house/community/index?cid={{datalista}}"></navigator>-->{{datalista.title}}
+                    </view>
+                    <view class="ldata-content">
+                        <view bindtap="hotLinkFn" data-communityid="{{datalista}}">
+                            <view class="ldata-content-desc">
+                                成交
+                            </view>
+                            <view class="ldata-content-num">
+                                {{datalista.num==null?0:datalista.num}}
+                                <view class="ldata-content-num-unit">套</view>
+                            </view>
+                        </view>
+                        <view class="shuxian"></view>
+                        <view bindtap="hotLinkFn" data-communityid="{{item}}">
+                            <view class="ldata-content-desc">
+                                网签均价
+                            </view>
+                            <view class="ldata-content-num">
+                                {{datalista.junjia}}
+                                <view class="ldata-content-num-unit">元</view>
+                            </view>
+                        </view>
+                        <view class="shuxian"></view>
+                        <view bindtap="hotLinkFn" data-communityid="{{datalista}}">
+                            <view class="ldata-content-desc">
+                                环比
+                            </view>
+                            <view class="ldata-content-num ">
+                                {{filters.toFix(((datalista.junjia-datalista.hb)/datalista.hb)*100)}}
+                                <view class="ldata-content-num-unit">%</view>
+                            </view>
+                        </view>
+                        <view class="shuxian"></view>
+                        <view  >
+                      
+                                <view class="ldata-content-desc">
+                                    挂牌均价
+                                </view>
+                                <view class="ldata-content-num">
+                                    {{datalista.cjcount==null?'-':datalista.cjcount}}
+                                    <view class="ldata-content-num-unit">元</view>
+                                </view>
+                        
+                        </view>
+
+                    </view>
+                </view>
+            </view>
+            <view wx:for="{{datalist}}" wx:key="index" class="carouselb" bindtap="goReports" data-cid="{{item}}">
+                <view class="carousel_swiper_body">
+                    <view class="ldata-content-title-left">
+                        <!--<navigator openType="navigate" url="/house/community/index?cid={{item.id}}"> </navigator>--> {{item.title}}
+                    </view>
+
+
+                    <view class="ldata-content">
+                        <view bindtap="hotLinkFn" data-communityid="{{item}}">
+
+                            <view class="ldata-content-desc">
+                                成交
+                            </view>
+                            <view class="ldata-content-num">
+                                {{item.num==null?0:item.num}}
+                                <view class="ldata-content-num-unit">套</view>
+                            </view>
+
+                        </view>
+                        <view class="shuxian"></view>
+                        <view bindtap="hotLinkFn" data-communityid="{{item}}">
+                            <view class="ldata-content-desc">
+                                网签均价
+                            </view>
+                            <view class="ldata-content-num">
+                                {{item.junjia}}
+                                <view class="ldata-content-num-unit">元</view>
+                            </view>
+                        </view>
+                        <view class="shuxian"></view>
+                        <view bindtap="hotLinkFn" data-communityid="{{item}}">
+                            <view class="ldata-content-desc">
+                                环比
+                            </view>
+                            <view class="ldata-content-num ">
+                                {{item.hb==null?'-':filters.toFix(((item.junjia-item.hb)/item.hb)*100)}}
+                                <view class="ldata-content-num-unit">%</view>
+                            </view>
+                        </view>
+                        <view class="shuxian"></view>
+                        <view>
+                   
+                                <view class="ldata-content-desc">
+                                    挂牌均价
+                                </view>
+                                <view class="ldata-content-num">
+                                    {{item.cjcount==null?'-':item.cjcount}}
+                                    <view class="ldata-content-num-unit">元</view>
+                                </view>
+                  
+                        </view>
+
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <button class="subscribe-btn" data-index="1" formType="submit" openType="share">分享</button>
+</view>

@@ -1,0 +1,59 @@
+<view class="box">
+    <view class="top">
+        <view class="searchBox">
+            <view class="searchIcon">
+                <image class="icon" src="../../images/common/search.png"></image>
+                <input bindblur="blur_input" bindconfirm="search" bindfocus="focus_input" bindinput="bindKeyInput" class="search" placeholder="搜搜你周边的小区和街道" placeholderClass="tips" placeholderStyle="color:#AAB5CA;" value="{{inputValue}}"></input>
+                <image bindtap="clear_input" class="clear2" src="../../images/clear.png" wx:if="{{inputValue}}"></image>
+            </view>
+        </view>
+        <view class="suggestList" wx:if="{{inputValue}}">
+            <view bindtap="bindtap_chooseItem" class="suggestListItem" data-lat="{{item.location.lat}}" data-lng="{{item.location.lng}}" data-type="{{item.type}}" data-value="{{item.names}}" wx:for="{{search_results}}">
+                <view class="suggestListItemWords">
+                    <view class="{{word[0]==1?'redColor':''}}" wx:for="{{item.names}}" wx:for-item="word">{{word[1]}}</view>
+                </view>
+            </view>
+            <view class="suggestListItem" wx:if="{{search_results.length==0}}">搜索地点失败，请重新输入</view>
+        </view>
+        <view class="searchHistory" style="height:{{height-186}}rpx" wx:if="{{storage.length>0&&show_history==true&&inputValue==''}}">
+            <view class="searchHistoryHead">
+                <view class="searchHistoryTitle">
+                    <view>
+                        搜索记录
+                    </view>
+                </view>
+                <view bindtap="clean_search_history" class="cleanSearchHistory">
+                    <view>
+                        清空
+                    </view>
+                    <image class="cleanSearchHistoryImage" src="../../images/search/shanchu.png"></image>
+                </view>
+            </view>
+            <view class="history">
+                <view bindtap="bindtap_history_item" class="historyList" data-lat="{{item.lat}}" data-lng="{{item.lng}}" data-type="{{item.type}}" wx:for="{{storage}}">
+                    <image class="historyImage" src="../../images/search/lishi.png"></image>
+                    {{item.id}}
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="hotSchoolBox">
+        <view class="hotSchoolBoxTitle">
+            <image class="hotSchoolBoxTitleImage" src="../../images/search/rmxx.png"></image>
+            <view>
+                热门学校
+            </view>
+        </view>
+        <view class="hotSchoolList">
+            <view bindtap="bindtap_hots_item" class="hotSchoolItem" data-lat="{{item.lat}}" data-lng="{{item.lng}}" data-type="{{item.type}}" wx:for="{{hots}}">
+                <view class="hotSchoolItemName">
+                    {{item.name}}
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="adv">
+        <view class="advbox" data-prompt="如果有搜索，则显示box高500，防止广告与搜索列表显示冲突。" wx:if="{{search_results.length>0&&inputValue!=''}}"></view>
+        <ad adTheme="white" adType="video" unitId="adunit-733ce9e919978a15"></ad>
+    </view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+      "uni-icons": "/newhouse/components/uni-icons/uni-icons",
+      "uni-badge": "/newhouse/components/uni-badge/uni-badge"
+  }
+}

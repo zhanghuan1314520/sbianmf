@@ -1,0 +1,15 @@
+<view bindtap="conceal" catchtouchmove="preventTouchMove" class="zhezao" wx:if="{{visibility}}">
+    <view class="txtsure">
+        <view class="modal_view">
+            <view class="modal_up">
+                <view class="modal_up_circle">
+                    <image class="pic_128" src="../../images/details/ID.png"></image>
+                </view>
+            </view>
+            <view class="modal_title">完善经纪人身份信息</view>
+            <view class="modal_text">立即入驻查学区</view>
+            <button bindgetuserinfo="bindtap_goto_authentication" bindtap="preventTouchMove" class="txtbutton" lang="zh_CN" openType="getUserInfo">立即前往</button>
+            <view bindtap="conceal" class="modal_close">以后再说</view>
+        </view>
+    </view>
+</view>

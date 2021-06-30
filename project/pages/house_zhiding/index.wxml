@@ -1,0 +1,49 @@
+<nav-bar navbarInfo="{{navbarInfo}}"></nav-bar>
+<view class="maifang">
+	<view class="card">
+		<view class="row">
+			<span class="title1">小区名称</span>
+			<input class="row_input" disabled="{{true}}" placeholder="请选择" placeholderClass="placeholder-style" value="{{communityName}}"></input>
+			<span class="row_right"></span>
+		</view>
+		<view class="row">
+			<span class="title">具体房号</span>
+			<input bindinput="handleInputbuilding_name" class="row_input1" placeholder="楼幢" placeholderClass="placeholder-style" value="{{building_name}}"></input>
+			<input bindinput="handleInputunit_name" class="row_input2" placeholder="单元" placeholderClass="placeholder-style" value="{{unit_name}}"></input>
+			<input bindinput="handleInputhouse_name" class="row_input3" placeholder="房号" placeholderClass="placeholder-style" value="{{house_name}}"></input>
+		</view>
+
+	</view>
+	<view class="gujia_entry">
+		选择公开号码买家或者经纪人可以直接与您联系。
+	</view>
+	<view class="card top_border">
+		<view class="row">
+			<span class="title1">称呼</span>
+			<input bindinput="handleInputCname" class="row_input" maxlength="5" placeholder="如何称呼您" placeholderClass="placeholder-style" value="{{cname}}"></input>
+			<span class="row_right"></span>
+		</view>
+		<view class="row">
+			<span class="title1">联系方式</span>
+			<input class="row_input" disabled="{{true}}" placeholder="请输入电话号码" placeholderClass="placeholder-style" value="{{mobile}}"></input>
+			<span class="row_right"><button class="getPhoneNumber" open-type="getPhoneNumber" bindgetphonenumber="pn_getPhoneNumber">微信手机</button></span>
+		</view>
+		<view class="row">
+			<span class="title1">是否公开</span>
+			<!-- <input class="row_input" disabled="{{true}}" placeholder="请输入电话号码" placeholderClass="placeholder-style" value="{{userInfo.mobile}}"></input>
+			<span class="row_right"></span> -->
+			<view class="row_read">
+				<radio-group bindchange="radioChange">
+					<radio checked="{{check==1?'true':''}}" id="radios" value="1"></radio><label for="radios">同意</label>
+					<radio checked="{{check==0?'true':''}}" id="radios" value="0"></radio><label for="radios">不同意</label>
+				</radio-group>
+			</view>
+			<span class="row_right"></span>
+		</view>
+		<image class="liucheng" src="https://sbmf.ww2ss.com/dfimages/1545373072792.png"></image>
+	</view>
+
+	<view class="maifang_bottom {{isipx?'iphonex':''}}">
+		<view bindtap="submit" class="btn">置顶房源</view>
+	</view>
+</view>

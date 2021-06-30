@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "手边买房-历史成交",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "vip-msgbox": "/components/vipmsgbox/index"
+}

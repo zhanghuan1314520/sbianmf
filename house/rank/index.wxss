@@ -1,0 +1,176 @@
+@import "../../dfBaseWxss__/4.wxss";
+@import "../../dfBaseWxss__/0.wxss";
+@import "../../dfBaseWxss__/3.wxss";
+
+.item-rank {
+    min-width: 60rpx!important;
+    width: 60rpx!important;
+}
+
+.item-name {
+    min-width: 200rpx!important;
+    width: 200rpx!important;
+}
+
+.list-content .scroll-list-body {
+    width: 100%;
+}
+
+.list-content .scroll-list-body .list-header {
+    height: 80rpx;
+    color: #366AB3;
+    background-color: #EAE9E9;
+    font-size: 24rpx;
+    font-weight: bold;
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+    box-sizing: border-box;
+    display: flex;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+.list-content .scroll-list-body .list-header>view:nth-of-type(1) {
+    padding-left: 20rpx;
+}
+
+.list-content .scroll-list-body .list-header>view:last-of-type {
+    padding-right: 20rpx;
+}
+
+.list-content .scroll-list-body .list-header .list-header-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.list-content .scroll-list-body .list-header .list-header-item .unit {
+    font-size: 20rpx;
+    padding-top: 5rpx;
+}
+
+.list-content .scroll-list-body .list-body {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20rpx;
+    margin-bottom: 100rpx;
+}
+
+.list-content .scroll-list-body .list-body .list-body-row {
+    display: flex;
+    height: 70rpx;
+    line-height: 80rpx;
+    align-items: center;
+    border-bottom: 2rpx solid #EAE9E9;
+    position: relative;
+}
+
+.list-content .scroll-list-body .list-body .list-body-row>view:nth-of-type(1) {
+    padding-left: 20rpx;
+}
+
+.list-content .scroll-list-body .list-body .list-body-row>view:last-of-type {
+    padding-right: 20rpx;
+}
+
+.list-content .scroll-list-body .list-body .list-body-row .list-body-row-item {
+    color: #5F5F60;
+    padding-top: 10rpx;
+    padding-bottom: 10rpx;
+    font-size: 24rpx;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.list-content .scroll-list-body .list-body .list-body-row .goto-icon {
+    position: absolute;
+    right: 10rpx;
+}
+
+.tab__navbar-title {
+    font-size: 20rpx;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+}
+
+.container .container-top {
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.container .container-top .title {
+    color: #366AB3;
+    font-size: 28rpx;
+    padding: 20rpx;
+    height: 80rpx;
+    box-sizing: border-box;
+}
+.container .container-top .select-date-content {
+  font-size:24rpx;
+  color:#8A8D91;
+  display:flex;
+  align-items:center;
+  
+  padding:10rpx;
+  background-color:#EAE9E9;
+  border-radius:5rpx;
+}
+
+.container .container-top .select-date-content .select-date {
+    padding: 15rpx;
+    background-color: #366AB3;
+    color: #ffffff;
+    border-radius: 10rpx;
+}
+
+.container .container-top .tab-content {
+    position: relative;
+    border-radius: 20rpx 20rpx 0px 0rpx;
+    width: 100%;
+    background-color: #366AB3;
+    font-size: 24rpx;
+    padding-top: 10rpx;
+    box-sizing: border-box;
+}
+
+.container .container-top .tab-content .icon-left {
+    position: absolute;
+    left: 0;
+    top: 30%;
+    z-index: 99;
+}
+
+.container .container-top .tab-content .icon-right {
+    position: absolute;
+    right: 0;
+    top: 30%;
+    z-index: 99;
+}
+
+.container .container-body {
+    width: 100%;
+    height: 100%;
+
+}
+
+.container .subscribe-btn {
+    position: fixed;
+    bottom: 50%;
+    left: 100%;
+    margin-left: -150rpx;
+    width: 180rpx;
+    height: 60rpx;
+    text-align: center;
+    line-height: 60rpx;
+    font-size: 33rpx;
+    color: #ffffff;
+    background: #fc0f07; 
+    box-shadow: 0 8rpx 16rpx 0 #5555ff9c;
+    border-radius: 50rpx;
+    z-index: 10;
+}

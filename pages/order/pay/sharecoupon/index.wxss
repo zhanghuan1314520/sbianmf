@@ -166,7 +166,7 @@ page {
 
 .firend_contents_price {
     float: right;
-    padding-top: 19.2rpx;
+    padding-top: 19rpx;
     color: #FCE3E4;
     line-height: 80rpx;
     text-align: right;

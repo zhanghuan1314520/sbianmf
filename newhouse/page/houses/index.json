@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "楼盘",
+  "usingComponents": {
+      "area-select": "/newhouse/page/common/area",
+      "house": "/newhouse/page/common/house",
+      "search": "/newhouse/page/common/search"
+  }
+}

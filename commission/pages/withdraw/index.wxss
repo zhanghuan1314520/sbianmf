@@ -2,7 +2,7 @@
     height: auto;
     color: #fff;
     padding: 48rpx 20rpx;
-    background: #366AB3;
+    background: #fea23d;
     position: relative;
 }
 
@@ -18,7 +18,7 @@
     top: 5rpx;
     right: 5rpx;
     border: 0;
-    color: #8A8D91;
+    color: #9d5200;
     text-decoration: underline;
     font-size: 24rpx;
 }

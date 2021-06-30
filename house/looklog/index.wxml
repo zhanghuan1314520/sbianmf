@@ -1,0 +1,64 @@
+<loading wx:if="{{!show}}">加载中...</loading>
+<view class="container" wx:if="{{show}}">
+      <view class="list-content">
+            <view class="deal-list-content">
+                  <view class="top-bar">
+                        <view>楼盘</view>
+                        <view>总价/面积</view>
+                        <view>户型/均价</view>
+                        <view>带看/板块</view>
+                  </view>
+                  <view class="list-item" bindtap="itemClick" data-goodsid="{{item.goodsid}}" data-id="{{item.id}}" wx:for="{{list}}" wx:key="item">
+
+                        <view class="item item-flex">
+                              <navigator openType="navigate" url="/house/house/house?cid={{item.government_code}}">
+                                    <view class="item-top" style='color:#366AB3;font-size: 28rpx;font-weight: bold;'>{{index+1}}.{{item.community}}</view>
+                                    <view class="item-bottom">
+
+                                    </view>
+                              </navigator>
+                        </view>
+                        <view class="item item-flex ">
+                              <view class="item-top">
+                                    {{item.sale}}万
+                              </view>
+                              <view class="item-bottom">
+                                    <view>{{item.area}}㎡</view>
+                              </view>
+                        </view>
+                        <view class="item item-flex ">
+                              <view class="item-top">
+                                    {{item.model}}
+                              </view>
+
+                              <view class="item-bottom">
+                                    <view>{{item.htjj}}元</view>
+                              </view>
+                        </view>
+                        <view class="item item-flex ">
+                              <view class="item-top" style='color:#df3106'>
+                                    {{item.num}}次
+                              </view>
+
+                              <view class="item-bottom">
+                                    <view>{{item.busines_scircle}}</view>
+                              </view>
+                        </view>
+                  </view>
+
+            </view>
+            <view class="fui-loading" wx:if="{{loading}}">
+                  <view class="icon"></view>
+                  <view class="text">正在加载</view>
+            </view>
+            <view class="fui-loading empty" wx:if="{{loaded&&list.length>0}}">
+                  <view class="text">没有更多了</view>
+            </view>
+            <view class="fui-loading empty" wx:if="{{total<=0&&!loading}}">
+                  <view class="text">没有数据</view>
+            </view>
+
+      </view>
+
+
+</view>

@@ -1,0 +1,36 @@
+<view class="{{['school-base-info_wrap data-v-55e7053f',skeletons?'skeletons-rect':'']}}">
+    <view class="{{['header-tit fz-18 data-v-55e7053f',skeletons?'skeletons-child':'']}}">学校信息</view>
+ 
+        <view class="{{['item flex_layout fz-14 data-v-55e7053f',skeletons?'skeletons-child':'']}}" wx:if="{{item.type=='normal'}}">
+            <view class="item-label data-v-55e7053f">{{''+item.label+''}}</view>
+            <text class="item-content data-v-55e7053f">{{''+item.value+''}}</text>
+        </view>
+        <view class="{{['item flex_layout fz-14 data-v-55e7053f',skeletons?'skeletons-child':'']}}" wx:if="{{item.type=='tip'}}">
+            <view class="item-label data-v-55e7053f">{{''+item.label+''}}</view>
+            <view bindtap="__e" class="{{['item-content item-tip-txt fb-bold data-v-55e7053f',item.label=='费用信息：'&&'item-content-red']}}" data-event-opts="{{[ [ 'tap',[ [ 'handlerTip',['$event'] ] ] ] ]}}">{{''+item.value+''}}</view>
+        </view>
+        <view bindtap="__e" class="{{['item flex_layout fz-14 data-v-55e7053f',skeletons?'skeletons-child':'']}}" data-event-opts="{{[ [ 'tap',[ [ 'handleCallPhone',['$0'],[ [ ['baseInfo','',index,'value'] ] ] ] ] ] ]}}" wx:if="{{item.type=='phone'}}">
+            <view class="item-label data-v-55e7053f">{{''+item.label+''}}</view>
+            <view class="item-content data-v-55e7053f">
+                <view class="flex_layout data-v-55e7053f" wx:for="{{item.value}}" wx:for-index="__i0__" wx:for-item="phone" wx:key="*this">
+                    <text class="{{['iconfont mar-right-4 icondianhua fz-16 phone-icon data-v-55e7053f',skeletons?'skeletons-child':'']}}"></text>
+                    <text class="phone-desc ellipsis data-v-55e7053f">{{''+phone+''}}</text>
+                </view>
+            </view>
+        </view>
+        <view bindtap="__e" class="{{['item flex_layout fz-14 data-v-55e7053f',skeletons?'skeletons-child':'']}}" data-event-opts="{{[ [ 'tap',[ [ 'handleCopyNumber',['$0'],[ [ ['baseInfo','',index,'value'] ] ] ] ] ] ]}}" wx:if="{{item.type=='copy'}}">
+            <view class="item-label data-v-55e7053f">{{''+item.label+''}}</view>
+            <view class="item-content item-content-copy flex_layout data-v-55e7053f">
+                <text class="copy-txt ellipsis-line-1 data-v-55e7053f">{{''+item.value+''}}</text>
+                <text class="copy-btn mar-left-12 fz-10 data-v-55e7053f">复制</text>
+            </view>
+        </view>
+        <view bindtap="__e" class="{{['item flex_layout fz-14 data-v-55e7053f',skeletons?'skeletons-child':'']}}" data-event-opts="{{[ [ 'tap',[ [ 'handleJumpSchedule',['$0'],[ [ ['baseInfo','',index,'value'] ] ] ] ] ] ]}}" wx:if="{{item.type=='schedule'}}">
+            <view class="item-label data-v-55e7053f">{{''+item.label+''}}</view>
+            <view class="item-content item-content-schedule flex_layout data-v-55e7053f">
+                <text class="schedule ellipsis-line-1 data-v-55e7053f">点击查看课程表</text>
+                <image class="schedule-icon data-v-55e7053f" src="https://imgcdn.huanjutang.com/image/2020/11/30/a1053e997d4b22cb410b52bb60b0ae6f.png"></image>
+            </view>
+        </view>
+   
+</view>

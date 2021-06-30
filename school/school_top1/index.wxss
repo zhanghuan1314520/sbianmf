@@ -1,0 +1,66 @@
+@import "/school/wxss/xqbfront.wxss";
+
+.school__wrapper{width: 100%;}
+.hot-school__warpper {
+    padding: 0 0 32rpx;
+    width: 100vw;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.hot-school__warpper .banner-img {
+    width: 100vw;
+    height: 440rpx;
+}
+
+.hot-school__warpper .tab-box {
+    padding: 24rpx 0 12rpx;
+}
+
+.hot-school__warpper .tab-box .tab-item {
+    width: 156rpx;
+    height: 68rpx;
+    line-height: 68rpx;
+    background: #fff;
+    box-shadow: 0rpx 2rpx 8rpx 0rpx rgba(191,194,204,.28);
+    border-radius: 8rpx;
+    border: 1px solid rgba(145,160,180,.3);
+    color: #909399;
+    text-align: center;
+    font-weight: 700;
+    margin-left: 22rpx;
+}
+
+.hot-school__warpper .tab-box .tab-item:first-of-type {
+    margin-left: 30rpx;
+}
+
+.hot-school__warpper .tab-box .tab-item:last-of-type {
+    margin-right: 30rpx;
+}
+
+.hot-school__warpper .tab-box .active-tab {
+    box-shadow: 0rpx 2rpx 8rpx 0rpx rgba(20,120,255,.32);
+    border: 1px solid #1478ff;
+    color: #1478ff;
+}
+
+.hot-school__warpper .containerhot {
+    margin-bottom: 100rpx;
+    min-height: calc(100vh - 328rpx);
+}
+
+.hot-school__warpper .no-answer__wrapper {
+    margin: 166rpx 212rpx;
+    text-align: center;
+}
+
+.hot-school__warpper .no-answer__wrapper .no-img {
+    width: 312rpx;
+    height: 288rpx;
+}
+
+.hot-school__warpper .no-answer__wrapper .txt {
+    color: #606266;
+    margin: 38rpx 0;
+}

@@ -104,6 +104,7 @@ Page({
         t.setData({
             loading: !0
         }), t.data.params.page = t.data.page, e.get("goods/get_list", t.data.params, function(e) {
+            console.log(e);
             var a = {
                 loading: !1,
                 count: e.total,
@@ -308,9 +309,6 @@ Page({
     specsTap: function(t) {
         var e = this;
         i.specsTap(t, e);
-    },
-    chooseGift: function(t) {
-        i.chooseGift(t, this);
     },
     emptyActive: function() {
         this.setData({

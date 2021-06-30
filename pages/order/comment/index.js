@@ -9,7 +9,10 @@ Page({
         key: -1,
         content: "",
         images: [],
-        imgs: []
+        imgs: [],
+        textRemark: "商品满意吗？来分享你的感受吧",
+        isshowText: !0,
+        onFocus: !1
     },
     onLoad: function(a) {
         this.setData({
@@ -37,12 +40,15 @@ Page({
             orderid: this.data.options.id,
             comments: []
         };
-        if ("" == this.data.content || -1 == this.data.key) return a.alert("有未填写项目!"), !1;
+        if (this.setData({
+            onFocus: !1
+        }), "商品满意吗？来分享你的感受吧" == this.data.textRemark || -1 == this.data.key) return a.alert("有未填写项目!"), 
+        !1;
         for (var e = 0, s = this.data.goods.length; e < s; e++) {
             var i = {
                 goodsid: this.data.goods[e].goodsid,
                 level: this.data.key + 1,
-                content: this.data.content,
+                content: this.data.textRemark,
                 images: this.data.images
             };
             t.comments.push(i);
@@ -64,6 +70,22 @@ Page({
         })) : "image-preview" == i && wx.previewImage({
             current: n[r],
             urls: n
+        });
+    },
+    onshowText: function(t) {
+        var a = t.detail.value;
+        "" == a && (a = "商品满意吗？来分享你的感受吧"), this.setData({
+            isshowText: !0,
+            onFocus: !1,
+            textRemark: a
+        });
+    },
+    onshowTextarea: function() {
+        "商品满意吗？来分享你的感受吧" == this.data.textRemark && this.setData({
+            textRemark: ""
+        }), this.setData({
+            isshowText: !1,
+            onFocus: !0
         });
     }
 });

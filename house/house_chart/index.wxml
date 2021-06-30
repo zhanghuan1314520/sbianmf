@@ -1,0 +1,249 @@
+<wxs module="filters" src="/house/filter.wxs"></wxs>
+<loading wx:if="{{!show}}">加载中...</loading>
+<!-- 搜索区域开始 -->
+<view class="container-top">
+  <view class="search-box">
+    <view bindtap="searchClick" class="search">
+      <view class="serch_content" style="color:#366AB3;background-color:#fff;">
+        <wxc-icon color="font-size:28rpx; color:#366AB3;" size="28" type="search"></wxc-icon>
+        <input bindtap="toSearch" class="search_input" name="search_input" placeholder="请输入板块名、楼盘名看房源"
+          placeholderStyle="font-size:28rpx; color:#366AB3;" type="text" value="{{searchCon}}"></input>
+
+        <div class="search_line"></div>
+        <wxc-icon bindtap="handleGoT" data-go="/project/pages/school_map/index" type="address" color="#366AB3"
+          size="28"></wxc-icon>
+        <view bindtap="handleGoT" data-go="/project/pages/school_map/index" class="search_map" size="28">学区地图</view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 搜索区域结束 -->
+<view class="content">
+  <!-- 最新部分开始 -->
+  <view class="new_box">
+    <view class="box_tag">最新</view>
+    <view class="nav _div data-v-3e913807">
+      <view class="_p data-v-3e913807">
+        <label class="house-name _span data-v-3e913807">{{datalista.title}}最新手边买房指数</label>
+      </view>
+      <view class="detail _div data-v-3e913807">
+        <view class="first part _div data-v-3e913807">
+          <label class="detail-name _span data-v-3e913807">预期指数</label>
+          <label class="trend unit _span data-v-3e913807">{{datalista.gp_junjia}}</label>
+          <label class="unit _span data-v-3e913807">元/㎡</label>
+        </view>
+        <view class="sec part _div data-v-3e913807">
+          <label class="detail-name _span data-v-3e913807">环比上月</label>
+          <view wx:if="{{datalista.gp_junjia_hb>0}}">
+            <label class="{{datalista.gp_junjia-datalista.gp_junjia_hb>0?'red':'green'}}">
+              {{filters.toFix(((datalista.gp_junjia-datalista.gp_junjia_hb)/datalista.gp_junjia_hb)*100)}}%
+            </label>
+          </view>
+          <view wx:else></view>
+        </view>
+      </view>
+      <view class="detail _div data-v-3e913807">
+        <view class="first part _div data-v-3e913807">
+          <label class="detail-name _span data-v-3e913807">网签均价</label>
+          <label class="trend unit_gp _span data-v-3e913807">{{datalista.cj_junjia}}</label>
+          <label class="unit_gp _span data-v-3e913807">元/㎡</label>
+        </view>
+        <view class="sec part _div data-v-3e913807">
+          <label class="detail-name _span data-v-3e913807">同比上月</label>
+          <view wx:if="{{datalista.cj_junjia_hb>0}}">
+            <label class="{{datalista.cj_junjia-datalista.cj_junjia_hb>0?'red':'green'}}">
+              {{filters.toFix(((datalista.cj_junjia-datalista.cj_junjia_hb)/datalista.cj_junjia_hb)*100)}}%
+            </label>
+          </view>
+          <view wx:else></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 最新部分结束 -->
+  <!-- 曲线图开始 -->
+  <view class="container-body">
+    <view style="height: 329px;">
+      <!-- tab开始 -->
+      <view class="nav_box">
+        <view class="nav_box_r">
+          <view bindtap="selectNav" data-index="0">
+            <view class="nav_box_r_bg">周报</view>
+            <view class="selected"></view>
+          </view>
+          <view bindtap="selectNav" data-index="1">月报</view>
+        </view>
+        <view class="nav_box_l">
+          <view bindtap="selectNav" data-index="2">
+            <view class="nav_box_r_bg">一年</view>
+            <view class="selected"></view>
+          </view>
+          <view bindtap="selectNav" data-index="3">全部</view>
+        </view>
+      </view>
+      <!-- tab结束 -->
+      <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ecLine}}" style="position:relative;z-index:5;"
+        wx:if="{{show}}">
+      </ec-canvas>
+      <view class="tag_box">
+        <view class="tag_box_item">
+          <view class="circle bg1"></view>
+          <view>市场活跃指数</view>
+        </view>
+        <view class="tag_box_item">
+          <view class="circle bg2"></view>
+          <view>月环比</view>
+        </view>
+        <view class="tag_box_item">
+          <view class="circle bg3"></view>
+          <view>年同比</view>
+        </view>
+      </view>
+    </view>
+    <!-- 曲线图结束 -->
+  </view>
+  <!-- 杭州行政指数涨幅排名区域开始 -->
+  <view wx:if="{{datalist== datalist}}">
+    <view class="new_city_box1">
+      <view class="box_img">
+        <image src="https://sbmf.ww2ss.com/dfimages/2wm.png"></image>
+      </view>
+      <view class="new_city_title">杭州行政手边买房指数涨幅排名</view>
+      <view class="new_city_nav">
+        <view class="new_city_nav_name">行政区</view>
+        <view class="new_city_nav_name">5月/3周</view>
+        <view class="new_city_nav_name">4月/3周</view>
+        <view class="new_city_nav_name">月环比</view>
+        <view class="new_city_nav_name">博弈差</view>
+      </view>
+      <view class="new_city_list1" wx:for="{{datalist}}" wx:key="id" bindtap="prolist" data-title="{{item.title}}"
+        data-index="{{index}}">
+        <view class="new_city_list_item1">
+          <view class="new_city_list_item1_r">
+            <image src="https://sbmf.ww2ss.com/dfimages/jifen/top{{index}}.png" wx:if="{{index<4}}"></image>
+          </view>
+
+          <view class="new_city_list_item1_l">{{item.title}}</view>
+        </view>
+        <view class="new_city_list_item2">{{item.gp_junjia}}</view>
+        <view class="new_city_list_item2">{{item.gp_junjia_hb}}</view>
+
+        <view class="new_city_list_item4">
+          <view wx:if="{{(((item.gp_junjia-item.gp_junjia_hb)/item.gp_junjia_hb)*100)>0}}">
+              <view class="red">
+                {{item.gp_junjia_hb==null?'-':filters.toFix(((item.gp_junjia-item.gp_junjia_hb)/item.gp_junjia_hb)*100)}}%↑
+              </view>   
+          </view>
+          <view wx:else>
+              <view class="green">
+                {{item.gp_junjia_hb==null?'-':filters.toFix(((item.gp_junjia-item.gp_junjia_hb)/item.gp_junjia_hb)*100)}}%↓
+              </view>
+          </view>
+        </view>
+        <view class="new_city_list_item4">
+          <view wx:if="{{item.upprice_bl>0}}">
+              <view class="red">
+               {{item.upprice_bl}}↑
+              </view>
+          </view>
+          <view wx:else>
+              <view class="green">
+                {{item.upprice_bl}}↓
+              </view>
+          </view>
+        </view>
+      </view>
+      <!--蒙层 -->
+      <!-- <view class="new_mc1" style="margin-top: -250rpx">
+        <view class="new_mc_tip">点击解锁</view>
+        <view class="new_mc_ts">即可查看全部片区排名</view>
+        <view class="new_mc_btn" bindtap="showDialogBtn">立即解锁</view>
+      </view> -->
+    </view>
+  </view>
+  <!-- 杭州行政指数涨幅排名区域结束 -->
+  <!-- 杭州片区市场活跃热度排名top30区域开始 -->
+  <view wx:if="{{datalist_hot==datalist_hot}}">
+    <view class="new_city_box">
+      <view class="new_city_title">杭州热门版块市场活跃热度排名<text style=" color: #000; font-weight: bolder;">TOP30</text></view>
+      <view class="new_city_nav">
+      <view class="new_city_nav_r">
+          <view class="new_city_nav_r_area">小区名</view>
+          <view class="new_city_nav_r_heat" bindtap="Reports_sort" data-arr="clookb">热度</view>
+        </view>
+        <view class="new_city_nav_l">
+          <view class="new_city_nav_l_item" bindtap="Reports_sort" data-arr="gp_junjia">预期价</view>
+          <view class="new_city_nav_l_item" bindtap="Reports_sort" data-arr="gp_junjia_hb">月环比</view>
+          <view class="new_city_nav_l_item" bindtap="Reports_sort" data-arr="upprice_bl">博弈差</view>
+          <view class="new_city_nav_l_item_85" bindtap="Reports_sort" data-arr="num">成交</view>
+          <view class="new_city_nav_l_item_85" bindtap="Reports_sort" data-arr="upprice_sum">涨</view>
+        </view>
+    </view>
+      <view class="new_city_list" wx:for="{{datalist_hot}}" wx:key="id" bindtap="hot" data-index="{{index}}"
+        data-title="{{item.title}}" wx:if="{{index<30}}">
+          <view class="new_city_list_r">
+        <view class="new_city_list_r_img">
+          <image src="https://sbmf.ww2ss.com/dfimages/jifen/top{{index}}.png"   wx:if="{{index<4}}"></image>
+        </view>
+        <view class="new_city_list_r_name">{{item.title}}</view>
+        <view class="new_city_list_r_progress">
+          <view class='progress-content'>
+            <view class='progress'></view>
+            <view class="progress progress-active {{ item.clookb <100 ? '' : 'progress-active-full' }}"
+              style="width:{{item.clookb/max_clookb*80 }}rpx">{{item.clookb}}</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="new_city_list_l">
+    
+        <view class="new_city_list_l_item1">{{item.gp_junjia}}</view>
+        <view class="new_city_list_l_item2">
+              <view class="{{item.gp_junjia_hb>0?'red':'green'}}">
+                {{item.gp_junjia_hb==null?'-':item.gp_junjia_hb}}%
+              </view>   
+          </view>
+        <view class="new_city_list_l_item2">
+              <view class="{{item.upprice_bl>0?'red':'green'}}">
+                {{item.cj_junjia==null?'-':item.upprice_bl}}
+              </view>
+        </view>
+        <view class="new_city_list_l_item_zhi">{{item.num}}</view>
+        <view class="new_city_list_l_item_zhi">
+          <view class="red">{{item.upprice_sum}}</view>
+          </view>
+      </view>
+      </view>
+      <!--蒙层 -->
+      <!-- <view class="new_mc" style="margin-top: -180rpx">
+        <view class="new_mc_tip">点击解锁</view>
+        <view class="new_mc_ts">即可查看全部片区排名</view>
+        <view class="new_mc_btn" bindtap="showDialogBtn">立即解锁</view>
+      </view> -->
+    </view>
+  </view>
+  <view wx:else></view>
+</view>
+<!-- 杭州片区市场活跃热度排名top30区域结束 -->
+
+<!--弹窗-->
+<!-- <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">解锁全部价格走势</view>
+  <view class="modal-content">
+    <view class="modal-content_tip" bindtap="onCancel">邀请好友</view>
+    <view class="modal-content_btn" bindtap="onConfirm">邀请好友</view>
+  </view>
+  <view class="modal-content">
+    <view class="modal-content_tip" bindtap="onCancel">成为会员免费解锁</view>
+    <view class="modal-content_btn" bindtap="onConfirm">马上开通会员</view>
+  </view>
+</view> -->
+
+
+
+
+
+<!-- <button class="subscribe-btn" data-index="1" formType="submit" openType="share">图片</button> -->
+
+<!-- <image class="subscribe-btn" src="https://sbmf.ww2ss.com/dfimages/2wm.png"></image> -->

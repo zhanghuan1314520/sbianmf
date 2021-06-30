@@ -1,0 +1,25 @@
+<view class="nav _div data-v-3e913807">
+    <view class="_p data-v-3e913807">
+        <label class="house-name _span data-v-3e913807">杭州二手房实时行情<text class="data-v-3e913807" wx:if="{{item.communityName}}">{{'-'+item.communityName}}</text>
+        </label>
+          
+    </view>
+    <view class="detail _div data-v-3e913807">
+        <view class="first part _div data-v-3e913807">
+            <label class="detail-name _span data-v-3e913807">预期指数</label>
+            <label class="trend unit _span data-v-3e913807">{{item.avg_price}}</label>
+            <label class="unit _span data-v-3e913807">元/㎡</label>
+        </view>
+        <view class="sec part _div data-v-3e913807">
+            <label class="detail-name _span data-v-3e913807">环比上月</label>
+            <view class="{{['item-trend _div data-v-7ee8f5b1',item.price_huanbi>0?'up':'down']}}">
+                <label class="item-none _span data-v-7ee8f5b1" wx:if="{{item.price_huanbi===0}}">-</label>
+                <view class="item-trend _div data-v-7ee8f5b1" wx:else>
+                    <view class="{{['triangle _i data-v-7ee8f5b1',item.price_huanbi>0?'up':'down']}}" wx:if="{{item.price_huanbi}}">{{item.price_huanbi}}%</view>
+                </view>
+            </view>
+
+        </view>
+    </view>
+</view>  
+  

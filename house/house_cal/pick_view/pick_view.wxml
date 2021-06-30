@@ -1,0 +1,24 @@
+<view class="container {{showComponent?'container-show':''}}">
+    <view class="bottom {{showComponent?'picker-view-show':''}}">
+        <view class="pick-title-line">
+            <view bindtap="cancelClick" class="cancle-btn">取消</view>
+            <view class="title" wx:if="{{showSelf}}">{{title}}</view>
+            <view bindtap="sureClick" class="sure-btn">完成</view>
+        </view>
+        <picker-view bindchange="changeOption" class="picker-view {{showSelf?'':'short'}}" indicatorStyle="height: 41px;" value="{{value}}">
+            <picker-view-column>
+                <view class="option" wx:for="{{selOption}}" wx:key="index">{{item.name}}</view>
+            </picker-view-column>
+        </picker-view>
+        <form bindsubmit="addNewOption">
+            <view class="bottom-self" wx:if="{{showSelf}}">
+                <view class="self-name">自定义利率</view>
+                <view class="self-input">
+                    <input name="new" placeholder="请输入" type="digit"></input>
+                    <text>%</text>
+                </view>
+                <button class="self-sure" formType="submit">确认</button>
+            </view>
+        </form>
+    </view>
+</view>

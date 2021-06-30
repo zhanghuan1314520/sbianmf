@@ -1,0 +1,167 @@
+<view class="containerd" style="padding-top: {{navH}}px;">
+    <nav-bar bgColor="#F8F8F8" navBarTitle="房贷计算器"></nav-bar>
+    <view bindtap="tabBarClick" class="switch-tab flex-around">
+        <view class="switch-item {{tabIndex==='1'?'active':''}}" data-i="1">商业贷款</view>
+        <view class="switch-item {{tabIndex==='2'?'active':''}}" data-i="2">公积金贷款</view>
+        <view class="switch-item {{tabIndex==='3'?'active':''}}" data-i="3">组合贷款</view>
+    </view>
+    <form bindreset="reset" bindsubmit="toReslovePage">
+        <view class="switch-content">
+            <view class="base-loan">
+                <view class="form-group" wx:if="{{tabIndex==='1'}}">
+                    <picker bindchange="bindPickerChange" class="loan-type" data-t="loantype" range="{{loanType}}"
+                        value="{{loanTypeIndex}}">
+                        <view class="inner-loan-type flex-between">
+                            <view class="label">计算方式</view>
+                            <view class="info-main">{{loanType[loanTypeIndex]}}</view>
+                           	<wxc-icon color="#8A8D91" type="arrow-right"></wxc-icon>
+                        </view>
+                    </picker>
+                </view>
+                <block wx:if="{{tabIndex==='1'&&loanTypeIndex===1}}">
+                    <view class="form-group flex-between">
+                        <view class="label">房屋总价</view>
+                        <view class="flex-center info-main">
+                            <input bindinput="horseInput" class="loan-money" name="horcePrice" placeholder="请输入金额"
+                                placeholderClass="placeholder" type="digit" value="{{horcePrice}}"></input>
+                        </view>
+                        <view class="light-word">万</view>
+                    </view>
+                    <view class="form-group">
+                        <picker bindchange="bindPickerChange" class="loan-type" data-t="loanProportion"
+                            range="{{loanProportion}}" value="{{loanProportionIndex}}">
+                            <view class="inner-loan-type flex-between">
+                                <view class="label">首付比例</view>
+                                <view class="info-main">{{loanProportion[loanProportionIndex]}}</view>
+                                <wxc-icon color="#8A8D91" type="arrow-right"></wxc-icon>
+                            </view>
+                        </picker>
+                    </view>
+                </block>
+                <view class="form-group flex-between">
+                    <view class="{{tabIndex==='2'?'info-title':''}} label">{{tabIndex==='2'?'公积金贷款总额':'商贷总额'}}</view>
+                    <view class="flex-center {{tabIndex==='2'?'info-main-s':'info-main'}}">
+                        <input bindinput="chanegPublicMoney" class="loan-money" data-o="money" name="money"
+                            placeholder="请输入金额" placeholderClass="placeholder" type="digit"
+                            value="{{tabIndex==='2'?'':money}}"></input>
+                    </view>
+                    <view class="light-word">万</view>
+                </view>
+                <view class="form-group">
+                    <picker bindchange="bindPickerChange" class="loan-type" data-t="loanyears" range="{{loanYears}}"
+                        value="{{loanYearsIndex}}">
+                        <view class="inner-loan-type flex-between">
+                            <view class="label">贷款年限</view>
+                            <view class="info-main">{{loanYears[loanYearsIndex]}}</view>
+                            <wxc-icon color="#8A8D91" type="arrow-right"></wxc-icon>
+                        </view>
+                    </picker>
+                </view>
+            </view>
+            <view class="business-loan" wx:if="{{tabIndex==='1'||tabIndex==='3'}}">
+                <view class="form-group">
+                    <picker bindchange="bindPickerChange" class="loan-type" data-t="loanratetype"
+                        range="{{loanRateType}}" value="{{loanRateTypeIndex}}">
+                        <view class="inner-loan-type flex-between">
+                            <view class="label">利率方式</view>
+                            <view class="info-main">{{loanRateType[loanRateTypeIndex]}}</view>
+                            <wxc-icon color="#8A8D91" type="arrow-right"></wxc-icon>
+                        </view>
+                    </picker>
+                </view>
+                <block wx:if="{{loanRateTypeIndex===0}}">
+                    <view class="form-group flex-between">
+                        <view bindtap="showToast" class="flex-start label" data-i="1">LPR
+                            <view class="LPR-toast">?</view>
+                        </view>
+                        <view class="flex-center info-main">
+                            <input bindinput="changeLPRandBase" class="loan-money" data-o="LPR" name="LPR" type="digit"
+                                value="{{LPR}}"></input>
+                        </view>
+                        <view class="light-word">%</view>
+                    </view>
+                    <view class="form-group flex-between">
+                        <view bindtap="showToast" class="flex-start label" data-i="2">基点
+                            <view class="LPR-toast">?</view>
+                        </view>
+                        <view class="flex-center info-main">
+                            <input bindblur="inputBlur" bindfocus="inputFocus" bindinput="changeLPRandBase"
+                                class="loan-money" data-o="baseRate" name="baseRate" type="digit"
+                                value="{{baseRate}}"></input>
+                        </view>
+                        <view class="light-word">BP(‱)</view>
+                    </view>
+                    <view class="form-group flex-between">
+                        <view class="label">商贷利率
+                            <view class="tip-info">(LPR+基点)</view>
+                        </view>
+                        <view class="flex-center info-main">
+                            <input disabled class="loan-money" name="businessRate" type="digit"
+                                value="{{finBusiRate}}"></input>
+                        </view>
+                        <view class="light-word">={{LPR||0}}% + {{baseRate||0}}‱</view>
+                    </view>
+                </block>
+                <block wx:else>
+                    <view bindtap="showOldBusinessRate" class="form-group flex-between">
+                        <view class="label">商贷利率</view>
+                        <view class="flex-center info-main">
+                            <input disabled class="loan-money" name="oldBusinessRate" type="digit"
+                                value="{{oldBusinessRate[ oldBusinessRateSel[0] ].name}}"></input>
+                        </view>
+                        <wxc-icon color="#8A8D91" type="arrow-right"></wxc-icon>
+                    </view>
+                    <pickView bindclose="showOldBusinessRate" bindsureClick="getVal_OldBusiRate"
+                        selOption="{{oldBusinessRate}}" title="" value="{{oldBusinessRateSel}}"
+                        wx:if="{{showBusinessRate}}"></pickView>
+                </block>
+            </view>
+            <view class="mixin-loan" wx:if="{{tabIndex==='3'}}">
+                <view class="form-group flex-between">
+                    <view class="info-title label">公积金贷款总额</view>
+                    <view class="flex-center info-main-s">
+                        <input bindinput="chanegPublicMoney" class="loan-money" data-o="publicMoney" name="publicMoney"
+                            placeholder="请输入金额" placeholderClass="placeholder" type="digit"></input>
+                    </view>
+                    <view class="light-word">万</view>
+                </view>
+                <view class="form-group">
+                    <picker bindchange="bindPickerChange" class="loan-type" data-t="loanyears2" range="{{loanYears}}"
+                        value="{{loanYearsIndex2}}">
+                        <view class="inner-loan-type flex-between">
+                            <view class="label">贷款年限</view>
+                            <view class="info-main">{{loanYears[loanYearsIndex2]}}</view>
+                            <wxc-icon color="#8A8D91" type="arrow-right"></wxc-icon>
+                        </view>
+                    </picker>
+                </view>
+            </view>
+            <view class="public-loan" wx:if="{{tabIndex==='2'||tabIndex==='3'}}">
+                <view bindtap="changeShowpublicRate" class="form-group flex-between">
+                    <view class="label">贷款利率</view>
+                    <view class="flex-center info-main">
+                        <input disabled class="loan-money" name="publicRate" type="digit"
+                            value="{{publishRate[ publishRateSel[0] ].name}}"></input>
+                    </view>
+                    <wxc-icon color="#8A8D91" type="arrow-right"></wxc-icon>
+                </view>
+                <pickView bindclose="changeShowpublicRate" bindsureClick="getVal_publicRate" selOption="{{publishRate}}"
+                    title="公积金利率" value="{{publishRateSel}}" wx:if="{{showPublicRate}}"></pickView>
+            </view>
+        </view>
+        <view class="footer">
+            <button class="submit" formType="submit">计算</button>
+            <view class="footer-operate-box">
+                <view class="reset-btn-box">
+                    重新计算
+                    <button class="reset" formType="reset"></button>
+                </view>
+                <view bindtap="toHelp" class="help">帮助</view>
+            </view>
+        </view>
+    </form>
+    <view wx:if="{{showLoanToast}}">
+        <loanToast bindclose="closeLoanToast" serviceLoanInfo="{{serviceLoanInfo}}" toastType="{{toastType}}">
+        </loanToast>
+    </view>
+</view>

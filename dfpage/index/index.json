@@ -1,6 +1,10 @@
 {
   "usingComponents": {
-    "ec-canvas": "../../ec-canvas/ec-canvas"
+    "ec-canvas": "../../ec-canvas/ec-canvas",
+    "wxc-icon": "../../min/@minui/wxc-icon/dist/index",
+    "add-tips": "/components/weplug-add-tips/index",
+    "echarts-nav": "/components/echarts_nav/_nav"
+   
   },  
   "navigationBarTitleText": "手边买房",
   "navigationBarBackgroundColor": "#366AB3",

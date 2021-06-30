@@ -203,28 +203,25 @@ Page((a = {
         }), i.get("goods/get_detail", {
             id: t.id
         }, function(t) {
-            if (0 != t.error) return e.setData({
+            console.log(t), t.error > 0 && (e.setData({
                 show: !0,
                 showgoods: !1
-            }), s.toast(e, t.message), void setTimeout(function() {
+            }), s.toast(e, t.message), setTimeout(function() {
                 wx.navigateBack();
-            }, 1500);
-            [ "marketprice", "productprice" ].forEach(function(e) {
-                void 0 !== t.goods[e] && (t.goods[e] = parseFloat(t.goods[e]));
-            });
+            }, 800));
             var o = t.goods.coupons, n = t.goods.thumbMaxHeight;
             t.goods.thumbMaxWidth;
             if (e.setData({
                 coupon: o,
                 coupon_l: o.length,
                 packagegoods: t.goods.packagegoods,
-                packagegoodsid: t.goods.packagegoods.goodsid || 0,
+                packagegoodsid: t.goods.packagegoods.goodsid,
                 credittext: t.goods.credittext,
                 activity: t.goods.activity,
                 bottomFixedImageUrls: t.goods.bottomFixedImageUrls,
-                phonenumber: t.goods.phonenumber || "",
-                showDate: t.goods.showDate || "",
-                scope: t.goods.scope || ""
+                phonenumber: t.goods.phonenumber,
+                showDate: t.goods.showDate,
+                scope: t.goods.scope
             }), t.goods.packagegoods && e.package(), l.wxParse("wxParseData", "html", t.goods.content, e, "0"), 
             l.wxParse("wxParseData_buycontent", "html", t.goods.buycontent, e, "0"), e.setData({
                 show: !0,
@@ -232,12 +229,10 @@ Page((a = {
                 minprice: t.goods.minprice,
                 maxprice: t.goods.maxprice,
                 preselltimeend: t.goods.preselltimeend,
-                style: t.goods.labelstyle.style || "",
+                style: t.goods.labelstyle.style,
                 navbar: t.goods.navbar,
                 labels: t.goods.labels
-            }), t.goods.gifts && 1 == t.goods.gifts.length && e.setData({
-                giftid: t.goods.gifts[0].id
-            }), wx.setNavigationBarTitle({
+            }), console.log(t.goods), wx.setNavigationBarTitle({
                 title: t.goods.title || "商品详情"
             }), u = t.goods.hasoption, d.isEmptyObject(t.goods.dispatchprice) || "string" == typeof t.goods.dispatchprice ? e.setData({
                 dispatchpriceObj: 0
@@ -286,6 +281,7 @@ Page((a = {
             });
             var c = e.data.fullbackgoods;
             if (void 0 != c) {
+                console.log(c);
                 var g = c.maxfullbackratio, m = c.maxallfullbackallratio, g = Math.round(g), m = Math.round(m);
                 e.setData({
                     maxfullbackratio: g,
@@ -394,7 +390,7 @@ Page((a = {
         i.post("goods.pay_coupon", {
             id: e
         }, function(t) {
-            0 == t.error ? (a.setData({
+            console.log(t), 0 == t.error ? (a.setData({
                 showcoupon: !1,
                 active: ""
             }), s.toast(a, "已领取")) : s.toast(a, t.message);
@@ -404,7 +400,7 @@ Page((a = {
         o.checkAuth();
         var e = this, a = t.currentTarget.dataset.time, i = t.currentTarget.dataset.timeout;
         if (e.data.limits) {
-            if ("timeout" == a || "access_time" == a) {
+            if (console.log(i), "timeout" == a || "access_time" == a) {
                 if ("false" == i) return void e.setData({
                     goods_hint_show: !0
                 });
@@ -533,7 +529,7 @@ Page((a = {
         i.get("package.get_list", {
             goodsid: this.data.packagegoodsid
         }, function(e) {
-            t.setData({
+            console.log(e.list[0]), t.setData({
                 packageList: e.list[0]
             });
         });

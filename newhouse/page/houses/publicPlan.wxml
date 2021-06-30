@@ -1,0 +1,5 @@
+<!-- <web-view src="{{url}}"></web-view> -->
+
+<web-view
+  src="http://mp.weixin.qq.com/s?__biz=MzU1NjE1OTQ4Mg==&amp;mid=2247546426&amp;idx=1&amp;sn=3835548fb330fe1b499616760588aff0&amp;chksm=fbcb2eafccbca7b9a663074b17766713d8c30fa56fb798c0d645d4a1baadbc815897e8d88b17#rd">
+</web-view>

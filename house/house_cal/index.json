@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "房贷计算器",
+  "usingComponents": {
+    "loanToast": "../../house/house_cal/toast/toast",
+    "wxc-icon": "../../min/@minui/wxc-icon/dist/index",
+    "pickView": "../../house/house_cal/pick_view/pick_view"
+  }
+}

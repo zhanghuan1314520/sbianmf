@@ -1,0 +1,9 @@
+<view class="cricle-share-btn" style="{{'bottom: '+bottom+'rpx; right: '+right+'rpx;'}}">
+    <button bindtap="__e" class="{{['share btn '+animate]}}" data-event-opts="{{[ [ 'tap',[ [ 'shareHandle',['$event'] ] ] ] ]}}" data-toggle="open" openType="share" wx:if="{{!isShowPhoto}}">
+        <text class="{{['iconfont  fz-21 '+iconfont]}}"></text>
+        <text class="fz-11 font-bold-500">{{''+name+''}}</text>
+    </button>
+    <button bindtap="__e" class="{{['share-cricle-btn__wrapper '+animate]}}" data-event-opts="{{[ [ 'tap',[ [ 'shareHandle',['$event'] ] ] ] ]}}" data-toggle="open" openType="share" wx:else>
+        <image class="share-cricle-btn__wrapper" mode="scaleToFill" src="https://imgcdn.huanjutang.com/image/2020/06/22/3b7c7e929229e4676a6903b17e211d79.png"></image>
+    </button>
+</view>{{bottom}}

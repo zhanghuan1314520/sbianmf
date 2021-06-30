@@ -1,0 +1,115 @@
+.school-base-info_wrap.data-v-55e7053f {
+    padding: 40rpx 30rpx;
+    width: 100vw;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.school-base-info_wrap .header-tit.data-v-55e7053f {
+    color: #000;
+    line-height: 36rpx;
+    font-weight: 700;
+    padding-bottom: 12rpx;
+}
+
+.school-base-info_wrap .item.data-v-55e7053f {
+    margin-top: 20rpx;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.school-base-info_wrap .item .item-label.data-v-55e7053f {
+    color: #909399;
+    line-height: 40rpx;
+    height: 40rpx;
+    width: 150rpx;
+}
+
+.school-base-info_wrap .item .item-content.data-v-55e7053f {
+    -webkit-box-flex: 1;
+    flex: 1;
+    color: #303133;
+    margin-left: 20rpx;
+    line-height: 40rpx;
+    display: inline-block;
+    word-break: break-all;
+}
+
+.school-base-info_wrap .item .item-content .phone-icon.data-v-55e7053f {
+    color: #1478ff;
+}
+
+.school-base-info_wrap .item .item-content .phone-desc.data-v-55e7053f {
+    max-width: 430rpx;
+    color: #1478ff;
+}
+
+.school-base-info_wrap .item .item-content .copy-txt.data-v-55e7053f {
+    width: 430rpx;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.school-base-info_wrap .item .item-content .copy-btn.data-v-55e7053f {
+    width: 64rpx;
+    height: 34rpx;
+    border-radius: 34rpx;
+    border: 1px solid #bfc2cc;
+    line-height: 34rpx;
+    text-align: center;
+    color: #909399;
+}
+
+.school-base-info_wrap .item .item-content .schedule.data-v-55e7053f {
+    height: 40rpx;
+    font-size: 28rpx;
+    color: #995011;
+    line-height: 40rpx;
+}
+
+.school-base-info_wrap .item .item-content .schedule-icon.data-v-55e7053f {
+    width: 32rpx;
+    height: 20rpx;
+}
+
+.school-base-info_wrap .item .item-content-red.data-v-55e7053f {
+    color: #ee3f4d;
+}
+
+.school-base-info_wrap .item .item-content-copy.data-v-55e7053f,.school-base-info_wrap .item .item-content-schedule.data-v-55e7053f {
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.school-base-info_wrap .item .item-tip-txt.data-v-55e7053f {
+    display: inline-block;
+    word-break: break-all;
+    line-height: 40rpx;
+}
+
+.school-base-info_wrap .item .item-tip-txt.data-v-55e7053f:after {
+    content: "ab";
+    width: 38rpx;
+    height: 38rpx;
+    margin-left: 12rpx;
+    color: transparent;
+    background: url(https://imgcdn.huanjutang.com/image/2020/10/21/4ead0e0c3d7d180ef04318d800ee082e.png) no-repeat;
+    background-size: cover;
+}
+
+.school-base-info_wrap .item.data-v-55e7053f:first-child {
+    margin-top: 32rpx!important;
+}
+
+.school-base-info_wrap .get-more-btn.data-v-55e7053f {
+    width: 690rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    background: rgba(20,120,255,.09);
+    border-radius: 4rpx;
+    text-align: center;
+    color: #1478ff;
+    font-weight: 700;
+    margin-top: 40rpx;
+}

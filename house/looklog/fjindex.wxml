@@ -1,0 +1,96 @@
+<loading wx:if="{{!show}}">加载中...</loading>
+<loading wx:if="{{!lshow}}">加载中...</loading>
+<view class="container" wx:if="{{show}}">
+	<view class="pricecount-data-content">
+		<view class="hot-content">
+			<view bindtap="toDtype" data-dtype="{{0}}" class="hot-content-item {{dtype==0?'hot-content-item_sub':''}}">
+				所有
+			</view>
+			<view bindtap="toDtype" data-dtype="{{1}}" class="hot-content-item {{dtype==1?'hot-content-item_sub':''}}">
+				链家
+			</view>
+			<view bindtap="toDtype" data-dtype="{{2}}" class="hot-content-item {{dtype==2?'hot-content-item_sub':''}}">
+				我爱我家
+			</view>
+			<view bindtap="toDtime" data-dtime="{{0}}" class="hot-content-item {{dtime==0?'hot-content-item_sub':''}}">
+				今天
+			</view>
+			<view bindtap="toDtime" data-dtime="{{1}}" class="hot-content-item {{dtime==1?'hot-content-item_sub':''}}">
+				昨天
+			</view>
+			<view bindtap="toDtime" data-dtime="{{5}}" class="hot-content-item {{dtime==5?'hot-content-item_sub':''}}">
+				近5天
+			</view>
+			<view bindtap="toDtime" data-dtime="{{10}}" class="hot-content-item {{dtime==10?'hot-content-item_sub':''}}">
+				近10天
+			</view>
+			<view bindtap="toNearby" data-nearby="{{1.5}}" class="hot-content-item {{nearby==1.5?'hot-content-item_sub':''}}">
+				1.5公里
+			</view>
+			<view bindtap="toNearby" data-nearby="{{3}}" class="hot-content-item {{nearby==3?'hot-content-item_sub':''}}">
+				3公里
+			</view>
+			<view bindtap="toNearby" data-nearby="{{5}}" class="hot-content-item {{nearby==5?'hot-content-item_sub':''}}">
+				5公里
+			</view>
+
+		</view>
+	</view>
+	<view class="house-list" wx:if="{{lshow}}">
+		<view bindtap="toDetail" class="list-item flexbox" data-index="{{index}}" wx:for="{{list}}" wx:key="index">
+			<view class="item-img">
+				<navigator openType="navigate" url="/house/house/house?cid={{item.government_code}}&jigou={{item.jigou}}">
+					<image binderror="imgError" lazyLoad="true" src="{{!item.house_img?'https://sbmf.ww2ss.com/dfimages/404.png':item.house_img}}"></image>
+				</navigator>
+			</view>
+			<view class="item-con flex1">
+				<navigator openType="navigate" url="/house/house/house?cid={{item.government_code}}&jigou={{item.jigou}}">
+					<text class="item-tit">{{item.title}}</text>
+					<view class="item-info">
+						<text>{{item.model}}</text>
+						<text class="dian"></text>
+						<text>{{item.area}}㎡</text>
+						<text class="dian"></text>
+						<text>{{item.community}}</text>
+						<text class="dian"></text>
+						<text>带看</text>
+						<text class="daikan">{{item.num}}</text>
+						<text>次</text>
+					</view>
+					<view class="item-label">
+						<text class="tag">{{item.h_feature}}</text>
+					</view>
+					<view class="item-price">
+						<view class="wan-price">
+							<text class="num">{{item.sale}}</text>
+							<text class="wan">万</text>
+						</view>
+						<text class="ping">{{item.htjj}}元/㎡</text>
+						<text class="ping"></text>
+						<view class="wan-price_z" wx:if="{{item.uprice>0}}">
+							<text class="num">涨{{item.uprice}}</text>
+							<text class="wan">万</text>
+						</view>
+						<view class="wan-price_j" wx:if="{{item.uprice<0}}">
+							<text class="num">降{{item.uprice}}</text>
+							<text class="wan">万</text>
+						</view>
+
+
+					</view>
+				</navigator>
+			</view>
+		</view>
+		<view class="fui-loading" wx:if="{{loading}}">
+			<view class="icon"></view>
+			<view class="text">正在加载</view>
+		</view>
+
+		<view class="fui-loading empty" wx:if="{{total<=0&&!loading}}">
+			<view class="text">没有数据</view>
+		</view>
+	</view>
+
+
+	<button class="subscribe-btn" data-index="1" formType="submit" openType="share">分享</button>
+</view>

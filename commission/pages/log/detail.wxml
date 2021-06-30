@@ -1,11 +1,11 @@
 <loading wx:if="{{!show}}">加载中...</loading>
 <view class="page log-detail" wx:if="{{show}}">
-    <view class="fui-list-group" wx:for="{{list}}">
+    <view class="fui-list-group" wx:for="{{list}}" wx:key="{{index}}">
         <view class="fui-list" style="font-size: 24rpx;color: #000;">
             <text selectable="true" style="margin-right:40rpx">申请{{textcomm}}: {{item.ordercommission+textyuan}}</text>
             <text selectable="true">审核{{textcomm}}: {{item.orderpay+textyuan}}</text>
         </view>
-        <view class="fui-list" style="background: #f9f9f9" wx:for="{{item.goods}}" wx:for-item="g">
+        <view class="fui-list" style="background: #f9f9f9" wx:for="{{item.goods}}" wx:for-item="g" wx:key="{{index}}">
             <view class="fui-list-media">
                 <image src="{{g.thumb}}"></image>
             </view>

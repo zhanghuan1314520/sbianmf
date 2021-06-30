@@ -1,0 +1,12 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "正在公示",
+  "usingComponents": {
+      "uni-swiper-dot": "/newhouse/components/uni-swiper-dot/uni-swiper-dot",
+      "uni-list": "/newhouse/components/uni-list/uni-list",
+      "uni-list-item": "/newhouse/components/uni-list-item/uni-list-item",
+      "uni-load-more": "/newhouse/components/uni-load-more/uni-load-more",
+      "house": "/newhouse/page/common//house",
+      "search": "/newhouse/page/common/search"
+  }
+}

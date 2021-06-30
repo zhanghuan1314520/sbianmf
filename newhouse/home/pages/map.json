@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "即将加推",
+  "usingComponents": {
+      "house": "/newhouse/home/pages/house",
+      "search": "/newhouse/home/pages/search"
+  }
+}

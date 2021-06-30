@@ -123,6 +123,33 @@ module.exports = {
             }
         });
     },
+    uploadCamera: function(t) {
+        var e = this;
+        wx.chooseImage({
+            count: 1,
+            sizeType: ["compressed"],
+            sourceType: ["camera"],
+            success: function(n) {
+                e.loading("正在上传...");
+                var o = e.getUrl("util/uploader/upload", {
+                    file: "file"
+                }), i = n.tempFilePaths;
+                wx.uploadFile({
+                    url: o,
+                    filePath: i[0],
+                    name: "file",
+                    success: function(n) {
+                        e.hideLoading();
+                        var o = JSON.parse(n.data);
+                        if (0 != o.error) e.alert("上传失败"); else if ("function" == typeof t) {
+                            var i = o.files[0];
+                            t(i);
+                        }
+                    }
+                });
+            }
+        });
+    },
     pdata: function(t) {
         return t.currentTarget.dataset;
     },
@@ -148,12 +175,13 @@ module.exports = {
     },
     onShareAppMessage: function(t, e) {
         var n = getApp(), o = n.getCache("sysset"), i = o.share || {}, a = n.getCache("userinfo_id"), r = o.shopname || "", s = o.description || "";
-        return i.title && (r = i.title), e && (r = e), i.desc && (s = i.desc), t = t || "/pages/index/index", 
-        t = -1 != t.indexOf("?") ? t + "&" : t + "?", {
+        console.log((t = -1 != (t = t || "/dfpage/index/index").indexOf("?") ? t + "&" : t + "?") + "mid=" + a);
+        return i.title && (r = i.title), e && (r = e), i.desc && (s = i.desc), {
             title: r,
             desc: s,
-            path: t + "mid=" + a
+            path: (t = -1 != (t = t || "/dfpage/index/index").indexOf("?") ? t + "&" : t + "?") + "mid=" + a
         };
+       
     },
     str2Obj: function(t) {
         if ("string" != typeof t) return t;

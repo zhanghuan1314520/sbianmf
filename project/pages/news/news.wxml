@@ -1,0 +1,70 @@
+<!--project/pages/news/news.wxml-->
+<view class="list-top">
+  <view class="search-box">
+    <view bindtap="searchClick" class="search">
+      <view class="serch_content" style="color:#366AB3;background-color:#fff;">
+        <wxc-icon color="font-size:28rpx; color:#366AB3;" size="28" type="search"></wxc-icon>
+        <input bindtap="toSearch" class="search_input" name="search_input" placeholder="请输入板块名、楼盘名"
+          placeholderStyle="font-size:28rpx; color:#366AB3;" type="text" value="{{searchCon}}" disabled></input>
+        <wxc-icon bindtap="delText" style="font-size:28rpx; color:#000;" size="28" type="clear"
+          wx:if="{{searchCon!='请输入板块名、楼盘名'}}"></wxc-icon>
+        <div class="search_line"></div>
+        <wxc-icon bindtap="handleGoT" data-go="/house/house_map/index" type="address" color="#366AB3"
+          size="28">
+        </wxc-icon>
+        <view bindtap="handleGoT" data-go="/house/house_map/index" class="search_map" size="28">地图找房</view>
+      </view>
+    </view>
+  </view>
+</view>
+<scroll-view scroll-x="true" class="nav" enable-flex scroll-with-animation="{{true}}">
+  <view class="box_item">
+    <block>
+      <view class="nav-item {{index==active?'cur':''}}" wx:for="{{nav}}" bindtap="changeNav" data-id="{{item.id}}"
+        data-index="{{index}}" wx:key="id">
+        {{item.title}}</view>
+    </block>
+  </view>
+</scroll-view>
+
+<view class="containers">
+  <!-- <view wx:if="{{list.length ==!0}}"> -->
+  <view wx:if="{{show}}">
+    <loading wx:if="{{!show}}">加载中...</loading>
+    <view class="box" wx:for="{{list}}" wx:key="id" wx:key="id" data-id="{{item.id}}" data-name="{{item.link}}"
+      bindtap="noticeApi_get_share">
+      <view class="box_l">
+        <view class="box_l_title">{{item.title}}</view>
+        <view class="box_tag">
+          <view class="box_tag_l">
+            <view class="box_tag_l_img">
+              <image src="{{item.mediu_thumb}}"></image>
+            </view>
+            <view class="box_tag_l_name">{{item.mediu_title}}</view>
+          </view>
+          <view class="box_tag_r">{{item.atime}}</view>
+        </view>
+        <view class="load-more" wx:if="{{list.length>0}}">{{loadMessage}}</view>
+      </view>
+      <view class="box_r">
+        <image src="{{item.thumb}}"></image>
+      </view>
+    </view>
+    <!-- </view>
+  <view wx:else>
+    <view class="end">
+    <view class="child">暂时没有数据</view>
+</view>
+  </view> -->
+  </view>
+  <view class="fui-loading" wx:if="{{loading}}">
+    <view class="icon"></view>
+    <view class="text">正在加载</view>
+  </view>
+  <view class="fui-loading empty" wx:if="{{loaded&&list.length>0}}">
+    <view class="text">没有更多了</view>
+  </view>
+  <view class="fui-loading empty" wx:if="{{total<=0&&!loading}}">
+    <view class="text">没有数据</view>
+  </view>
+</view>

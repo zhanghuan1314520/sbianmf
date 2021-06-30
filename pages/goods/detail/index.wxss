@@ -2,13 +2,13 @@
 
 @import "../../common/city-picker.wxss";
 
-@import "../../../__wuBaseWxss__/6.wxss";
+@import "../../../wuBaseWxss__/good7.wxss";
 
 @import "../../custom/index.wxss";
 
 .picker-modal {
     height: auto;
-}
+} 
 
 .goods-detail-info {
     width: 100%;

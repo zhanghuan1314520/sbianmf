@@ -1,0 +1,81 @@
+.page {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+.fui-picture {
+  width: 710rpx;
+  height: 986rpx;
+  background-color: #fff;
+  padding: 20rpx;
+}
+
+.fui-picture image {
+  width: 710rpx;
+  height: 960rpx;
+}
+
+.save-btn {
+  width: 306rpx;
+  height: 86rpx;
+  background: #ff5555;
+  border-radius: 43rpx;
+  position: fixed;
+  top: 960rpx;
+  left: 50%;
+  margin-left: -153rpx;
+  font-size: 30rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 86rpx;
+}
+.baocuns {
+  width: 750rpx;
+  height: 180rpx;
+  text-align: center;
+  display: flex;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+}
+.b{
+  height: 180rpx;
+  overflow: hidden;
+  display: block;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+}
+.baocun_btn1 {
+  flex: 1;
+}
+.baocun_btn2 {
+  flex: 1;
+}
+.baocun_btn1_img {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 10rpx auto;
+}
+.baocun_btn1_name {
+  font-size: 26rpx;
+  font-weight: normal
+}
+.baocun_btn1_img image {
+  width: 100%;
+  height: 100%;
+}
+button::after {
+  border: none;
+}
+button::after {
+  border-radius: none;
+}
+button {
+  border: none;
+  background-color:#fff;
+  outline: none;
+}

@@ -1,0 +1,55 @@
+<loading wx:if="{{!show}}">加载中...</loading>
+<view class="container" wx:if="{{show}}">
+  <view class="list-content">
+    <view class="deal-list-content">
+      <view class="top-bar">
+        <view>楼盘/总价</view>
+        <view>面积/均价</view>
+        <view>楼层/成交日期</view>
+       </view>  
+        <view class="list-item" bindtap="itemClick" data-goodsid="{{item.goodsid}}" data-id="{{item.id}}" wx:for="{{list}}" wx:key="item">
+
+          <view class="item item-flex">
+          <navigator openType="navigate" url="/house/community/index?cid={{item.fid}}">
+            <view class="item-top" style='color:#366AB3;font-size: 28rpx;font-weight: bold;'>{{index+1}}.{{item.title}}</view>
+            <view class="item-bottom">
+              <view> {{item.htje}}万</view>
+            </view>
+             </navigator>
+          </view>
+          <view class="item item-flex ">
+            <view class="item-top">
+              {{item.htmj}}㎡
+            </view>
+            <view class="item-bottom">
+              <view>{{item.htjj}}元/㎡</view>
+            </view>
+          </view>
+          <view class="item item-flex ">
+            <view class="item-top">
+              {{item.zcs}}/{{item.szlcname}}
+            </view>
+
+            <view class="item-bottom">
+              <view>{{item.tjdate}}</view>
+            </view>
+          </view>
+
+        </view>
+     
+    </view>
+    <view class="fui-loading" wx:if="{{loading}}">
+      <view class="icon"></view>
+      <view class="text">正在加载</view>
+    </view>
+    <view class="fui-loading empty" wx:if="{{loaded&&list.length>0}}">
+      <view class="text">没有更多了</view>
+    </view>
+    <view class="fui-loading empty" wx:if="{{total<=0&&!loading}}">
+      <view class="text">没有数据</view>
+    </view>
+
+  </view>
+
+
+</view>

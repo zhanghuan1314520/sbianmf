@@ -1,0 +1,12 @@
+<view class="item_show" wx:if="{{IS_IOS}}">
+				<view class="item_show_1">暂无权限查看数据，请联系客服</view>
+				<view class="item_show_2">开通[专业版]即可查看</view>
+				<view class="item_show_3" bindtap="copyText" data-text="{{'vxjbugcea'}}">联系客服</view>
+</view>
+<view class="item_show" wx:else>
+				<view class="item_show_1">暂无权限查看数据，请升级VIP会员</view>
+				<view class="item_show_2">开通[专业版]即可查看</view>
+				<navigator openType="navigate" url="/pages/member/membercard/index">
+		 			<view class="item_show_3">开通VIP</view>
+			 </navigator>
+</view>

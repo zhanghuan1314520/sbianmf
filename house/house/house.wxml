@@ -1,0 +1,764 @@
+<loading wx:if="{{!show}}">加载中...</loading>
+<add-tips text="点击【添加我的小程序】,及时获取信息" duration="30" />
+<view class="house-content" wx:if="{{show}}">
+	<view class="hx_swiper" wx:if="{{home_pics.length>1}}">
+		<swiper autoplay="{{true}}" indicatorActiveColor="#FE5E10" indicatorColor="rgba(255,255,255,.42)"
+			indicatorDots="{{home_pics.length>1?true:false}}">
+			<swiper-item wx:for="{{home_pics}}" wx:key="swiper">
+				<image bindtap="prevImg" class="slide-image" data-index="{{index}}" data-url="{{item}}" mode="aspectFit"
+					src="{{item}}" style="width: 100%;height: 600rpx;"></image>
+			</swiper-item>
+		</swiper>
+		<!-- <view class="total">{{swiperCurrent+1}}/{{home_pics.length}}</view> -->
+	</view>
+
+	<view class="house-body">
+		<view class="house-body-header">
+			<view class="house-isfirst">{{house.title}}</view>
+			<!-- <view bindtap="favorite" data-isfavorite="{{countArray.isfavorite?1:0}}" wx:if="{{countArray.isfavorite==0}}">
+				<wxc-icon color="#8A8D91" type="star"></wxc-icon> 收藏
+			</view>
+			<view bindtap="favorite" data-isfavorite="{{countArray.isfavorite?1:0}}" wx:else>
+				<wxc-icon color="#8A8D91" type="star-active"></wxc-icon>已收藏
+			</view> -->
+		</view>
+		<view class="title-content">
+			<view class="title-fr" wx:if="{{countArray.zhiding==0||countArray.zhiding==null}}">
+				<view class="qualification">
+					<navigator openType="navigate"
+						url="/project/pages/house_zhiding/index?communityName={{house.community}}&cid={{house.cid}}&fid={{house.fid}}">
+						<view class="agent-info-name">
+							<image bindtap="showBigImg" class="bus-license" src="https://sbmf.ww2ss.com/dfimages/top.png"></image>
+							我要置顶
+						</view>
+					</navigator>
+				</view>
+			</view>
+			<view class="title-fr" wx:else>
+				<view class="qualification">
+
+					<view class="agent-info-name-c" bindtap="pn_getPhoneNumber_fangdong">
+						房东直卖-联系业主
+					</view>
+				</view>
+			</view>
+			<view class="building-search-share">
+				<button class="btn_reset" openType="share">
+					<image class="icon_share" mode="aspectFill" src="https://sbmf.ww2ss.com/dfimages/1554259007719.png"></image>
+					<view class="share-info">
+						<text>分享</text>
+					</view>
+				</button>
+			</view>
+			<view class="building-search-share" bindtap="favorite" data-isfavorite="{{countArray.isfavorite?1:0}}"
+				wx:if="{{countArray.isfavorite==0}}">
+				<view class="btn_reset">
+					<image class="icon_share" mode="aspectFill" src="https://sbmf.ww2ss.com/dfimages/1554258857585.png"></image>
+					<view class="share-info">
+						<text>收藏</text>
+					</view>
+				</view>
+			</view>
+			<view class="building-search-share" bindtap="favorite" data-isfavorite="{{countArray.isfavorite?1:0}}" wx:else>
+				<view class="btn_reset">
+					<image class="icon_share" mode="aspectFill" src="https://sbmf.ww2ss.com/dfimages/1554258930716.png"></image>
+					<view class="share-info">
+						<text>已收藏</text>
+					</view>
+				</view>
+			</view>
+			<!-- <view bindtap="follow" class="follow_frame">
+				<formid>
+					<image class="icon" src="https://img.ljcdn.com/beike/arsenal/1554258857585.png" ></image>					 
+					<p>关注</p>
+				</formid>
+			</view> -->
+			<!-- <button bind:tap="showShare" class="share_frame"  >
+				<formid>
+					<image class="icon" src="https://img.ljcdn.com/beike/arsenal/1554259007719.png"></image>
+					<p>分享</p>
+				</formid>
+			</button> -->
+			<!-- <button class="share_frame" openType="share" wx:else>
+				<formid>
+					<image class="icon" src="https://img.ljcdn.com/beike/arsenal/1554259007719.png"></image>
+					<p>分享</p>
+				</formid>
+			</button> -->
+		</view>
+
+		<view class="rank-content">
+			<view>
+				<view class="top ">{{house.sale}}万</view>
+				<view class="bottom">售价</view>
+			</view>
+			<view>
+				<view class="top">{{house.model}}</view>
+				<view class="bottom">房型</view>
+			</view>
+			<view>
+				<view class="top">{{house.area}}㎡</view>
+				<view class="bottom">建筑面积</view>
+			</view>
+		</view>
+		<!--	<view class="block-head">
+			房源信息
+		</view>-->
+		<view class="house-body-item-content">
+
+			<view class="house-body-item">
+				<view class="house-body-item-block">
+					<view class="title"> 均价：</view>
+					<view class="content"> {{house.unit_price}}元/㎡</view>
+				</view>
+				<view class="house-body-item-block">
+
+					<view class="title"> 挂牌：</view>
+					<view class="content"> {{house.pub_data}}</view>
+				</view>
+			</view>
+			<view class="house-body-item">
+				<view class="house-body-item-block">
+					<view class="title"> 装修：</view>
+					<view class="content"> {{house.decorate}}</view>
+				</view>
+				<view class="house-body-item-block">
+					<view class="title"> 楼层：</view>
+					<view class="content"> {{house.floor}}</view>
+				</view>
+			</view>
+			<view class="house-body-item">
+				<view class="house-body-item-block">
+					<view class="title"> 物业：</view>
+					<view class="content"> {{house.plan_use}}</view>
+				</view>
+				<view class="house-body-item-block">
+					<view class="title"> 年代：</view>
+					<view class="content"> {{house.build_year}}</view>
+				</view>
+			</view>
+
+			<view class="house-body-item">
+				<view class="house-body-item-block" bindtap="handleGoT" data-go="/house/community/index?cid={{house.fid}}">
+					<view class="title"> 小区：</view>
+					<view class="content"><b> {{house.community}} （{{house.busines_scircle}}）</b>
+					</view>
+				</view>
+				<wxc-icon color="#b9bcbf" size="24" type="arrow-right"></wxc-icon>
+			</view>
+			<view class="house-body-item">
+				<view class="house-body-item-block" bindtap="handleGoT" data-go="/house/community/index?cid={{house.fid}}">
+					<view class="title"> 地址：</view>
+					<view class="content"> {{community.address}}
+						<wxc-icon color="#366ab3" type="address"></wxc-icon>
+					</view>
+				</view>
+			</view>
+
+			<view class="house-body-item">
+				<view class="house-body-item-block" bindtap="handleGoT" data-go="/house/house_cal/index?cid={{house.sale}}">
+					<view class="title">贷款计算：</view>
+					<view class="content"><b>查询每月还房贷详情</b>
+					</view>
+				</view>
+				<wxc-icon color="#b9bcbf" size="24" type="arrow-right"></wxc-icon>
+			</view>
+
+			<!-- <view class="house-body-item" wx:if="{{ad==false}}">
+				<view class="house-body-item-block">
+					<view class="title"> 挂牌机构</view>
+					<view class="content"> {{gotolist[0].comefrom}}
+					</view>
+				</view>
+			</view> -->
+			<!----
+            <view class="house-body-item" wx:if="{{true}}">
+                <view class="house-body-item-block">
+                    <view class="title"> 联系经纪人</view>
+                    <view class="content">
+                        <navigator target="miniProgram" open-type="navigate" app-id="{{gotolist[0].appid}}" path="{{gotolist[0].pathstr}} " extra-data="" version="release" class='nav'>看实景图&预约看房
+                            <image bindtap="phone" class="image-48" src="/static/images/icon/tel.png"></image>
+                        </navigator>
+                    </view>
+                </view>
+            </view>
+
+            --->
+		</view>
+		<!-- <navigator openType="navigate" url="/house/community/index?cid={{house.fid}}">
+			<view class="block-head">
+				楼盘信息
+			</view>
+		</navigator>
+		<view class="house-body-item-content">
+			<view class="house-body-item">
+				<view class="house-body-item-block">
+					<view class="title"> 楼盘名</view>
+					<navigator openType="navigate" url="/house/community/index?cid={{house.fid}}">
+						<view class="content"> {{house.community}}</view>
+					</navigator>
+				</view>
+				<view class="house-body-item-block">
+					<view class="title"> 容积率</view>
+					<view class="content"> {{community.plotratio}}</view>
+				</view>
+			</view>
+			<view class="house-body-item">
+				<view class="house-body-item-block">
+					<view class="title"> 物业类型</view>
+					<view class="content"> {{house.plan_use}}</view>
+				</view>
+				<view class="house-body-item-block">
+					<view class="title"> 参考均价</view>
+					<view class="content"> {{community.gpprice}}元/㎡</view>
+				</view>
+			</view>
+			<view class="house-body-item">
+				<view class="house-body-item-block">
+					<view class="title"> 地址</view>
+					<view class="content"> {{community.address}}</view>
+				</view>
+			</view>
+			<view class="house-body-item" wx:if="{{houseInfo.open_date_detail}}">
+				<view class="house-body-item-block>">
+					<view class="title"> 开盘日期</view>
+					<view class="content"> {{community.fitment}}</view>
+				</view>
+			</view>
+			<view class="house-body-item">
+				<view class="house-body-item-block>">
+					<view class="title"> 开发商</view>
+					<view class="content" style="display: flex;flex-wrap: wrap"> {{community.forward}}</view>
+				</view>
+			</view>
+			 
+            <view class="house-body-item">
+                <view class="house-body-item-block" wx:if="{{ad==false}}">
+                    <view class="title"> 加微信群</view>
+                    <view class="hot-content-img">
+                        <image src="https://sbmf.ww2ss.com/dfimages/logo2.jpg" class='img' bindtap="imgYu" data-image="{{'https://sbmf.ww2ss.com/dfimages/logo2.jpg'}}"></image>
+                    </view>
+                    <view class="content1" bindtap="copyText" data-text="{{'vxjbugcea'}}"> 与我们近距离交流！点击加群</view>
+                </view>
+                <view class="house-body-item-block" wx:else>
+                    <view class="title"> 加微信</view>
+                    <view class="hot-content-img">
+                        <image src="{{ad.images}}" class='img' bindtap="imgYu" data-image="{{ad.images}}"></image>
+                    </view>
+
+                </view>
+            </view>
+           
+		</view> -->
+	</view>
+	<view class="margin-bottom"></view>
+	<view class="rank-content" wx:if="{{member.needbind==1 || member.error==10003}}">
+		<button class="getPhoneNumber" open-type="getPhoneNumber"
+			bindgetphonenumber="pn_getPhoneNumber">	{{house.community}}成交分析报告</button>
+	</view>
+	<view class="rank-content" wx:else>
+		<!--<view class="getPhoneNumber" bindtap="pn_hotLink">查看半年内楼市成交报告</view>-->
+		<view class="getPhoneNumber" bindtap="handleGoT" data-go="/house/community/index?cid={{house.fid}}">
+			{{house.community}}成交分析报告</view>
+	</view>
+	<view class="detail__panel detail__surroundings " wx:if="{{true}}">
+		<view class="activity_title" bindtap="handleGoT"
+			data-go="/project/pages/house_map/house_map?houseid={{house.fid}}&name={{house.community}}&maplng={{maplng}}&maplat={{maplat}}">
+			<view class="activity_title_name">周边配套</view>
+			<view class="rel_more">
+				<wxc-icon color="#8A8D91" type="arrow-right"></wxc-icon>
+			</view>
+		</view>
+		<view class="detail__panel-body" style="padding-bottom:0">
+			<view class="map__img-wrap">
+				<!--<view class="map__marker">{{house.community}}</view>
+                <image binderror="addressImageUrlError" class="map-img" mode="aspectFill" src="{{mapImageUrl}}"></image>-->
+				<view class="map-img"> <map latitude="{{maplat}}" longitude="{{maplng}}" markers="{{map_markers}}"
+						polygons="{{map_polygons}}" scale="{{map_scale}}" subkey="FLNBZ-J3GKX-UC74A-7K3XU-QOEX2-XGBRC"
+						style="width: 100%; height:320rpx;" id="map"></map></view>
+			</view>
+			<view class="detail__map-switch-wrap">
+				<view class="map-switch-item" wx:for="{{mapFacility}}" wx:key="index" bindtap="handleGoT"
+					data-go="/project/pages/house_map/house_map?houseid={{house.fid}}&name={{house.community}}&maplng={{maplng}}&maplat={{maplat}}&index={{index+1}}">
+					<image class="map-switch-item-icon" src="/dfimages/map_detail_{{item.mtype}}.png"></image>
+					<view class="map-switch-item-text">{{item.title}}
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="detail__panel detail__surroundings " wx:if="{{chuzhonglist}}">
+		<view class="activity_title">
+			<view class="activity_title_name">对口小学</view>
+		</view>
+		<view class="middle data-v-6b3386dc">
+			<view class="data-content">
+				<view class="plan-house data-v-744937ef">
+					<view class="plan-house data-v-dbe5ffe8">
+						<view class="plan-house__item data-v-dbe5ffe8" wx:for="{{chuzhonglist}}" wx:key="item">
+							<navigator openType="navigate" url="/school/school_details/index?cid={{item.schoolcode}}">
+								<view class="plan-house__left data-v-dbe5ffe8">
+									<image class="plan-house__headIcon data-v-dbe5ffe8"
+										src="{{item.thumbs?item.thumbs:'https://sbmf.ww2ss.com/dfimages/photono.png'}}"></image>
+									<view class="image__gradient data-v-dbe5ffe8"></view>
+								</view>
+							</navigator>
+							<view class="plan-house__info data-v-dbe5ffe8">
+								<navigator openType="navigate" url="/school/school_details/index?cid={{item.schoolcode}}">
+									<view class="house__info__name .ellipsis-line-1 color-item-name data-v-dbe5ffe8">{{''+item.title+''}}
+									</view>
+									<view class="flex_layout_b mar-top-28 data-v-dbe5ffe8">
+										<text class="house__info__cont data-v-dbe5ffe8" wx:if="{{item.adname}}">{{''+item.adname+''}}</text>
+										<text class="card__info__distance nature_type  data-v-dbe5ffe8"
+											wx:if="{{item.school_type}}">{{''+item.school_type+''}}</text>
+									</view>
+									<view class="flex_layout_b mar-top-36 data-v-dbe5ffe8">
+										<view class="house__info__price data-v-dbe5ffe8">
+											<text class="fz-15 color-prize fb-bold data-v-dbe5ffe8"
+												wx:if="{{item.price}}">{{item.price+'元/㎡'}}</text>
+										</view>
+										<view class="data-v-dbe5ffe8">
+											<view class="flex_layout_c card__info__commnet data-v-dbe5ffe8">
+												<text class="iconfont iconliulan fz-16 mar-right-4 data-v-dbe5ffe8"></text>
+												<text class="mar-right-12 data-v-dbe5ffe8">学区成交报告>></text>
+											</view>
+										</view>
+									</view>
+								</navigator>
+							</view>
+						</view>
+					</view>
+
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="margin-bottom"></view>
+	<view class="zygw_hot">
+		<view class="activity_title">
+			<view class="activity_title_name">优秀经纪人</view>
+			<view bindtap="handleGoT" class="rel_more" data-go="/house/guwen/gw-list/index?houseid={{house.fid}}"
+				wx:if="{{noList==1}}">
+
+				<wxc-icon color="#8A8D91" type="arrow-right"></wxc-icon>
+			</view>
+		</view>
+		<view class="zygw_hot_list">
+
+			<view catchtap="handleGo" data-cid="{{house.fid}}" data-go="/pages/guwen/gw-no/index"
+				class="zygw_hot_item relative_class" wx:if="{{noList==0}}">
+				<view class="avtor_luzhu" style="height:84rpx;">
+					<image src="https://sbmf.ww2ss.com/dfimages/select/uploads.png"></image>
+				</view>
+				<view class="name">经纪人</view>
+				<view class="name"></view>
+				<view class="lianxi">
+					我要入驻
+				</view>
+			</view>
+
+			<view catchtap="handleGoT" class="zygw_hot_item relative_class"
+				data-go="/project/pages/chat/chat?userid={{item.userid}}&adid={{item.adid}}&houseid={{house.cid}}"
+				wx:for="{{ad}}" wx:key="index">
+				<view class="avtor">
+					<image src="{{item.qrcode}}"></image>
+					<image class="bq" src="https://sbmf.ww2ss.com/dfimages/jifen/tj_1.png" wx:if="{{index<1}}"></image>
+					<image class="bq" src="https://sbmf.ww2ss.com/dfimages/jifen/tj_2.png" wx:else></image>
+				</view>
+				<view class="name">{{item.uname}}</view>
+				<view class="name">{{item.organization}}</view>
+				<view class="lianxi">
+					<wxc-icon color="#ffffff" size="28" type="message"></wxc-icon>
+					在线咨询
+				</view>
+			</view>
+		</view>
+	</view>
+	<!--<view class="block-head" wx:if="{{countArray.uscount!=0}}">
+		最近调价
+	</view>
+	<view class="rank-content" wx:if="{{countArray.uscount!=0}}">
+		<view>
+			<view class="top ">{{house.utime}}</view>
+			<view class="bottom">调价时间</view>
+		</view>
+		<view>
+			<view class="top">{{house.uprice}}万</view>
+			<view class="bottom">调价幅度</view>
+		</view>
+		<view>
+			<view class="top">{{countArray.uscount}}次</view>
+			<view class="bottom">30天内调价</view>
+		</view>
+	</view>
+	<view class="block-headz" wx:if="{{countArray.uscount!=0}}">
+		注:调价只是释放一个信号，预知对方心理可以争取更大的利益。判断没有所谓的共赢，只有谁获利多、少。每个统计数字后面都代表着不同的含义，需认真分析。
+	</view> -->
+	<view class="deal-body" style="margin-bottom:{{isShare?'100rpx':'0'}}" wx:if="{{countArray.uscount!=0}}">
+		<view class="block-head">
+			房源调价记录
+		</view>
+		<view class="deal-list-content">
+			<view class="list-item" wx:for="{{usalelog}}" wx:key="item">
+				<view class="item item-flex">
+					<view class="item-top  item-top-border">
+						{{item.sale}}万
+					</view>
+					<view class="item-bottom">
+						<view>调前</view>
+					</view>
+				</view>
+				<view class="item item-flex">
+					<view class="item-top">{{item.saleb}}万</view>
+					<view class="item-bottom">
+						<view> 幅度</view>
+					</view>
+				</view>
+				<view class="item item-flex ">
+					<view class="item-top">
+						{{item.utime}}
+					</view>
+					<view class="item-bottom">
+						<view>{{item.comefrom}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+	</view>
+
+	<navigator openType="navigate" url="/house/community/index?cid={{house.fid}}">
+		<view class="block-head">
+			{{house.community}}主要数据
+		</view>
+	</navigator>
+	<view class="data-content">
+		<view class="shuxian">
+			<view class="data-content-num">
+				{{countArray.clooka}}
+				<view class="data-content-num-unit">次</view>
+			</view>
+			<view class="data-content-desc" style="padding-bottom: 20rpx">
+				7天内房源带看
+			</view>
+			<view class="data-content-num data-content-num-topline">
+				{{countArray.clookb}}
+				<view class="data-content-num-unit">次</view>
+			</view>
+			<view class="data-content-desc">
+				7天内楼盘带看
+			</view>
+		</view>
+		<view class="shuxian">
+			<view class="data-content-num">
+				{{countArray.cjcount}}
+				<view class="data-content-num-unit">套</view>
+			</view>
+			<view class="data-content-desc" style="padding-bottom: 20rpx">
+				90天内成交
+			</view>
+			<view class="data-content-num data-content-num-topline">
+				{{countArray.cjsale}}
+				<view class="data-content-num-unit">元</view>
+			</view>
+			<view class="data-content-desc">
+				90天成交均价
+			</view>
+		</view>
+		<view bindtap="hotLinkFn" data-communityid="{{house}}">
+
+			<view class="data-content-num ">
+				{{countArray.gpcount}}
+				<view class="data-content-num-unit">套</view>
+
+			</view>
+			<view class="data-content-desc" style="padding-bottom: 20rpx">
+				楼盘挂牌总量
+			</view>
+			<view class="data-content-num data-content-num-topline">
+				{{countArray.gpsale}}
+				<view class="data-content-num-unit">元</view>
+			</view>
+			<view class="data-content-desc">
+				楼盘挂牌均价
+			</view>
+
+		</view>
+
+	</view>
+
+
+	<view class="chart-body">
+		<view class="echart-content">
+			<view class="block-head">
+				<navigator openType="navigate" url="/house/community/index?cid={{house.fid}}">
+					7天内{{house.community}}楼盘每日带看量
+				</navigator>
+			</view>
+			<view class="echart-body" style="height:500rpx">
+				<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ecLinets}}"></ec-canvas>
+			</view>
+		</view>
+	</view>
+
+	<form bind:submit="copyText" reportSubmit="{{true}}" data-text="{{'vxjbugcea'}}">
+		<view bindtap="copyText" class="lp__qrcode" data-text="{{'vxjbugcea'}}">
+			<button class="formid__btn" formType="submit"></button>
+			<image class="lp__qrcode-icon" src="https://sbmf.ww2ss.com/dfimages/jiaoliu.png"></image>
+			<view class="lp__qrcode-content">
+				<view class="lp__qrcode-title">杭州购房交流群</view>
+				<view class="lp__qrcode-text">
+					<text>买房问题全解决</text>
+					<view class="lp__qrcode-btn">复制客服微信</view>
+				</view>
+			</view>
+			<image class="lp__qrcode-img" src="https://sbmf.ww2ss.com/dfimages/logo2.jpg"></image>
+		</view>
+	</form>
+
+	<view class="block-head">
+		<navigator openType="navigate" url="../alike/index?area={{house.area}}&busines_scircle={{house.busines_scircle}}">
+			【{{house.busines_scircle}}】同面积段({{house.area-5}}㎡至{{(house.area-5)+10}}㎡)挂牌数据</navigator>
+	</view>
+	<view class="rank-content" wx:if="{{true}}">
+		<view>
+			<navigator openType="navigate" url="../alike/index?area={{house.area}}&busines_scircle={{house.busines_scircle}}">
+				<view class="top ">{{countArray.bkcount}}套</view>
+				<view class="bottom">当前挂牌</view>
+			</navigator>
+		</view>
+		<view>
+			<view class="top">{{countArray.bksale}}元</view>
+			<view class="bottom">挂牌均价</view>
+		</view>
+		<view>
+			<view class="top">{{countArray.bklookcount}}次</view>
+			<view class="bottom">7天带看</view>
+		</view>
+	</view>
+	<view class="rank-content" wx:else>
+		<view>
+			<navigator openType="navigate" url="../alike/index?area={{house.area}}&busines_scircle={{house.busines_scircle}}">
+				<view class="top ">***套</view>
+				<view class="bottom">当前挂牌</view>
+			</navigator>
+		</view>
+		<view>
+			<view class="top">***元</view>
+			<view class="bottom">挂牌均价</view>
+		</view>
+		<view>
+			<view class="top">***次</view>
+			<view class="bottom">7天带看</view>
+		</view>
+	</view>
+
+	<view class="rank-content" wx:if="{{member.needbind==1 || member.error==10003}}">
+		<button class="getPhoneNumber" style="font-size:24rpx"  open-type="getPhoneNumber" bindgetphonenumber="pn_getPhoneNumber">【{{house.busines_scircle}}】同面积段({{house.area-5}}㎡至{{(house.area-5)+10}}㎡)挂牌房源>></button>
+	</view>
+	<view class="rank-content" wx:else>
+	<view class="getPhoneNumber" style="font-size:24rpx" bindtap="handleGoT" data-go="../alike/index?area={{house.area}}&busines_scircle={{house.busines_scircle}}">
+		【{{house.busines_scircle}}】同面积段({{house.area-5}}㎡至{{(house.area-5)+10}}㎡)挂牌房源>>
+			</view>
+		</view>
+	<view class="chart-body">
+		<view class="echart-content">
+			<view class="block-head">
+				【7天内同板块({{house.area-5}}㎡至{{(house.area-5)+10}}㎡)七天带看走势图
+			</view>
+			<view class="echart-body" style="height:500rpx" wx:if="{{true}}">
+				<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ecLinet}}"></ec-canvas>
+			</view>
+			<view class="block-headc" wx:else>
+				<navigator openType="navigate" url="../../pages/member/membercard/index">
+					<view>加微信联系管理员 </view>
+				</navigator>
+			</view>
+		</view>
+	</view>
+
+	<view class="block-head">
+		<navigator openType="navigate"
+			url="/house/dealbk/index?area={{house.area}}&busines_scircle={{house.busines_scircle}}">
+			【{{house.busines_scircle}}】同面积段({{house.area-5}}㎡至{{(house.area-5)+10}}㎡)成交数据</navigator>
+	</view>
+	<view class="rank-content" wx:if="{{islogin=='yes'}}">
+		<view>
+			<navigator openType="navigate"
+				url="/house/dealbk/index?area={{house.area}}&busines_scircle={{house.busines_scircle}}">
+				<view class="top ">{{countArray.bkdealcount.bknum}}套</view>
+				<view class="bottom">60天内成交</view>
+			</navigator>
+		</view>
+		<view>
+			<view class="top">{{countArray.bkdealcount.bkjj}}元</view>
+			<view class="bottom">60天内成交均价</view>
+		</view>
+		<view>
+			<view class="top">{{countArray.bkdealcount.kbtj}}万</view>
+			<view class="bottom">60天内成交套均</view>
+		</view>
+	</view>
+	<view class="rank-content" wx:else>
+		<view>
+			<navigator openType="navigate" url="../alike/index?area={{house.area}}&busines_scircle={{house.busines_scircle}}">
+				<view class="top ">***套</view>
+				<view class="bottom">60天内成交</view>
+			</navigator>
+		</view>
+		<view>
+			<view class="top">***元</view>
+			<view class="bottom">60天内成交均价</view>
+		</view>
+		<view>
+			<view class="top">***次</view>
+			<view class="bottom">60天内成交套均</view>
+		</view>
+	</view>
+	<view class="rank-content" wx:if="{{member.needbind==1 || member.error==10003}}">
+		<button class="getPhoneNumber" style="font-size:24rpx" open-type="getPhoneNumber" bindgetphonenumber="pn_getPhoneNumber">【{{house.busines_scircle}}】同面积段({{house.area-5}}㎡至{{(house.area-5)+10}}㎡)成交价>></button>
+	</view>
+	<view class="rank-content" wx:else>
+		<view class="getPhoneNumber" style="font-size:24rpx" bindtap="handleGoT" data-go="/house/dealbk/index?area={{house.area}}&busines_scircle={{house.busines_scircle}}">
+			【{{house.busines_scircle}}】同面积段({{house.area-5}}㎡至{{(house.area-5)+10}}㎡)成交价>>
+			</view>
+	</view>
+
+	<view class="deal-body" style="margin-bottom:0rpx">
+		<view class="block-head">
+			楼盘成交明细
+		</view>
+		<view class="schoollist data-v-75f46631">
+			<view class="list__nav flex_layout_b data-v-75f46631">
+				<view bindtap="handleSwitch"
+					class="{{[ 'data-v-75f46631','list__nav__item '+(activeItem==1?'list__nav__acitve':'') ]}}" data-text="1">
+					最近成交</view>
+				<view bindtap="handleSwitch"
+					class="{{[ 'data-v-75f46631','list__nav__item '+(activeItem==2?'list__nav__acitve':'') ]}}" data-text="2">
+					均价排行榜</view>
+				<view bindtap="handleSwitch"
+					class="{{[ 'data-v-75f46631','list__nav__item '+(activeItem==3?'list__nav__acitve':'') ]}}" data-text="3">
+					总价排行榜</view>
+			</view>
+		</view>
+		<view class="deal-list-content">
+			<view class="list-item" wx:for="{{deallist}}" wx:key="item">
+				<view class="item item-flex">
+					<view class="item-top  item-top-border">
+						{{item.htje}}万
+					</view>
+					<view class="item-bottom">
+						<view>{{item.title}}</view>
+					</view>
+				</view>
+				<view class="item item-flex">
+					<view class="item-top">{{item.htjj}}元/㎡</view>
+					<view class="item-bottom">
+						<view> {{item.htmj}}㎡</view>
+					</view>
+				</view>
+				<view class="item item-flex ">
+					<view class="item-top">
+						{{item.szlcname}}/{{item.zcs}}
+					</view>
+					<view class="item-bottom">
+						<view>{{item.tjdate}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+
+
+		<vip-msgbox bind:__l="__l" dataApi="{{member}}" wx:if="{{member.viplevel==0}}"></vip-msgbox>
+
+
+		<navigator openType="navigate" url="/house/dealog/index?cid={{house.fid}}">
+			<view bindtap="dealMore" class="deal-more">查看更多历史成交
+				<wxc-icon color="#8A8D91" type="arrow-right"></wxc-icon>
+			</view>
+		</navigator>
+
+	</view>
+
+	<!--分享按钮-->
+	<sharebnt bind:__l="__l"></sharebnt>
+
+	<view class="deal-body" style="height:100rpx;">
+	</view>
+
+
+	<!-- <cover-view class="subscribe">
+		<button class="subscribe-btn" data-index="1" formType="submit" openType="share">分享</button>
+	</cover-view> -->
+	<cover-view class="bottom-select-bar" wx:if="{{false}}">
+		<cover-view bindtap="goPage" class="bottom-select-bar-item" data-page="dfpage/index/index">
+
+			<cover-view> 行情</cover-view>
+		</cover-view>
+		<cover-view bindtap="goPage" class="bottom-select-bar-item" data-page="house/market/index">
+
+			<cover-view>笋盘</cover-view>
+		</cover-view>
+		<cover-view bindtap="goPage" class="bottom-select-bar-item" data-page="house/searchHouse/index">
+			<cover-view>搜索</cover-view>
+		</cover-view>
+		<cover-view bindtap="goPage" class="bottom-select-bar-item" data-page="/house/rank/index">
+			<cover-view>排行</cover-view>
+		</cover-view>
+		<cover-view bindtap="goPage" class="bottom-select-bar-item" data-page="pages/member/index/index">
+
+			<cover-view>我的</cover-view>
+		</cover-view>
+	</cover-view>
+
+</view>
+
+<cover-view class="nav-bottom2" style="bottom:{{isIpx?'68rpx':''}};" wx:if="{{show}}">
+
+	<cover-view class="fun">
+		<cover-view class="guanzhu2 relative_class" data-phone="{{ad.mobile}}">
+			<cover-image class="images2" src="{{'https://sbmf.ww2ss.com/dfimages/logo2.jpg'}}" bindtap="imgYu"
+				data-image="{{'https://sbmf.ww2ss.com/dfimages/logo2.jpg'}}"></cover-image>
+
+		</cover-view>
+		<cover-view catchtap="goSee" class="guanzhu1 relative_class" data-phone="{{ad.mobile}}" wx:if="{{false}}">
+			<cover-view class="ntext" catchtap="goSee">{{ad.uname}}</cover-view>
+			<cover-view class="ntext1">{{ad.organization}}</cover-view>
+		</cover-view>
+		<cover-view class="guanzhu1 relative_class" wx:else>
+			<cover-view class="ntext">联系客服</cover-view>
+			<cover-view class="ntext1">{{ad.organization}}</cover-view>
+		</cover-view>
+	</cover-view>
+	<cover-view catchtap="handleCall" class="tell relative_class" data-phone="{{ad.mobile}}" wx:if="{{false}}">
+		<cover-view>联系经纪人</cover-view>
+	</cover-view>
+	<cover-view catchtap="handleGo" data-cid="{{house.fid}}" class="tell relative_class"
+		data-go="/pages/guwen/gw-no/index" wx:else>
+		<cover-view>入驻楼盘</cover-view>
+	</cover-view>
+</cover-view>
+
+<cover-view bindtap="_closeGetPhone" class="mask_bg getphone_dialog" wx:if="{{see}}">
+	<cover-view catchtap="_white" class="getphone_content">
+		<cover-view class="info">
+			<cover-image src="{{ad.qrcode}}"></cover-image>
+			<cover-view>您好，我是金牌经纪人{{ad.uname}} </cover-view>
+		</cover-view>
+
+		<cover-view class="desc">{{house.community}}是我的责任盘，对该楼盘非常了解！
+			<cover-image src="{{ad.images}}" data-image="{{ad.images}}" style="height: 150rpx;width: 150rpx;" bindtap="imgYu">
+			</cover-image>
+		</cover-view>
+		<cover-view class="btns">
+			<button catchtap="closeSee" class="cancel">暂不需要</button>
+			<button catchtap="handleCall" data-phone="{{ad.mobile}}" data-image="{{ad.images}}" class="ok"
+				wx:if="{{has_phone}}">好的</button>
+			<button catchtap="handleCall" data-phone="{{ad.mobile}}" data-image="{{ad.images}}" class="ok" wx:else>好的</button>
+		</cover-view>
+	</cover-view>
+</cover-view>
+<cover-view class="button-group {{isIpx?'fix-iphonex-button':''}}"></cover-view>

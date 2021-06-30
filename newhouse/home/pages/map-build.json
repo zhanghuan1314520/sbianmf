@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+      "house": "/newhouse/home/pages/house",
+      "search": "/newhouse/home/pages/search"
+  }
+}

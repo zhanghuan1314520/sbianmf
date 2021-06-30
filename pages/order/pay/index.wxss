@@ -215,3 +215,16 @@
     color: #ff4174;
     font-size: 32rpx;
 }
+
+.copyText {
+    color: #ff5555;
+    font-size: 28rpx;
+}
+
+.wrapview {
+    width: 458rpx;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    padding-right: 20rpx;
+}

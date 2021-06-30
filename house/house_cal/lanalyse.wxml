@@ -1,0 +1,70 @@
+<view class="containerd">
+    <nav-bar navBarTitle="房贷计算器"></nav-bar>
+    <view class="header">
+        <view bindtap="tabBarClick" class="switch-tab flex-around">
+            <view class="switch-item {{tabIndex==='1'?'active':''}}" data-i="1">等额本息</view>
+            <view class="switch-item {{tabIndex==='2'?'active':''}}" data-i="2">等额本金</view>
+        </view>
+        <view class="analyse-result">
+            <view class="loan-type-info loan-type-info-top">{{tabIndex==='1'?'每月应还':'首月应还'}}</view>
+            <view class="analyse-money-box">
+                <view class="analyse-money">{{analyse.per}}</view>
+                <view bindtap="toHelp" class="analyse-mon-cell">
+                    <view class="help">?</view>
+                    元
+                </view>
+            </view>
+            <view class="relative">
+                <view class="loan-type-info loan-type-info-bom" wx:if="{{tabIndex==='2'}}">首月还款，后续每月递减 <text
+                        class="loan-type-info-val">{{analyse.perReally}}</text> 元</view>
+            </view>
+            <view class="analyse-detail">
+                <view class="ana-de-item">
+                    <view class="ana-de-name">还款总额</view>
+                    <view class="ana-de-val">{{analyse.total}}万</view>
+                </view>
+                <view class="ana-de-item">
+                    <view class="ana-de-name">贷款总额</view>
+                    <view class="ana-de-val">{{analyse.price}}万</view>
+                </view>
+                <view class="ana-de-item">
+                    <view class="ana-de-name">支付利息</view>
+                    <view class="ana-de-val">{{analyse.rateMoney}}万</view>
+                </view>
+                <view class="ana-de-item">
+                    <view class="ana-de-name">还款年限</view>
+                    <view class="ana-de-val">{{analyse.year}}年</view>
+                </view>
+            </view>
+            <view class="main">
+                <view class="canvas-line">
+                    <view class="ec-canvas-box" wx:if="{{ecCircle}}">
+                        <ec-canvas canvasId="ecCircle" ec="{{ecCircle}}" id="winning__column"></ec-canvas>
+                    </view>
+                    <view>
+                        <view class="loan-money">
+                            <text>贷款总额:</text>
+                            <text class="loan-money-val">{{analyse.price}}万</text>
+                        </view>
+                        <view class="loan-rate-money">
+                            <text>支付利息:</text>
+                            <text class="loan-rate-money-val">{{analyse.rateMoney}}万</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="footer">
+        <block wx:if="{{tabIndex==='1'}}">
+            <view class="footer-title">还款规则</view>
+            <view class="footer-main">
+                <text class="light-yellow">每月还款金额不变，</text>其中还款的本金逐月递增，利息逐月递减。以上计算结果仅供参考</view>
+        </block>
+        <block wx:else>
+            <view class="footer-title">还款规则</view>
+            <view class="footer-main">
+                <text class="light-yellow">每月还款金额不同，</text>首月还款金额最多，之后每月递减，其中每月还款的本金不变，利息逐月减少。以上计算结果仅供参考</view>
+        </block>
+    </view>
+</view>

@@ -69,10 +69,10 @@ Page({
         })) : e.toast(t, "地址数据出错，请重新选择") : e.toast(t, "请填写详细地址") : e.toast(t, "请选择所在街道") : e.toast(t, "请选择所在地区") : e.toast(t, "请填写联系电话") : e.toast(t, "请填写收件人"));
     },
     onChange: function(t) {
-        var a = this, e = a.data.detail, r = t.currentTarget.dataset.type, s = i.trim(t.detail.value);
-        "street" == r && (e.streetdatavalue = a.data.street[s].code, s = a.data.street[s].name), 
-        e[r] = s, a.setData({
-            detail: e
+        var a = this.data.detail, e = t.currentTarget.dataset.type, r = i.trim(t.detail.value);
+        "street" == e && (a.streetdatavalue = this.data.street[r].code, r = this.data.street[r].name), 
+        a[e] = r, this.setData({
+            detail: a
         });
     },
     getStreet: function(t, e) {
@@ -133,10 +133,8 @@ Page({
         if ("" == i.trim(t) || !i.isArray(a)) return [ 0, 0, 0 ];
         var e = t.split(" "), r = [ 0, 0, 0 ];
         for (var s in a) if (a[s].name == e[0]) {
-            r[0] = Number(s);
-            for (var d in a[s].city) if (a[s].city[d].name == e[1]) {
-                r[1] = Number(d);
-                for (var n in a[s].city[d].area) if (a[s].city[d].area[n].name == e[2]) {
+            for (var d in r[0] = Number(s), a[s].city) if (a[s].city[d].name == e[1]) {
+                for (var n in r[1] = Number(d), a[s].city[d].area) if (a[s].city[d].area[n].name == e[2]) {
                     r[2] = Number(n);
                     break;
                 }

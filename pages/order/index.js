@@ -8,34 +8,51 @@ Page({
         page: 1,
         code: !1,
         cancel: e.cancelArray,
-        cancelindex: 0
+        cancelindex: 0,
+        can_sync_goodscircle: !1
     },
     onLoad: function(a) {
-        t.checkAuth(), this.setData({
-            options: a,
-            status: a.status || ""
-        }), t.url(a), this.get_list();
+        var e = this;
+        t.checkAuth(), wx.getSetting({
+            success: function(s) {
+                s.authSetting["scope.userInfo"] && (e.setData({
+                    options: a,
+                    status: a.status || "",
+                    imgUrl: t.globalData.approot
+                }), t.url(a));
+            }
+        });
+    },
+    onShow: function() {
+        var t = getCurrentPages(), a = t[t.length - 1].options.status;
+        this.setData({
+            page: 1,
+            list: [],
+            status: a
+        }), this.get_list();
     },
     get_list: function() {
-        var t = this;
-        t.setData({
-            loading: !0
+        var e = this;
+        e.setData({
+            loading: !0,
+            isgoods: t.globalData.isgoods
         }), a.get("order/get_list", {
-            page: t.data.page,
-            status: t.data.status,
+            page: e.data.page,
+            status: e.data.status,
             merchid: 0
-        }, function(e) {
-            0 == e.error ? (t.setData({
+        }, function(t) {
+            0 == t.error ? (e.setData({
                 loading: !1,
                 show: !0,
-                total: e.total,
-                empty: !0
-            }), e.list.length > 0 && t.setData({
-                page: t.data.page + 1,
-                list: t.data.list.concat(e.list)
-            }), e.list.length < e.pagesize && t.setData({
+                total: t.total,
+                empty: !0,
+                can_sync_goodscircle: t.can_sync_goodscircle
+            }), t.list.length > 0 && e.setData({
+                page: e.data.page + 1,
+                list: e.data.list.concat(t.list)
+            }), t.list.length < t.pagesize && e.setData({
                 loaded: !0
-            })) : a.toast(e.message, "loading");
+            })) : a.toast(t.message, "loading");
         }, this.data.show);
     },
     selected: function(t) {
@@ -46,6 +63,8 @@ Page({
             status: e,
             empty: !1
         }), this.get_list();
+        var s = getCurrentPages();
+        s[s.length - 1].options.status = e;
     },
     onReachBottom: function() {
         this.data.loaded || this.data.list.length == this.data.total || this.get_list();

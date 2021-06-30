@@ -39,14 +39,10 @@
             </view>
         </view>
         <view class="fui-list" wx:if="{{set['qrcode']==''||set['qrcode']!=''&&set['qrcode_remark']==''}}">
-            <view class="fui-card">
-                    说明：分享后会带有独有的推荐码，您的好友访问之后，系统会自动检测并记录客户关系。如果您的好友已被其他人抢先发展成了客户，他就不能成为您的客户，以最早发展成为客户为准。
-            </view>
+            <view class="fui-card">                    说明：分享后会带有独有的推荐码，您的好友访问之后，系统会自动检测并记录客户关系。如果您的好友已被其他人抢先发展成了客户，他就不能成为您的客户，以最早发展成为客户为准。            </view>
         </view>
         <view class="fui-list" wx:if="{{set['qrcode']!=''&&set['qrcode_remark']!=''}}">
-            <view class="fui-card">
-                    说明：{{set['qrcode_remark']}}
-            </view>
+            <view class="fui-card">                    说明：{{set['qrcode_remark']}}            </view>
         </view>
     </view>
 </view>

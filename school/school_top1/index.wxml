@@ -1,0 +1,19 @@
+<base-share-timeline-layout bind:__l="__l" vueId="659cd2a5-1" vueSlots="{{['default']}}">
+    <view class="hot-school__warpper">
+        <image class="banner-img" src="https://imgcdn.huanjutang.com/image/2021/03/15/de5460df5978a7f6c7666ac4d73a7e4e.png"></image>
+        <view class="tab-box flex_layout">
+            <view bindtap="__e" class="{{['tab-item fz-13',activeTab==item.type?'active-tab':'']}}" data-event-opts="{{[ [ 'tap',[ [ 'changeActiveTab',['$0'],[ [ ['tabList','type',item.type,'type'] ] ] ] ] ] ]}}" wx:for="{{tabList}}" wx:for-index="__i0__" wx:key="type">{{''+item.txt+''}}</view>
+        </view>
+        <view class="containerhot">
+            <base-school-single-list bind:__l="__l" class="school__wrapper" items="{{item}}" rankNum="{{index+1}}" vueId="{{'659cd2a5-3-'+index+','+'659cd2a5-1'}}" wx:for="{{schoolList}}" wx:key="id">
+            </base-school-single-list>
+            <view class="no-answer__wrapper" wx:if="{{!loading&&schoolList.length==0}}">
+                <image class="no-img" src="https://imgcdn.huanjutang.com/image/2020/06/19/3214b1d30d0bae8487cc0955b07f1cbf.png"></image>
+                <view class="fz-16 txt">暂无任何内容</view>
+            </view>
+        </view>
+        <base-cricle-share-btn bind:__l="__l" bottom="{{80}}" isShowPhoto="{{false}}" vueId="{{'659cd2a5-4'+','+'659cd2a5-1'}}"></base-cricle-share-btn>
+        <base-load-more bind:__l="__l" isPhoto="{{true}}" loading="{{loading}}" more="{{more}}" showBottomLine="{{!more}}" vueId="{{'659cd2a5-5'+','+'659cd2a5-1'}}"></base-load-more>
+        <base-lucky-bag-logo bind:__l="__l" bind:updateLuckyBagShow="__e" class="vue-ref" data-event-opts="{{[ [ '^updateLuckyBagShow',[ [ '__set_sync',['$0','luckyBagShow','$event'],[''] ] ] ],[ '^updateLuckyBagShow',[ [ '__set_sync',['$0','luckyBagShow','$event'],[''] ] ] ] ]}}" data-ref="BaseLuckyBagLogo" luckyBagShow="{{luckyBagShow}}" pageUrl="{{pageUrl}}" vueId="{{'659cd2a5-6'+','+'659cd2a5-1'}}"></base-lucky-bag-logo>
+    </view>
+</base-share-timeline-layout>

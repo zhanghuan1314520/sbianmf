@@ -1,49 +1,52 @@
-var a = getApp(), t = a.requirejs("core"), e = a.requirejs("biz/order");
+var t = getApp(), e = t.requirejs("core"), a = t.requirejs("biz/order");
 
 Page({
     data: {
         code: !1,
         consume: !1,
         store: !1,
-        cancel: e.cancelArray,
+        cancel: a.cancelArray,
         cancelindex: 0,
         diyshow: {},
-        city_express_state: 0
+        city_express_state: 0,
+        showInvoice: !1
     },
-    onLoad: function(t) {
+    onLoad: function(e) {
         this.setData({
-            options: t
-        }), a.url(t);
+            options: e
+        }), t.url(e);
     },
     onShow: function() {
         this.get_list();
-        var t = this;
-        a.getCache("isIpx") ? t.setData({
+        t.getCache("isIpx") ? this.setData({
             isIpx: !0,
             iphonexnavbar: "fui-iphonex-navbar",
             paddingb: "padding-b"
-        }) : t.setData({
+        }) : this.setData({
             isIpx: !1,
             iphonexnavbar: "",
             paddingb: ""
         });
     },
     get_list: function() {
-        var a = this;
-        t.get("order/detail", a.data.options, function(e) {
-            if (e.error > 0 && (5e4 != e.error && t.toast(e.message, "loading"), wx.redirectTo({
+        var t = this;
+        e.get("order/detail", t.data.options, function(a) {
+            if (a.error > 0 && (5e4 != a.error && e.toast(a.message, "loading"), wx.redirectTo({
                 url: "/pages/order/index"
-            })), void 0 != e.nogift[0].fullbackgoods) var i = e.nogift[0].fullbackgoods.fullbackratio, o = e.nogift[0].fullbackgoods.maxallfullbackallratio, i = Math.round(i), o = Math.round(o);
-            if (0 == e.error) {
-                e.show = !0;
-                var r = Array.isArray(e.ordervirtual);
-                a.setData(e), a.setData({
-                    ordervirtualtype: r,
-                    fullbackgoods: e.nogift[0].fullbackgoods,
-                    maxallfullbackallratio: o,
-                    fullbackratio: i,
-                    invoice: e.order.invoicename,
-                    membercard_info: e.membercard_info
+            })), null != a.nogift[0].fullbackgoods) {
+                var o = a.nogift[0].fullbackgoods.fullbackratio, i = a.nogift[0].fullbackgoods.maxallfullbackallratio;
+                o = Math.round(o), i = Math.round(i);
+            }
+            if (0 == a.error) {
+                a.show = !0;
+                var n = Array.isArray(a.ordervirtual);
+                t.setData(a), t.setData({
+                    ordervirtualtype: n,
+                    fullbackgoods: a.nogift[0].fullbackgoods,
+                    maxallfullbackallratio: i,
+                    fullbackratio: o,
+                    invoice: a.order.invoicename,
+                    membercard_info: a.membercard_info
                 });
             }
         });
@@ -53,21 +56,21 @@ Page({
             all: !0
         });
     },
-    code: function(a) {
-        var e = this, i = t.data(a).orderid;
-        t.post("verify/qrcode", {
-            id: i
-        }, function(a) {
-            0 == a.error ? e.setData({
+    code: function(t) {
+        var a = this, o = e.data(t).orderid;
+        e.post("verify/qrcode", {
+            id: o
+        }, function(t) {
+            0 == t.error ? a.setData({
                 code: !0,
-                qrcode: a.url
-            }) : t.alert(a.message);
+                qrcode: t.url
+            }) : e.alert(t.message);
         }, !0);
     },
-    diyshow: function(a) {
-        var e = this.data.diyshow, i = t.data(a).id;
-        e[i] = !e[i], this.setData({
-            diyshow: e
+    diyshow: function(t) {
+        var a = this.data.diyshow, o = e.data(t).id;
+        a[o] = !a[o], this.setData({
+            diyshow: a
         });
     },
     close: function() {
@@ -75,30 +78,75 @@ Page({
             code: !1
         });
     },
-    toggle: function(a) {
-        var e = t.pdata(a), i = e.id, o = e.type, r = {};
-        r[o] = 0 == i || void 0 === i ? 1 : 0, this.setData(r);
+    toggle: function(t) {
+        var a = e.pdata(t), o = a.id, i = a.type, n = {};
+        n[i] = 0 == o || void 0 === o ? 1 : 0, this.setData(n);
     },
-    phone: function(a) {
-        t.phone(a);
+    phone: function(t) {
+        e.phone(t);
     },
-    cancel: function(a) {
-        e.cancel(this.data.options.id, a.detail.value, "/pages/order/detail/index?id=" + this.data.options.id);
+    cancel: function(t) {
+        a.cancel(this.data.options.id, t.detail.value, "/pages/order/detail/index?id=" + this.data.options.id);
     },
-    delete: function(a) {
-        var i = t.data(a).type;
-        e.delete(this.data.options.id, i, "/pages/order/index");
+    delete: function(t) {
+        var o = e.data(t).type;
+        a.delete(this.data.options.id, o, "/pages/order/index");
     },
-    finish: function(a) {
-        e.finish(this.data.options.id, "/pages/order/index");
+    finish: function(t) {
+        a.finish(this.data.options.id, "/pages/order/index");
     },
-    refundcancel: function(a) {
-        var t = this;
-        e.refundcancel(this.data.options.id, function() {
-            t.get_list();
+    refundcancel: function(t) {
+        var e = this;
+        a.refundcancel(this.data.options.id, function() {
+            e.get_list();
         });
     },
     onShareAppMessage: function() {
-        return t.onShareAppMessage();
+        return e.onShareAppMessage();
+    },
+    bindCopy: function(t) {
+        console.log(t);
+        var e = t.currentTarget.dataset.content.value, a = t.currentTarget.dataset.content.key;
+        wx.setClipboardData({
+            data: e,
+            success: function(t) {
+                wx.showToast({
+                    title: a + "已复制",
+                    duration: 2e3,
+                    icon: "success"
+                });
+            }
+        });
+    },
+    bindCopyText: function(t) {
+        console.log(t);
+        var e = t.currentTarget.dataset.content;
+        wx.setClipboardData({
+            data: e,
+            success: function(t) {
+                wx.showToast({
+                    title: "发货信息已复制",
+                    duration: 2e3,
+                    icon: "success"
+                });
+            }
+        });
+    },
+    seeInvoice: function() {
+        this.setData({
+            showInvoice: !0
+        });
+    },
+    closeInvoice: function() {
+        this.setData({
+            showInvoice: !1
+        });
+    },
+    previewImage: function(t) {
+        var e = t.target.dataset.src;
+        wx.previewImage({
+            current: e,
+            urls: [ e ]
+        });
     }
 });

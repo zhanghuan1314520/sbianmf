@@ -1,0 +1,34 @@
+<view class="detail__surroundings" style="padding-top: {{navH}}px;">
+      <nav-bar navBarTitle="周边配套"></nav-bar>
+      <map showLocation bindregionchange="regionChange" class="building-surrounding__map" id="map" includePoints="{{includePoints}}" latitude="{{lat}}" layerStyle="1" longitude="{{lng}}" markers="{{markers}}" scale="14" style="height: {{mapH}}px;" subkey="FLNBZ-J3GKX-UC74A-7K3XU-QOEX2-XGBRC">
+            <cover-image bindtap="initLocation" class="initLocation" src="/dfimages/match_icon_location@3x.png"></cover-image>
+            <cover-view class="map-tabs">
+                  <cover-view bind:tap="changeTab" class="map-tab {{item.FacilityType===curTab?'active':''}}" data-index="{{item.FacilityType}}" wx:for="{{facilityCount}}" wx:key="index">{{item.name}}({{item.Count}})</cover-view>
+            </cover-view>
+      </map>
+      <view class="building-surrounding__panel">
+            <scroll-view scrollX class="building-surrounding__tags" style="height: 55px;">
+                  <view bindtap="changeSubTab" class="building-surrounding__tag {{curSubTab===i?'active':''}}" data-index="{{i}}" wx:for="{{buildingSurroundings[curTab-1]}}" wx:for-index="i" wx:for-item="n" wx:key="index">{{n.name}}</view>
+            </scroll-view>
+            <view class="building-surrounding__tag-chekced">
+                  <view class="building-surrounding__tag-chekced__text">{{buildingSurroundings[curTab-1][curSubTab].name}}</view>
+                  <view class="building-surrounding__tag-chekced__desc" wx:if="{{buildingSurroundings[curTab-1][curSubTab].Items.length>0}}">
+                        附近共有
+                        <text>{{buildingSurroundings[curTab-1][curSubTab].Items.length}}</text> 个{{buildingSurroundings[curTab-1][curSubTab].name}}
+                  </view>
+                  <view class="building-surrounding__tag-chekced__desc" wx:else>
+                        {{buildingSurroundings[curTab-1][curSubTab].emptyText}}
+                  </view>
+            </view>
+            <scroll-view class="building-surrounding__type-content" scrollY="{{true}}" style="height:130px">
+                  <view bindtap="changeMarker" class="building-surrounding__type-block__cell {{curMarker===m.markerId?'marker-active':''}}" data-curmarker="{{m.markerId}}" data-marker="{{m.marker}}" wx:for="{{buildingSurroundings[curTab-1][curSubTab].Items}}" wx:for-index="t"
+                        wx:for-item="m" wx:key="index">
+                        <image class="marker-icon" src="/dfimages/match_icon_location_yell@3x.png"></image>
+                        <view class="building-surrounding__type-block__cell-name">{{m.Title}}
+                              <text class="metro__distance-walking" wx:if="{{m.WalkingTime}}">(步行{{m.WalkingTime}}分钟)</text>
+                        </view>
+                        <view class="building-surrounding__type-block__cell-distance">{{m.Distance}}</view>
+                  </view>
+            </scroll-view>
+      </view>
+</view>

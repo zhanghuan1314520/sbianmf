@@ -1,0 +1,110 @@
+<add-tips text="点击【添加我的小程序】,及时获取信息" duration="30" />
+
+<view class="container">
+<view class="container-top">
+		<view class="search-box">
+			<view bindtap="searchClick" class="search">
+				<view class="serch_content" style="color:#366AB3;background-color:#fff;">
+					<wxc-icon color="font-size:28rpx; color:#366AB3;" size="28" type="search"></wxc-icon>
+					<input bindinput="searchInput" focus="true" class="search_input" name="search_input" placeholder="请输入小学名称"
+						placeholderStyle="font-size:28rpx; color:#366AB3;" type="text" value="{{searchCon}}"></input>
+
+					<div class="search_line"></div>
+					<wxc-icon bindtap="handleGoT" data-go="/house/house_map/index" type="address" color="#366AB3" size="28">
+					</wxc-icon>
+					<view bindtap="handleGoT" data-go="/house/house_map/index" class="search_map" size="28">地图找房</view>
+				</view>
+			</view>
+		</view>
+
+		<!-- <view class="shangbianju"></view> -->
+	</view>
+
+
+	<view class="house_search-body" wx:if="{{searchValue.length>0}}">
+        <view>
+            <scroll-view class="swiper-item-box" scrollY="true">
+                <view class="search-list" wx:if="{{searchList.length>0}}">
+                    <view bindtap="hotLinkFn"   data-communityid="{{item}}" class="list" wx:for="{{searchList}}" wx:key="item">
+                        <view class="search-item">
+                            <view class="icon-right icon icon--search" style="font-size:26rpx; color:#8A8D91;"></view>
+                            <view class="house-name" >
+                                <text class="{{true?'highlight':'normal'}}">
+                                    {{item.title}}{{item.ftype==1?'(区域)':item.ftype==2?'(板块)':'(小区)'}}
+                                </text>
+                            </view>
+                           
+                        </view>
+                    </view>
+                </view>
+                <view class="search-list" wx:else>
+                    <view class="list">
+                        <view class="search-item">
+                            <wxc-icon color="#8A8D91" size="28" type="search"></wxc-icon>
+                            <view>搜索：</view>
+                            <view class="highlight">{{searchValue}}</view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+       
+		</view>
+		
+</view>
+
+<view class="mapBox">
+	<map bindregionchange="bindtap_regionchange" bindmarkertap="onPointTap" bindcallouttap="onPointTap" latitude="{{markerlatitude}}" longitude="{{markerlongitude}}" markers="{{map_markers}}" polygons="{{map_polygons}}" scale="{{map_scale}}" subkey="FLNBZ-J3GKX-UC74A-7K3XU-QOEX2-XGBRC" style="width: 100%; height:100%;" id="map" wx:if="{{show_map}}"></map>
+</view> 
+ 
+<cover-image bindtap="bindtap_location" class="newIcon" src="/dfimages/anchor.png" wx:if="{{show_map}}"></cover-image>
+<cover-image bindtap="bindtap_switch_school_type" class="school_type" src="{{districtstatus=='primary'?'/dfimages/kg2.png':'/dfimages/kg1.png'}}"></cover-image>
+<cover-view class="adv_own" wx:if="{{ad_data}}">
+    <cover-image bindtap="bindtap_ad" class="adImg" data-id="{{ad_data.id}}" data-openid="{{ad_data.openid}}" data-type="{{ad_data.type}}" data-weburl="{{ad_data.url}}" src="{{ad_data.image}}"></cover-image>
+</cover-view>
+<cover-view class="xqshow" wx:if="{{datah[0].detdata}}">
+	<cover-view class="xqshowBox" bindtap="open_details" data-id="{{schoolid}}">
+		<cover-view class="xqshowTitle">
+			<cover-view class="xqshowTitleleft">
+				<cover-image class="xqshow-logo" src="../../../images/logo_none.png" wx:if="{{datah[0].detdata.logo==''}}"></cover-image>
+             <cover-image class="xqshow-logo" src="{{datah[0].detdata.logo}}" wx:else></cover-image>
+              <cover-view class="xqshow-school font_36">{{datah[0].detdata.title}}</cover-view>
+			</cover-view>
+			<cover-view class="titlemMore">详情</cover-view>
+		</cover-view>
+		<cover-view class="xqshowText">15天内成交：{{datah[0].detdata.num}}套、均价：{{datah[0].detdata.cjsale}}元 挂牌房源：{{datah[0].housedata.num}}套、挂牌均价：{{datah[0].housedata.cjsale}}元</cover-view>
+	</cover-view>
+</cover-view>
+
+<cover-view wx:if="{{false}}">
+<cover-view class="nav-bottom2" wx:if="{{listnum==0}}">
+	<cover-view class="tell relative_class" wx:if="{{member.needbind==1 || member.error==10003}}">
+		<button open-type="getPhoneNumber" bindgetphonenumber="pn_getPhoneNumber">免费获取半年内学区房成交报告</button>
+	</cover-view>
+	<cover-view class="tell relative_class" wx:else>
+		<cover-view  catchtap="pn_hotLink"  >查看楼市成交报告</cover-view>
+	</cover-view>
+</cover-view>
+<cover-view class="nav-bottom2" wx:else>
+	<cover-view class="tell1 relative_class" wx:if="{{ad}}">
+		<cover-view bindtap="showRule">{{ad.uname}}为您专业解答购买学区房问题</cover-view>
+	</cover-view> 
+	<cover-view class="tell1 relative_class" wx:else>
+		<cover-view bindtap="showRule">专业解答购买学区房问题</cover-view>
+	</cover-view> 
+</cover-view>
+<view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}"  wx:if="{{ad}}">
+    <view class='ruleZhezhaoContent'>
+        <image bindtap="imgYu" src='{{ad.images}}' class="select"></image>
+        <view class="select1">{{ad.uname}}为您专业解答{{ad.community}}购买学区房相关问题！</view>       
+		<wxc-icon class='ruleHide' bindtap="hideRule" size="45" type="no" color="#0672ee"></wxc-icon>
+    </view>
+</view>
+<view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}"  wx:else>
+    <view class='ruleZhezhaoContent'>
+        <image bindtap="imgYu" src='https://sbmf.ww2ss.com/dfimages/logo2.jpg' class="select"></image>
+        <view class="select1">专业解答购买学区房相关问题！</view>       
+		<wxc-icon class='ruleHide' bindtap="hideRule" size="45" type="no" color="#0672ee"></wxc-icon>
+    </view>
+</view>
+</cover-view>

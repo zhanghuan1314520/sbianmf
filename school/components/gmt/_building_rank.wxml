@@ -1,0 +1,9 @@
+<navigator bindtap="__e" class="building-rank-wrap data-v-e47c7dc6" url="/school/school_top/index">
+    <view class="building-rank data-v-e47c7dc6">
+        <view class="content data-v-e47c7dc6">
+            <view class="i data-v-e47c7dc6">榜</view>
+            <text class="text28 data-v-e47c7dc6">{{'入选'+building_ranking.zone+'第 '+building_ranking.ranking_order+' 名'}}</text>
+        </view>
+        <fc-icon bind:__l="__l" class="data-v-e47c7dc6" type="48_more_grey" vueId="60266742-1"></fc-icon>
+    </view>
+</navigator>

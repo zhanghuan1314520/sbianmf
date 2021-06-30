@@ -1,4 +1,4 @@
-var t = getApp(), e = t.requirejs("core"), o = t.requirejs("foxui");
+var t = getApp(), e = t.requirejs("core"), s = t.requirejs("foxui");
 
 Page({
     data: {
@@ -18,10 +18,10 @@ Page({
     },
     get_list: function() {
         var t = this;
-        e.get("order/pay", t.data.options, function(o) {
-            50018 != o.error ? (!o.wechat.success && "0.00" != o.order.price && o.wechat.payinfo && e.alert(o.wechat.payinfo.message + "\n不能使用微信支付!"), 
+        e.get("order/pay", t.data.options, function(s) {
+            50018 != s.error ? (!s.wechat.success && "0.00" != s.order.price && s.wechat.payinfo && e.alert(s.wechat.payinfo.message + "\n不能使用微信支付!"), 
             t.setData({
-                list: o,
+                list: s,
                 show: !0
             })) : wx.navigateTo({
                 url: "/pages/order/details/index?id=" + t.data.options.id
@@ -29,36 +29,58 @@ Page({
         });
     },
     pay: function(t) {
-        var a = this, s = e.pdata(t).type, a = this, i = this.data.list.wechat;
+        var a = e.pdata(t).type, o = this, i = this.data.list.wechat;
         e.post("order/pay/checkstock", {
-            id: a.data.options.id
+            id: o.data.options.id
         }, function(t) {
-            0 == t.error ? "wechat" == s ? e.pay(i.payinfo, function(t) {
-                "requestPayment:ok" == t.errMsg && a.complete(s);
-            }) : "credit" == s ? e.confirm("确认要支付吗?", function() {
-                a.complete(s);
-            }, function() {}) : "cash" == s ? e.confirm("确认要使用货到付款吗?", function() {
-                a.complete(s);
-            }, function() {}) : a.complete(s) : o.toast(a, t.message);
+            0 == t.error ? "wechat" == a ? e.pay(i.payinfo, function(t) {
+                if ("requestPayment:ok" == t.errMsg) {
+                    if (0 == o.data.list.subscribetmp.length) return void o.complete(a);
+                    console.log(o.data.list.reqsubtmp), console.log(o.data.list.subscribetmp), wx.requestSubscribeMessage({
+                        tmplIds: o.data.list.reqsubtmp,
+                        success: function(t) {
+                            console.log(t);
+                            var e = [];
+                            "accept" == t[o.data.list.subscribetmp.pay] && e.push("pay"), "accept" == t[o.data.list.subscribetmp.send] && e.push("send"), 
+                            "accept" == t[o.data.list.subscribetmp.autosend] && e.push("autosend"), "accept" == t[o.data.list.subscribetmp.receive] && e.push("receive"), 
+                            o.complete(a, e);
+                        },
+                        fail: function(t) {
+                            o.complete(a);
+                        }
+                    });
+                }
+            }) : "credit" == a ? e.confirm("确认要支付吗?", function() {
+                o.complete(a);
+            }, function() {}) : "cash" == a ? e.confirm("确认要使用货到付款吗?", function() {
+                o.complete(a);
+            }, function() {}) : o.complete(a) : s.toast(o, t.message);
         }, !0, !0);
     },
-    complete: function(t) {
-        var a = this;
+    complete: function(t, a) {
+        var o = this;
         e.post("order/pay/complete", {
-            id: a.data.options.id,
-            type: t
+            id: o.data.options.id,
+            type: t,
+            template: a
         }, function(t) {
-            if (0 != t.error) o.toast(a, t.message); else {
+            if (0 != t.error) e.confirm(t.message, function() {
+                wx.setStorageSync("orderid", o.data.options.id), wx.redirectTo({
+                    url: "/pages/member/recharge/index"
+                });
+            }, function() {
+                s.toast(o, t.message);
+            }); else {
                 wx.setNavigationBarTitle({
                     title: "支付成功"
                 });
-                var e = Array.isArray(t.ordervirtual);
-                a.setData({
+                var a = Array.isArray(t.ordervirtual);
+                o.setData({
                     success: !0,
                     successData: t,
                     order: t.order,
                     ordervirtual: t.ordervirtual,
-                    ordervirtualtype: e
+                    ordervirtualtype: a
                 });
             }
         }, !0, !0);
@@ -76,6 +98,34 @@ Page({
     closecoupon: function() {
         this.setData({
             coupon: !1
+        });
+    },
+    bindCopy: function(t) {
+        console.log(t);
+        var e = t.currentTarget.dataset.content.value, s = t.currentTarget.dataset.content.key;
+        wx.setClipboardData({
+            data: e,
+            success: function(t) {
+                wx.showToast({
+                    title: s + "已复制",
+                    duration: 2e3,
+                    icon: "success"
+                });
+            }
+        });
+    },
+    bindCopyText: function(t) {
+        console.log(t);
+        var e = t.currentTarget.dataset.content;
+        wx.setClipboardData({
+            data: e,
+            success: function(t) {
+                wx.showToast({
+                    title: "发货信息已复制",
+                    duration: 2e3,
+                    icon: "success"
+                });
+            }
         });
     }
 });

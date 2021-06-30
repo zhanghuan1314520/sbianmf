@@ -1,0 +1,43 @@
+<!-- <web-view src="http://mp.weixin.qq.com/s?__biz=MzU1NjE1OTQ4Mg==&amp;mid=2247546426&amp;idx=1&amp;sn=3835548fb330fe1b499616760588aff0&amp;chksm=fbcb2eafccbca7b9a663074b17766713d8c30fa56fb798c0d645d4a1baadbc815897e8d88b17#rd"> -->
+ <web-view src="{{list.link}}">
+  <!--  <cover-view class="share-button">
+  <cover-image class="sc" src="../../../project/pages/images/new/gz.png"></cover-image>
+  <cover-view class="share-txt">收藏</cover-view>
+</cover-view> -->
+<over-view wx:if="{{broker}}">
+  <cover-view class="box">
+    <cover-view class="box_nav">
+      <cover-view class="box_nav1" bindtap="callBroker">
+        <cover-image class="box_nav1_img" src="{{broker.qrcode}}"></cover-image>
+      </cover-view>
+      <cover-view class="box_nav2">
+        <cover-view class="box_nav2_name">{{broker.uname}}</cover-view>
+        <cover-view class="box_nav2_name">顾问</cover-view>
+      </cover-view>
+      <cover-view class="box_nav3">
+        <cover-view class="box_nav3_item" wx:if="{{!1}}">
+          <cover-image class="box_nav3_img" src="/project/pages/images/new/gz.png"></cover-image>
+          <cover-view class="box_nav3_name">关注</cover-view>
+        </cover-view>
+        <cover-view class="box_nav3_item" bindtap="callBroker">
+          <cover-image class="box_nav3_img" src="/project/pages/images/new/ipone.png"></cover-image>
+          <cover-view class="box_nav3_name">电话</cover-view>
+        </cover-view>
+        <cover-view class="box_nav3_item" bind:tap="handleGoDetail" data-go="/pages/guwen/gw-detail/index" data-userid="{{broker.userid}}" data-adid="0"
+						data-houseid="0">
+          <cover-image class="box_nav3_img" src="/project/pages/images/new/zx.png"></cover-image>
+          <cover-view class="box_nav3_name">咨询</cover-view>
+        </cover-view>
+      </cover-view>
+      <cover-view >
+       <!--  <button class="box_nav4" openType="share">分享</button> -->
+        <cover-view bindtap="sharePoster" class="box_nav4">分享给朋友</cover-view>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+</over-view>
+<over-view wx:else>
+  <!-- <cover-image class="share-box" src="https://cdn.vip-wifi.com/hzfangchan/version-img/1.14.25/icons/article-share-btn.png"></cover-image> -->
+    <cover-view bindtap="sharePoster" class="share-box">分享给朋友</cover-view>
+</over-view>
+</web-view>

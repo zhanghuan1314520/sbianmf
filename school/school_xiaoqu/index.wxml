@@ -1,0 +1,121 @@
+<loading wx:if="{{!show}}">加载中...</loading>
+<view class="container" wx:if="{{show}}">
+  <view class="list-content">
+
+ 
+
+    <busi-school-card-info-all bind:__l="__l" class="data-v-720b5f49" dataApi="{{school}}" vueId="b07911b4-1"></busi-school-card-info-all>
+
+        <view class="line1"></view>
+       
+          <view class="list-content">
+                  <view class="block-head">
+                    划片范围内小区
+                   </view>
+                   <view class="plan-house data-v-744937ef">
+						<view class="plan-house data-v-dbe5ffe8">
+							<view class="plan-house__item data-v-dbe5ffe8" wx:for="{{list}}" wx:key="item">
+								<navigator openType="navigate" url="/house/community/index?cid={{item.id}}">
+									<view class="plan-house__left data-v-dbe5ffe8">
+
+										<image class="plan-house__headIcon data-v-dbe5ffe8" src="{{item.thumbs?item.thumbs:'https://sbmf.ww2ss.com/dfimages/photono.png'}}"></image>
+
+										<view class="image__gradient data-v-dbe5ffe8"></view>
+									</view> 
+								</navigator>
+                <view class="plan-house__info data-v-dbe5ffe8">
+									<navigator openType="navigate" url="../../house/community/index?cid={{item.id}}">
+										<view class="house__info__name color-item-name data-v-dbe5ffe8">{{''+item.title+''}}</view>
+										<view class="flex_layout_b mar-top-15 data-v-dbe5ffe8">
+											<text class="house__info__cont data-v-dbe5ffe8">{{''+item.areaname+''}}</text>
+											<text class="card__info__distance  data-v-dbe5ffe8"
+												wx:if="{{item.juli}}">{{'距学校约'+item.juli+''}}km</text>
+										</view>
+										<view class="flex_layout_b mar-top-15 data-v-dbe5ffe8">
+											<text class="house__info__cont data-v-dbe5ffe8" style="color:#2196F3">门槛：{{''+item.mixprice+'万'}}</text>
+											<text class="card__info__distance  data-v-dbe5ffe8"
+												wx:if="{{item.gpcount}}">{{'库存'+item.gpcount+'套'}}</text>
+										</view>
+										<view class="flex_layout_b mar-top-15 data-v-dbe5ffe8">
+											<view class="house__info__price data-v-dbe5ffe8">
+												<text class="fz-15 color-prize fb-bold data-v-dbe5ffe8"
+													wx:if="{{item.price}}">{{''+item.price+'元/㎡'}}</text>
+											</view>
+											<view class="data-v-dbe5ffe8">
+												<view class="flex_layout_c card__info__commnet data-v-dbe5ffe8">
+													<text class="iconfont iconliulan fz-16 mar-right-4 data-v-dbe5ffe8"></text>
+													<text class="mar-right-12 data-v-dbe5ffe8"></text>
+													<text class="iconfont iconpinglun fz-16 mar-right-4 data-v-dbe5ffe8" wx:if="{{false}}"></text>
+													<text class="data-v-dbe5ffe8">90天成交{{item.cjcount}}套</text>
+												</view>
+											</view>
+										</view>
+									
+										 
+									</navigator>
+								</view>
+							</view>
+						</view>
+
+					
+					</view>
+                </view>
+      
+    
+     
+
+    <view class="fui-loading" wx:if="{{loading}}">
+      <view class="icon"></view>
+      <view class="text">正在加载</view>
+    </view>
+    <view class="fui-loading empty" wx:if="{{loaded&&list.length>0}}">
+      <view class="text">没有更多了</view>
+    </view>
+    <view class="fui-loading empty" wx:if="{{total<=0&&!loading}}">
+      <view class="text">没有数据</view>
+    </view>
+
+  </view>
+
+  
+</view>
+
+<cover-view class="nav-bottom2" style="bottom:{{isIpx?'68rpx':''}};"  wx:if="{{ad}}">
+    
+    <cover-view class="fun">         
+        <cover-view class="guanzhu2 relative_class" data-phone="{{ad.mobile}}">        <cover-image class="images2" src="{{ad!=false?ad.qrcode:'https://sbmf.ww2ss.com/dfimages/logo2.jpg'}}" bindtap="imgYu"  data-image="{{ad!=false?ad.images:'https://sbmf.ww2ss.com/dfimages/logo2.jpg'}}"></cover-image>
+            
+        </cover-view>
+        <cover-view catchtap="handleCall" class="guanzhu1 relative_class" data-phone="{{ad.mobile}}" wx:if="{{ad!=false}}">    
+            <cover-view class="ntext" catchtap="handleCall" data-phone="{{ad.mobile}}" >{{ad.uname}}</cover-view>
+            <cover-view class="ntext1">{{ad.organization}}</cover-view>
+        </cover-view>
+        <cover-view   class="guanzhu1 relative_class"  wx:else>    
+            <cover-view class="ntext">联系客服</cover-view>
+            <cover-view class="ntext1">{{ad.organization}}</cover-view>
+        </cover-view>
+    </cover-view>
+    <cover-view catchtap="goSee" class="tell relative_class" data-phone="{{ad.mobile}}" wx:if="{{ad!=false}}">         
+        <cover-view>联系经纪人</cover-view>
+    </cover-view>
+    <cover-view catchtap="handleGo" data-cid="{{community.id}}" class="tell relative_class" data-go="/pages/guwen/gw-no/index" wx:else>        
+        <cover-view>经纪人免费入驻</cover-view>
+    </cover-view>
+</cover-view>
+
+<cover-view bindtap="_closeGetPhone" class="mask_bg getphone_dialog" wx:if="{{see}}">
+    <cover-view catchtap="_white" class="getphone_content">
+        <cover-view class="info">
+            <cover-image src="{{ad.qrcode}}"></cover-image>
+            <cover-view>您好，我是金牌经纪人{{ad.uname}} </cover-view>             
+        </cover-view>
+         
+        <cover-view class="desc">免费查询历史成交记录！可以加我微信！<cover-image src="{{ad.images}}" data-image="{{ad.images}}" style="height: 150rpx;width: 150rpx;" bindtap="imgYu"></cover-image></cover-view>
+        <cover-view class="btns">
+            <button catchtap="closeSee" class="cancel">暂不需要</button>
+            <button bindtap="imgYu" data-image="{{ad.images}}" class="ok" wx:if="{{has_phone}}">好的</button>
+            <button  bindtap="imgYu" data-image="{{ad.images}}" class="ok"   wx:else>好的</button>
+        </cover-view>
+    </cover-view>
+</cover-view>
+<cover-view class="button-group {{isIpx?'fix-iphonex-button':''}}"></cover-view>

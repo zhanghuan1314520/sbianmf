@@ -1,0 +1,481 @@
+<loading wx:if="{{!show}}">加载中...</loading>
+<add-tips text="点击【添加我的小程序】,及时获取信息" duration="30" /> 
+<view class="model" wx:if="{{modelShow}}">
+	<view class="inner">
+		<view class="title">用户未授权</view>
+		<view class="image">
+			<image src="{{imgUrl+'plugin/app/static/images/wxapp/shouquan.png'}}"></image>
+		</view>
+		<view class="subtitle">您需要先开启【用户信息】，才能使用此功能哦~</view>
+		<view class="model-btns">
+			<view bindtap="cancelclick" class="cancel">取消</view>
+			<view bindtap="confirmclick" class="confirm">去设置</view>
+		</view>
+	</view>
+</view>
+<view class="house-list-box">
+	<view bindtap="filterMaskFn" catchtouchmove="preventTouchMove" class="filter-mask" hidden="{{filterMask}}" style="z-index:{{zindex}};"></view>
+	<view class="list-top {{!tab[3]?'more-box':''}}">
+		<view class="search-box">
+			<view bindtap="searchClick" class="search">
+				<view class="serch_content" style="color:#366AB3;background-color:#fff;">
+					<wxc-icon color="font-size:28rpx; color:#366AB3;" size="28" type="search"></wxc-icon>
+					<input bindtap="toSearch" class="search_input" name="search_input" placeholder="请输入板块名、楼盘名" placeholderStyle="font-size:28rpx; color:#366AB3;" type="text" value="{{searchCon}}"></input>
+					<wxc-icon bindtap="delText" style="font-size:28rpx; color:#000;" size="28" type="clear" wx:if="{{searchCon!='请输入板块名、楼盘名'}}"></wxc-icon>
+					<div class="search_line"></div> 					
+					<wxc-icon bindtap="handleGoT" data-go="/house/house_map/index" type="address" color="#366AB3" size="28" ></wxc-icon>	
+					<view bindtap="handleGoT" data-go="/house/house_map/index" class="search_map"  size="28">地图找房</view>
+				</view>
+			</view>
+		</view>
+		<view class="filter-box flexbox flex_al_center">
+			<view bindtap="filterTabFn" class="filter-nav flex1 {{filnav==item.name||item.newname?'filter-cur':''}}" data-index="{{index}}" data-name="{{item.name}}" wx:for="{{tabTxt}}" wx:key="index">
+				<text class="name">{{item.newname||item.name}}</text>
+				<text class="arrow"></text>
+			</view>
+		</view>
+		<view catchtouchmove="preventTouchMove" class="filter-con-box">
+			<view class="filter-con quyu" hidden="{{tab[0]}}">
+				<view class="quyu-nav1">
+					<view class="filter-info">
+						<text bindtap="quyuFn" class="{{nameCur1=='区域'?'sub1-cur':''}}" data-barid="1" data-name="区域">区域</text>
+						<!--<text bindtap="quyuFn" class="{{nameCur1=='地铁'?'sub1-cur':''}}" data-barid="2" data-name="地铁">地铁</text>-->
+						<text bindtap="quyuFn" class="{{nameCur1=='学区'?'sub1-cur':''}}" data-barid="4" data-name="学区">学区</text>
+						<text bindtap="quyuFn" class="{{nameCur1=='附近'?'sub1-cur':''}}" data-barid="3" data-name="附近">附近</text>
+
+
+					</view>
+				</view>
+				<view class="quyu-nav2" hidden="{{quyuNav2}}">
+					<scroll-view class="filter-info" scrollY="true">
+						<view bindtap="buxianFn2" class="qy{{nameCur2=='不限'?'sub2-cur':''}}" data-name="不限">
+							<text>不限</text>
+						</view>
+						<view bindtap="quyuFn2" class="{{nameCur11==item.id?'sub2-cur':''}}" data-barid="{{quYuBar2}}" data-districtid="{{item.id}}" data-index="{{index}}" data-name="{{item.name}}" wx:if="{{!item.lineid&&!item.nearid}}" wx:for="{{filterArea}}" wx:key="index">
+							<text>{{item.name}}</text>
+						</view>
+						<view bindtap="quyuFn2" class="{{nameCur21==item.lineid?'sub2-cur':''}}" data-barid="{{quYuBar2}}" data-dtlineid="{{item.lineid}}" data-index="{{index}}" data-name="{{item.name}}" wx:if="{{item.lineid}}" wx:for="{{filterArea}}" wx:key="index">
+							<text>{{item.name}}</text>
+						</view>
+						<view bindtap="quyuFn2" class="{{nameCur31==item.nearid?'sub2-cur':''}}" data-barid="{{quYuBar2}}" data-index="{{index}}" data-name="{{item.name}}" data-nearid="{{item.nearid}}" wx:if="{{item.nearid}}" wx:for="{{filterArea}}" wx:key="index">
+							<text>{{item.name}}</text>
+						</view>
+					</scroll-view>
+				</view>
+				<view class="quyu-nav3" hidden="{{quyuNav3}}">
+					<scroll-view class="filter-info" scrollY="true">
+						<view bindtap="buxianFn3" class="{{nameCur3=='不限'?'sub2-cur':''}}" data-bxbarid="{{quYuBxBar3}}" data-districtid="{{quyuId}}" data-districtname="{{quyuName}}" data-name="不限">
+							<text>不限</text>
+						</view>
+						<view bindtap="quyuFn3" class="{{nameCur3==item.id?'sub2-cur':''}}" data-barid="{{quYuBar3}}" data-districtid="{{quyuId}}" data-index="{{index}}" data-name="{{item.name}}" data-sqid="{{item.id}}" wx:for="{{filterArea2}}" wx:key="index">
+							<text>{{item.name}}</text>
+						</view>
+					</scroll-view>
+				</view>
+			</view>
+			<view class="filter-con filter-price" hidden="{{tab[1]}}" wx:if="{{list_param==1}}">
+				<view class="filter-info">
+					<view class="extends">
+						<view class="zdy">
+							<text class="zdy-name">自定义</text>
+							<text class="unit">(万)</text>
+						</view>
+						<view class="price-inp">
+							<input bindinput="priceMin" maxlength="5" placeholder="最低价" type="number" value="{{inpVal}}"></input>
+							<text class="heng">-</text>
+							<input bindinput="priceMax" maxlength="5" placeholder="最高价" type="number" value="{{inpVal}}"></input>
+						</view>
+					</view>
+					<view class="filtag-con">
+						<text bindtap="filterPricesFn" class="{{priceCurName==item.name?'sub-cur':''}}" data-code="{{item.code}}" data-name="{{item.name}}" wx:for="{{filterPrices}}" wx:key="index">{{item.name}}</text>
+					</view>
+					<view class="filter-btn">
+						<text bindtap="emptyPriceFn" class="qingkong" data-name="清空">清空</text>
+						<text bindtap="priceConfirm" class="filconfirm" data-value="{{valPrice}}" data-valuemax="{{maxPrice}}" data-valuemin="{{minPrice}}">确定</text>
+					</view>
+				</view>
+			</view>
+			<view class="filter-con filter-price" hidden="{{tab[1]}}" wx:if="{{list_param==2}}">
+				<view class="filter-info">
+					<view class="extends">
+						<view class="zdy">
+							<text class="zdy-name">自定义</text>
+							<text class="unit">(元)</text>
+						</view>
+						<view class="price-inp">
+							<input bindinput="priceMin" maxlength="8" placeholder="最低价" type="number" value="{{inpVal}}"></input>
+							<text class="heng">-</text>
+							<input bindinput="priceMax" maxlength="8" placeholder="最高价" type="number" value="{{inpVal}}"></input>
+						</view>
+					</view>
+					<view class="filtag-con rent-price">
+						<text bindtap="filterPricesFn" class="{{priceCurName==item.name?'sub-cur':''}}" data-code="{{item.code}}" data-name="{{item.name}}" wx:for="{{filterPrices}}" wx:key="index">{{item.name}}</text>
+					</view>
+					<view class="filter-btn">
+						<text bindtap="emptyPriceFn" class="qingkong" data-name="清空">清空</text>
+						<text bindtap="priceConfirm" class="filconfirm" data-value="{{valPrice}}" data-valuemax="{{maxPrice}}" data-valuemin="{{minPrice}}">确定</text>
+					</view>
+				</view>
+			</view>
+			<view class="filter-con filter-fx" hidden="{{tab[2]}}">
+				<view class="filter-info">
+					<view class="filtag-con">
+						<text bindtap="filterFxingFn" class="{{item.selected?'sub-cur':''}}" data-broom="{{item.broom}}" data-index="{{index}}" data-name="{{item.name}}" wx:for="{{filterFxing}}" wx:key="index">{{item.name}}</text>
+					</view>
+					<view class="filter-btn">
+						<text bindtap="emptyFxingFn" class="qingkong" data-name="清空">清空</text>
+						<text bindtap="fxingConfirm" class="filconfirm" data-fxingname="{{fxname}}">确定</text>
+					</view>
+				</view>
+			</view>
+			<view class="filter-con" hidden="{{tab[3]}}" wx:if="{{list_param==1}}">
+				<scroll-view class="filter-info filter-more" scrollY="true">
+					<view class="more-con">
+						<view class="moretit">
+							<text>户型</text>
+							<text class="note">（卫）</text>
+						</view>
+						<view class="moreinfo">
+							<text bindtap="moreFn" class="{{item.selected?'morecur':''}}" data-index="{{index}}" data-moreid="1" data-val="{{item.code}}" data-valname="toilet" wx:for="{{moreData.toilet}}" wx:key="index">{{item.name}}</text>
+						</view>
+					</view>
+					<view class="more-con">
+						<view class="moretit">
+							<text>面积</text>
+						</view>
+						<view class="moreinfo">
+							<text bindtap="moreFn" class="{{moreCurName1==item.name?'morecur':''}}" data-index="{{index}}" data-moreid="4" data-name="{{item.name}}" data-val="{{item.code}}" data-valname="buildarea" wx:for="{{moreData.buildarea}}" wx:key="index">{{item.name}}</text>
+						</view>
+					</view>
+					<view class="more-con">
+						<view class="moretit">
+							<text>朝向</text>
+						</view>
+						<view class="moreinfo">
+							<text bindtap="moreFn" class="{{item.selected?'morecur':''}}" data-index="{{index}}" data-moreid="1" data-val="{{item.code}}" data-valname="heading" wx:for="{{moreData.heading}}" wx:key="index">{{item.name}}</text>
+						</view>
+					</view>
+					<!---
+                            <view class="more-con">
+                                <view class="moretit">
+                                    <text>标签</text>
+                                </view>
+                                <view class="moreinfo">
+                                    <text bindtap="moreFn" class="{{item.selected?'morecur':''}}" data-index="{{index}}" data-moreid="2" data-val="{{item.code}}" data-valname="tag" wx:for="{{moreTag}}" wx:key="index">{{item.name}}</text>
+                                </view>
+                            </view>--->
+					<view class="more-con">
+						<view class="moretit">
+							<text>楼龄</text>
+						</view>
+						<view class="moreinfo">
+							<text bindtap="moreFn" class="{{moreCurName==item.name?'morecur':''}}" data-index="{{index}}" data-moreid="3" data-name="{{item.name}}" data-val="{{item.code}}" data-valname="buildage" wx:for="{{moreData.buildage}}" wx:key="index">{{item.name}}</text>
+						</view>
+					</view>
+					<view class="more-con">
+						<view class="moretit">
+							<text>楼层</text>
+						</view>
+						<view class="moreinfo">
+							<text bindtap="moreFn" class="{{item.selected?'morecur':''}}" data-index="{{index}}" data-moreid="1" data-val="{{item.code}}" data-valname="floortype" wx:for="{{moreData.floortype}}" wx:key="index">{{item.name}}</text>
+						</view>
+					</view>
+					<view class="more-con">
+						<view class="moretit">
+							<text>装修</text>
+						</view>
+						<view class="moreinfo">
+							<text bindtap="moreFn" class="{{item.selected?'morecur':''}}" data-index="{{index}}" data-moreid="1" data-val="{{item.code}}" data-valname="decoratetype" wx:for="{{moreData.decoratetype}}" wx:key="index">{{item.name}}</text>
+						</view>
+					</view>
+					<view class="more-con">
+						<view class="moretit">
+							<text>用途</text>
+						</view>
+						<view class="moreinfo">
+							<text bindtap="moreFn" class="{{item.selected?'morecur':''}}" data-index="{{index}}" data-moreid="1" data-val="{{item.code}}" data-valname="housetype" wx:for="{{moreData.housetype}}" wx:key="index">{{item.name}}</text>
+						</view>
+					</view>
+					<view class="more-con">
+						<view class="moretit">
+							<text>涨跌价房源</text>
+						</view>
+						<view class="moreinfo">
+							<text bindtap="moreFn" class="{{moreCurName==item.name?'morecur':''}}" data-index="{{index}}" data-moreid="5" data-name="{{item.name}}" data-val="{{item.code}}" data-valname="pricetype" wx:for="{{moreData.pricetype}}" wx:key="index">{{item.name}}</text>
+
+			</view>
+					</view>
+
+			 
+				</scroll-view>
+				<view class="more-foot flexbox">
+					<text bindtap="moreReset" class="reset">重置</text>
+					<text bindtap="moreConfirm" class="confirm" data-selected="{{moreselected}}">确定</text>
+				</view>
+			</view>
+			<view class="filter-con" hidden="{{tab[3]}}" wx:if="{{list_param==2}}">
+				<scroll-view class="filter-info filter-more" scrollY="true">
+					<view class="more-con">
+						<view class="moretit">
+							<text>类型</text>
+						</view>
+						<view class="moreinfo">
+							<text bindtap="moreFn" class="{{item.selected?'morecur':''}}" data-index="{{index}}" data-moreid="1" data-val="{{item.code}}" data-valname="renttype" wx:for="{{moreData.renttype}}" wx:key="{{this}}">{{item.name}}</text>
+						</view>
+					</view>
+					<view class="more-con">
+						<view class="moretit">
+							<text>面积</text>
+						</view>
+						<view class="moreinfo">
+							<text bindtap="moreFn" class="{{item.selected?'morecur':''}}" data-index="{{index}}" data-moreid="1" data-val="{{item.code}}" data-valname="buildarea" wx:for="{{moreData.buildarea}}" wx:key="index">{{item.name}}</text>
+						</view>
+					</view>
+					<view class="more-con">
+						<view class="moretit">
+							<text>朝向</text>
+						</view>
+						<view class="moreinfo">
+							<text bindtap="moreFn" class="{{item.selected?'morecur':''}}" data-index="{{index}}" data-moreid="1" data-val="{{item.code}}" data-valname="heading" wx:for="{{moreData.heading}}" wx:key="index">{{item.name}}</text>
+						</view>
+					</view>
+					<view class="more-con">
+						<view class="moretit">
+							<text>装修</text>
+						</view>
+						<view class="moreinfo">
+							<text bindtap="moreFn" class="{{item.selected?'morecur':''}}" data-index="{{index}}" data-moreid="1" data-val="{{item.code}}" data-valname="decoratetype" wx:for="{{moreData.decoratetype}}" wx:key="index">{{item.name}}</text>
+						</view>
+					</view>
+					<view class="more-con">
+						<view class="moretit">
+							<text>楼层</text>
+						</view>
+						<view class="moreinfo">
+							<text bindtap="moreFn" class="{{item.selected?'morecur':''}}" data-index="{{index}}" data-moreid="1" data-val="{{item.code}}" data-valname="floortype" wx:for="{{moreData.floortype}}" wx:key="index">{{item.name}}</text>
+						</view>
+					</view>
+					<view class="more-con">
+						<view class="moretit">
+							<text>标签</text>
+						</view>
+						<view class="moreinfo">
+							<text bindtap="moreFn" class="{{item.selected?'morecur':''}}" data-index="{{index}}" data-moreid="2" data-val="{{item.code}}" data-valname="tag" wx:for="{{moreTag}}" wx:key="index">{{item.name}}</text>
+						</view>
+					</view>
+					<view class="more-con">
+						<view class="moretit">
+							<text>品牌</text>
+						</view>
+						<view class="moreinfo">
+							<text bindtap="moreFn" class="{{item.selected?'morecur':''}}" data-index="{{index}}" data-moreid="1" data-val="{{item.code}}" data-valname="othertype" wx:for="{{moreData.othertype}}" wx:key="index">{{item.name}}</text>
+						</view>
+					</view>
+				</scroll-view>
+				<view class="more-foot flexbox">
+					<text bindtap="moreReset" class="reset">重置</text>
+					<text bindtap="moreConfirm" class="confirm">确定</text>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="container" wx:if="{{show}}">
+	<!---
+    <view class="container-body">
+        <view class="data-content">
+            <view class="shuxian" style=" background-color: #E7F4FA;">
+                三天
+                <br></br>
+                概况
+            </view>
+            <view class="shuxian">
+                <view class="data-content-num">
+                    {{upacount}}
+                    <view class="data-content-num-unit">套</view>
+                </view>
+                <view class="data-content-desc" style="padding-bottom: 20rpx">
+                    3天调价
+                </view>
+                <view class="data-content-num data-content-num-topline">
+                    {{unasale}}
+                    <view class="data-content-num-unit">元</view>
+                </view>
+                <view class="data-content-desc">
+                    3天调价均价
+                </view>
+            </view>
+            <view class="shuxian">
+                <view class="data-content-num">
+                    {{upxcount}}
+                    <view class="data-content-num-unit">套</view>
+                </view>
+                <view class="data-content-desc" style="padding-bottom: 20rpx">
+                    下调10万以上
+                </view>
+                <view class="data-content-num data-content-num-topline">
+                    {{upscount}}
+                    <view class="data-content-num-unit">套</view>
+                </view>
+                <view class="data-content-desc">
+                    上调10万以上
+                </view>
+            </view>
+            <view>
+                <view class="data-content-num">
+                    {{upjunxprice}}
+                    <view class="data-content-num-unit">万</view>
+                </view>
+                <view class="data-content-desc" style="padding-bottom: 20rpx">
+                    套均下调价格
+                </view>
+                <view class="data-content-num data-content-num-topline">
+                    {{upjunsprice}}
+                    <view class="data-content-num-unit">万</view>
+                </view>
+                <view class="data-content-desc">
+                    套均上调价格
+                </view>
+            </view>
+        </view>
+    </view>
+    -->
+	<!---
+    <view class="container-top">
+        <view class="params-bar-content">
+            <view style="text-align: center"> 筛选：</view>
+            <view class="select-date-content">
+                <picker mode="date" fields="day" value="{{sdate}}" start="2016-01-01" end="2019-12-31" bindchange="getDateTimes">
+                    <view class="selectDate">
+                        {{sdate}}
+                    </view>
+                </picker>
+                <view style="width: 50rpx;text-align: center"> 至</view>
+                <picker mode="date" fields="day" value="{{edate}}" start="2016-01-01" end="2019-12-31" bindchange="getDateTimee">
+                    <view class="selectDate">
+                        {{edate}}
+                    </view>
+                </picker>
+            </view>
+            <scroll-view scrollX style="width: a1uto;">
+                <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+                    <view class="item-view">区域:{{multiArray[0][multiIndex[0]]}}</view>
+                    <view class="item-view">板块:{{multiArray[1][multiIndex[1]]}}</view>
+                </picker>
+            </scroll-view>
+        </view>
+
+    </view>
+    --->
+	<view class="container-body">
+		<view class="pricecount-data-content">
+			<view class="left">
+				<!---- <view class="left-top">{{upday}}天内调价房源</view>--->
+				<view class="left-bottom">
+					<view class="left-item-l">
+						<view class="left-item-l-top" style="color:#df3106;margin-bottom: 5rpx;">涨价:{{datacount.hsprice2}}套</view>
+						<view class="left-item-l-top" style="color:#08ac33">降价:{{datacount.hsprice1}}套</view>
+						<view class="left-item-l-bottom">近30天{{datacount.areaname}}</view>
+					</view>
+					<view class="left-item-r">
+						<view class="item-top">
+							<view class="item-top-top">主要机构在售{{datacount.gpcount}}套</view>
+							<view class="item-top-bottom">挂牌均价:{{datacount.gpsale}}元/㎡.15天内带看:{{datacount.clookb}}次 </view>
+						</view>
+						<view class="item-bottom">
+							<view class="item-bottom-bottom">成交均价:{{datacount.cjsale}}元/㎡.近90天成交:{{datacount.cjcount}}套</view>
+						</view>
+					</view>
+				</view>
+
+			</view>
+
+
+			<view class="gd-user relative_class" data-go="/">
+				<view class="gd-user_box" wx:if="{{community_info}}">
+					<view class="gd-user_t" bindtap="handleGoT"
+						data-go="/house/community/index?cid={{community_info.id}}">
+					<view class="gd-user_title">{{community_info.title}}</view>
+					<view class="gd-user_tip">{{community_info.areaname}}.均价{{datacount.gpsale}}元/m²</view>
+				</view>
+				<view class="gd-user_b" bindtap="handleGoT"
+						data-go="/house/community/index?cid={{community_info.id}}">
+					<wxc-icon color="#b9bcbf" size="24" type="arrow-right"></wxc-icon>
+				</view>
+				</view>
+				<view class="gd-user-l">
+					<view class="gd-user-l_img">
+						<image class="gd-user-avtor" src="{{ad?ad.qrcode:'https://sbmf.ww2ss.com/dfimages/logo2.jpg'}}"
+							bindtap="imgYu" data-image="{{ad?ad.images:'https://sbmf.ww2ss.com/dfimages/logo2.jpg'}}"></image>
+					</view>
+					<view class="gd-user-desc" wx:if="{{ad}}">
+						<view class="gd-user-name">{{ad.uname}}
+							<text class="{{item.ZygwInfo.is_gold?'gold':''}}">{{ad.organization}}</text>
+						</view>
+						<view class="gd-user-time">楼盘金牌经纪人</view>
+					</view>
+					<view class="gd-user-desc" wx:else>
+						<view class="gd-user-name">手边买房
+						</view>
+					</view>
+					<view class="gd-user-r" bindtap="handleGoT"
+						data-go="/project/pages/chat/chat?userid={{ad.userid}}&adid={{ad.adid}}&cid={{postParam.conmmunityid}}"
+						wx:if="{{ad}}">在线咨询</view>
+					<view class="gd-user-r" bindtap="gwadd" wx:else>经纪人免费入驻</view>
+				</view>
+			<!--	<view class="gd-user-r" bindtap="handleGoT"  data-go="/project/pages/chat/chat?userid={{ad.userid}}&adid={{ad.adid}}&cid={{postParam.conmmunityid}}" wx:if="{{ad}}">在线咨询</view>
+				<view class="gd-user-r" bindtap="gwadd" wx:else>经纪人入驻</view>-->
+			</view>
+
+			<view class="right">
+				<view class="house-list">
+					<view bindtap="toDetail" class="list-item flexbox" data-index="{{index}}" wx:for="{{datalist}}" wx:key="index" bindtap="goHouse" data-cid="{{item}}">
+						<view class="item-img">
+							<image binderror="imgError" bindload="onLazyLoad" data-index="{{index}}" lazyLoad="true" src="{{item.house_img}}"></image>
+
+						</view>
+						<view class="item-con flex1">
+
+							<text class="item-tit">{{item.title}}</text>
+
+							<view class="item-info">
+								<text>{{item.bedroom}}</text>
+								<text class="dian"></text>
+								<text >{{item.area}}㎡</text>
+
+								<text class="dian"></text> 
+
+								<text>{{item.busines_scircle}}</text>
+								<text class="dian"></text> 
+								<text wx:if="{{item.pub_data}}">挂牌{{item.pub_data}}天</text>
+							</view>
+							<view class="item-label">
+								<text class="tag" wx:for="{{1}}" wx:for-item="items" wx:key="index">{{item.h_feature}}</text>
+								<text class="tag">手边买房</text>
+							</view>
+							<view class="item-price">
+								<view class="wan-price">
+									<text class="num">{{item.sale}}</text>
+									<text class="wan">万</text>
+								</view>
+								<text class="ping">{{item.unit_price}}元/㎡</text>
+								<text class="ping"></text>
+								<view class="wan-price_z" wx:if="{{item.uprice>0}}">
+									<text class="num">涨{{item.uprice}}</text>
+									<text class="wan">万</text>
+								</view>
+								<view class="wan-price_j" wx:if="{{item.uprice<0}}">
+									<text class="num">降{{item.uprice}}</text>
+									<text class="wan">万</text>
+								</view>
+							</view>
+
+						</view>
+					</view>
+				</view>
+				<view class="load-more" wx:if="{{dealList.length>0}}">{{loadMessage}}</view>
+			</view>
+		</view>
+	</view>
+	<button class="subscribe-btn" data-index="1" formType="submit" openType="share">分享</button>
+</view>

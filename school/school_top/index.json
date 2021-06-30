@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "杭州学区榜单",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {   
+    "house-item": "/school/components/gmt/_house_item",
+    "add-tips": "/components/weplug-add-tips/index",
+    "wxc-icon": "/min/@minui/wxc-icon/dist/index"
+  
+}
+} 

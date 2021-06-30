@@ -6,7 +6,9 @@ Page({
         errMsg: "",
         Image: "https://api.clubmall.cn/attachment/images/7/2017/11/r13oT11buG60bn2ntVp1q4pe3B6EGQ.jpeg"
     },
-    onLoad: function(t) {},
+    onLoad: function(t) {
+        console.log(t);
+    },
     previewImage: function() {
         wx.previewImage({
             current: "https://api.clubmall.cn/attachment/images/7/2017/11/r13oT11buG60bn2ntVp1q4pe3B6EGQ.jpeg",

@@ -1,0 +1,1050 @@
+ 
+/***@import "../subPackages/me/pages/manageUsers.wxss";***/
+
+.my-share {
+    overflow: hidden;
+    background: #fff;
+}
+
+.my-share .share-header {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.my-share .share-header .title {
+    line-height: 90rpx;
+    padding: 0 30rpx;
+    overflow: hidden;
+}
+
+.my-share .share-header .line {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 1rpx;
+    margin-bottom: 4rpx;
+    background-color: #e5e5e5;
+}
+
+.my-share .my-share-list {
+    padding: 30rpx 0 24rpx;
+    margin: 0 24rpx;
+    background: #fff;
+    border-bottom: 2rpx solid #F2F2F2;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.my-share .my-share-list .share-article {
+    display: inline-block;
+    line-height: 44rpx;
+    font-size: 28rpx;
+    padding-bottom: 10rpx;
+    max-height: 300rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.my-share .my-share-list.my-share-list-bottom {
+    padding: 76rpx 0 100rpx;
+    text-align: center;
+}
+
+.my-share .my-share-list .time-comment-like {
+    padding: 10rpx 0;
+    line-height: 1;
+    overflow: hidden;
+}
+
+.my-share .my-share-list .time-comment-like .iconfont {
+    margin-right: 8rpx;
+}
+
+.my-share .my-share-list .time-comment-like>text {
+    margin-right: 10rpx;
+}
+
+.my-share .my-share-list .time-comment-like .time {
+    float: left;
+    position: relative;
+    top: 4rpx;
+}
+
+.my-share .my-share-list .time-comment-like .liulan1 {
+    float: right;
+    margin-left: 20rpx;
+    display: flex;
+    align-items: center;
+}
+
+.my-share .my-share-list .time-comment-like .comment {
+    float: right;
+    margin-left: 20rpx;
+    display: flex;
+    align-items: center;
+}
+
+.my-share .my-share-list .time-comment-like .comment .pinglun-icon {
+    margin-right: 8rpx;
+    width: 36rpx;
+    height: 36rpx;
+}
+
+.my-share .my-share-list .time-comment-like .like {
+    float: right;
+    margin-left: 20rpx;
+    position: relative;
+    min-width: 60rpx;
+    overflow: hidden;
+    height: 38rpx;
+    text-align: right;
+    line-height: 38rpx;
+}
+
+.my-share .my-share-list .time-comment-like .like .orange-color {
+    color: #f7776a!important;
+}
+
+.my-share .my-share-list .time-comment-like .like>text {
+    display: inline-block;
+    padding-left: 40rpx;
+}
+
+.my-share .my-share-list .time-comment-like .like .pinglun-icon {
+    width: 36rpx;
+    height: 36rpx;
+    transition: all .3s ease;
+    opacity: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: scale(1);
+}
+
+.my-share .my-share-list .time-comment-like .like .pinglun-icon.top-layout {
+    opacity: 1;
+    z-index: 2;
+    transform: scale(1);
+}
+
+.my-share .my-share-list .time-comment-like .like .pinglun-icon.bottom-layout {
+    opacity: .3;
+    z-index: 1;
+    transform: scale(0);
+}
+
+.my-share .my-share-list .header-icon {
+    width: 62rpx;
+    margin-right: 20rpx;
+    float: left;
+}
+
+.my-share .my-share-list .header-icon .avatar {
+    display: block;
+    width: 64rpx;
+    height: 64rpx;
+    border-radius: 100%;
+}
+
+.my-share .preview-list {
+    margin: 30rpx 0;
+}
+
+.my-share .preview-list .preview-list-item {
+    display: flex;
+}
+
+.my-share .preview-list .preview-list-item image {
+    width: 100%;
+    overflow: hidden;
+}
+
+.my-share .preview-list .preview-list-item .post-image-wrap {
+    flex: 1;
+    padding-right: 12rpx;
+    border-radius: 6rpx;
+    overflow: hidden;
+}
+
+.my-share .preview-list .preview-list-item .post-image-wrap image {
+    border-radius: 6rpx;
+    overflow: hidden;
+    display: block;
+    margin-bottom: 10rpx;
+}
+
+.my-share .preview-list .preview-list-item .post-image-wrap:last-child {
+    padding-right: 0;
+}
+
+.my-share .nothing {
+    box-sizing: border-box;
+    padding: 200rpx 0 200rpx;
+    text-align: center;
+    background-color: #fff;
+}
+
+.my-share .nothing .nothing-text {
+    color: #5d7fc3;
+    border-bottom: 1rpx solid #5d7fc3;
+    padding-top: 54rpx;
+    display: inline-block;
+}
+
+.my-share .nothing>text {
+    display: block;
+}
+
+.my-share .header-content,.my-share .post-item-header {
+    overflow: hidden;
+}
+
+.my-share .header-content {
+    padding-bottom: 20rpx;
+}
+
+.my-share .header-content .attention {
+    float: right;
+}
+
+.my-share .header-content .attention .guanzhu {
+    height: 40rpx;
+    padding: 0 15rpx;
+    line-height: 40rpx;
+    border: 1rpx solid #3772cc;
+    border-radius: 33rpx;
+    color: #3772cc;
+    display: inline-block;
+}
+
+.my-share .header-content .attention .yiguanzhu {
+    height: 40rpx;
+    padding: 0 15rpx;
+    line-height: 40rpx;
+    background: #f7f7f7;
+    border-radius: 15rpx;
+    display: inline-block;
+    color: #fff;
+}
+
+.my-share .header-content .attention .other {
+    padding-left: 25rpx;
+    color: #dfdfdf;
+}
+
+.my-share .weui-media-box__title {
+    float: left;
+    line-height: 1;
+}
+
+.my-share .weui-media-box__title .project-name {
+    color: #2F8CEF;
+    padding-top: 12rpx;
+}
+
+.my-share .weui-media-box__title>text {
+    font-weight: 500;
+}
+
+.my-share .weui-media-box__title text {
+    display: block;
+}
+
+.tabBar {
+    margin: 0 24rpx;
+    background: #fff;
+    border-bottom: 2rpx solid #f2f2f2;
+    overflow: hidden;
+}
+
+.tabBar .tabBar-list {
+    float: left;
+    height: 94rpx;
+    line-height: 94rpx;
+    color: #96989E;
+    margin-right: 30rpx;
+    text-align: center;
+}
+
+.tabBar .tabBar-list.active {
+    position: relative;
+    color: #2F8CEF!important;
+}
+
+.tabBar .tabBar-list.active:before {
+    position: absolute;
+    width: 100%;
+    height: 4rpx;
+    content: '';
+    bottom: 0rpx;
+    left: 0;
+    background: #2F8CEF;
+    border-radius: 6rpx;
+}
+
+.tabBar .tabBar-list .top {
+    font-size: 50rpx;
+    margin-bottom: 10rpx;
+}
+
+.tabBar .tabBar-list .top,.tabBar .tabBar-list .bottom {
+    line-height: 1;
+}
+
+.footer {
+    z-index: 999;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    background: rgba(255,255,255,0.95);
+    padding: 18rpx 10rpx 18rpx 0;
+    box-sizing: border-box;
+    box-shadow: 0 -4rpx 12rpx 0 rgba(21,24,45,0.03);
+}
+
+.footer .xin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    color: #303237;
+    width: 180rpx;
+}
+
+.footer .xin .iconfont {
+    margin-right: 12rpx;
+    color: rgba(48,55,64,0.5);
+}
+
+.footer .xin .text {
+    line-height: 40rpx;
+    height: 40rpx;
+}
+
+.footer .xin .active {
+    color: #ee3f4d;
+}
+
+.footer .xin .active .iconfont {
+    color: #ee3f4d;
+}
+
+.footer .btn-group {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.footer .btn-group button {
+    flex: 1;
+    height: 88rpx;
+    text-align: center;
+    line-height: 88rpx;
+    display: inline-block;
+    border-radius: 4rpx;
+    width: 100%;
+    margin: 0 10rpx;
+}
+
+.footer .call-phone {
+    background: #2F8CEF;
+}
+
+.footer .contact {
+    background: linear-gradient(52deg,#FF8E5C 0%,#FF5431 100%);
+}
+
+.footer .pink-color {
+    color: #f7776a;
+}
+
+.question-list {
+    padding: 35rpx 30rpx 20rpx;
+    background: #fff;
+    border-bottom: 1rpx solid #f2f2f2;
+}
+
+.question-list.question-list-bottom {
+    padding: 76rpx 0 100rpx;
+    text-align: center;
+}
+
+.question-list .question-cont {
+    padding-bottom: 30rpx;
+}
+
+.question-list .question-cont .con-txt .question-cont-log {
+    background: #f7b55e;
+    height: 34rpx;
+    width: 34rpx;
+    line-height: 34rpx;
+    text-align: center;
+    display: inline-block;
+    margin-right: 14rpx;
+}
+
+.question-list .answer-cont {
+    padding-bottom: 30rpx;
+}
+
+.question-list .answer-cont .con-txt {
+    padding-bottom: 20rpx;
+}
+
+.question-list .answer-cont .content {
+    overflow: hidden;
+}
+
+.question-list .answer-cont .content .tags-list {
+    float: left;
+    overflow: hidden;
+}
+
+.question-list .answer-cont .content .tags-list .tag {
+    float: left;
+    height: 36rpx;
+    margin-right: 10rpx;
+    line-height: 36rpx;
+    padding: 0 16rpx;
+    text-align: center;
+    border-radius: 5rpx;
+    background: #e9f0fa;
+    color: #2d8cf0;
+    border: none;
+}
+
+.question-list .answer-cont .content .year {
+    float: right;
+}
+
+.model {
+    position: fixed;
+    background: #fff;
+    border-radius: 8rpx;
+    width: 450rpx;
+    padding: 0 50rpx;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.model .model-btn {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1rpx solid #f7f7f7;
+    padding: 50rpx 0;
+}
+
+.model .image-box {
+    width: 300rpx;
+    height: 300rpx;
+    margin: 120rpx auto 100rpx;
+    border: 1rpx solid rgba(0,0,0,0.3);
+}
+
+.model .image-box image {
+    padding: 10rpx;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+.model .cont-txt {
+    text-align: center;
+}
+
+.model .cont-txt .txt {
+    display: block;
+}
+
+.model .savecode {
+    height: 70rpx;
+    line-height: 70rpx;
+    padding: 0 90rpx;
+    border: 1rpx solid #3772cc;
+    border-radius: 45rpx;
+}
+
+.model-bg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    background: rgba(0,0,0,0.1);
+    top: 0;
+    z-index: 999;
+}
+
+.sales-man-project {
+    padding: 0 24rpx;
+    border-top: 12rpx solid #F3F3F4;
+    border-bottom: 12rpx solid #F3F3F4;
+}
+
+.sales-man-project .title {
+    padding: 20rpx 0 20rpx;
+    line-height: 56rpx;
+    font-size: 40rpx;
+    font-weight:bold;
+    text-align: center;
+    background-color: #3325f00d;
+    border-radius: 20rpx;
+    
+}
+
+.sales-man-project .article-list {
+    display: flex;
+    box-sizing: border-box;
+}
+
+.sales-man-project .article-list .text-cont {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    background: #fff;
+    padding: 16rpx 0 24rpx;
+}
+
+.sales-man-project .article-list .text-cont .project-name {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    max-width: 300rpx;
+    overflow: hidden;
+    font-weight: 500;
+}
+
+.sales-man-project .article-list .lottery-info {
+    line-height: 38rpx;
+    padding: 0 12rpx;
+    border-radius: 4rpx;
+    background: #eaf3fd;
+    font-size: 24rpx;
+    color: #2F8CEF;
+    float: right;
+}
+
+.sales-man-project .article-list .question-cont {
+    background: #fff;
+    position: relative;
+    margin-right: 24rpx;
+    margin-top: 30rpx;
+}
+
+.sales-man-project .article-list .question-cont.question-cont-one {
+    margin-right: 0;
+    background: #f2f2f2;
+     
+}
+
+.sales-man-project .article-list .question-cont image {
+    display: block;
+    width: 100%;
+    height: 260rpx;
+    border-radius: 12rpx;
+}
+
+.sales-man-project .article-list .question-cont .lview{
+    font-weight:bold;
+    font-size: 36rpx;
+    height: 45rpx; 
+    line-height: 45rpx;
+    padding-top: 10px;
+    padding-bottom: 10rpx;
+
+}
+.sales-man-project .article-list .question-cont .ltext{   
+    font-size: 30rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+}
+.icon-xingzhuang:before {
+    content: "\e6b6";
+}
+
+
+.post-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.post-card .top-img {
+    height: 392rpx;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-color: #366AB3;
+}
+
+.post-card .card-detail {
+    position: relative;
+    margin: 72rpx 24rpx 24rpx;
+    padding: 28rpx 30rpx;
+    box-shadow: 0 8rpx 30rpx 0 rgba(189,131,69,0.2);
+    background: url(https://sbmf.ww2ss.com/dfimages/20196191121387887_1.png) center / 100% 100% no-repeat;
+    box-sizing: border-box;
+    border-radius: 12rpx;
+}
+
+.post-card .card-detail .top-info {
+    margin-bottom: 28rpx;
+}
+
+.post-card .card-detail .top-info .left-avatar {
+    float: left;
+    width: 140rpx;
+    height: 140rpx;
+    border-radius: 16rpx;
+    border: 2px solid #FFF5D7;
+    position: relative;
+    top: -60rpx;
+}
+
+.post-card .card-detail .top-info .right-cont {
+    margin-left: 176rpx;
+}
+
+.post-card .card-detail .top-info .right-cont .name {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.post-card .card-detail .top-info .right-cont .name .left {
+    font-size: 36rpx;
+    font-weight: bold;
+    line-height: 50rpx;
+    margin-right: 16rpx;
+}
+
+.post-card .card-detail .top-info .right-cont .name .right {
+    display: inline-block;
+    font-size: 24rpx;
+    font-weight: 400;
+    line-height: 40rpx;
+    width: 192rpx;
+    height: 38rpx;
+    background: rgba(255,255,255,0.5);
+    border-radius: 38rpx;
+    text-align: center;
+    padding-right: 35rpx; 
+}
+
+.post-card .card-detail .top-info .right-cont .weixin {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    font-size: 24rpx;
+    font-weight: 400;
+    line-height: 34rpx;
+    padding: 12rpx 0 20rpx;
+}
+
+.post-card .card-detail .top-info .right-cont .weixin .iconfont {
+    margin-left: 8rpx;
+}
+
+.post-card .card-detail .self-log {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 24rpx;
+    border-bottom: 2rpx solid rgba(122,79,21,0.05);
+    width: 100%;
+}
+
+.post-card .card-detail .self-log .line {
+    position: relative;
+    width: 100%;
+}
+
+.post-card .card-detail .self-log .line .top {
+    font-family: DINAlternate-Bold;
+    font-size: 40rpx;
+    font-weight: bold;
+    line-height: 48rpx;
+    margin-bottom: 16rpx;
+}
+
+.post-card .card-detail .self-log .line .bottom {
+    font-size: 24rpx;
+    font-weight: 400;
+    line-height: 34rpx;
+}
+
+.post-card .card-detail .self-log .line:after {
+    position: absolute;
+    top: 14rpx;
+    right: -1rpx;
+    content: '';
+    width: 4rpx;
+    height: 22rpx;
+    transform: rotate(15deg);
+    background: rgba(117,72,50,0.1);
+}
+
+.post-card .card-detail .self-log .line:last-child:after {
+    display: none;
+}
+
+.post-card .card-detail .default-project {
+    display: block;
+    font-size: 24rpx;
+    font-weight: 400;
+    line-height: 34rpx;
+    margin-top: 24rpx;
+    margin-bottom: 12rpx;
+}
+
+.post-card .card-detail .sign-text {
+    font-size: 24rpx;
+    font-weight: 400;
+    line-height: 34rpx;
+}
+
+.post-card .card-detail .sign-text .resume {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+}
+
+.post-card .card-detail .sign-text .wrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.post-card .card-detail .sign-text .load-more {
+    color: #6A82C7;
+}
+
+.post-card .card-detail .level-box {
+    position: absolute;
+    top: -20rpx;
+    right: 20rpx;
+    width: 110rpx;
+    height: 110rpx;
+    background: url(https://imgcdn.huanjutang.com/assets/img/20196191631118081.png) center / 100% no-repeat;
+}
+
+.post-card .card-detail .big_size-color {
+    color: #424241;
+}
+
+.post-card .card-detail .normal_size-color {
+    color: #504f4d;
+}
+
+.post-card .card-detail .line-color {
+    border-color: rgba(122,79,21,0.05);
+}
+
+.post-card .card-detail.NO1 {
+    background: url(https://imgcdn.huanjutang.com/assets/img/20196191120158081.png) center / 100% 100% no-repeat;
+    box-shadow: 0 8rpx 30rpx 0 rgba(184,138,114,0.2);
+}
+
+.post-card .card-detail.NO1 .level-box {
+    background: url(https://imgcdn.huanjutang.com/assets/img/20196191631318081.png) center / 100% no-repeat;
+}
+
+.post-card .card-detail.NO1 .top-info .left-avatar {
+    border-color: #FFEEDF;
+}
+
+.post-card .card-detail.NO1 .self-log .line:after {
+    background: rgba(117,72,50,0.1)!important;
+}
+
+.post-card .card-detail.NO1 .big_size-color {
+    color: #754832;
+}
+
+.post-card .card-detail.NO1 .normal_size-color {
+    color: #835037;
+}
+
+.post-card .card-detail.NO1 .line-color {
+    border-color: rgba(95,64,14,0.06);
+}
+
+.post-card .card-detail.NO2 {
+    background: url(https://imgcdn.huanjutang.com/assets/img/20196191121388081.png) center / 100% 100% no-repeat;
+    box-shadow: 0 8rpx 30rpx 0 rgba(71,86,114,0.15);
+}
+
+.post-card .card-detail.NO2 .level-box {
+    background: url(https://imgcdn.huanjutang.com/assets/img/20196191629558081.png) center / 100% no-repeat;
+}
+
+.post-card .card-detail.NO2 .top-info .left-avatar {
+    border-color: #F1F4FA;
+}
+
+.post-card .card-detail.NO2 .self-log .line:after {
+    background: rgba(48,55,64,0.05)!important;
+}
+
+.post-card .card-detail.NO2 .big_size-color {
+    color: #384B64;
+}
+
+.post-card .card-detail.NO2 .normal_size-color {
+    color: #405472;
+}
+
+.post-card .card-detail.NO2 .line-color {
+    border-color: rgba(48,55,64,0.05);
+}
+
+.post-card .card-detail.NO3 {
+    background: url(https://imgcdn.huanjutang.com/assets/img/20196191121387887.png) center / 100% 100% no-repeat;
+    box-shadow: 0 8rpx 30rpx 0 rgba(189,131,69,0.2);
+}
+
+.post-card .card-detail.NO3 .level-box {
+    background: url(https://imgcdn.huanjutang.com/assets/img/20196191631118081.png) center / 100% no-repeat;
+}
+
+.post-card .card-detail.NO3 .top-info .left-avatar {
+    border-color: #FFF5D7;
+}
+
+.post-card .card-detail.NO3 .self-log .line:after {
+    background: rgba(122,79,21,0.05)!important;
+}
+
+.post-card .card-detail.NO3 .big_size-color {
+    color: #7A4F15;
+}
+
+.post-card .card-detail.NO3 .normal_size-color {
+    color: #8F5D19;
+}
+
+.post-card .card-detail.NO3 .line-color {
+    border-color: rgba(122,79,21,0.05);
+}
+
+.post-card .share-good-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin: 0 24rpx 24rpx;
+}
+
+.post-card .share-good-btn .line {
+    width: 342rpx;
+    height: 100rpx;
+    background: #3325f00d;
+    border-radius: 12rpx;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1rpx #cecfcf solid;
+}
+
+.post-card .share-good-btn .line .iconfont {
+    width: 80rpx;
+    height: 80rpx;
+}
+
+.post-card .share-good-btn .line .text {
+    font-size: 24rpx;
+    font-weight: 400;
+    color: #606266;
+    line-height: 1;
+    margin-left: 6rpx;
+}
+
+.post-card .share-good-btn .line .good-tips {
+    position: absolute;
+    right: -12rpx;
+    top: -10rpx;
+    width: 102rpx;
+    height: 34rpx;
+    background: linear-gradient(52deg,#ff8e5c 0%,#ff5431 100%);
+    border-radius: 34rpx 34rpx 34rpx 0;
+    font-size: 20rpx;
+    font-weight: 500;
+    color: white;
+    line-height: 34rpx;
+    text-align: center;
+}
+
+.post-card .share-good-btn .good-box {
+    width: 60rpx;
+    height: 60rpx;
+    background: linear-gradient(52deg,#ff8e5c 0%,#ff5431 100%);
+    box-shadow: 0 4rpx 8rpx 0 rgba(255,126,80,0.2);
+    text-align: center;
+    line-height: 60rpx;
+    border-radius: 60rpx;
+    margin-right: 16rpx;
+}
+
+.post-card .share-good-btn .share-box {
+    width: 60rpx;
+    height: 60rpx;
+    background: linear-gradient(231deg,#80ddff 0%,#2d89f1 100%);
+    box-shadow: 0 4rpx 8rpx 0 rgba(63,155,244,0.2);
+    text-align: center;
+    line-height: 60rpx;
+    border-radius: 60rpx;
+    margin-right: 16rpx;
+}
+.post-card .share-good-btn .share-box image {
+    width: 30rpx;
+    height: 30rpx;
+ 
+}
+
+
+
+.nav-bottom2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14rpx 18rpx;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background: #ffffff;
+    width: 100%;
+    box-sizing: border-box;
+    /***border-top: 1px solid #000b2c;***/
+    z-index: 99999999;
+    
+}
+
+.nav-bottom2 .share {
+    position: relative;
+}
+
+.nav-bottom2 .share button {
+    
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+ 
+
+.nav-bottom2 .guanzhu .images1 {
+    width: 36rpx;
+    height: 36rpx;
+    display: block;
+    margin-bottom: 6rpx;
+}
+
+.nav-bottom2 .guanzhu2 .images2 {
+    width: 70rpx;
+    height: 70rpx;
+    display: block;
+    margin-bottom: 6rpx;
+    border-radius: 50rpx;
+    
+
+}
+
+.nav-bottom2 .guanzhu1 .ntext {
+    font-size: 30rpx;
+    color: #366AB3;
+    font-weight:bold;
+}
+.nav-bottom2 .guanzhu1 .ntext1 {
+    font-size: 22rpx;  
+}
+
+.nav-bottom2 .guanzhu2.gz_img cover-image {
+    width: 38rpx;
+}
+
+.nav-bottom2 .lianxi cover-image {
+    width: 48rpx;
+    height: 44rpx;
+    display: block;
+    margin-bottom: 4rpx;
+}
+
+
+.nav-bottom2 .fun {
+    display: flex;
+    align-items: center;
+    font-size: 24rpx;
+    
+}
+
+.nav-bottom2 .fun cover-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-bottom2 .fun .guanzhu {
+    width: 74rpx;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: content-box;
+}
+.nav-bottom2 .fun .guanzhu1 {
+    width: 100rpx;
+    padding-left: 5px;
+    padding-right: 10px;
+    box-sizing: content-box;
+}
+.nav-bottom2 .fun .guanzhu2 {
+    width: 60rpx;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: content-box;
+}
+
+.nav-bottom2 .tell {
+    width: 368rpx;
+    height: 80rpx;
+  
+    border-radius: 54px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+ 
+    font-size: 30rpx;
+    font-weight: 400;
+    background-color: #0672ee;
+}
+
+
+.fix-iphonex-button {
+    position: fixed;
+    left: 0;
+    bottom: 0!important;
+    height: 68rpx!important;
+    width: 100%;
+    background: #fff;
+    z-index: 9999999999999;
+}

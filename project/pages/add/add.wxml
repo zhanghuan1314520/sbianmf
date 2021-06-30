@@ -1,0 +1,7 @@
+<view class="search-box">
+    <view class="search-box_l">
+      <image src="/dfimages/5_1.png"></image>
+      <input type="text" placeholder="输入标题搜索" />
+    </view>
+    <view class="search-box_r">搜索</view>
+  </view>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "wxc-icon": "/min/@minui/wxc-icon/dist/index",
+    "wxc-loading": "/min/@minui/wxc-loading/dist/index"
+  },
+  "enablePullDownRefresh": false
+}

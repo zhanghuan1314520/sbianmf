@@ -1,0 +1,16 @@
+{
+  "usingComponents": {
+    "ec-canvas": "../../ec-canvas/ec-canvas",
+    "wxc-icon": "../../min/@minui/wxc-icon/dist/index",
+    "wxc-toast": "../../min/@minui/wxc-toast/dist/index",
+    "wxc-loading": "../../min/@minui/wxc-loading/dist/index",
+    "add-tips": "/components/weplug-add-tips/index",
+    "BusiPithyBaseInfo": "/school/components/xqb/BusiPithyBaseInfo",
+    "vip-msgbox": "/components/vipmsgbox/index",
+    "building-rank": "/school/components/gmt/_building_rank"
+  },
+  "backgroundColor": "#366AB3",
+  "navigationBarBackgroundColor": "#366AB3",
+  "navigationBarTextStyle": "white"
+ 
+}

@@ -1,0 +1,55 @@
+<view class="container">
+      <view class="wapctt">
+       <!---
+            <view class="tabs">
+                  <view bindtap="_tabs" class="tab {{tab==index?'active':''}}" data-index="{{index}}" wx:for="{{['本周活跃','金牌顾问']}}" wx:key="{{index}}">{{item}}</view>
+            </view>
+       --->  
+            <view class="ul">
+                  <view bindtap="handleGo" class="li house_list" data-go="/house/guwen/gw-detail/index?userid={{item.id}}&adid={{item.adid}}&houseid={{item.houseid}}" wx:for="{{list}}" wx:key="item">
+                
+                        <image class="bg" src="https://sbmf.ww2ss.com/dfimages/jifen/zygw_bg.png" wx:if="{{tab==1}}"></image>
+                        <view class="t-box">
+                              <view class="avtor">
+                                    <image src="{{item.qrcode}}"></image>
+                              </view>
+                              <view class="info">
+                                    <view class="info-top">
+                                          <view class="name">{{item.uname}}</view>
+                                          <view class="name-pos">
+                                                <image class="zygw_bq1" src="https://sbmf.ww2ss.com/dfimages/jifen/gold_bq.png" wx:if="{{index<1}}"></image>
+                                                <image class="zygw_bq2" src="https://sbmf.ww2ss.com/dfimages/jifen/zygw_icon.png" wx:else></image>
+                                          </view>
+                                    </view>
+                                    <view class="info-bottom">
+                                          <view>{{item.organization}}</view>
+                                    </view>
+                              </view>
+                              <view class="huoyuedu ">点赞：{{item.rank}}个</view>
+                        </view>
+                        <view class="b-box">
+                              <view catchtap="handleCall" class="phone1" data-phone="{{item.mobile}}">
+                                    <view class="phone-info">
+                                          <image src="https://sbmf.ww2ss.com/dfimages/jifen/call.png"></image>
+                                          <view>打电话</view>
+                                    </view>
+                              </view>
+                              <view   bindtap="handleGo" data-go="/project/pages/chat/chat?userid={{item.userid}}&adid={{item.adid}}&houseid={{item.houseid}}"  class="wx" >
+                                    <view  class="wx-info" >
+                                          <image src="https://sbmf.ww2ss.com/dfimages/jifen/wx.png"></image>
+                                          <view>在线咨询</view>
+                                    </view>
+                              </view>
+                        </view>
+                  </view>
+            </view>
+            <view class="noMore" wx:if="{{!initIn&&noMore}}">无更多数据~~</view>
+      </view>
+      <view class="noList" wx:if="{{list.length==0}}">
+            本楼盘暂无经纪人
+      </view>
+       
+    <view bindtap="handleGo" class="nav" data-go="/house/guwen/gw-add/index?cid={{houseid}}">
+        我是经纪人，我要入驻
+    </view> 
+</view>

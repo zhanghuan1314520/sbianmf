@@ -1,0 +1,155 @@
+/* house/house_chart/xiaoqu.wxss */
+@import "../../dfBaseWxss__/3.wxss";
+@import "../../dfBaseWxss__/6.wxss";
+@import "../../dfBaseWxss__/5.wxss";
+@import "../../dfBaseWxss__/2.wxss";
+@import "/house/new_header.wxss";
+@import "/house/popup.wxss";
+
+
+
+.content {
+  margin-bottom: 90rpx;
+}
+.container-body {
+  width: 710rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  margin: 20rpx;
+  height: 800rpx;
+
+}
+ec-canvas {
+  width: 100%;
+  height: 100%;
+  margin-top: 40rpx;
+}
+/* 热度区域开始 */
+.new_city_box {
+  width: 690rpx;
+  height: auto;
+  background-color: #fff;
+  margin: 20rpx;
+  border-radius: 10rpx;
+  padding: 10rpx;
+}
+.new_city_title {
+  font-size: 28rpx;
+  color: #000;
+  margin: 20rpx 0;
+  font-weight: 400;
+}
+
+.new_city_nav {
+  display: flex;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 24rpx;
+  color: #A0ACBA;
+  background-color: #DCE6FF;
+}
+.new_city_nav_name{
+  width: 138rpx;
+  text-align: center;
+}
+.new_city_nav_r {
+  width: 285rpx;
+  display: flex;
+  text-align: center;
+}
+.new_city_nav_r_area{
+  width: 160rpx;
+}
+.new_city_nav_r_heat{
+  width: 145rpx;
+}
+.new_city_nav_l {
+  display: flex;
+  width: 410rpx;
+}
+
+.new_city_nav_l_item {
+  width: 115rpx;
+  text-align: center;
+}
+.new_city_nav_l_item_85 {
+  width: 85rpx;
+  text-align: center;
+}
+
+
+.new_city_list {
+  display: flex;
+  font-size: 22rpx;
+  background-color: #fff;
+  margin: 10rpx 0;
+}
+
+
+.new_city_list1 {
+  display: flex;
+  font-size: 22rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: #fff;
+}
+
+.new_city_list_r {
+  width: 285rpx;
+  display: flex;
+  font-size: 22rpx;
+  color: #000;
+  align-items: center;
+}
+
+.new_city_list_r_img {
+  width: 25rpx;
+  height: 25rpx;
+}
+
+.new_city_list_r_name {
+  width: 150rpx;
+  padding: 0 5rpx;
+  margin-left: 10rpx;
+}
+
+.new_city_list_r_img image {
+  width: 100%;
+  height: 100%;
+}
+
+.new_city_list_l {
+  display: flex;
+  width: 410rpx;
+  color: #000;
+  align-items: center;
+}
+
+.new_city_list_l_item1 {
+  width: 115rpx;
+  text-align: center;
+  font-weight: 800;
+}
+.new_city_list_l_item2 {
+  width: 115rpx;
+  text-align: center;
+  /* display: flex; */
+}
+
+/*涨幅区域 */
+.new_city_list_l_item_zhi{
+  width: 85rpx;
+  text-align: center;
+}
+.new_city_list_l_item_img{
+  width: 30rpx;
+  height: 30rpx;
+}
+.new_city_list_l_item_img image{
+  width: 100%;
+  height: 100%;
+}
+.new_city_list_item_img {
+  width: 30rpx;
+  height: 30rpx;
+}

@@ -3,7 +3,8 @@ var t = getApp(), e = t.requirejs("core");
 Page({
     data: {},
     onLoad: function(e) {
-        t.checkAuth(), this.setData({
+        t.checkAuth();
+        this.setData({
             options: e
         });
     },
@@ -18,6 +19,14 @@ Page({
             })) : wx.redirectTo({
                 url: "../../commission/pages/register/index"
             });
+
+            if(t.data.member.level!=2)
+            { 
+                wx.switchTab({
+                    url: "/dfpage/me/index/index"
+                });
+            }
+
         });
     }
 });

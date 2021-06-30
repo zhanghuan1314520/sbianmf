@@ -1,0 +1,32 @@
+<view>
+    <view bindtap="__e" class="{{['scroll-view-item data-house',show_des?'bor':'']}}" data-event-opts="{{[ [ 'tap',[ [ 'houseDetails',['$0'],[ [ ['list','',index] ] ] ] ] ] ]}}" id="house"  wx:for="{{list}}">
+    <!--  wx:for="{{$root.l1}}" wx:key="index" -->
+        <view class="line">
+            <view class="left-dotted"></view>
+            <view class="{{['top',topLine?'topline':'']}}">
+                <view class="house-img">
+                    <view class="host-photo" style="background-size:cover;background-image:url('{{item.url}}');">
+                        <view class="host-describe">
+                            <view catchtap="__e" class="host-status" data-event-opts="{{[ [ 'tap',[ [ 'showRes',['$0'],[ [ ['list','',index] ] ] ] ] ] ]}}" >{{item.m1}}</view>
+                            <view class="host-time">{{item.m2}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="house-right">
+                    <view class="house-des">{{item.name}}</view>
+                    <view class="house-price" >{{item.pic}}㎡起</view>
+                    <!-- <view class="house-price" wx:else>价格待定</view> -->
+                    <view class="house-addr">{{item.adder}}</view>
+                    <view class="house-tag">
+                        <label class="_span">不限购</label>
+                        <label class="_span">地铁房</label>
+                        <label class="_span">非无房可参与</label>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="bottom">
+            <label class="_span">清秋点评：余杭区临平大道与长宁路交叉口江南国际新城博物馆</label>
+        </view>
+    </view>
+</view>

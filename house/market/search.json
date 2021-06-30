@@ -1,0 +1,10 @@
+{
+    "usingComponents": {
+        "wxc-icon": "../../min/@minui/wxc-icon/dist/index",
+        "wxc-loading": "../../min/@minui/wxc-loading/dist/index"
+    },
+    "navigationBarTitleText": "搜索房源",
+    "navigationBarBackgroundColor": "#366AB3",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#366AB3"
+}

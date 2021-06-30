@@ -1,16 +1,15 @@
 <loading wx:if="{{!show}}">加载中...</loading>
 <view class="page" wx:if="{{show}}">
     <block wx:if="{{bundlelist.length>0}}">
-        <view class="fui-list-group" wx:for="{{bundlelist}}">
+        <view class="fui-list-group" wx:for="{{bundlelist}}" wx:key="{{index}}">
             <view class="fui-list-group-title">
                 <view class="fui-list" style="flex: 1;padding:0;border-bottom:1px solid #dcdcdc;">
                     <view class="fui-list-inner">包裹{{item.code}} </view>
-                    <navigator class="fui-list-media" hoverClass="none" openType="navigate" style="float:right;font-size:24rpx;color:#666;margin:0;" url="/pages/order/express/index?id={{item.orderid}}&sendtype={{item.sendtype}}&bundle={{item.code}}">点击查看物流
-                            <span class="angle" style="font-size:48rpx;"></span>
+                    <navigator class="fui-list-media" hoverClass="none" openType="navigate" style="float:right;font-size:24rpx;color:#666;margin:0;" url="/pages/order/express/index?id={{item.orderid}}&sendtype={{item.sendtype}}&bundle={{item.code}}">点击查看物流                            <span class="angle" style="font-size:48rpx;"></span>
                     </navigator>
                 </view>
             </view>
-            <navigator hoverClass="none" openType="navigate" url="/pages/order/express/index?id={{item.orderid}}&sendtype={{item.sendtype}}&bundle={{item.code}}" wx:for="{{item.goods}}" wx:for-item="goods">
+            <navigator hoverClass="none" openType="navigate" url="/pages/order/express/index?id={{item.orderid}}&sendtype={{item.sendtype}}&bundle={{item.code}}" wx:for="{{item.goods}}" wx:for-item="goods" wx:key="{{index}}">
                 <view class="fui-list">
                     <view class="fui-list-media back">
                         <image src="{{goods.thumb}}"></image>
@@ -30,8 +29,7 @@
                     <text>{{count}}</text>件商品</view>
             </view>
             <view class="fui-list-inner">
-                <view class="fui-list-inner">
-                        物流状态：<text class="text-success">{{status}}</text>
+                <view class="fui-list-inner">                        物流状态：<text class="text-success">{{status}}</text>
                     <view class="text">快递公司：{{com}}<text></text>
                     </view>
                     <view class="text">快递单号：{{sn}}<text></text>
@@ -44,7 +42,7 @@
             <view class="text-cancel">暂时没有物流信息</view>
         </view>
         <view class="fui-list-group express-list" wx:if="{{expresslist}}">
-            <view class="fui-list {{index==0?'current':''}}" wx:for="{{expresslist}}">
+            <view class="fui-list {{index==0?'current':''}}" wx:for="{{expresslist}}" wx:key="{{index}}">
                 <view class="fui-list-inner">
                     <view class="text step">{{item.step}}</view>
                     <view class="text time">{{item.time}}</view>

@@ -1,0 +1,181 @@
+.new_box {
+  width: 670rpx;
+
+  border-radius: 15rpx;
+  background-color: #fff;
+  padding: 20rpx;
+  position: relative;
+  margin:75rpx 20rpx 20rpx 20rpx;
+}
+.box_tag{
+  background-color: #0255DF;
+  color: #fff;
+  width: 50rpx;
+  font-size: 22rpx;
+  border-radius: 10rpx;
+  padding: 10rpx;
+  position: absolute;
+  margin: -40rpx 0 0 20rpx;
+}
+.nav.data-v-3e913807 {
+  padding: 20rpx;
+}
+.nav ._p.data-v-3e913807 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  text-align: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav ._p ._span.data-v-3e913807 {
+  font-size: 24rpx;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.nav ._p ._span.data-v-3e913807:first-child {
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-right: 24rpx;
+}
+.detail.data-v-3e913807 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 24rpx;
+}
+.detail .part.data-v-3e913807 {
+  font-size: 24rpx;
+}
+.detail .sec.data-v-3e913807 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  height: 34rpx;
+}
+.detail .detail-name.data-v-3e913807 {
+  color: #888;
+  
+  margin-right: 16rpx;
+}
+.detail .price.data-v-3e913807 {
+  font-size: 40rpx;
+  line-height: 48px;
+  margin-right: 8rpx;
+}
+.detail .trend.data-v-3e913807 {
+  font-weight: 700;
+  font-size: 40rpx;
+  line-height: 48rpx;
+  margin-right: 8rpx;
+}
+.detail .unit.data-v-3e913807 {
+  color: #fa4b00;
+}
+.detail .unit_gp.data-v-3e913807 {
+  color: #366ab3;
+  
+}
+.detail .down.data-v-3e913807 {
+  color: #00b08d;
+}
+.detail .percentage.data-v-3e913807 {
+  font-size: 28rpx;
+  line-height: 25rpx;
+}
+.up{
+  color: #fa4b00;
+}
+.down {
+  color: #00b08d;
+}
+/* 图表切换选中部分开始 */
+.nav_box {
+  display: flex;
+  padding: 40rpx 20rpx 20rpx 20rpx;
+  justify-content: space-around;
+  height: 30rpx;
+  line-height: 30rpx;
+}
+
+.nav_box_r {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  border-right: 1px solid #9e9e9e;
+  color: #9e9e9e;
+}
+
+.nav_box_l {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  border-left: 1px solid #9e9e9e;
+  color: #9e9e9e;
+}
+.selected {
+  width: 60rpx;
+  border-bottom: 6rpx solid #2B83DB;
+  padding-top: 10rpx;
+}
+.nav_box_r_bg{
+  color: #000;
+  font-weight: bolder;
+}
+/* 图表切换选中部分结束 */
+/* 图表展示状态部分开始 */
+.tag_box {
+  margin: 10rpx 30rpx;
+  display: flex;
+}
+
+.tag_box_item {
+  flex: 1;
+  justify-content: center;
+  color: #9e9e9e;
+  font-size: 26rpx;
+  display: flex;
+}
+
+.circle {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 10rpx 10rpx 0 0;
+}
+
+.bg1 {
+  background-color: rgb(111, 13, 238);
+}
+
+.bg2 {
+  background-color: #ee0d20;
+}
+
+.bg3 {
+  background-color: rgb(13, 238, 32);
+}
+.red{
+  color: red;
+}
+.green{
+  color: green;
+}
+/* 图表展示状态部分结束 */

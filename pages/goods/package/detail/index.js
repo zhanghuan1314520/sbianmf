@@ -24,7 +24,7 @@ Page({
                 goodsid: o[e].goodsid,
                 optionid: null
             };
-            a.setData({
+            console.log(i), a.setData({
                 packgoods: o,
                 package: t.package,
                 good: i
@@ -63,11 +63,14 @@ Page({
     choose: function(t) {
         var o = t.currentTarget.dataset.optionid, a = t.currentTarget.dataset.title, i = t.currentTarget.dataset.index, e = this.data.packgoods, n = this.data.option[i].packageprice;
         e[this.data.index].packageprice = n;
-        for (var d = 0, s = 0; s < e.length; s++) d += 1 * e[s].packageprice;
-        this.setData({
+        var s = 0;
+        console.log(this.data.option[i].packageprice), console.log(e[this.data.index]), 
+        console.log(e);
+        for (var d = 0; d < e.length; d++) s += 1 * e[d].packageprice;
+        console.log(s), this.setData({
             option_active: o,
             option_title: a,
-            sum: d
+            sum: s
         });
     },
     confirm: function() {
@@ -79,7 +82,9 @@ Page({
         });
     },
     buy: function() {
-        for (var t = this, o = this.data.good, i = !0, e = 0; e < o.length; e++) null == o[e].optionid && (i = !1);
+        var t = this, o = this.data.good;
+        console.log(o);
+        for (var i = !0, e = 0; e < o.length; e++) null == o[e].optionid && (i = !1);
         i ? (o = JSON.stringify(o), wx.redirectTo({
             url: "/pages/order/create/index?packageid=" + t.data.package.id + "&goods=" + o
         })) : a.toast(this, "请选择规格！");

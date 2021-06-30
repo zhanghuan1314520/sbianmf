@@ -1,0 +1,68 @@
+<view bindtap="__e" class="item data-v-1468a178" data-event-opts="{{[ [ 'tap',[ [ 'openBuilding',['$event'] ] ] ] ]}}">
+    <view class="{{['rank-order data-v-1468a178','top'+items.rankNum]}}" wx:if="{{items.rankNum}}">{{''+(items.rankNum>3?items.rankNum:'')+''}}</view>
+    <view class="main data-v-1468a178">
+        <view class="img-wrap _div data-v-0499d828">
+        	<navigator openType="navigate" url="/school/school_details/index?cid={{items.schoolcode}}">
+                <image class="imgschool data-v-264f4da8"  src="{{items.thumbs?items.thumbs:'https://sbmf.ww2ss.com/dfimages/photono.png'}}" ></image>
+
+        </navigator>
+        </view>
+
+        <view class="{{['right data-v-1468a178',center&&!rankNum?'center':'']}}">
+          <navigator openType="navigate" url="/school/school_details/index?cid={{items.schoolcode}}">
+            <view class="building-desc-title top data-v-1468a178">{{items.title}}</view>
+            <view class="building-desc-info desc data-v-1468a178">{{''+items.adname+''}} | {{''+items.juli+''}}km</view>
+            <view class="price data-v-1468a178" wx:if="{{items.price>0}}">
+                <view class="{{['data-v-1468a178','customized_price']}}">
+                    <view class="building-desc-price data-v-1468a178">{{items.price+'元/㎡'}}</view>
+                </view>
+
+                <view catchtap="__e" class="comment-show _div data-v-1468a178"  style="{{'display:'+(items.mixprice?'inline-flex':'none')+';'}}">
+                    <fc-icon bind:__l="__l" class="data-v-1468a178" type="40_comment_small" vueId="31a7b532-2"></fc-icon>
+                    <label class="_span data-v-1468a178"></label>
+                </view>
+            </view>
+            <view class="tags data-v-1468a178" wx:if="{{items.maxprice}}">
+                <view class="tags-overflow _div data-v-1468a178">
+                    <text class="{{['building-desc-info data-v-1468a178']}}">最高挂价：{{items.maxprice}}万</text>
+                </view>
+                <view catchtap="__e" class="comment-show comment-bottom _div data-v-1468a178"  style="{{'display:'+(items.view_count?'inline-flex':'none')+';'}}"  wx:if="{{false}}}">
+                    <fc-icon bind:__l="__l" class="data-v-1468a178" type="40_comment_small" vueId="31a7b532-3"></fc-icon>
+                    <label class="_span data-v-1468a178">入学门槛：{{items.mixprice}}万</label>
+                </view>
+            </view>
+            <view class="tags data-v-1468a178" wx:if="{{items.gpcount}}">
+                <view class="tags-overflow _div data-v-1468a178">
+                    <text class="{{['building-desc-info data-v-1468a178']}}">学区库存：{{items.gpcount}}套</text>
+                </view>
+                <view catchtap="__e" class="comment-show comment-bottom _div data-v-1468a178"  style="{{'display:'+(items.view_count?'inline-flex':'none')+';'}}"  wx:if="{{false}}}">
+                    <fc-icon bind:__l="__l" class="data-v-1468a178" type="40_comment_small" vueId="31a7b532-3"></fc-icon>
+                    <label class="_span data-v-1468a178">90天成交：{{items.cjcount}}套</label>
+                </view>
+            </view>
+            <view class="tags data-v-1468a178" wx:if="{{items.school_type}}">
+                <view class="tags-overflow _div data-v-1468a178">
+                    <text class="{{['tag data-v-1468a178 green']}}">{{''+items.school_type+''}}</text>
+                </view>
+                <view catchtap="__e" class="comment-show comment-bottom _div data-v-1468a178"  style="{{'display:'+(items.view_count?'inline-flex':'none')+';'}}"  wx:if="{{false}}}">
+                    <fc-icon bind:__l="__l" class="data-v-1468a178" type="40_comment_small" vueId="31a7b532-3"></fc-icon>
+                    <label class="_span data-v-1468a178"></label>
+                </view>
+            </view>
+            <view class="building-desc-ranking _div data-v-1468a178" wx:if="{{items.displayorder>0}}">
+               
+                <image class="data-v-dc2074f4" src="https://sbmf.ww2ss.com/dfimages/28_list.png" style="width:28rpx;height:28rpx;margin: 0px 0px;"></image>
+
+                <text class="data-v-1468a178">{{'入选'+items.building_ranking}}</text>
+                <text class="data-v-1468a178" wx:if="{{items.displayorder}}">{{'第'+items.displayorder+'名'}}</text>
+            </view>
+            <view class="probability data-v-1468a178" wx:if="{{type!='即将取证'&&(items.common_probability||items.rd_probability)}}">
+                <view class="icon _i data-v-1468a178"></view>
+                <text class="data-v-1468a178">中签率：</text>
+                <text class="probability_item data-v-1468a178" wx:if="{{items.common_probability}}">{{'普通'+items.common_probability+'%'}}</text>
+                <text class="probability_item data-v-1468a178" wx:if="{{items.rd_probability}}">{{'刚需'+items.rd_probability+'%'}}</text>
+            </view>
+         </navigator>
+        </view>
+    </view>
+</view>

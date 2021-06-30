@@ -1,0 +1,227 @@
+page {
+    background: rgba(241,242,247,1);
+    border-top: 1px solid rgba(228,231,240,1);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(-180deg,#5857AC 0%,#FFFFFF 53%);
+}
+
+.container.gold {
+    background: linear-gradient(-180deg,#916436 0%,#FFFFFF 53%);
+}
+
+.li {
+    display: block;
+    margin: 80rpx 32rpx 140rpx;
+    font-size: 28rpx;
+    color: rgba(241,242,247,1);
+}
+
+.li .t-box {
+    display: block;
+    padding: 60rpx 40rpx 60rpx;
+    width: 100%;
+    height: 412rpx;
+    border-radius: 18rpx;
+    position: relative;
+    z-index: 9;
+}
+
+.li .t-box .card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.li .t-box .avtor {
+    display: block;
+    width: 126rpx;
+    height: 126rpx;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 6rpx solid rgba(255,255,255,0.4);
+}
+
+.li .t-box .info {
+    display: inline-block;
+    position: relative;
+    z-index: 6;
+}
+
+.li .t-box .info .zygw_gold {
+    position: absolute;
+    top: 110rpx;
+    left: 10rpx;
+    width: 118rpx;
+    height: 30rpx;
+    border-radius: 20rpx;
+    font-size: 18rpx;
+    font-weight: bold;
+    color: rgba(88,94,188,1);
+    background: #fff;
+}
+
+.li .t-box .info .zygw_no_gold {
+    position: absolute;
+    top: 110rpx;
+    left: 10rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 118rpx;
+    height: 30rpx;
+    border-radius: 15rpx;
+    font-size: 18rpx;
+    font-weight: bold;
+    color: rgba(88,94,188,1);
+    background: #fff;
+}
+
+.li .t-box .info .info-top {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 56rpx;
+    line-height: 55rpx;
+    overflow: hidden;
+    margin-left: 168rpx;
+    margin-top: 22rpx;
+}
+
+.li .t-box .info .info-top .name {
+    display: inline-block;
+    font-size: 40rpx;
+    font-weight: bold;
+    color: rgba(255,255,255,1);
+    padding-right: 12rpx;
+}
+
+.li .t-box .info .info-top .name-pos {
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.li .t-box .info .info-top .name-pos image {
+    display: block;
+    width: 108rpx;
+    height: 32rpx;
+}
+
+.li .t-box .info .info-top .name-pos .zygw_bq1 {
+    display: block;
+    width: 142rpx;
+    height: 36rpx;
+}
+
+.li .t-box .info .info-bottom {
+    display: inline-block;
+    height: 40rpx;
+    line-height: 40rpx;
+    border-radius: 6rpx;
+    transform: skewX(-12deg);
+    margin-bottom: 84rpx;
+    margin-left: 168rpx;
+}
+
+.li .t-box .info .info-bottom>view {
+    transform: skewX(12deg);
+    font-size: 28rpx;
+    color: rgba(138,220,255,1);
+}
+
+.phone-number {
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 28rpx;
+    color: rgba(230,241,240,1);
+    margin-bottom: 20rpx;
+}
+
+.wx-number {
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 28rpx;
+    color: rgba(230,241,240,1);
+}
+
+.code {
+    display: block;
+    width: 116rpx;
+    height: 116rpx;
+    background: rgba(74,74,74,1);
+    position: absolute;
+    right: 36rpx;
+    bottom: 54rpx;
+    z-index: 6;
+}
+
+.code image {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.li.gold .phone-number {
+    color: rgba(123,83,37,1);
+}
+
+.li.gold .wx-number {
+    color: rgba(123,83,37,1);
+}
+
+.li.gold .t-box .info .info-top .name {
+    color: rgba(22,12,2,1);
+}
+
+.li.gold .t-box .info .info-bottom>view {
+    color: rgba(145,50,12,1);
+}
+
+.btn {
+    display: block;
+    width: 640rpx;
+    height: 94rpx;
+    text-align: center;
+    line-height: 94rpx;
+    margin: 0 auto;
+    font-size: 36rpx;
+    border-radius: 47rpx;
+    border: 1px solid rgba(5,5,5,0.08);
+}
+
+.btn::before,.btn::after {
+    display: none;
+}
+
+.share {
+    color: rgba(255,255,255,1);
+    background: rgba(85,85,255,1);
+    margin-bottom: 36rpx;
+}
+
+.share.gold {
+    background: rgba(206,164,92,1);
+}
+
+.save {
+    color: rgba(29,30,33,1);
+    background: rgba(248,248,248,1);
+    margin-bottom: 176rpx;
+}
+
+.tips {
+    font-size: 24rpx;
+    color: rgba(65,65,65,1);
+    text-align: center;
+}

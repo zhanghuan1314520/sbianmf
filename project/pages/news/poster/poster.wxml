@@ -1,0 +1,20 @@
+<!-- <loading wx:if="{{!show}}">加载中...</loading> -->
+<view class="page">
+    <view bindtap="previewImage" class="fui-picture">
+    <image bindload="loadImg" mode="aspectFit" src="{{Image}}" wx:if="{{Image.length>0}}"></image> 
+    </view>
+   <view class="baocuns">
+    <button class="baocun_btn1 b" data-index="1" formType="submit" openType="share">
+      <view class="baocun_btn1_img">
+        <image src="weixin.png"></image>
+      </view>
+      <view class="baocun_btn1_name">分享给好友</view>
+    </button>
+    <button class="baocun_btn2 b" bindtap='savePicture'>
+      <view class="baocun_btn1_img">
+        <image src="xiaz.png"></image>
+      </view>
+      <view class="baocun_btn1_name" bindtap="savePicture">保存海报</view>
+    </button>
+  </view>
+</view>

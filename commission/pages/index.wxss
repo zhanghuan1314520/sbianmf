@@ -76,7 +76,7 @@
 
 .commission .userblock .line.total .num {
     font-size: 40rpx;
-    color: #366AB3;
+    color: #ff8000;
     line-height: 1.5;
 }
 
@@ -100,7 +100,7 @@
 
 .commission .userblock .line.able .num {
     font-size: 40rpx;
-    color: #366AB3;
+    color: #ff8000;
     line-height: 1.5;
 }
 

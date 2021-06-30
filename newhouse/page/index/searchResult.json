@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "查询结果",
+  "usingComponents": {
+      "t-table": "/newhouse/components/t-table/t-table",
+      "search": "/newhouse/page/common/search",
+      "t-th": "/newhouse/components/t-table/t-th",
+      "t-tr": "/newhouse/components/t-table/t-tr",
+      "t-td": "/newhouse/components/t-table/t-td"
+  }
+}

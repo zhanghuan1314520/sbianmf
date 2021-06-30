@@ -38,11 +38,11 @@ Page({
         }, this.data.show);
     },
     myTab: function(a) {
-        var e = this, s = t.pdata(a).status;
-        e.setData({
-            status: s,
+        var e = t.pdata(a).status;
+        this.setData({
+            status: e,
             page: 1,
             list: []
-        }), e.getList();
+        }), this.getList();
     }
 });

@@ -37,11 +37,11 @@ Page({
         }, this.data.show);
     },
     myTab: function(a) {
-        var s = this, e = t.pdata(a).status;
-        s.setData({
-            status: e,
+        var s = t.pdata(a).status;
+        this.setData({
+            status: s,
             page: 1,
             list: []
-        }), s.getList();
+        }), this.getList();
     }
 });

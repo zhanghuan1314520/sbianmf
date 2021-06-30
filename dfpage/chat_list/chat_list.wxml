@@ -1,0 +1,24 @@
+<loading wx:if="{{!show}}">加载中...</loading> 
+<view class="my__message" style="padding-top:20px,background: white;" wx:if="{{show}}">
+	<block wx:if="{{concatList&&concatList.length>0}}">
+		<view bind:tap="goChat" bindtap="goChat" class="message" data-id="{{item.name}}" wx:for="{{concatList}}" wx:key="index">
+			<view class="message__icon-wrap">
+				<image class="message__icon" mode="aspectFill" src="{{item.lastMessage.fromAccount===userInfo.msgid?item._payload.targetAvatarUrl:item._payload.avatarUrl}}"></image>
+				<view class="message__red-dot chat-dot" wx:if="{{!item.lastMessage.msgExtra&&item.lastMessage.fromAccount!=userInfo.msgid}}"></view>
+			</view>
+			<view class="message__info">
+				<view class="message__head">
+					<view class="message__title">{{item.lastMessage.fromAccount==userInfo.msgid?item._payload.targetName+item._payload.targetBuildingName:item._payload.userName+item._payload.buildingName}}</view>
+					<view class="message__time">{{item.time}}</view>
+				</view>
+				<view class="message__content">{{item._payload.type==1?item._payload.payload:'[房源/楼盘/图片]'}}</view>
+			</view>
+		</view>
+	</block>
+	<!-- <view catchtap="postMessage" class="ring-me">
+                回复提醒我
+              </view> -->
+	<view class="data__empty" wx:if="{{!concatList||concatList.length===0}}">
+		<image class="data__empty-img" src="https://sbmf.ww2ss.com/dfimages/null.png"></image>
+	</view>
+</view>

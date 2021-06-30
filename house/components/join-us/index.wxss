@@ -1,0 +1,36 @@
+.reset-btn {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    border-radius: 0;
+}
+
+.join-us,.reset-btn {
+    background-color: #fff;
+}
+
+.join-us {
+    display: flex;
+    padding: 40rpx 30rpx 0;
+}
+
+.join-us .placeholder-picture {
+    flex: 1;
+    height: 124rpx;
+    border-radius: 8rpx;
+    overflow: hidden;
+}
+
+.join-us .placeholder-picture .placeholder_img {
+    height: 100%;
+    width: 100%;
+    background: #e6e6e6;
+}
+
+.join-us .placeholder-picture_one {
+    height: 90rpx;
+}
+
+.join-us .see-hourse {
+    margin-right: 30rpx;
+}

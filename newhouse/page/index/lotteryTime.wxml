@@ -1,0 +1,16 @@
+<view class="content">
+    <view class="search">
+        <search bind:__l="__l" bind:confirm="__e" data-event-opts="{{[ [ '^confirm',[ ['search'] ] ] ]}}" placeholder="搜索：翠语华庭" vueId="40aa5eb6-1"></search>
+    </view>
+    <view class="footer-data">
+        <view class="new-block">
+            <view class="timeline">
+                <image class="lineimg" src="https://cdn.lottery.okgoes.com/timeline.png"></image>
+                <label class="time-line-title _span">2021.06.19</label>
+            </view>
+            <view class="new-content">
+                <house bindtap="xq" houseData="{{item[$orig].data}}" show_des="{{false}}" vueId="{{'40aa5eb6-2-'+index}}"></house>
+            </view>
+        </view>
+    </view>
+</view>

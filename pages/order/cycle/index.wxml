@@ -1,7 +1,7 @@
 <view class="{{isIpx?'fui-iphonex-button':''}}"></view>
 <view class="page navbar">
     <scroll-view class="cycle-periods" scrollX="true">
-        <view bindtap="cycle" class="cycle-card {{index==status?'active':''}}" data-id="{{item.id}}" data-status="{{index}}" wx:for="{{list}}">
+        <view bindtap="cycle" class="cycle-card {{index==status?'active':''}}" data-id="{{item.id}}" data-status="{{index}}" wx:for="{{list}}" wx:key="{{index}}">
             <view class="num">{{index+1}}</view>
             <view class="date">{{index+1}}/{{list.length}}</view>
             <view class="status">
@@ -11,7 +11,7 @@
             </view>
         </view>
     </scroll-view>
-    <view class="cycle-cell-group" wx:if="{{index==status}}" wx:for="{{list}}">
+    <view class="cycle-cell-group" wx:if="{{index==status}}" wx:for="{{list}}" wx:key="{{index}}">
         <view class="cycle-cell">
             <view class="cycle-cell-label">服务次数</view>
             <view class="cycle-cell-info">第{{index+1}}次/共{{list.length}}次</view>
@@ -39,7 +39,7 @@
             <view bindtap="editdate" class="btn btn-default btn-default-o btn-sm" data-id="{{item.id}}" data-isdelay="0" data-type="0">修改收货日期</view>
             <view bindtap="editdate" class="btn btn-default btn-default-o btn-sm" data-id="{{item.id}}" data-isdelay="1" data-type="0">顺延收货</view>
             <navigator class="btn btn-default btn-default-o btn-sm" data-id="{{item.id}}" hoverClass="none" openType="navigate" url="/pages/order/cycle/address?orderid={{orderid}}&cycelid={{item.id}}&applyid={{applyforid}}" wx:if="{{applyforid>0}}">修改地址</navigator>
-            <navigator class="btn btn-default btn-default-o btn-sm" data-id="{{item.id}}" hoverClass="none" openType="navigate" url="/pages/order/cycle/address?orderid={{orderid}}&cycelid={{item.id}}" wx:if="{{applyforid<=0||applyforid==undefined}}">修改地址</navigator>
+            <navigator class="btn btn-default btn-default-o btn-sm" data-id="{{item.id}}" hoverClass="none" openType="navigate" url="/pages/order/cycle/address?orderid={{orderid}}&cycelid={{item.id}}" wx:if="{{applyforid<=0||applyforid==null}}">修改地址</navigator>
         </view>
         <view class="fui-footer {{iphonexnavbar}}" wx:else>
             <view bindtap="confirm_receipt" class="btn btn-default btn-default-o btn-sm" data-id="{{item.id}}" wx:if="{{item.status==1}}">确认收货</view>

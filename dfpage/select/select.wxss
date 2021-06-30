@@ -1,0 +1,266 @@
+/* dfpage/select/select.wxss */.box_header {
+  display: flex;
+  width: 710;
+  height: 100rpx;
+  padding: 10rpx 20rpx;
+  margin: 105rpx 0 5rpx 0;
+  background-color: #fff;
+}
+
+.box_header_r {
+  display: flex;
+  width: 710rpx;
+  text-align: center;
+}
+
+.box_header_item {
+  width: 190rpx;
+}
+
+.box_header_name {
+  line-height: 50rpx;
+  font-size: 28rpx;
+  color: #7D7E82;
+}
+
+.box_header_number {
+  line-height: 50rpx;
+  color: #33408c;
+  font-size: 25rpx;
+  /* font-weight: bold; */
+}
+
+.number_color {
+  font-size: 30rpx;
+  color: #000;
+  font-weight: bold;
+}
+
+.box_nav {
+  width: 710rpx;
+  height: 100rpx;
+  padding: 0 20rpx;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background-color: #fff;
+}
+
+.box_nav_item {
+  flex: 1;
+  font-size: 28rpx;
+  padding: 10rpx 0;
+  text-align: center;
+  /* font-weight: bolder; */
+  color: #999999;
+}
+
+.box_nav_item image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.box_tab {
+  height: 80rpx;
+  width: 100%;
+  overflow: hidden;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  white-space: nowrap;
+  position: fixed;
+  z-index: 99;
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+
+.box_item {
+  background: rgb(167, 224, 152);
+  width: 200px;
+  height: 80px;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+  display: none;
+}
+
+.table-module {
+  /* display: flex; */
+  height: 100%;
+  padding: 0 10rpx;
+  background: white;
+  margin-bottom: 20rpx;
+}
+
+.left-policy-type {
+  width: 28vw;
+  height: auto;
+}
+
+.empty-box {
+  width: 28vw;
+  height: 8.2vh;
+  line-height: 8.2vh;
+  font-size: 25rpx;
+  text-align: center;
+  color: #7D7E82;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.left-col-list {
+  width: 28vw;
+  height: 8.2vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.box_name {
+  width: 28vw;
+  font-size: 25rpx;
+  color: #292B33;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
+.scroll-box {
+  white-space: nowrap;
+  width: 69vw;
+}
+
+.limit-scroll {
+  height: auto;
+}
+
+.top-scroll-box {
+  width: 100vw;
+  height: auto;
+}
+
+.top-scroll-add {
+  width: 100vw;
+  height: 16.9vh;
+}
+
+.scroll-view-item {
+  /* width: 62vw; */
+  display: inline-block;
+}
+
+.company-name {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  font-size: 25rpx;
+  height: 8.2vh;
+  color: #7D7E82;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.company-name-item {
+  /* width: 225rpx; */
+  width: 158rpx;
+  text-align: center;
+}
+
+.price-box {
+  height: 8.2vh;
+  line-height: 8.2vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.red {
+  color: rgb(202, 2, 2);
+  width: 158rpx;
+  height: 8.2vh;
+  align-items: center;
+
+  font-weight: bold;
+  font-size: 25rpx;
+  text-align: center;
+  border-bottom: 1rpx solid #e5e5e5;
+  letter-spacing: 1rpx;
+}
+
+.green {
+  color: #129617;
+  width: 158rpx;
+  height: 8.2vh;
+  align-items: center;
+
+  font-weight: bold;
+  font-size: 25rpx;
+  text-align: center;
+  border-bottom: 1rpx solid #e5e5e5;
+  letter-spacing: 1rpx;
+}
+
+.price {
+  /* width: 225rpx; */
+  width: 158rpx;
+  height: 8.2vh;
+  align-items: center;
+  color: #000;
+  font-weight: bold;
+  font-size: 25rpx;
+  text-align: center;
+  border-bottom: 1rpx solid #e5e5e5;
+  letter-spacing: 1rpx;
+}
+
+.add {
+  /* width: 600rpx; */
+  height: 150rpx;
+  line-height: 150rpx;
+  display: flex;
+  font-size: 30rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.add_img {
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  /* padding-top: 90rpx; */
+}
+
+.add_img image {
+  width: 100%;
+  height: 100%;
+}
+
+.addbnt{
+  margin: 0;
+  width: 200rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin-left: 15rpx;
+  color: #7d7d7d;
+  font-size: 25rpx;
+}
+
+.add_tj {
+  width: 150rpx;
+  height: 40rpx;
+  line-height: 45rpx;
+  margin-left: 15rpx;
+  color: #7d7d7d;
+  /* margin-top: 100rpx; */
+}
+.test{
+  font-size: 38rpx;
+    font-weight: bold;
+}

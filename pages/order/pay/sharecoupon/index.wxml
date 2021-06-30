@@ -56,8 +56,7 @@
     </view>
     <view class="record">
         <view class="title">
-            <image src="{{imgUrl+'plugin/app/static/images/wxapp/coupon/circle.png'}}"></image> 看朋友们手气如何
-      <image src="{{imgUrl+'plugin/app/static/images/wxapp/coupon/circle.png'}}"></image>
+            <image src="{{imgUrl+'plugin/app/static/images/wxapp/coupon/circle.png'}}"></image> 看朋友们手气如何      <image src="{{imgUrl+'plugin/app/static/images/wxapp/coupon/circle.png'}}"></image>
         </view>
         <view class="record-list" style="">
             <view class="item">
@@ -71,9 +70,7 @@
                     </view>
                     <view class="motto" style="width:100%;height:50%;color:#FCE3E4;font-size: 26rpx;line-height: 64rpx;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">不肯花大钱就买不来贵重东西!</view>
                 </view>
-                <view class="firend_contents_price">
-          50元
-        </view>
+                <view class="firend_contents_price">          50元        </view>
             </view>
             <view class="item">
                 <view class="firend_contents_logo">
@@ -86,9 +83,7 @@
                     </view>
                     <view class="motto" style="width:100%;height:50%;color:#FCE3E4;font-size: 26rpx;line-height: 64rpx;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">不肯花大钱就买不来贵重东西!</view>
                 </view>
-                <view class="firend_contents_price">
-          50元
-        </view>
+                <view class="firend_contents_price">          50元        </view>
             </view>
         </view>
     </view>

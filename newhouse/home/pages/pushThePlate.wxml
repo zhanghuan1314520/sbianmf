@@ -1,0 +1,19 @@
+<view class="content">
+    <!-- <view class="header">
+        <view class="title">
+            <image bindtap="__e" class="left" data-event-opts="{{[ [ 'tap',[ [ 'back',['$event'] ] ] ] ]}}" src="https://cdn.lottery.okgoes.com/back.png"></image>下次推盘</view>
+    </view> -->
+    <view class="body">
+        <view bindtap="__e" class="body-content" data-event-opts="{{[ [ 'tap',[ [ 'openImg',['$0'],['info.icon'] ] ] ] ]}}">
+            <image class="more-icon" src="/images/img.jpg"></image>
+        </view>
+        <view class="sigin">
+            <text>
+        亚运村三子中,体量最大的一个,全盘建筑体量共有约56万m,且绝大多数为住宅,未来小区内居住氛围应该是最好。预计6月首开,可能首开13幢高层,约990套房源,户型
+        建面约110-220m,预计均价47000元/m,加上同一时期开盘的华润亚奥城以及万科日耀之城,可能第一批次供货量超过两千套,亚运三兄弟住宅加起来约4400套,以此推算
+        可能2到3次就会清盘了。可以预料,亚运村的开闸将是杭州购房史上的狂欢节。不过,幸运始终只属于极少数人。若干年后,中签者再回首,会发现一套房子可能改变了
+        他的一生。
+            </text>
+        </view>
+    </view>
+</view>

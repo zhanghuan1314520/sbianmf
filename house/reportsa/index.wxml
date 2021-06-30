@@ -1,0 +1,328 @@
+<wxs module="filters" src="../reportsa/filter.wxs"></wxs>
+<loading wx:if="{{!show}}">加载中...</loading>
+<view class="model" wx:if="{{modelShow}}">
+    <view class="inner">
+        <view class="title">用户未授权</view>
+        <view class="image">
+            <image src="{{imgUrl+'plugin/app/static/images/wxapp/shouquan.png'}}"></image>
+        </view>
+        <view class="subtitle">您需要先开启【用户信息】，才能使用此功能哦~</view>
+        <view class="model-btns">
+            <view bindtap="cancelclick" class="cancel">取消</view>
+            <view bindtap="confirmclick" class="confirm">去设置</view>
+        </view>
+    </view>
+</view>
+<view class="house-list-box">
+    <view bindtap="filterMaskFn" catchtouchmove="preventTouchMove" class="filter-mask" hidden="{{filterMask}}" style="z-index:{{zindex}};"></view>
+    <view class="list-top">
+        <!-- {{!tab[2]?'more-box':''}}-->
+        <view class="search-box">
+            <view bindtap="searchClick" class="search">
+                <view class="serch_content" style="color:#366AB3;background-color:#fff;">
+                    <wxc-icon color="font-size:28rpx; color:#366AB3;" size="28" type="search"></wxc-icon>
+                    <input bindtap="toSearch" class="search_input" name="search_input" placeholder="请输入板块名、楼盘名" placeholderStyle="font-size:28rpx; color:#366AB3;" type="text" value="{{searchCon}}"></input>
+                    <wxc-icon bindtap="delText" style="font-size:28rpx; color:#000;" size="28" type="no" wx:if="{{searchCon!='请输入板块名、楼盘名'}}"></wxc-icon>
+                </view>
+            </view>
+        </view>
+        <view class="filter-box flexbox flex_al_center">
+            <view bindtap="filterTabFn" class="filter-nav flex1 {{filnav==item.name||item.newname?'filter-cur':''}}" data-index="{{index}}" data-name="{{item.name}}" wx:for="{{tabTxt}}" wx:key="index">
+                <text class="name">{{item.newname||item.name}}</text>
+                <text class="arrow"></text>
+            </view>
+        </view>
+        <view catchtouchmove="preventTouchMove" class="filter-con-box">
+            <view class="filter-con quyu" hidden="{{tab[0]}}">
+                <view class="quyu-nav1">
+                    <view class="filter-info">
+                        <text bindtap="quyuFn" class="{{nameCur1=='区域'?'sub1-cur':''}}" data-barid="1" data-name="区域">区域</text>
+                        <!--<text bindtap="quyuFn" class="{{nameCur1=='地铁'?'sub1-cur':''}}" data-barid="2" data-name="地铁">地铁</text>-->
+                        <text bindtap="quyuFn" class="{{nameCur1=='学区'?'sub1-cur':''}}" data-barid="4" data-name="学区">学区</text>
+                        <text bindtap="quyuFn" class="{{nameCur1=='附近'?'sub1-cur':''}}" data-barid="3" data-name="附近">附近</text>
+
+
+                    </view>
+                </view>
+                <view class="quyu-nav2" hidden="{{quyuNav2}}">
+                    <scroll-view class="filter-info" scrollY="true">
+                        <view bindtap="buxianFn2" data-barid="{{barid}}" class="qy{{nameCur2=='不限'?'sub2-cur':''}}" data-name="不限">
+                            <text>不限</text>
+                        </view>
+                        <view bindtap="quyuFn2" class="{{nameCur11==item.id?'sub2-cur':''}}" data-barid="{{quYuBar2}}" data-districtid="{{item.id}}" data-index="{{index}}" data-name="{{item.name}}" wx:if="{{!item.lineid&&!item.nearid}}" wx:for="{{filterArea}}" wx:key="index">
+                            <text>{{item.name}}</text>
+                        </view>
+                        <view bindtap="quyuFn2" class="{{nameCur21==item.lineid?'sub2-cur':''}}" data-barid="{{quYuBar2}}" data-dtlineid="{{item.lineid}}" data-index="{{index}}" data-name="{{item.name}}" wx:if="{{item.lineid}}" wx:for="{{filterArea}}" wx:key="index">
+                            <text>{{item.name}}</text>
+                        </view>
+                        <view bindtap="quyuFn2" class="{{nameCur31==item.nearid?'sub2-cur':''}}" data-barid="{{quYuBar2}}" data-index="{{index}}" data-name="{{item.name}}" data-nearid="{{item.nearid}}" wx:if="{{item.nearid}}" wx:for="{{filterArea}}" wx:key="index">
+                            <text>{{item.name}}</text>
+                        </view>
+                    </scroll-view>
+                </view>
+                <view class="quyu-nav3" hidden="{{quyuNav3}}">
+                    <scroll-view class="filter-info" scrollY="true">
+                        <view bindtap="buxianFn3" class="{{nameCur3=='不限'?'sub2-cur':''}}" data-bxbarid="{{quYuBxBar3}}" data-barid="{{barid}}" data-districtid="{{quyuId}}" data-districtname="{{quyuName}}" data-name="不限">
+                            <text>不限</text>
+                        </view>
+                        <view bindtap="quyuFn3" class="{{nameCur3==item.id?'sub2-cur':''}}" data-barid="{{quYuBar3}}" data-districtid="{{quyuId}}" data-index="{{index}}" data-name="{{item.name}}" data-sqid="{{item.id}}" wx:for="{{filterArea2}}" wx:key="index">
+                            <text>{{item.name}}</text>
+                        </view>
+                    </scroll-view>
+                </view>
+            </view>
+            <view class="filter-con filter-price" hidden="{{tab[1]}}" wx:if="{{list_param==1}}">
+                <view class="filter-info">
+                    <view class="extends">
+                        <view class="zdy">
+                            <text class="zdy-name">日期</text>
+                            <text class="unit">(天)</text>
+                        </view>
+                        <view class="price-inp">
+                            <picker mode="date" fields="day" value="{{sdate}}" start="2016-01-01" end="2021-6-15" bindchange="getDateTimes">
+                                <view class="selectDate">
+                                    {{sdate}}
+                                </view>
+                            </picker>
+                            <!---
+                            <input bindinput="timeMin" maxlength="8" placeholder="开始日期" type="number" value="{{inpVal}}"></input>--->
+                            <text class="heng">-</text>
+                            <picker mode="date" fields="day" value="{{edate}}" start="2016-01-01" end="2021-6-15" bindchange="getDateTimee">
+                                <view class="selectDate">
+                                    {{edate}}
+                                </view>
+                            </picker>
+                            <!---
+                            <input bindinput="timeMax" maxlength="8" placeholder="结束日期" type="number" value="{{inpVal}}"></input>--->
+                        </view>
+                    </view>
+                    <view class="filtag-con">
+                        <text bindtap="filterTimeFn" class="{{timeCurName==item.name?'sub-cur':''}}" data-code="{{item.code}}" data-name="{{item.name}}" wx:for="{{filterTime}}" wx:key="index">{{item.name}}</text>
+                    </view>
+                    <view class="filter-btn">
+                        <text bindtap="emptyTimeFn" class="qingkong" data-name="清空">清空</text>
+                        <text bindtap="timeConfirm" class="filconfirm" data-value="{{valTime}}" data-valuemax="{{maxTime}}" data-valuemin="{{minTime}}">确定</text>
+                    </view>
+                </view>
+            </view>
+
+            <view class="filter-con filter-price" hidden="{{tab[2]}}" wx:if="{{list_param==1}}">
+                <view class="filter-info">
+                    <view class="extends">
+                        <view class="zdy">
+                            <text class="zdy-name">自定义</text>
+                            <text class="unit">(万)</text>
+                        </view>
+                        <view class="price-inp">
+                            <input bindinput="priceMin" maxlength="5" placeholder="最低价" type="number" value="{{inpVal}}"></input>
+                            <text class="heng">-</text>
+                            <input bindinput="priceMax" maxlength="5" placeholder="最高价" type="number" value="{{inpVal}}"></input>
+                        </view>
+                    </view>
+                    <view class="filtag-con">
+                        <text bindtap="filterPricesFn" class="{{priceCurName==item.name?'sub-cur':''}}" data-code="{{item.code}}" data-name="{{item.name}}" wx:for="{{filterPrices}}" wx:key="index">{{item.name}}</text>
+                    </view>
+                    <view class="filter-btn">
+                        <text bindtap="emptyPriceFn" class="qingkong" data-name="清空">清空</text>
+                        <text bindtap="priceConfirm" class="filconfirm" data-value="{{valPrice}}" data-valuemax="{{maxPrice}}" data-valuemin="{{minPrice}}">确定</text>
+                    </view>
+                </view>
+            </view>
+
+            <view class="filter-con filter-price" hidden="{{tab[3]}}" wx:if="{{list_param==1}}">
+                <view class="filter-info">
+                    <view class="filtag-con">
+                        <text bindtap="filterFxingFn" class="{{item.selected?'sub-cur':''}}" data-broom="{{item.broom}}" data-index="{{index}}" data-name="{{item.name}}" wx:for="{{filterFxing}}" wx:key="index">{{item.name}}</text>
+                    </view>
+                    <view class="filter-btn">
+                        <text bindtap="emptyFxingFn" class="qingkong" data-name="清空">清空</text>
+                        <text bindtap="fxingConfirm" class="filconfirm" data-fxingname="{{fxname}}">确定</text>
+                    </view>
+                </view>
+            </view>
+
+        </view>
+    </view>
+</view>
+<view class="container" wx:if="{{show}}">
+    <view class="container-body">
+     
+
+  <!-- 最新部分开始 -->
+  <view class="new_box">
+    <view class="box_tag">最新</view>
+    <view class="nav _div data-v-3e913807">
+      <view class="_p data-v-3e913807">
+        <label class="house-name _span data-v-3e913807">{{datalista.title}}最新手边买房成交报告</label>
+      </view>
+      <view class="detail _div data-v-3e913807">
+        <view class="first part _div data-v-3e913807">
+          <label class="detail-name _span data-v-3e913807">网签均价</label>
+          <label class="trend unit _span data-v-3e913807">{{datalista.junjia}}</label>
+          <label class="unit _span data-v-3e913807">元/㎡</label>
+        </view>
+        <view class="sec part _div data-v-3e913807">
+          <label class="detail-name _span data-v-3e913807">环比</label>
+          <view wx:if="{{(((datalista.junjia-datalista.hb)/datalista.hb)*100)>0}}">
+            <label class="up">
+              {{filters.toFix(((datalista.junjia-datalista.hb)/datalista.hb)*100)}}%
+          </label>
+          </view>
+          <view wx:else>
+            <label class="down">
+              {{filters.toFix(((datalista.junjia-datalista.hb)/datalista.hb)*100)}}%
+          </label>
+          </view>
+        </view>
+      </view>
+      <view class="detail _div data-v-3e913807">
+        <view class="first part _div data-v-3e913807">
+          <label class="detail-name _span data-v-3e913807">挂牌均价</label>
+          <label class="trend unit_gp _span data-v-3e913807">{{datalista.cjcount}}</label>
+          <label class="unit_gp _span data-v-3e913807">元/㎡</label>
+        </view>
+        <view class="first part _div data-v-3e913807" wx:if="{{datalista.num}}">
+          <label class="detail-name _span data-v-3e913807">成交套数</label>
+          <label class="trend unit_gp _span data-v-3e913807">{{datalista.num}}</label>
+          <label class="unit_gp _span data-v-3e913807">套</label>
+        </view>
+      </view>
+    </view>
+    <view class="new_city_time">统计时间：{{timewhere}}</view>
+ 
+  </view>
+
+  <!-- 杭州行政指数涨幅排名区域开始 -->
+  <view wx:if="{{datalistall}}">
+    <view class="new_city_box1">
+      <view class="new_city_title">{{datalista.title}}最新手边买房成交/涨幅排名</view>
+      <view class="new_city_nav">
+        <view class="new_city_nav_rs">
+          <view class="new_city_nav_name">行政区</view>
+        </view>
+        <view class="new_city_nav_ls">
+        <view class="new_city_nav_name" bindtap="Reports_sort" data-arr="num">成交套数</view>
+        <view class="new_city_nav_name" bindtap="Reports_sort" data-arr="hb">网签均价</view>
+        <view class="new_city_nav_name" bindtap="Reports_sort" data-arr="hb_price">环比</view>
+        <view class="new_city_nav_name" bindtap="Reports_sort" data-arr="cjcount">挂牌均价</view>
+        </view>
+      </view>
+      
+
+      <view class="new_city_list1" wx:for="{{datalistall}}" wx:key="id" bindtap="goReports" data-cid="{{item}}" data-title="{{item.title}}">
+        <view class="new_city_list_item1">
+          <view class="new_city_list_item1_r" wx:if="{{index<3}}">
+            <image src="https://sbmf.ww2ss.com/dfimages/jifen/top{{index}}.png"></image>
+          </view>
+          <view class="new_city_list_item1_r" wx:else>
+            {{index+1}}
+          </view>
+          <view class="new_city_list_item1_l">{{item.title}}</view>
+        </view>
+        <view class="new_city_list_item2">{{item.num==null?0:item.num}}</view>
+        <view class="new_city_list_item2">{{item.junjia}}</view>
+
+          <view class="new_city_list_item4">
+            <view class="red"  wx:if="{{((item.junjia-item.hb)/item.hb)*100>0}}">
+              {{item.hb==null?'-':filters.toFix(((item.junjia-item.hb)/item.hb)*100)}}%↑
+            </view>
+            <view class="green"  wx:else>
+              {{item.hb==null?'-':filters.toFix(((item.junjia-item.hb)/item.hb)*100)}}%↓
+            </view>
+          </view>
+
+          <view class="new_city_list_item2">
+         
+              {{item.cjcount==null?'-':item.cjcount}}
+       
+          </view>
+      </view>
+
+      <view class="new_city_time">统计时间：{{timewhere}}</view>
+        <view class="new_city_time">自定义日期查询不能统计环比数据;</view>
+      <!--蒙层 -->
+      <!-- <view class="new_mc1" style="margin-top: -250rpx">
+        <view class="new_mc_tip">点击解锁</view>
+        <view class="new_mc_ts">即可查看全部片区排名</view>
+        <view class="new_mc_btn" bindtap="showDialogBtn">立即解锁</view>
+      </view> -->
+    </view>
+  </view>
+
+    <!-- 杭州行政指数涨幅排名区域开始 -->
+    <view wx:if="{{datalist== datalist}}">
+    <view class="new_city_box1">
+      <view class="new_city_title">{{datalista.title}}小区最新成交/涨幅排名</view>
+      <view class="new_city_nav">
+        <view class="new_city_nav_rs">
+          <view class="new_city_nav_name">小区</view>
+        </view>
+        <view class="new_city_nav_ls">
+        <view class="new_city_nav_name" bindtap="Reports_sort" data-arr="num">成交套数</view>
+        <view class="new_city_nav_name" bindtap="Reports_sort" data-arr="hb">网签均价</view>
+        <view class="new_city_nav_name" bindtap="Reports_sort" data-arr="hb_price">环比</view>
+        <view class="new_city_nav_name" bindtap="Reports_sort" data-arr="cjcount">挂牌均价</view>
+        </view>
+      </view>
+      
+
+      <view class="new_city_list1" wx:for="{{datalist}}" wx:key="id" bindtap="goReports" data-cid="{{item}}" data-title="{{item.title}}">
+        <view class="new_city_list_item1">
+          <view class="new_city_list_item1_r" wx:if="{{index<3}}">
+            <image src="https://sbmf.ww2ss.com/dfimages/jifen/top{{index}}.png"></image>
+          </view>
+          <view class="new_city_list_item1_r" wx:else>
+            {{index+1}}
+          </view>
+          <view class="new_city_list_item1_l">{{item.title}}</view>
+        </view>
+        <view class="new_city_list_item2">{{item.num==null?0:item.num}}</view>
+        <view class="new_city_list_item2">{{item.junjia}}</view>
+
+          <view class="new_city_list_item4">
+            <view class="red"  wx:if="{{((item.junjia-item.hb)/item.hb)*100>0}}">
+              {{item.hb==null?'-':filters.toFix(((item.junjia-item.hb)/item.hb)*100)}}%↑
+            </view>
+            <view class="green"  wx:else>
+              {{item.hb==null?'-':filters.toFix(((item.junjia-item.hb)/item.hb)*100)}}%↓
+            </view>
+          </view>
+
+          <view class="new_city_list_item2">
+         
+              {{item.cjcount==null?'-':item.cjcount}}
+       
+          </view>
+      </view>
+
+      <view class="new_city_time">统计时间：{{timewhere}}</view>
+        <view class="new_city_time">自定义日期查询不能统计环比数据;</view>
+      <!--蒙层 -->
+      <!-- <view class="new_mc1" style="margin-top: -250rpx">
+        <view class="new_mc_tip">点击解锁</view>
+        <view class="new_mc_ts">即可查看全部片区排名</view>
+        <view class="new_mc_btn" bindtap="showDialogBtn">立即解锁</view>
+      </view> -->
+    </view>
+  </view>
+  <!-- 杭州行政指数涨幅排名区域结束 -->
+  <view class="pricecount-data-content" wx:if="{{!1}}">
+            <view class="left">
+                <view class="left-bottom">
+                    <view class="left-item-r">
+                        <view class="item-top">
+                            <view class="item-top-top">统计时间：{{timewhere}}</view>
+                        </view>
+                        <view class="item-bottom">
+                            <view class="item-bottom-bottom">自定义日期查询不能统计环比数据;</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+        </view>
+      
+    </view>
+   	<!--分享按钮-->
+		<sharebnt bind:__l="__l" ></sharebnt>
+</view>

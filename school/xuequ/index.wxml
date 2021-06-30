@@ -1,0 +1,93 @@
+<view class="container">
+	<view class="container-body">
+		<view class="pricecount-data-content">
+			<view class="left-new">
+				<view class="left-bottom-new">
+					<view class="left-item-l-new" bindtap="tosubReports">
+						<view class="left-item-l-top-new">
+							实时成交报告
+						</view>
+					</view>
+
+					<view class="left-item-r-new">
+						<view class="item-top-new" bindtap="tosubNearby">
+							<view class="item-top-top-new"> 附近3公里带看 </view>
+						</view>
+						<view class="item-top-new1" bindtap="tosubMarket">
+							<view class="item-top-top-new">二手房源比价</view>
+						</view>
+					</view>
+				</view>
+			</view>
+
+		</view>
+
+		<view class="schoolad">
+			<navigator openType="navigate" url="/school/school_map/index">
+				<image class="adimages" src="https://sbmf.ww2ss.com/dfimages/schoolad.png"></image>
+			</navigator>
+		</view>
+
+		<view class="pricecount-data-content">
+			<view class="carousel" wx:for="{{datalist}}" wx:key="key">
+				<view bindtap="goReportsa" data-cid="{{datalista}}" class="carousel_swiper_body">
+					<view class="ldata-content-title-left" bindtap="toReports" data-cid="{{item}}">
+						{{item.schoolname}}
+					</view>
+					<view class="ldata-content-title-right"> {{item.district}}
+					</view>
+					<view class="ldata-content">
+						<view bindtap="hotLinkFn" data-communityid="{{5}}">
+							<view class="ldata-content-desc">
+								180天内成交
+							</view>
+							<view class="ldata-content-num" bindtap="toReports" data-cid="{{item}}">
+								{{item.num}}
+								<view class="ldata-content-num-unit">套</view>
+							</view>
+						</view>
+						<view class="shuxian"></view>
+						<view bindtap="hotLinkFn" data-communityid="{{item}}">
+							<view class="ldata-content-desc">
+								网签均价
+							</view>
+							<view class="ldata-content-num" bindtap="toReports" data-cid="{{item}}">
+								{{item.junjia}}
+								<view class="ldata-content-num-unit">元</view>
+							</view>
+						</view>
+						<view class="shuxian"></view>
+						<view bindtap="hotLinkFn" data-communityid="{{datalista}}">
+							<view class="ldata-content-desc">
+								挂牌
+							</view>
+							<view class="ldata-content-num " bindtap="toHouse" data-cid="{{item}}">
+								{{item.gpnum}}
+								<view class="ldata-content-num-unit">套</view>
+							</view>
+						</view>
+						<view class="shuxian"></view>
+						<view bindtap="hotLinkFn" data-communityid="{{datalista}}">
+
+							<view class="ldata-content-desc">
+								挂牌均价
+							</view>
+							<view class="ldata-content-num" bindtap="toHouse" data-cid="{{item}}">
+								{{item.gpjunjia}}
+								<view class="ldata-content-num-unit">元</view>
+							</view>
+
+						</view>
+
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="pricecount-data-content" style="margin-top: 50rpx;">
+		</view>
+
+	</view>
+
+		<!--分享按钮-->
+		<sharebnt bind:__l="__l" ></sharebnt>
+</view>

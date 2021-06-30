@@ -1,14 +1,12 @@
-var t = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
-    return typeof t;
-} : function(t) {
-    return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;
-}, e = getApp(), a = e.requirejs("core"), i = e.requirejs("foxui"), r = e.requirejs("biz/diyform"), s = e.requirejs("jquery"), d = e.requirejs("biz/selectdate");
+var t = require("../../../@babel/runtime/helpers/interopRequireDefault")(require("../../../@babel/runtime/helpers/typeof")), e = getApp(), a = e.requirejs("core"), i = e.requirejs("foxui"), r = e.requirejs("biz/diyform"), s = e.requirejs("jquery"), d = e.requirejs("biz/selectdate");
 
 Page({
     data: {
         icons: e.requirejs("icons"),
         list: {},
+        listdata: {},
         goodslist: {},
+        peisong:{},
         data: {
             dispatchtype: 0,
             remark: ""
@@ -32,6 +30,9 @@ Page({
         noArea: !1,
         showaddressview: !1,
         city_express_state: !1,
+        onFocus: !1,
+        isShowText: !0,
+        remark: "50字以内（选填）",
         currentDate: "",
         dayList: "",
         currentDayList: "",
@@ -43,8 +44,25 @@ Page({
         bargainid: "",
         selectcard: ""
     },
+    onShowTextarea: function() {
+        "50字以内（选填）" == this.data.remark && this.setData({
+            remark: ""
+        }), this.setData({
+            isShowText: !1,
+            onFacus: !0
+        });
+    },
+    onShowText: function(t) {
+        var e = t.detail.value;
+        "" == e && (e = "50字以内（选填）"), this.setData({
+            isShowText: !0,
+            onFacus: !1,
+            remark: e
+        });
+    },
     onLoad: function(t) {
         var i = this, r = [];
+        // e.watch(i.watchBack)
         if (t.goods) {
             var s = JSON.parse(t.goods);
             t.goods = s, this.setData({
@@ -61,6 +79,7 @@ Page({
                 var s = (i.data.originalprice - t.goodsprice).toFixed(2);
                 i.setData({
                     list: t,
+                    listdata:t,
                     goods: t,
                     show: !0,
                     address: !0,
@@ -81,7 +100,8 @@ Page({
                     iscycel: t.iscycel,
                     scope: t.scope,
                     fromquick: t.fromquick,
-                    hasinvoice: t.hasinvoice
+                    hasinvoice: t.hasinvoice,
+                    credittext: t.sysset.texts.credit
                 }), e.setCache("goodsInfo", {
                     goodslist: r,
                     merchs: t.merchs
@@ -90,14 +110,15 @@ Page({
                 wx.navigateBack();
             }, 1e3);
             if ("" != t.fullbackgoods) {
-                if (void 0 == t.fullbackgoods) return;
-                var d = t.fullbackgoods.fullbackratio, c = t.fullbackgoods.maxallfullbackallratio, d = Math.round(d), c = Math.round(c);
+                if (null == t.fullbackgoods) return;
+                var d = t.fullbackgoods.fullbackratio, c = t.fullbackgoods.maxallfullbackallratio;
+                d = Math.round(d), c = Math.round(c);
                 i.setData({
                     fullbackratio: d,
                     maxallfullbackallratio: c
                 });
             }
-            1 == t.iscycel && i.show_cycelbuydate();
+            1 == t.iscycelbuy && i.show_cycelbuydate();
         }), this.getQuickAddressDetail(), e.setCache("coupon", ""), setTimeout(function() {
             i.setData({
                 areas: e.getCache("cacheset").areas
@@ -105,16 +126,16 @@ Page({
         }, 3e3);
     },
     show_cycelbuydate: function() {
-        var t = this, e = d.getCurrentDayString(this, t.data.cycelbuy_showdate), a = [ "周日", "周一", "周二", "周三", "周四", "周五", "周六" ];
-        t.setData({
-            currentObj: e,
-            currentDate: e.getFullYear() + "." + (e.getMonth() + 1) + "." + e.getDate() + " " + a[e.getDay()],
-            currentYear: e.getFullYear(),
-            currentMonth: e.getMonth() + 1,
-            currentDay: e.getDate(),
-            initDate: Date.parse(e.getFullYear() + "/" + (e.getMonth() + 1) + "/" + e.getDate()),
-            checkedDate: Date.parse(e.getFullYear() + "/" + (e.getMonth() + 1) + "/" + e.getDate()),
-            maxday: t.data.scope
+        var t = d.getCurrentDayString(this, this.data.cycelbuy_showdate);
+        this.setData({
+            currentObj: t,
+            currentDate: t.getFullYear() + "." + (t.getMonth() + 1) + "." + t.getDate() + " " + [ "周日", "周一", "周二", "周三", "周四", "周五", "周六" ][t.getDay()],
+            currentYear: t.getFullYear(),
+            currentMonth: t.getMonth() + 1,
+            currentDay: t.getDate(),
+            initDate: Date.parse(t.getFullYear() + "/" + (t.getMonth() + 1) + "/" + t.getDate()),
+            checkedDate: Date.parse(t.getFullYear() + "/" + (t.getMonth() + 1) + "/" + t.getDate()),
+            maxday: this.data.scope
         });
     },
     onShow: function() {
@@ -134,7 +155,7 @@ Page({
             "list.storeInfo": d
         });
         var c = e.getCache("coupon");
-        "object" == (void 0 === c ? "undefined" : t(c)) && 0 != c.id ? (this.setData({
+        "object" == (0, t.default)(c) && 0 != c.id ? (this.setData({
             "data.couponid": c.id,
             "data.couponname": c.name
         }), a.post("order/create/getcouponprice", {
@@ -179,16 +200,16 @@ Page({
         }), this.caculate(this.data.list);
     },
     number: function(t) {
-        var e = this, r = a.pdata(t), d = i.number(this, t), c = r.id, o = e.data.list, n = 0, l = 0;
-        s.each(o.goods, function(t, e) {
+        var e = a.pdata(t), r = i.number(this, t), d = e.id, c = this.data.list, o = 0, n = 0;
+        s.each(c.goods, function(t, e) {
             s.each(e.goods, function(e, a) {
-                a.id == c && (o.goods[t].goods[e].total = d), n += parseInt(o.goods[t].goods[e].total), 
-                l += parseFloat(n * o.goods[t].goods[e].price);
+                a.id == d && (c.goods[t].goods[e].total = r), o += parseInt(c.goods[t].goods[e].total), 
+                n += parseFloat(o * c.goods[t].goods[e].price);
             });
-        }), o.total = n, o.goodsprice = s.toFixed(l, 2), e.setData({
-            list: o,
-            goodslist: e.getGoodsList(o.goods)
-        }), this.caculate(o);
+        }), c.total = o, c.goodsprice = s.toFixed(n, 2), this.setData({
+            list: c,
+            goodslist: this.getGoodsList(c.goods)
+        }), this.caculate(c);
     },
     caculate: function(t) {
         var e = this, i = 0;
@@ -205,14 +226,15 @@ Page({
             t.dispatch_price = a.price, t.enoughdeduct = a.deductenough_money, t.enoughmoney = a.deductenough_enough, 
             t.taskdiscountprice = a.taskdiscountprice, t.discountprice = a.discountprice, t.isdiscountprice = a.isdiscountprice, 
             t.seckill_price = a.seckill_price, t.deductcredit2 = a.deductcredit2, t.deductmoney = a.deductmoney, 
-            t.deductcredit = a.deductcredit, t.gifts = a.gifts, e.data.data.deduct && (a.realprice -= a.deductmoney), 
-            e.data.data.deduct2 && (a.realprice -= a.deductcredit2), e.data.coupon && void 0 !== e.data.coupon.deductprice && (e.setData({
+            t.deductcredit = a.deductcredit, t.gifts = a.gifts, 1 == e.data.data.dispatchtype && (console.log(a.price), 
+            a.realprice -= a.price), e.data.data.deduct && (a.realprice -= a.deductmoney), e.data.data.deduct2 && (a.realprice -= a.deductcredit2), 
+            e.data.coupon && void 0 !== e.data.coupon.deductprice && (e.setData({
                 "coupon.deductprice": a.coupon_deductprice
             }), a.realprice -= a.coupon_deductprice), a.card_info && (t.card_free_dispatch = a.card_free_dispatch), 
             0 == e.data.goods.giftid && e.setData({
                 "goods.gifts": a.gifts
             }), t.realprice <= 0 && (t.realprice = 1e-6), t.realprice = s.toFixed(a.realprice, 2), 
-            e.setData({
+            "-0.00" == t.realprice && (t.realprice = 0), e.setData({
                 list: t,
                 cardid: a.card_info.cardid,
                 cardname: a.card_info.cardname,
@@ -224,9 +246,12 @@ Page({
     },
     submit: function() {
         var t = this.data, e = this, i = this.data.diyform, d = t.goods.giftid || t.giftid;
-        if (0 == this.data.goods.giftid && 1 == this.data.goods.gifts.length && (d = this.data.goods.gifts[0].id), 
-        !t.submit && r.verify(this, i)) {
+
+        if ((0 == this.data.goods.giftid && 1 == this.data.goods.gifts.length && (d = this.data.goods.gifts[0].id), 
+        !t.submit) && r.verify(this, i)) {
             t.list.carrierInfo = t.list.carrierInfo || {};
+            console.log(t.diyform.f_data);
+            console.log(11);
             var c = {
                 id: t.options.id ? t.options.id : 0,
                 goods: t.goodslist,
@@ -260,13 +285,13 @@ Page({
             if (t.list.storeInfo && (c.carrierid = t.list.storeInfo.id), 1 == t.data.dispatchtype || t.list.isvirtual || t.list.isverify) {
                 if ("" == s.trim(t.list.member.realname) && "0" == t.list.set_realname) return void a.alert("请填写联系人!");
                 if ("" == s.trim(t.list.member.mobile) && "0" == t.list.set_mobile) return void a.alert("请填写联系方式!");
-                if (!/^[1][3-9]\d{9}$|^([6|9])\d{7}$|^[0][9]\d{8}$|^[6]([8|6])\d{5}$/.test(s.trim(t.list.member.mobile))) return void a.alert("请填写正确联系电话!");
+                if ("0" == t.list.set_mobile && !/^[1][3-9]\d{9}$|^([6|9])\d{7}$|^[0][9]\d{8}$|^[6]([8|6])\d{5}$/.test(s.trim(t.list.member.mobile))) return void a.alert("请填写正确联系电话!");
                 if (t.list.isforceverifystore && !t.list.storeInfo) return void a.alert("请选择门店!");
                 c.addressid = 0;
             } else if (!c.addressid && !t.list.isonlyverifygoods) return void a.alert("地址没有选择!");
             e.setData({
                 submit: !0
-            }), a.post("order/create/submit", c, function(t) {
+            }), console.log(c), a.post("order/create/submit", c, function(t) {
                 e.setData({
                     submit: !1
                 }), 0 == t.error ? wx.navigateTo({
@@ -284,13 +309,13 @@ Page({
 
           case "deduct":
             if (e.deduct = t.detail.value, e.deduct2) return;
-            i = parseFloat(a.realprice);
+            var i = parseFloat(a.realprice);
             i += e.deduct ? -parseFloat(a.deductmoney) : parseFloat(a.deductmoney), a.realprice = i;
             break;
 
           case "deduct2":
             if (e.deduct2 = t.detail.value, e.deduct) return;
-            var i = parseFloat(a.realprice);
+            i = parseFloat(a.realprice);
             i += e.deduct2 ? -parseFloat(a.deductcredit2) : parseFloat(a.deductcredit2), a.realprice = i;
         }
         a.realprice <= 0 && (a.realprice = 1e-6), a.realprice = s.toFixed(a.realprice, 2), 
@@ -329,6 +354,9 @@ Page({
     DiyFormHandler: function(t) {
         return r.DiyFormHandler(this, t);
     },
+    DiyFormHandler1: function(t) {
+        return r.DiyFormHandler(this, t);
+    },
     selectArea: function(t) {
         return r.selectArea(this, t);
     },
@@ -360,10 +388,10 @@ Page({
         });
     },
     onChange2: function(t) {
-        var e = this, a = e.data.areaDetail.detail, i = t.currentTarget.dataset.type, r = s.trim(t.detail.value);
-        "street" == i && (a.streetdatavalue = e.data.street[r].code, r = e.data.street[r].name), 
-        a[i] = r, e.setData({
-            "areaDetail.detail": a
+        var e = this.data.areaDetail.detail, a = t.currentTarget.dataset.type, i = s.trim(t.detail.value);
+        "street" == a && (e.streetdatavalue = this.data.street[i].code, i = this.data.street[i].name), 
+        e[a] = i, this.setData({
+            "areaDetail.detail": e
         });
     },
     getStreet: function(t, e) {
@@ -557,7 +585,8 @@ Page({
             cardid: i,
             goodsprice: this.data.list.goodsprice,
             dispatch_price: this.data.list.dispatch_price,
-            discountprice: this.data.list.discountprice
+            discountprice: this.data.list.discountprice,
+            goodslist: this.data.list.goods
         };
         a.post("order/create/getcardprice", r, function(t) {
             if ("" != i) if (0 == t.error) {

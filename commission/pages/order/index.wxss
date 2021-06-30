@@ -1,4 +1,5 @@
- 
+@import "../../../wxss/0.wxss";
+
 .com-order .fui-cell-group .fui-cell .fui-cell-label {
     width: auto;
     font-size: 28rpx;

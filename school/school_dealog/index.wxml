@@ -1,0 +1,104 @@
+<loading wx:if="{{!show}}">加载中...</loading>
+<view class="container" wx:if="{{show}}">
+  <view class="list-content">
+    <view class="block-head">
+					{{schooltitle}}历史成交
+				</view>
+    <view class="schoollist data-v-75f46631">
+					<view class="list__nav flex_layout_b data-v-75f46631">
+						<view bindtap="handleSwitch"
+							class="{{[ 'data-v-75f46631','list__nav__item '+(activeItem==1?'list__nav__acitve':'') ]}}" data-text="1">
+							最近成交明细</view>
+						<view bindtap="handleSwitch"
+							class="{{[ 'data-v-75f46631','list__nav__item '+(activeItem==2?'list__nav__acitve':'') ]}}" data-text="2">
+							均价排行榜</view>
+							<view bindtap="handleSwitch"
+							class="{{[ 'data-v-75f46631','list__nav__item '+(activeItem==3?'list__nav__acitve':'') ]}}" data-text="3">
+							总价排行榜</view>
+					</view>
+				</view>
+
+    <view class="deal-list-content">
+
+      <view class="list-item" bindtap="itemClick" data-goodsid="{{item.goodsid}}" data-id="{{item.id}}" wx:for="{{list}}" wx:key="item">
+
+        <view class="item item-flex">
+          <view class="item-top">{{index+1}}.{{item.title}}</view>
+          <view class="item-bottom">
+            <view> {{item.htje}}万</view>
+          </view>
+        </view>
+        <view class="item item-flex ">
+          <view class="item-top">
+            {{item.htmj}}㎡
+          </view>
+          <view class="item-bottom">
+            <view>{{item.htjj}}元/㎡</view>
+          </view>
+        </view>
+        <view class="item item-flex ">
+          <view class="item-top">
+            {{item.zcs}}/{{item.szlcname}}
+          </view>
+
+          <view class="item-bottom">
+            <view>{{item.tjdate}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="fui-loading" wx:if="{{loading}}">
+      <view class="icon"></view>
+      <view class="text">正在加载</view>
+    </view>
+    <view class="fui-loading empty" wx:if="{{loaded&&list.length>0}}">
+      <view class="text">没有更多了</view>
+    </view>
+    <view class="fui-loading empty" wx:if="{{total<=0&&!loading}}">
+      <view class="text">没有数据</view>
+    </view>
+
+  </view>
+
+  
+</view>
+
+<cover-view class="nav-bottom2" style="bottom:{{isIpx?'68rpx':''}};"  wx:if="{{show}}">
+    
+    <cover-view class="fun">         
+        <cover-view class="guanzhu2 relative_class" data-phone="{{ad.mobile}}">        <cover-image class="images2" src="{{ad!=false?ad.qrcode:'https://sbmf.ww2ss.com/dfimages/logo2.jpg'}}" bindtap="imgYu"  data-image="{{ad!=false?ad.images:'https://sbmf.ww2ss.com/dfimages/logo2.jpg'}}"></cover-image>
+            
+        </cover-view>
+        <cover-view catchtap="handleCall" class="guanzhu1 relative_class" data-phone="{{ad.mobile}}" wx:if="{{ad!=false}}">    
+            <cover-view class="ntext" catchtap="handleCall" data-phone="{{ad.mobile}}" >{{ad.uname}}</cover-view>
+            <cover-view class="ntext1">{{ad.organization}}</cover-view>
+        </cover-view>
+        <cover-view   class="guanzhu1 relative_class"  wx:else>    
+            <cover-view class="ntext">联系客服</cover-view>
+            <cover-view class="ntext1">{{ad.organization}}</cover-view>
+        </cover-view>
+    </cover-view>
+    <cover-view catchtap="goSee" class="tell relative_class" data-phone="{{ad.mobile}}" wx:if="{{ad!=false}}">         
+        <cover-view>联系经纪人</cover-view>
+    </cover-view>
+    <cover-view catchtap="handleGo" data-cid="{{community.id}}" class="tell relative_class" data-go="/pages/guwen/gw-no/index" wx:else>        
+        <cover-view>经纪人免费入驻</cover-view>
+    </cover-view>
+</cover-view>
+
+<cover-view bindtap="_closeGetPhone" class="mask_bg getphone_dialog" wx:if="{{see}}">
+    <cover-view catchtap="_white" class="getphone_content">
+        <cover-view class="info">
+            <cover-image src="{{ad.qrcode}}"></cover-image>
+            <cover-view>您好，我是金牌经纪人{{ad.uname}} </cover-view>             
+        </cover-view>
+         
+        <cover-view class="desc">免费查询历史成交记录！可以加我微信！<cover-image src="{{ad.images}}" data-image="{{ad.images}}" style="height: 150rpx;width: 150rpx;" bindtap="imgYu"></cover-image></cover-view>
+        <cover-view class="btns">
+            <button catchtap="closeSee" class="cancel">暂不需要</button>
+            <button bindtap="imgYu" data-image="{{ad.images}}" class="ok" wx:if="{{has_phone}}">好的</button>
+            <button  bindtap="imgYu" data-image="{{ad.images}}" class="ok"   wx:else>好的</button>
+        </cover-view>
+    </cover-view>
+</cover-view>
+<cover-view class="button-group {{isIpx?'fix-iphonex-button':''}}"></cover-view>

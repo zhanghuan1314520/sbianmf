@@ -1,12 +1,12 @@
 <template name="tpl_list">
     <view class="fui-goods-item">
-        <navigator hoverClass="none" openType="navigate" url="{{item.bargain>0?'../../../bargain/detail/detail?id='+item.bargain:'/pages/goods/detail/index?id='+item.id}}">
+        <navigator hoverClass="none" openType="navigate" url="{{item.bargain>0?'/pages/bargain/detail/detail?id='+item.bargain:'/pages/goods/detail/index?id='+item.id}}">
             <view class="image" style="background-image:url({{item.thumb}})"></view>
             <image class="salez" src="{{item.saleout}}" wx:if="{{item.saleout&&item.cansee<=0||item.saleout&&item.cansee>0&&item.seecommission<=0}}"></image>
             <view class="goods-Commission" wx:if="{{item.cansee>0&&item.seecommission>0}}">{{item.seetitle}}￥{{item.seecommission}}</view>
         </navigator>
         <view class="detail goods_list_detail">
-            <navigator hoverClass="none" openType="navigate" url="{{item.bargain>0?'../../../bargain/detail/detail?id='+item.bargain:'/pages/goods/detail/index?id='+item.id}}">
+            <navigator hoverClass="none" openType="navigate" url="{{item.bargain>0?'/pages/bargain/detail/detail?id='+item.bargain:'/pages/goods/detail/index?id='+item.id}}">
                 <view class="name">
                     <text class="cycle-tip" wx:if="{{item.type==9}}">周期购</text>
                     <text class="cycle-tip" wx:if="{{item.bargain>0}}">砍价</text>
@@ -18,12 +18,12 @@
             </view>
             <view class="price">
                 <view class="text">¥{{item.minprice}}</view>
-                <view bindtap="selectPicker" data-buytype="buy" data-home="1" data-id="{{item.id}}" wx:if="{{item.type!=9&&item.type!=5&&item.bargain==0}}">
+                <view bindtap="selectPicker" data-buytype="buy" data-id="{{item.id}}" wx:if="{{item.type!=9&&item.type!=5&&item.bargain==0}}">
                     <text class="buy icox icox-gouwuche buybtnbtn buybtn-5" style="color:#ff5555"></text>
                 </view>
                 <navigator class="buy buybtnbtn buybtn-1 " style="" url="/pages/goods/detail/index?id={{item.id}}" wx:if="{{item.type==9&&item.bargain==0}}">详情</navigator>
                 <navigator class="buy buybtnbtn buybtn-1" style="" url="/pages/goods/detail/index?id={{item.id}}" wx:if="{{item.type==5&&item.bargain==0}}">详情</navigator>
-                <navigator class="buy buybtnbtn buybtn-1" style="" url="../../../bargain/detail/detail?id={{item.bargain}}" wx:if="{{item.bargain>0}}">详情</navigator>
+                <navigator class="buy buybtnbtn buybtn-1" style="" url="/pages/bargain/detail/detail?id={{item.bargain}}" wx:if="{{item.bargain>0}}">详情</navigator>
             </view>
         </view>
     </view>

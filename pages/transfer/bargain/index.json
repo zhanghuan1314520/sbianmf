@@ -1,5 +1,6 @@
 {
     "enablePullDownRefresh": true,
     "backgroundTextStyle": "dark",
-    "navigationBarTitleText": "砍价活动"
+    "navigationBarTitleText": "砍价活动",
+    "usingComponents": {}
 }

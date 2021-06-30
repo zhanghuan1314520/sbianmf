@@ -1,0 +1,3 @@
+<view class="t-td" >
+    <slot></slot>
+</view>

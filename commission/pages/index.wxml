@@ -40,9 +40,7 @@
             </view>
             <view class="text">
                 <view class="title">{{set['texts']['commission1']}}</view>
-                <text>{{member['commission_total']}}</text>
-                {{set['texts']['yuan']}}
-            </view>
+                <text>{{member['commission_total']}}</text>                {{set['texts']['yuan']}}            </view>
         </navigator>
         <navigator class="fui-block-child" url="./order/index">
             <view class="icon" style="color: #9ec9f4;">
@@ -50,9 +48,7 @@
             </view>
             <view class="text">
                 <view class="title">{{set['texts']['order']}}</view>
-                <text>{{member['ordercount0']}}</text>
-                笔
-            </view>
+                <text>{{member['ordercount0']}}</text>                笔            </view>
         </navigator>
         <navigator class="fui-block-child" url="./log/index">
             <view class="icon" style="color: #ffbe2e;">
@@ -60,9 +56,7 @@
             </view>
             <view class="text">
                 <view class="title">{{set['texts']['commission_detail']}}</view>
-                <text>{{member['applycount']}}</text>
-                笔
-            </view>
+                <text>{{member['applycount']}}</text>                笔            </view>
         </navigator>
         <navigator class="fui-block-child" url="./down/index">
             <view class="icon" style="color: #ff6e02;">
@@ -70,9 +64,7 @@
             </view>
             <view class="text">
                 <view class="title">{{set['texts']['mydown']}}</view>
-                <text>{{member['downcount']}}</text>
-                人
-            </view>
+                <text>{{member['downcount']}}</text>                人            </view>
         </navigator>
     </view>
     <navigator class="fui-cell-group" url="/dividend/pages/index/index" wx:if="{{set.commissionshow==1}}">
@@ -94,6 +86,6 @@
         </view>
     </navigator>
 </view>
-<navigator class="commission-shouye" openType="switchTab" url="/dfpage/index/index">
+<navigator class="commission-shouye" openType="switchTab" url="/pages/index/index">
     <text class="icox icox-shouye"></text>
 </navigator>

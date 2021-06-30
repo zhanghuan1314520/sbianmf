@@ -1,0 +1,31 @@
+<view>
+    <view bindtap="__e" class="{{['scroll-view-item data-house',show_des?'bor':'']}}" data-event-opts="{{[ [ 'tap',[ [ 'houseDetails',['$0'],[ [ ['houseData','',index] ] ] ] ] ] ]}}" id="house" wx:for="{{list}}" wx:key="index">
+        <view class="line">
+            <view class="left-dotted"></view>
+            <view class="{{['top',topLine?'topline':'']}}">
+                <view class="house-img">
+                    <view class="host-photo" style="background-size:cover;background-image:url('{{item.url}}')">
+                        <view class="host-describe" wx:if="{{!show_des}}">
+                            <view catchtap="__e" class="host-status" data-event-opts="{{[ [ 'tap',[ [ 'showRes',['$0'],[ [ ['houseData','',index] ] ] ] ] ] ]}}" wx:if="{{item.m0}}">{{item.m1}}</view>
+                            <!-- <view class="host-time" wx:if="{{item.m2&&item[$orig].saleStatus!=9}}">{{item.m3}}</view> -->
+                        </view>
+                    </view>
+                </view>
+                <view class="house-right">
+                    <view class="house-des">{{item.name}}</view>
+                    <view class="house-price">{{item.minPrice}}元/㎡起</view>
+                    <!-- <view class="house-price" wx:else>价格待定</view> -->
+                    <view class="house-addr">{{item.addr}}</view>
+                    <view class="house-tag">
+                        <label class="_span">和院</label>
+                        <label class="_span">地铁房</label>
+                        <label class="_span">非无房可参与</label>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="bottom">
+            <label class="_span">可以预料,亚运村的开闸将是杭州购房史上的狂欢节。</label>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,179 @@
+.school-item_wrap.data-v-28deb51e {
+    box-sizing: border-box;
+    padding: 32rpx 30rpx;
+    border-bottom: 2rpx solid rgba(51,51,51,.05);
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.school-item_wrap .left.data-v-28deb51e {
+    height: 168rpx;
+    position: relative;
+}
+
+.school-item_wrap .left .cover.data-v-28deb51e {
+    width: 224rpx;
+    height: 168rpx;
+    border-radius: 4rpx;
+    margin-right: 20rpx;
+}
+
+.school-item_wrap .left .rank-img.data-v-28deb51e {
+    position: absolute;
+    width: 42rpx;
+    height: 46rpx;
+    top: 0;
+    left: 6rpx;
+    z-index: 2;
+}
+
+.school-item_wrap .left .rank-txt.data-v-28deb51e {
+    position: absolute;
+    width: 42rpx;
+    height: 46rpx;
+    top: 2rpx;
+    left: 20rpx;
+    z-index: 2;
+    color: #fff;
+    line-height: 34rpx;
+}
+
+.school-item_wrap .left .lottery-img.data-v-28deb51e {
+    position: absolute;
+    width: 114rpx;
+    height: 36rpx;
+    top: 0rpx;
+    left: -1px;
+    z-index: 2;
+}
+
+.school-item_wrap .right.data-v-28deb51e {
+    -webkit-box-flex: 1;
+    flex: 1;
+}
+
+.school-item_wrap .right .first-line .title.data-v-28deb51e {
+    width: 100%;
+    font-size: 30rpx;
+    font-weight: bolder;
+    color: #303133;
+    line-height: 32rpx;
+}
+
+.school-item_wrap .right .second-line.data-v-28deb51e {
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 12rpx;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.school-item_wrap .right .second-line .area_code.data-v-28deb51e,.school-item_wrap .right .second-line .distance.data-v-28deb51e {
+    height: 32rpx;
+    font-size: 24rpx;
+    color: #303133;
+    line-height: 32rpx;
+}
+
+.school-item_wrap .right .second-line .vertical-line.data-v-28deb51e {
+    width: 2rpx;
+    height: 20rpx;
+    background: #91a0b4;
+    opacity: .4;
+    margin: 0 12rpx;
+}
+
+.school-item_wrap .right .third-line.data-v-28deb51e {
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.school-item_wrap .right .third-line .nature_type.data-v-28deb51e {
+    height: 36rpx;
+    background: rgba(20,120,255,.1);
+    line-height: 36rpx;
+    border-radius: 2rpx;
+    text-align: center;
+    padding: 0rpx 8rpx;
+    box-sizing: border-box;
+    font-size: 24rpx;
+    color: #1478ff;
+}
+
+.school-item_wrap .right .third-line .nature_type-green.data-v-28deb51e {
+    color: #0ac599;
+    background: rgba(10,197,153,.1);
+}
+
+.school-item_wrap .right .third-line .person.data-v-28deb51e {
+    height: 36rpx;
+    background: rgba(101,119,170,.1);
+    border-radius: 2rpx;
+    font-size: 24rpx;
+    color: #6577aa;
+    line-height: 36rpx;
+    padding: 0rpx 8rpx;
+    box-sizing: border-box;
+}
+
+.school-item_wrap .right .fourth-line.data-v-28deb51e {
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+.school-item_wrap .right .fourth-line .num.data-v-28deb51e {
+    height: 32rpx;
+    font-size: 24rpx;
+    color: #909399;
+    line-height: 32rpx;
+    -webkit-box-flex: 1;
+    flex: 1;
+}
+
+.school-item_wrap .right .fourth-line .pk.data-v-28deb51e {
+    width: 80rpx;
+    height: 40rpx;
+    border-radius: 26rpx;
+    border: 1px solid #1478ff;
+    color: #1478ff;
+    line-height: 40rpx;
+    text-align: center;
+}
+
+.school-item_wrap .right .fifth-line .price.data-v-28deb51e {
+    font-size: 30rpx;
+    font-weight: 700;
+    color: #ee3f4d;
+    line-height: 30rpx;
+}
+
+.school-item_wrap .right .seventh-line.data-v-28deb51e,.school-item_wrap .right .sixth-line.data-v-28deb51e {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.school-item_wrap .right .seventh-line .icon.data-v-28deb51e,.school-item_wrap .right .sixth-line .icon.data-v-28deb51e {
+    height: 30rpx;
+    width: 30rpx;
+}
+
+.school-item_wrap .right .seventh-line .content.data-v-28deb51e,.school-item_wrap .right .sixth-line .content.data-v-28deb51e {
+    width: 390rpx;
+    height: 32rpx;
+    font-size: 24rpx;
+    color: #303133;
+    line-height: 32rpx;
+}
+
+.skeletons-height.data-v-28deb51e {
+    height: 32rpx;
+}

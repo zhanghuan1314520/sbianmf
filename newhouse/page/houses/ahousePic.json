@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "一房一价表",
+  "usingComponents": {
+      "t-table": "/newhouse/components/t-table/t-table",
+      "t-th": "/newhouse/components/t-table/t-th",
+      "t-tr": "/newhouse/components/t-table/t-tr",
+      "t-td": "/newhouse/components/t-table/t-td"
+  }
+}

@@ -1,0 +1,6 @@
+<view class="{{['item-trend _div data-v-7ee8f5b1',item.price_huanbi>0?'up':'down']}}">
+    <label class="item-none _span data-v-7ee8f5b1" wx:if="{{item.price_huanbi===0}}">-</label>
+    <view class="item-trend _div data-v-7ee8f5b1" wx:else>
+        <view class="{{['triangle _i data-v-7ee8f5b1',item.price_huanbi>0?'up':'down']}}" wx:if="{{item.price_huanbi}}">{{item.price_huanbi}}%</view>
+    </view>
+</view>

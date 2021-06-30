@@ -1,0 +1,34 @@
+<view class="school-card data-v-9bcde510">
+    <navigator openType="navigate" url="/school/school_details/index?cid={{dataApi.schoolcode}}">
+    <image bindtap="__e" class="school-card__headIcon data-v-9bcde510" src="{{dataApi.thumbs?dataApi.thumbs:'https://sbmf.ww2ss.com/dfimages/photono.png'}}"></image>
+</navigator>
+<navigator openType="navigate" url="/school/school_details/index?cid={{dataApi.schoolcode}}">
+    <view class="school-card__info data-v-9bcde510">
+        <view class="card__info__name flex_layout_b data-v-9bcde510">
+            <text class="fz-18 info__name__n ellipsis-line-2 data-v-9bcde510">{{''+dataApi.title+''}}</text>
+        </view>
+        <view class="card__info__view  data-v-9bcde510">
+            <text class="iconfont  fz-16 mar-right-4 base-center data-v-9bcde510"></text>
+            <text class="base-center data-v-9bcde510">{{''+dataApi.school_type+''}}</text>
+            <text class="base-center data-v-9bcde510"></text>
+        </view>
+    </view>
+</navigator>
+    <view class="school-card__btn  data-v-9bcde510">
+        <base-author-comp bind:__l="__l" bind:onSuccess="__e" class="data-v-9bcde510" data-event-opts="{{[ [ '^onSuccess',[ [ 'handleAttention',['$0'],['dataApi.id'] ] ] ] ]}}" vueId="80d82862-1" vueSlots="{{['default']}}" wx:if="{{!1}}">
+            <view class="share-btn flex_layout_b mar-left-20 data-v-9bcde510">
+                <view class="collect collect--coll data-v-9bcde510">
+                    <text class="{{[ 'data-v-9bcde510','iconfont fz-20 '+(is_attention==1?'iconshoucang1 collect__btn--active ':'iconshoucang') ]}}"></text>
+                    <text class="collect__text mar-top-10 data-v-9bcde510">{{''+(is_attention===1?'已收藏':'收藏')+''}}</text>
+                </view>
+            </view>
+        </base-author-comp>
+        <button class="share-btn flex_layout_b mar-left-36 data-v-9bcde510" openType="share">
+            <view class="collect data-v-9bcde510">
+                <text class="iconfont iconfenxiang fz-20 data-v-9bcde510"></text>
+                <text class="collect__text mar-top-10 data-v-9bcde510">分享</text>
+            </view>
+        </button>
+    </view>
+</view>
+ 

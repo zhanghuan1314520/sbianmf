@@ -1,0 +1,259 @@
+@charset "UTF-8";
+
+button::after {
+    border: none;
+}
+
+.btn-large {
+    font-size: 36rpx;
+    font-family: PingFangSC-Semibold;
+    font-weight: bold;
+    border-radius: 10rpx;
+    line-height: 96rpx;
+    height: 96rpx;
+    text-align: center;
+}
+
+.btn-small {
+    font-size: 24rpx;
+    font-family: PingFangSC-Semibold;
+    font-weight: bold;
+    border-radius: 4rpx;
+    line-height: 56rpx;
+    height: 56rpx;
+    min-width: 128rpx;
+    padding: 0 16rpx;
+    text-align: center;
+}
+
+.btn-blue {
+    background: #3072F6;
+    color: #FFFFFF;
+}
+
+.btn-green {
+    background: #3BC48B;
+    color: #FFFFFF;
+}
+
+.btn-grey {
+    background: #F8F8F8;
+    color: #222222;
+}
+
+.btn-blue-button-hover {
+    background-color: #2B66DC;
+}
+
+.btn-green-button-hover {
+    background-color: #34B07C;
+}
+
+.btn-grey-button-hover {
+    background-color: #EAF0FE;
+}
+
+.btn-blue-button-disabled {
+    background-color: #ACC6FB;
+}
+
+.btn-green-button-disabled {
+    background-color: #B0E7D0;
+}
+
+.btn-grey-button-disabled {
+    background-color: #EAF0FE;
+}
+
+.btn-blue-button-choose {
+    background-color: #FFFFFF;
+    color: #3072F6;
+    border: 3rpx solid #3072F6;
+}
+
+.btn-green-button-choose {
+    background-color: #FFFFFF;
+    color: #3BC48B;
+    border: 3rpx solid #3BC48B;
+}
+
+.reddot {
+    font-size: 20rpx;
+    background: #FA5741;
+    display: inline-block;
+    color: #FFFFFF;
+    min-width: 18rpx;
+    font-family: PingFangSC-Semibold;
+    padding: 8rpx 10rpx;
+    border: 2rpx solid #FFFFFF;
+    border-radius: 50rpx;
+    box-sizing: border-box;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 14rpx;
+}
+
+.hr {
+    height: 2rpx;
+    border: none;
+    background: #F0F0F0;
+}
+
+page {
+    color: #222222;
+    font-size: 32rpx;
+    font-family: 'PingFang';
+}
+
+.big-number {
+    font-size: 76rpx;
+    font-family: "DIN Condensed";
+    src: url("https://s1.ljcdn.com/link-static/resource/wxapp/DIN_Condensed_Bold.ttf") format("truetype");
+}
+
+page {
+    background: #FFF;
+}
+
+.maifang .card {
+    background: #FFF;
+    padding: 0 48rpx;
+}
+
+.maifang .card .row {
+    display: flex;
+    width: 100%;
+    height: 120rpx;
+    font-size: 32rpx;
+    line-height: 120rpx;
+    box-sizing: border-box;
+    border-bottom: 2rpx solid #F8F8F9;
+}
+.maifang .row .title1 {
+    flex: 1;
+    color: #222222;
+    font-weight: bold;
+}
+.maifang .row .title {
+    flex: 2;
+    color: #222222;
+    font-weight: bold;
+}
+
+.maifang .row .row_input {
+    flex: 2;
+    display: inline-block;
+    height: 120rpx;
+}
+.maifang .row .row_input1 {
+    flex: 2;
+    display: inline-block;
+    height: 120rpx;
+    width: 70%;
+}
+.maifang .row .row_input2 {
+    flex: 2;
+    display: inline-block;
+    height: 120rpx;
+    width: 70%;
+}
+.maifang .row .row_input3 {
+    flex: 2;
+    display: inline-block;
+    height: 120rpx;
+    width: 70%;
+}
+.maifang .row .row_read {
+    text-align: left;
+    display: inline-block;
+    height: 120rpx;
+    display: flex;
+}
+
+/* 初始样式 */
+radio .wx-radio-input {
+    width: 35rpx;
+    height: 35rpx;
+    padding: 2rpx;
+    margin:15rpx;
+}
+
+ 
+
+
+.maifang .row .row_input .placeholder-style {
+    color: #CCCCCC;
+}
+
+.maifang .row .row_right {
+    flex: 1;
+    text-align: right;
+}
+
+.maifang .row .row_right button{
+    text-align: center;
+    text-decoration: none;
+    font-size: 34rpx;
+    color: #fff;
+    background-color: #3072f6;
+    display: inline;
+
+    
+}
+.maifang .row .row_right .getPhoneNumber{
+    padding:5rpx;
+}
+.maifang .maifang_bottom {
+    position: absolute;
+    bottom: 32rpx;
+    width: 100%;
+    padding: 0 48rpx;
+    box-sizing: border-box;
+    text-align: center;
+
+}
+
+.maifang .maifang_bottom.iphonex {
+    bottom: 100rpx;
+}
+
+.maifang .maifang_bottom .btn {
+    height: 96rpx;
+    background: #3072f6;
+    line-height: 96rpx;
+    color: #FFF;
+    text-align: center;
+    border-radius: 10rpx;
+    font-size: 34rpx;
+    font-weight: bold;
+    width: 400rpx;
+    border: none;
+
+}
+
+.maifang .maifang_bottom .btn:active {
+    background: #2B66DC;
+}
+
+.maifang .icon_arrow {
+    display: inline-block;
+    width: 32rpx;
+    height: 32rpx;
+    margin-top: 8rpx;
+}
+
+.maifang .liucheng {
+    width: 564rpx;
+    height: 200rpx;
+    margin: 96rpx 48rpx;
+}
+
+.maifang .gujia_entry {
+    height: 80rpx;
+    line-height: 80rpx;
+    background-color: #F8F8F8;
+    color: #3072F6;
+    font-size: 28rpx;
+    padding-left: 48rpx;
+    font-weight: bold;
+}

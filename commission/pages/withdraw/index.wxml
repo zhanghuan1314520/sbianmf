@@ -80,9 +80,7 @@
     </view>
     <view class="fui-cell-group {{code?'':'toggleSend-group'}}">
         <navigator bindtap="toggleSend" class="fui-cell" data-id="{{code}}" hoverClass="none" url="">
-            <view class="fui-cell-info color">
-                用户需知
-            </view>
+            <view class="fui-cell-info color">                用户需知            </view>
             <view class="fui-cell-remark"></view>
         </navigator>
         <view class="apply send-code">
@@ -92,11 +90,7 @@
         </view>
     </view>
     <view class="fui-navbar {{iphonexnavbar}}">
-        <view bindtap="withdraw" class="nav-item btn btn-warning block {{!cansettle?'disabled':''}}" wx:if="{{set['texts']['withdraw']==''}}">
-        我要提现
-      </view>
-        <view bindtap="withdraw" class="nav-item btn btn-warning block {{!cansettle?'disabled':''}}" wx:if="{{set['texts']['withdraw']!=''}}">
-        我要{{set['texts']['withdraw']}}
-      </view>
+        <view bindtap="withdraw" class="nav-item btn btn-warning block {{!cansettle?'disabled':''}}" wx:if="{{set['texts']['withdraw']==''}}">        我要提现      </view>
+        <view bindtap="withdraw" class="nav-item btn btn-warning block {{!cansettle?'disabled':''}}" wx:if="{{set['texts']['withdraw']!=''}}">        我要{{set['texts']['withdraw']}}      </view>
     </view>
 </view>

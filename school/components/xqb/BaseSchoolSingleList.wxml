@@ -1,0 +1,39 @@
+<view bindtap="__e" class="{{['school-item_wrap data-v-28deb51e',skeletons?'skeletons-rect':'']}}" data-event-opts="">
+    <view class="{{['left data-v-28deb51e',skeletons?'skeletons-child mar-right-20':'']}}">
+        <image class="cover data-v-28deb51e" src="{{items.thumbs?items.thumbs:'https://sbmf.ww2ss.com/dfimages/photono.png'}}"></image>
+        <image class="rank-img data-v-28deb51e" src="https://imgcdn.huanjutang.com/image/2020/06/19/eadb7403ebe6488ecc3150993f740227.png" wx:if="{{rankNum<=5}}"></image>
+        <view class="rank-txt fz-15 semiBold data-v-28deb51e" wx:if="{{rankNum<=5}}">{{''+rankNum+''}}</view>
+        <image class="lottery-img data-v-28deb51e" src="https://imgcdn.huanjutang.com/image/2020/06/20/8641bc7e1643ac9c08672a6febaa59d4.png" wx:if="{{lotteryFlag==1}}"></image>
+    </view>
+    <view class="right data-v-28deb51e">
+        <view class="{{['first-line data-v-28deb51e',skeletons?'skeletons-child skeletons-height':'']}}">
+            <view class="title ellipsis-line-1 data-v-28deb51e">{{''+items.title+''}}</view>
+        </view>
+        <view class="{{['second-line data-v-28deb51e',skeletons?'skeletons-child skeletons-height':'']}}">
+            <text class="area_code fz-12 data-v-28deb51e" >{{''+items.adname+''}} | {{''+items.juli+''}}km</text>
+            <view class="vertical-line data-v-28deb51e"></view>
+            <view class="distance fz-12 data-v-28deb51e" wx:if="{{items.distance}}">
+                <block wx:if="{{isCorrect}}">距小区约</block>{{$root.f0+''}}
+            </view>
+        </view>
+        <view class="{{['third-line data-v-28deb51e',skeletons?'skeletons-child mar-top-12 skeletons-height':'']}}">
+            <text class="{{['nature_type fz-12 mar-right-8 mar-top-12 data-v-28deb51e']}}">{{''+items.school_type+''}}</text>
+            <text class="person fz-12 mar-right-8 mar-top-12 data-v-28deb51e"></text>
+        </view>
+        <view class="{{['fourth-line data-v-28deb51e',skeletons?'skeletons-child mar-top-12 skeletons-height':'',isPK?'mar-top-6':'']}}">
+            <view class="{{['num data-v-28deb51e',!isPK?'mar-top-12':'']}}">热度：{{''+items.view_count+''}}</view>
+            <view catchtap="__e" class="fz-12 pk data-v-28deb51e" wx:if="{{isPK}}">对比</view>
+        </view>
+        <view class="{{['fifth-line data-v-28deb51e',isPK?'mar-top-6':'mar-top-14']}}">
+            <view class="price data-v-28deb51e" wx:if="{{items.view_count}}">{{items.price+'元/㎡'}}</view>
+        </view>
+        <view class="sixth-line mar-top-14 flex_layout data-v-28deb51e" wx:if="{{items.short_name&&items.short_name.length}}">
+            <image class="icon mar-right-10 data-v-28deb51e" src="https://imgcdn.huanjutang.com/assets/img/20211251644408081.png"></image>
+            <view class="content ellipsis-line-1 data-v-28deb51e">{{''+$root.g0+''}}</view>
+        </view>
+        <view class="seventh-line mar-top-14 flex_layout data-v-28deb51e" wx:if="{{items.ranking>0}}">
+            <image class="icon mar-right-10 data-v-28deb51e" src="https://imgcdn.huanjutang.com/assets/img/20211251643468081.png"></image>
+            <view class="content ellipsis-line-1 data-v-28deb51e">{{'入选2020萱爸40强第'+items.ranking+'名'}}</view>
+        </view>
+    </view>
+</view> 

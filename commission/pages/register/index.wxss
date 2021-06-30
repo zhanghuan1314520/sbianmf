@@ -742,9 +742,9 @@ picker-view-column {
     vertical-align: middle;
     margin-top: -12rpx;
     padding: 0 20rpx;
-    height: 44rpx;
-    line-height: 44rpx;
-    border-radius: 44rpx;
+    height: 36rpx;
+    line-height: 36rpx;
+    border-radius: 36rpx;
     color: #fff;
     font-size: 20rpx;
     margin-left: 20rpx;

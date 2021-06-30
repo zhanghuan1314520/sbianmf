@@ -1,0 +1,42 @@
+<view class="{{[ 'page data-v-13be682a',[select_show?'lock':''] ]}}">
+    <button class="share-btn data-v-13be682a" openType="share">
+        <image class="data-v-13be682a" src="https://sbmf.ww2ss.com/dfimages/share-btn.png">
+        </image>
+    </button>
+    <view class="top data-v-13be682a">
+        <view class="top-bg--box data-v-13be682a">
+            <view class="{{[ 'common-img _div data-v-264f4da8',shadowClass,className,[mode==='widthFix'?'auto':''] ]}}">
+                <image binderror="__e" class="imgb data-v-264f4da8" 
+                    src="https://sbmf.ww2ss.com/dfimages/top-bg.png">
+                </image>
+            </view>
+        </view> 
+        <view class="top-content data-v-13be682a">
+            <view class="top-tip data-v-13be682a" style="height: 40rpx;"></view>
+            <view bindtap="__e" class="top-select data-v-13be682a"
+                data-event-opts="{{[ [ 'tap',[ [ 'toggleSelect',['$event'] ] ] ] ]}}"  wx:if="{{!1}}">
+                <view class="content data-v-13be682a">{{zone}}</view>
+                <view class="{{['select-wrap data-v-13be682a',select_show?'open':'']}}">
+                    <view class="triangle data-v-13be682a"></view>
+                    <view class="select-content data-v-13be682a">
+                        <view bindtap="__e" class="{{['item text28 data-v-13be682a',item===zone?'active':'']}}"
+                            data-event-opts="{{[ [ 'tap',[ [ 'changeZone',['$0'],[ [ ['zones','',__i0__] ] ] ] ] ] ]}}"
+                            wx:for="{{zones}}" wx:for-index="__i0__" wx:key="*this">{{''+item+''}}</view>
+                    </view>
+                    <view class="overlay data-v-13be682a" wx:if="{{select_show}}"></view>
+                </view>
+            </view>
+            <view class="top-tabs data-v-13be682a">
+                <view bindtap="__e" class="{{['item data-v-13be682a',activeItem===item.value?'active':'']}}" bindtap="handleSwitch"
+                    data-text="{{item.value}}" wx:for="{{types}}" wx:for-index="__i1__" wx:key="value">{{''+item.text+''}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="list data-v-13be682a">
+        <view class="item-wrap data-v-13be682a" wx:for="{{schoolList}}" wx:for-index="__i2__" wx:key="id">
+            <house-item bind:__l="__l" class="data-v-13be682a" classname="rank_item"  items="{{item}}" vueId="{{'64390960-2-'+__i2__}}"></house-item>
+        </view>
+    </view>
+    <page-wrap bind:__l="__l" class="data-v-13be682a" hide_back_home="{{true}}" title="楼盘排行榜" vueId="64390960-3">
+    </page-wrap>
+</view>

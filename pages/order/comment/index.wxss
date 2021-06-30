@@ -1,4 +1,4 @@
-@import "../../../__wuBaseWxss__/7.wxss";
+@import "../../../wxss/8.wxss";
 
 .fui-list-angle {
     color: #000;
@@ -107,4 +107,19 @@
 
 .fui-cell.must .icox.selected {
     color: #ff8000;
+}
+
+.textColor {
+    color: #888;
+}
+
+.textRemark {
+    margin-top: -4rpx;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    width: 100%;
+    min-height: 100rpx;
+    background: transparent;
+    border: none;
+    resize: none;
 }

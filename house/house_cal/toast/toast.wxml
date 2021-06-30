@@ -1,0 +1,33 @@
+<view catchtouchmove="prevent" class="container">
+    <slot wx:if="{{hasSlot}}"></slot>
+    <view class="content" wx:else>
+        <view wx:if="{{toastType==='1'}}">
+            <view class="toast-1-title">什么是最新LPR利率？</view>
+            <view class="content-box">
+                <view class="toast-1-ct-line1">自2019年10月8日起，新发放商业性个人住房贷款利率以最近一个月相应期限的贷款市场报价利率（LPR）为定价基准加点形成。</view>
+                <view class="toast-1-ct-line2">即：最新商贷利率=LPR+基点</view>
+                <view class="toast-1-ct-line3">有什么变化</view>
+                <view class="toast-1-ct-line4">1. LPR每月可能不一样（每月20日报价一次，遇节假日顺延，可在中国人民银行查询）。</view>
+                <view class="toast-1-ct-line4">2. 基点根据不同银行的情况也不一样</view>
+                <view class="toast-1-ct-line5">
+                    <view class="flex-1 border-right">贷款年限</view>
+                    <view class="flex-1">LPR</view>
+                </view>
+                <view class="toast-1-ct-line6">
+                    <view class="flex-1 border-right">五年及以上</view>
+                    <view class="flex-1">{{serviceLoanInfo.LPRLendingRate}}%</view>
+                </view>
+                <view bindtap="emit" class="toast-1-ct-line7">我知道了</view>
+            </view>
+        </view>
+        <view wx:if="{{toastType==='2'}}">
+            <view class="toast-1-title">基点（浮动值）</view>
+            <view class="content-box">
+                <view class="toast-1-ct-line1">自2019年10月8日起，商业贷款利率的计算方式由“旧版基准利率（{{serviceLoanInfo.LendingRate}}%）*上浮或下浮比例”改为“ “LPR+基点（1基点=0.01%）”
+          <text class="toast-2-ct-word"></text>
+                </view>
+                <view bindtap="emit" class="toast-1-ct-line7">我知道了</view>
+            </view>
+        </view>
+    </view>
+</view>

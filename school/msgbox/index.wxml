@@ -1,0 +1,30 @@
+<view class="settled-status_wrap data-v-102eff2d">
+    <block wx:if="{{status}}">
+        <view class="iconfont iconqueding icon data-v-102eff2d"></view>
+        <view class="fz-22 fb-bold title data-v-102eff2d">提交成功</view>
+        <view class="content fz-15 data-v-102eff2d">客服将会在2～3个工作日内审核完成，请关注服务号可及时接收审核结果通知。</view>
+        <view bindtap="__e" class="btn fz-16 fb-bold data-v-102eff2d" data-event-opts="{{[ [ 'tap',[ [ 'jumpServiceUrl',['$event'] ] ] ] ]}}">关注服务号，接收审核结果通知</view>
+    </block>
+    <block wx:else>
+        <view class="iconfont icontishi icon fail data-v-102eff2d"></view>
+        <view class="fz-22 fb-bold title fail data-v-102eff2d">很遗憾，审核未通过</view>
+        <view class="content_wrap data-v-102eff2d">
+            <view class="item flex_layout data-v-102eff2d">
+                <view class="label fz-15 data-v-102eff2d">{{'入驻'+(type===1?'机构':'小区')+'：'}}</view>
+                <view class="txt fz-15 data-v-102eff2d">{{''+(teacherInfo.institution&&teacherInfo.institution.name||salesmanInfo.houses||'')+''}}</view>
+            </view>
+            <view class="item flex_layout data-v-102eff2d">
+                <view class="label fz-15 data-v-102eff2d">未通过原因：</view>
+                <view class="txt fz-15 data-v-102eff2d">{{''+(teacherInfo.review_remark||salesmanInfo.review_remark||'')+''}}</view>
+            </view>
+        </view>
+        <view bindtap="__e" class="btn btn-fail fz-16 fb-bold data-v-102eff2d" data-event-opts="{{[ [ 'tap',[ [ 'reEntry',['$event'] ] ] ] ]}}">重新入驻</view>
+    </block>
+    <view class="bottom_wrap flex_layout data-v-102eff2d">
+        <text class="tip fz-13 data-v-102eff2d">有问题</text>
+        <button class="contact-me flex_layout mar-left-2 data-v-102eff2d" openType="contact" sessionFrom="{{weapp}}">
+            <text class="fz-13 data-v-102eff2d">联系客服</text>
+            <text class="icon-more fz-12 iconfont iconxiangyou data-v-102eff2d"></text>
+        </button>
+    </view>
+</view>

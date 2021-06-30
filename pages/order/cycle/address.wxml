@@ -31,7 +31,7 @@
                 <input bindinput="onChange" class="fui-input" data-type="address" placeholder="街道，楼牌号等" value="{{detail.address}}"></input>
             </view>
         </view>
-        <view class="fui-cell" wx:if="{{detail.ispass==1||detail.ispass==undefined}}">
+        <view class="fui-cell" wx:if="{{detail.ispass==1||detail.ispass==null}}">
             <view class="fui-cell-label" style="width:240rpx">修改剩余全部期数</view>
             <view class="fui-cell-info"></view>
             <view class="fui-cell-remark noremark">

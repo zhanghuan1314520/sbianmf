@@ -1,5 +1,5 @@
 <view class="custom" style="{{istopmenu==false?'':'padding-top:'+topmenuheight+'rpx;'}}min-height:100%;background:{{diypages.page.background}}">
-    <block wx:for="{{diypages.items}}" wx:for-index="diyitemid" wx:for-item="diyitem">
+    <block wx:for="{{diypages.items}}" wx:key="index" wx:for-index="diyitemid" wx:for-item="diyitem">
         <include src="/pages/diy/template/tpl_fixedsearch.wxml" wx:if="{{diyitem.id=='fixedsearch'}}"></include>
         <include src="/pages/diy/template/tpl_banner.wxml" wx:if="{{diyitem.id=='banner'}}"></include>
         <include src="/pages/diy/template/tpl_search.wxml" wx:if="{{diyitem.id=='search'}}"></include>
@@ -59,7 +59,7 @@
         <view class="title">新人礼包</view>
         <view class="subtitle">数量有限，先到先得哦</view>
         <scroll-view class="coupon-list" scrollY="true">
-            <view class="item" wx:for="{{cpinfos}}">
+            <view class="item" wx:for="{{cpinfos}}" wx:key="index">
                 <view class="item-cell">
                     <view class="item-inner">
                         <view class="t">{{item.couponname}}</view>

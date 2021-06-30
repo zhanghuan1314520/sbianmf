@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "每日二手",
+  "usingComponents": {
+    "ec-canvas": "../../../ec-canvas/ec-canvas"
+  }
+}

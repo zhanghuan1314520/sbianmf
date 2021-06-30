@@ -1,0 +1,17 @@
+{
+  "usingComponents": {
+    "ec-canvas": "../../ec-canvas/ec-canvas",
+    "wxc-icon": "../../min/@minui/wxc-icon/dist/index",
+    "wxc-toast": "../../min/@minui/wxc-toast/dist/index",
+    "wxc-loading": "../../min/@minui/wxc-loading/dist/index",
+    "add-tips": "/components/weplug-add-tips/index",
+    "vip-msgbox": "/components/vipmsgbox/index",
+    "detail-nav": "/house/components/_nav",
+    "percent": "/house/components/_percent",
+    "sharebnt": "/components/sharebnt/index",
+    "join-us": "../components/join-us/index"
+  },
+  "backgroundColor": "#366AB3",
+  "navigationBarBackgroundColor": "#366AB3",
+  "navigationBarTextStyle": "white" 
+}

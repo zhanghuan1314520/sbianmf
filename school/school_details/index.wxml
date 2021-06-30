@@ -1,0 +1,667 @@
+<loading wx:if="{{!show}}">加载中...</loading>
+<add-tips text="点击【添加我的小程序】,及时获取信息" duration="30" />
+
+<scroll-view scrollY class="box" scrollIntoView="{{toView}}"
+	style="height: {{windowheight}}px;-webkit-overflow-scrolling: touch;" wx:if="{{!show_authorize_modal}}">
+	<view class="topBox">
+		<view class="schoolImgbox">
+			<button class="shareimg" openType="share">
+				<image class="fx-img" src="../../images/share.png"></image>
+			</button>
+			<view bindtap="bindtap_goto_album" class="photoAlbum">
+				<image class="albumImg" src="../../images/pic.png"></image>
+				<view class="albumImgCount">{{image_count}}</view>
+			</view>
+			<image class="schoolImg" mode="aspectFill" src="{{school.thumbs?school.thumbs:default_school_image}}"></image>
+		</view>
+	</view>
+	<view class="main_scroll">
+
+		<view class="{{['school-intro_wrap data-v-14a36d6a',skeletons?'skeletons-rect':'']}}">
+			<view class="{{['fz-20 school-name ellipsis-line-2 data-v-14a36d6a',skeletons?'skeletons-child':'']}}">
+				{{school.title}}</view>
+			<view class="{{['second-info flex_layout data-v-14a36d6a',skeletons?'skeletons-child':'']}}"
+				style="{{'width:'+(isWidth?'540rpx':'')+';'}}">
+				<view class="type fz-12 mar-top-24 data-v-14a36d6a" wx:if="{{school.school_type}}">{{''+school.school_type+''}}
+				</view>
+				<view class="area fz-12 mar-top-24 data-v-14a36d6a" wx:if="{{school.adname}}">{{school.adname}}</view>
+			</view>
+
+			<view class="{{['fourth-info flex_layout_b mar-top-40 data-v-14a36d6a',skeletons?'skeletons-child':'']}}">
+				<text class="iconfont icondingwei position-icon fz-14 data-v-14a36d6a"></text>
+				<text bindtap="__e" class="address fz-14 mar-left-8 mar-right-16 ellipsis-line-1 data-v-14a36d6a"
+					bindtap="jumpMapUrl">{{school.address}}</text>
+				<view class="right-wrap flex_layout data-v-14a36d6a">
+					<image bindtap="__e" class="position_wrap data-v-14a36d6a" bindtap="jumpMapUrl"
+						src="https://imgcdn.huanjutang.com/image/2020/10/22/1e51c2684168de8316e4db17434a3856.png"></image>
+				</view>
+			</view>
+		</view>
+
+		<view class="{{['schoolprice data-v-00f1220e']}}" wx:if="{{countArray.gpsale}}">
+			<view class="{{['price__cont flex_layout_c data-v-00f1220e']}}">
+				<view class="price__left flex_layout_c data-v-00f1220e">
+					<view class="price__left__avge data-v-00f1220e" wx:if="	{{countArray.gpsale}}">
+						<text class="fz-10 data-v-00f1220e">￥</text>{{''+countArray.gpsale+'/㎡'}}</view>
+					<view class="price__left__avge data-v-00f1220e" wx:else>暂无价格</view>
+					<view class="{{['price__left__title data-v-00f1220e',skeletons?'skeletons-child':'']}}">(挂牌均价)</view>
+				</view>
+				<view class="line data-v-00f1220e"></view>
+				<view class="price__next flex_layout_c data-v-00f1220e">
+					<view class="{{['price__next__rate flex_layout data-v-00f1220e',skeletons?'skeletons-child':'']}}"
+						wx:if="{{countArray.schoolmixprice}}">
+						<text class="fz-10 data-v-00f1220e">￥</text>{{countArray.schoolmixprice+'万'}}
+					</view>
+					<view
+						class="{{['price__next__rate price__next__rate--nd flex_layout data-v-00f1220e',skeletons?'skeletons-child':'']}}"
+						wx:else>暂无数据</view>
+					<view class="{{['price__next__title data-v-00f1220e',skeletons?'skeletons-child':'']}}">(入学门槛)</view>
+				</view>
+			</view>
+		</view>
+		<view class="schoolBox" wx:if="{{false}}">
+			<view class="schoolInfo">
+				<view bindtap="bindtap_goto_open_location" class="schoolInfo_left">
+					<image class="sLogo" wx:if="{{false}}" src="{{school.logo?school.logo:'../../images/logo_none.png'}} ">
+					</image>
+					<view class="school_bar">
+						<view class="topline">
+							<view class="schoolName">
+								{{school.title}}
+							</view>
+						</view>
+						<view class="bottomline">
+							<view class="schoolAddress">
+								{{school.address}}
+							</view>
+						</view>
+					</view>
+				</view>
+				<view bindtap="bindtap_favorite" class="collection" wx:if="{{false}}">
+					<view class="collection_no" wx:if="{{is_favorite==0}}">+关注</view>
+					<view class="collection_yes" wx:else>已关注</view>
+				</view>
+			</view>
+			<view class="messageBox">
+				<view class="messageNum">
+					<view class="avatarList" wx:if="{{avatar_list[0]}}">
+						<image class="ellipsis" src="../../images/details/ellipsis.png"></image>
+						<image class="avatarImage avatarimg_{{index}}" src="{{item.avatar}}" wx:for="{{avatar_list}}"
+							wx:key="index">
+						</image>
+					</view>
+					<view class="messageBoxtext">{{school.view_count}}人已浏览</view>
+				</view>
+				<view bindtap="bindtap_set_scroll_into_view" class="messageStat" data-toview="comment" wx:if="{{false}}">
+					<image class="messageBoxImg" src="../../images/details/message.png"></image>
+					<view class="messageBoxtext">留言{{comment_count>0?'('+comment_count+')':''}}</view>
+				</view>
+			</view>
+		</view>
+
+ 		<view class="card_block">
+			<view class="card_outside">
+
+				<building-rank bind:__l="__l" building_ranking="{{school.building_ranking}}" class="data-v-256e26cf" vueId="722dc84a-9" wx:if="{{school.building_ranking}}"></building-rank>
+
+
+				<view bindtap="go_to_school_info" class="card_title">
+					<view class="card_title_text">
+						<view>学校信息</view>
+					</view>
+					<view class="more" wx:if="{{false}}">详情<image class="card_more" src="../../images/next.png"></image>
+					</view>
+				</view>
+				<view class="card_container">
+					<view class="swiper_first">
+						<view class="xxcard">
+							<view class="xxtitle">建校时间：</view>
+							<view class="describe"> {{school.established?school.established:'--'}}年</view>
+						</view>
+						<view class="xxcard">
+							<view class="xxtitle">学校性质：</view>
+							<view class="describe">{{school.school_type}}</view>
+						</view>
+						<view class="xxcard">
+							<view class="xxtitle">官方电话：</view>
+							<view class="describe">{{school.phone?school.phone:'--'}}
+								<image bindtap="bindtap_call_phone" class="copy" src="../../images/details/phone.png"
+									wx:if="{{school.phone.length>0}}"></image>
+							</view>
+						</view>
+						<view class="xxcard">
+							<view class="xxtitle">官方网站：</view>
+							<view class="describe"> {{school.website?school.website:'--'}}
+								<image bindtap="bindtap_copy_website_clipboard" class="copy" src="../../images/details/copy.png"
+									wx:if="{{school.website.length>0}}"></image>
+							</view>
+						</view>
+						<view class="xxcard" wx:if="{{school.teachertxt}}">
+							<view class="xxtitle">师资力量：</view>
+							<view class="describe">{{school.teachertxt}}</view>
+						</view>
+						<view class="xxcard" wx:if="{{school.yingjianshuiping}}">
+							<view class="xxtitle">硬件水平：</view>
+							<view class="describe">{{school.yingjianshuiping}}</view>
+						</view>
+						<view class="xxcard" wx:if="{{school.gongcantxt}}">
+							<view class="xxtitle">供餐说明：</view>
+							<view class="describe">{{school.gongcantxt}}</view>
+						</view>
+						<view class="xxcard" wx:if="{{school.zhangdimianji}}">
+							<view class="xxtitle">占地面积:</view>
+							<view class="describe">{{school.zhangdimianji}}</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="card_block">
+			<view class="card_outside" data-id="{{school.id}}"  bindtap="go_to_school_map">
+				<view class="card_title">
+					<view class="card_title_text">
+						学区地图
+					</view>
+					<view class="more" >详情<image class="card_more" src="../../images/next.png"></image>
+					</view>
+				</view>
+			</view>
+			<view class="mapbox">
+				<map bindtap="go_to_school_explain" enableScroll="{{false}}" latitude="{{school.lat}}"
+					longitude="{{school.lng}}" markers="{{map_markers}}" polygons="{{map_polygons}}" polyline="{{map_polylines}}"
+					scale="{{map_scale}}" style="width: 100%; height:420rpx;" wx:if="{{school.id}}"></map>
+				<view class="price" wx:if="{{school.gpprice>0}}">
+					<view>学区均价:{{school.gpprice}}元/平</view>
+				</view>
+			</view>
+			<view class="card_outside">
+				<view class=" {{['plan-slice-box mar-top-24 data-v-744937ef',skeletons?'skeletons-child':'']}}"
+					wx:if="{{school.explains.length>0}}">
+					<view class="header-box flex_layout data-v-744937ef">
+						<text class="iconfont iconquyu fz-17 mar-right-6 icon data-v-744937ef"></text>
+						<text class="txt fz-13 data-v-744937ef">划片范围</text>
+					</view>
+					<view class="desc-txt mar-top-14 fz-13 data-v-744937ef">{{school.explains}}</view>
+				</view>
+				<block>
+					<view class="plan-house-txt fz-14 data-v-744937ef">划片范围内小区</view>
+					<view class="plan-house data-v-744937ef">
+						<view class="plan-house data-v-dbe5ffe8">
+							<view class="plan-house__item data-v-dbe5ffe8" wx:for="{{houseList}}" wx:key="item">
+								<navigator openType="navigate" url="../../house/community/index?cid={{item.id}}">
+									<view class="plan-house__left data-v-dbe5ffe8">
+
+										<image class="plan-house__headIcon data-v-dbe5ffe8" src="{{item.thumbs?item.thumbs:'https://sbmf.ww2ss.com/dfimages/photono.png'}}"></image>
+
+										<view class="image__gradient data-v-dbe5ffe8"></view>
+									</view>
+								</navigator>
+								<view class="plan-house__info data-v-dbe5ffe8">
+									<navigator openType="navigate" url="../../house/community/index?cid={{item.id}}">
+										<view class="house__info__name color-item-name data-v-dbe5ffe8">{{''+item.title+''}}</view>
+										<view class="flex_layout_b mar-top-15 data-v-dbe5ffe8">
+											<text class="house__info__cont data-v-dbe5ffe8">{{''+item.areaname+''}}</text>
+											<text class="card__info__distance  data-v-dbe5ffe8"
+												wx:if="{{item.juli}}">{{'距学校约'+item.juli+''}}km</text>
+										</view>
+										<view class="flex_layout_b mar-top-15 data-v-dbe5ffe8">
+											<text class="house__info__cont data-v-dbe5ffe8" style="color:#2196F3">门槛：{{''+item.mixprice+'万'}}</text>
+											<text class="card__info__distance  data-v-dbe5ffe8"
+												wx:if="{{item.gpcount}}">{{'库存'+item.gpcount+'套'}}</text>
+										</view>
+										<view class="flex_layout_b mar-top-15 data-v-dbe5ffe8">
+											<view class="house__info__price data-v-dbe5ffe8">
+												<text class="fz-15 color-prize fb-bold data-v-dbe5ffe8"
+													wx:if="{{item.price}}">{{''+item.price+'元/㎡'}}</text>
+											</view>
+											<view class="data-v-dbe5ffe8">
+												<view class="flex_layout_c card__info__commnet data-v-dbe5ffe8">
+													<text class="iconfont iconliulan fz-16 mar-right-4 data-v-dbe5ffe8"></text>
+													<text class="mar-right-12 data-v-dbe5ffe8"></text>
+													<text class="iconfont iconpinglun fz-16 mar-right-4 data-v-dbe5ffe8" wx:if="{{false}}"></text>
+													<text class="data-v-dbe5ffe8">90天成交{{item.cjcount}}套</text>
+												</view>
+											</view>
+										</view>
+									
+										 
+									</navigator>
+								</view>
+							</view> 
+						</view>
+
+						<view class="mar-top-32 data-v-744937ef" wx:if="{{HouseList_total>5}}">
+						
+
+								<view class="data-v-a05f73ce">
+									<navigator class="more data-v-a05f73ce" hoverClass="none" url="/school/school_xiaoqu/index?cid={{''+cid}}">
+											<text class="input fz-15 font-bold data-v-a05f73ce" style="margin: 0 auto;">{{'查看全部('+HouseList_total+')'}}</text>
+									</navigator>
+								
+							</view>
+
+
+						</view>
+					</view>
+				</block>
+			</view> 
+		</view>
+
+
+		<view class="corr-middle-school_wrap">
+			<view class="corresponding-middle">
+				<view class="corresponding-middle__top mar-bottom-26">
+					<text class="middle__top__title fz-18 mar-left-30">{{school.about_listh1}}</text>
+				</view>
+				<view class="middle__tip" wx:if="{{chuzhonglist.count==0}}">
+					<text class="fz-13 txt mar-left-30">* 数据完善中</text>
+				</view>
+				<view class="middle data-v-6b3386dc">
+					<view class="card_outside">
+						<view class="plan-house data-v-744937ef">
+							<view class="plan-house data-v-dbe5ffe8">
+								<view class="plan-house__item data-v-dbe5ffe8" wx:for="{{chuzhonglist}}" wx:key="item">
+									<navigator openType="navigate" url="./index?cid={{item.schoolcode}}">
+										<view class="plan-house__left data-v-dbe5ffe8">
+											<image class="plan-house__headIcon data-v-dbe5ffe8" src="{{item.thumbs?item.thumbs:'https://sbmf.ww2ss.com/dfimages/photono.png'}}"></image>
+											<view class="image__gradient data-v-dbe5ffe8"></view>
+										</view>
+									</navigator>
+									<view class="plan-house__info data-v-dbe5ffe8">
+										<navigator openType="navigate" url="./index?cid={{item.schoolcode}}">
+											<view class="house__info__name .ellipsis-line-1 color-item-name data-v-dbe5ffe8">{{''+item.title+''}}</view>
+											<view class="flex_layout_b mar-top-28 data-v-dbe5ffe8">
+												<text class="house__info__cont data-v-dbe5ffe8">{{''+item.adname+''}} | {{''+item.juli+''}}km</text>
+												<text class="card__info__distance nature_type  data-v-dbe5ffe8"
+													wx:if="{{item.school_type}}">{{''+item.school_type+''}}</text>
+											</view>
+											<view class="flex_layout_b mar-top-36 data-v-dbe5ffe8">
+												<view class="house__info__price data-v-dbe5ffe8">
+													<text class="fz-15 color-prize fb-bold data-v-dbe5ffe8" wx:if="{{item.price}}">{{item.price+'元/㎡'}}</text>
+												</view>
+												<view class="data-v-dbe5ffe8">
+													<view class="flex_layout_c card__info__commnet data-v-dbe5ffe8" wx:if="{{!1}}">
+														<text class="iconfont iconliulan fz-16 mar-right-4 data-v-dbe5ffe8"></text>
+														<text class="mar-right-12 data-v-dbe5ffe8">浏览{{item.view_count}}</text>
+													</view>
+												</view>
+											</view>
+										</navigator>
+									</view>
+								</view>
+							</view>
+
+						</view>
+					</view>
+				</view>
+
+			</view>
+		</view>
+
+ 
+		<view class="data-tubiao">
+			<view class="block-head">
+				{{school.title}}主要数据指标
+			</view>
+
+			<view class="data-content">
+				<view class="shuxian">
+					<view class="data-content-num">
+						{{countArray.clookb}}
+						<view class="data-content-num-unit">次</view>
+					</view>
+					<view class="data-content-desc" style="padding-bottom: 20rpx">
+						7天内学区带看
+					</view>
+					<view class="data-content-num data-content-num-topline">
+						{{countArray.clooka}}
+						<view class="data-content-num-unit">次</view>
+					</view>
+					<view class="data-content-desc">
+						30天内学区带看
+					</view>
+				</view>
+				<view class="shuxian">
+					<view class="data-content-num">
+						{{countArray.cjcount}}
+						<view class="data-content-num-unit">套</view>
+					</view>
+					<view class="data-content-desc" style="padding-bottom: 20rpx">
+						90天内成交
+					</view>
+					<view class="data-content-num data-content-num-topline">
+						{{countArray.cjsale}}
+						<view class="data-content-num-unit">元</view>
+					</view>
+					<view class="data-content-desc">
+						90天成交均价
+					</view>
+				</view>
+				<view bindtap="hotLinkFn" data-communityid="{{community}}">
+					<view class="data-content-num ">
+						{{countArray.gpcount}}
+						<view class="data-content-num-unit">套</view>
+					</view>
+					<view class="data-content-desc" style="padding-bottom: 20rpx">
+						学区挂牌总量
+					</view>
+					<view class="data-content-num data-content-num-topline">
+						{{countArray.gpsale}}
+						<view class="data-content-num-unit">元</view>
+					</view>
+					<view class="data-content-desc">
+						学区挂牌均价
+					</view>
+				</view>
+
+			</view>
+
+
+			<view class="chart-body">
+				<view class="echart-content">
+					<view class="block-head">
+						{{school.title}}每日带看量
+					</view>
+					<view class="echart-body" style="height:500rpx">
+						<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ecLinets}}"></ec-canvas>
+					</view>
+				</view>
+			</view>
+
+			<view class="chart-body">
+				<view class="echart-content">
+					<view class="block-head">
+						{{school.title}}历史每月成交/均价
+					</view>
+					<view class="echart-body" style="height:500rpx">
+						<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ecLinet}}"></ec-canvas>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="house-content" wx:if="{{show}}">
+
+			<view class="margin-bottom"></view>
+
+			<view class="margin-bottom"></view>
+			<view class="zygw_hot">
+				<view class="activity_title">
+					<view class="activity_title_name">优秀经纪人</view>
+					<view bindtap="handleGoT" class="rel_more" data-go="/house/guwen/gw-list/index?houseid={{community.id}}"
+						wx:if="{{noList==1}}">
+						<text></text>
+						<wxc-icon color="#8A8D91" type="arrow-right"></wxc-icon>
+					</view>
+				</view>
+				<view class="zygw_hot_list">
+
+					<view catchtap="handleGo" data-cid="{{school.schoolcode}}" 
+			data-go="/pages/guwen/gw-no/index" class="zygw_hot_item relative_class"  wx:if="{{noList==0}}">
+				<view class="avtor_luzhu" style="height:84rpx;">
+					<image src="https://sbmf.ww2ss.com/dfimages/select/uploads.png"></image>
+				</view>
+				<view class="name">经纪人</view>
+				<view class="name"></view>
+				<view class="lianxi">
+					我要入驻
+				</view>
+			</view>
+
+					<view catchtap="handleGoT" class="zygw_hot_item relative_class"
+						data-go="/project/pages/chat/chat?userid={{item.userid}}&adid={{item.adid}}&cid={{community.id}}"
+						wx:for="{{ad}}" wx:key="index">
+						<view class="avtor">
+							<image src="{{item.qrcode}}"></image>
+							<image class="bq" src="https://sbmf.ww2ss.com/dfimages/jifen/tj_1.png" wx:if="{{index<1}}"></image>
+							<image class="bq" src="https://sbmf.ww2ss.com/dfimages/jifen/tj_2.png" wx:else></image>
+						</view>
+						<view class="name">{{item.uname}}</view>
+						<view class="name">{{item.organization}}</view>
+						<view class="lianxi">
+							<wxc-icon color="#ffffff" size="28" type="message"></wxc-icon>
+							在线咨询
+						</view>
+					</view>
+				</view>
+			</view>
+
+
+			<view class="deal-body" style="margin-bottom:{{isShare?'100rpx':'0'}}">
+				<view class="block-head">
+					{{school.title}}划片小区历史成交
+				</view>
+				<view class="schoollist data-v-75f46631">
+					<view class="list__nav flex_layout_b data-v-75f46631">
+						<view bindtap="handleSwitch"
+							class="{{[ 'data-v-75f46631','list__nav__item '+(activeItem==1?'list__nav__acitve':'') ]}}" data-text="1">
+							学区成交明细</view>
+						<view bindtap="handleSwitch"
+							class="{{[ 'data-v-75f46631','list__nav__item '+(activeItem==2?'list__nav__acitve':'') ]}}" data-text="2">
+							均价排行榜</view>
+							<view bindtap="handleSwitch"
+							class="{{[ 'data-v-75f46631','list__nav__item '+(activeItem==3?'list__nav__acitve':'') ]}}" data-text="3">
+							总价排行榜</view>
+					</view>
+				</view>
+
+				<view class="deal-list-content">
+					<view class="list-item" wx:for="{{deallist}}" wx:key="item">
+					 
+							<view class="item item-flex" bindtap="gotoCommunity" data-communityid="{{item.id}}">
+								<view class="item-top  item-top-border">
+									{{item.htje}}万
+								</view>
+								<view class="item-bottom">
+									<view>{{item.title}}</view>
+								</view>
+							</view>
+							<view class="item item-flex" bindtap="gotoCommunity" data-communityid="{{item.id}}">
+								<view class="item-top">{{item.htjj}}元/㎡</view>
+								<view class="item-bottom">
+									<view> {{item.htmj}}㎡</view>
+								</view>
+							</view>
+							<view class="item item-flex " bindtap="gotoCommunity" data-communityid="{{item.id}}">
+								<view class="item-top">
+									{{item.szlcname}}/{{item.zcs}}
+								</view>
+								<view class="item-bottom">
+									<view>{{item.tjdate}}</view>
+								</view>
+							</view>
+				 
+					</view>
+				</view> 
+
+				<vip-msgbox bind:__l="__l" dataApi="{{member}}" wx:if="{{member.viplevel==0}}"></vip-msgbox>
+
+				<view class="fui-loading" wx:if="{{loading}}">
+					<view class="icon"></view>
+					<view class="text">正在加载</view>
+				</view>
+
+				
+
+				<navigator bindtap="toschool_housesearch" wx:if="{{islogin=='yes'}}">
+					<view class="deal-more">查看更多历史成交</view>
+				</navigator>
+				<navigator openType="navigate" url="../../pages/member/membercard/index" wx:else>
+					<view class="deal-more">查看更多历史成交</view>
+				</navigator>
+			</view>
+			<form bind:submit="copyText" reportSubmit="{{true}}" data-text="{{'vxjbugcea'}}">
+				<view bindtap="copyText" class="lp__qrcode" data-text="{{'vxjbugcea'}}">
+					<button class="formid__btn" formType="submit"></button>
+					<image class="lp__qrcode-icon" src="https://sbmf.ww2ss.com/dfimages/jiaoliu.png"></image>
+					<view class="lp__qrcode-content">
+						<view class="lp__qrcode-title">杭州购房交流群</view>
+						<view class="lp__qrcode-text">
+							<text>买房问题全解决</text>
+							<view class="lp__qrcode-btn">复制客服微信</view>
+						</view>
+					</view>
+					<image class="lp__qrcode-img" src="https://sbmf.ww2ss.com/dfimages/logo2.jpg"></image>
+				</view>
+			</form>
+
+			<view class="house-body" style="margin-top:20rpx">
+				<view class="block-head">
+					{{school.title}}30天内调价概况
+				</view>
+				<view bindtap="toDetail" class="list-item flexbox" data-index="{{index}}" wx:for="{{lppricelist}}"
+					wx:key="index">
+					<view class="item-img">
+						<navigator openType="navigate" url="/house/house/house?cid={{item.cid}}&jigou={{item.jigou}}">
+							<image binderror="imgError" lazyLoad="true"
+								src="{{!item.house_img?'https://sbmf.ww2ss.com/dfimages/404.png':item.house_img}}"></image>
+						</navigator>
+					</view>
+					<view class="item-con flex1">
+						<navigator openType="navigate" url="/house/house/house?cid={{item.cid}}&jigou={{item.jigou}}">
+							<text class="item-tit">{{item.model}} 面积{{item.area}}㎡</text>
+							<view class="item-info">
+								<text>带看:</text>
+								<text class="daikan">{{item.numlook}}</text>
+								<text>次</text>
+								<text class="dian"></text>
+								<text>调价:</text>
+								<text class="daikan">{{item.numpric}}</text>
+								<text>次</text>
+								<text class="dian"></text>
+								<text>时间:</text>
+								<text class="daikan">{{item.utime}}</text>
+							</view>
+
+							<view class="item-price">
+								<view class="wan-price">
+									<text class="num">{{item.sale}}</text>
+									<text class="wan">万</text>
+								</view>
+								<text class="ping">{{item.htjj}}元/㎡</text>
+								<text class="ping"></text>
+								<view class="wan-price_z" wx:if="{{item.uprice>0}}">
+									<text class="num">涨{{item.uprice}}</text>
+									<text class="wan">万</text>
+								</view>
+								<view class="wan-price_j" wx:if="{{item.uprice<0}}">
+									<text class="num">降{{item.uprice}}</text>
+									<text class="wan">万</text>
+								</view>
+							</view>
+							<view class="item-info">{{item.areaname}}</view>
+						</navigator>
+					</view>
+				</view>
+				<view bindtap="hotLinkFn" data-communityid="{{community}}" class="deal-more">更多房源</view>
+
+			</view>
+			<view class="house-body" style="margin-top:20rpx">
+				<view class="block-head">
+				看过该学校的家长也看过
+				</view>
+				<view class="middle data-v-6b3386dc">
+					<view class="card_outside">
+						<view class="plan-house data-v-744937ef">
+							<view class="plan-house data-v-dbe5ffe8">
+								<view class="plan-house__item data-v-dbe5ffe8" wx:for="{{fujingschool}}" wx:key="item">
+									<navigator openType="navigate" url="./index?cid={{item.schoolcode}}">
+										<view class="plan-house__left data-v-dbe5ffe8">
+											<image class="plan-house__headIcon data-v-dbe5ffe8" src="{{item.thumbs?item.thumbs:'https://sbmf.ww2ss.com/dfimages/photono.png'}}"></image>
+											<view class="image__gradient data-v-dbe5ffe8"></view>
+										</view>
+									</navigator>
+									<view class="plan-house__info data-v-dbe5ffe8">
+										<navigator openType="navigate" url="./index?cid={{item.schoolcode}}">
+											<view class="house__info__name .ellipsis-line-1 color-item-name data-v-dbe5ffe8">{{''+item.title+''}}</view>
+											<view class="flex_layout_b mar-top-28 data-v-dbe5ffe8">
+												<text class="house__info__cont data-v-dbe5ffe8">{{''+item.adname+''}} | {{''+item.juli+''}}km</text>
+												<text class="card__info__distance nature_type  data-v-dbe5ffe8"
+													wx:if="{{item.school_type}}">{{''+item.school_type+''}}</text>
+											</view>
+											<view class="flex_layout_b mar-top-36 data-v-dbe5ffe8">
+												<view class="house__info__price data-v-dbe5ffe8">
+													<text class="fz-15 color-prize fb-bold data-v-dbe5ffe8" wx:if="{{item.price}}">{{item.price+'元/㎡'}}</text>
+												</view>
+												<view class="data-v-dbe5ffe8">
+													<view class="flex_layout_c card__info__commnet data-v-dbe5ffe8" wx:if="{{!1}}">
+														<text class="iconfont iconliulan fz-16 mar-right-4 data-v-dbe5ffe8"></text>
+														<text class="mar-right-12 data-v-dbe5ffe8">浏览{{item.view_count}}</text>
+													</view>
+												</view>
+											</view>
+										</navigator>
+									</view>
+								</view>
+							</view>
+
+						</view>
+					</view>
+				</view>
+
+			 
+			</view>
+
+			<view class="data-content"></view>
+
+
+		</view>
+
+		<view class="tips">
+			<view class="line">
+				<span>到底啦，手边买房是有底线的</span>
+			</view>
+			<view class="bottom_btn">
+				<view bindtap="bindtap_goto_feedback" class="tipsfeedback">
+					反馈纠错
+				</view>
+			</view>
+		</view>
+	</view>
+
+
+	<cover-view class="nav-bottom2" style="bottom:{{isIpx?'68rpx':''}};" wx:if="{{show}}">
+
+		<cover-view class="fun">
+			<cover-view class="guanzhu2 relative_class" data-phone="{{ad.mobile}}">
+				<cover-image class="images2" src="{{'https://sbmf.ww2ss.com/dfimages/logo2.jpg'}}" bindtap="imgYu"
+					data-image="{{'https://sbmf.ww2ss.com/dfimages/logo2.jpg'}}"></cover-image>
+
+			</cover-view>
+			<cover-view catchtap="goSee" class="guanzhu1 relative_class" data-phone="{{ad.mobile}}" wx:if="{{false}}">
+				<cover-view class="ntext" catchtap="goSee">{{ad.uname}}</cover-view>
+				<cover-view class="ntext1">{{ad.organization}}</cover-view>
+			</cover-view>
+			<cover-view class="guanzhu1 relative_class" wx:else>
+				<cover-view class="ntext">联系客服</cover-view>
+				<cover-view class="ntext1">{{ad.organization}}</cover-view>
+			</cover-view>
+		</cover-view>
+		<cover-view catchtap="handleCall" class="tell relative_class" data-phone="{{ad.mobile}}" wx:if="{{false}}">
+			<cover-view>联系经纪人</cover-view>
+		</cover-view>
+		<cover-view catchtap="handleGo" data-cid="{{school.schoolcode}}" class="tell relative_class"
+			data-go="/pages/guwen/gw-no/index" wx:else>
+			<cover-view>入驻学区</cover-view>
+		</cover-view>
+	</cover-view>
+
+	<cover-view bindtap="_closeGetPhone" class="mask_bg getphone_dialog" wx:if="{{see}}">
+		<cover-view catchtap="_white" class="getphone_content">
+			<cover-view class="info">
+				<cover-image src="{{ad.qrcode}}"></cover-image>
+				<cover-view>您好，我是金牌经纪人{{ad.uname}} </cover-view>
+			</cover-view>
+
+			<cover-view class="desc">免费查询历史成交记录！可以加我微信！
+				<cover-image src="{{ad.images}}" data-image="{{ad.images}}" style="height: 150rpx;width: 150rpx;"
+					bindtap="imgYu"></cover-image>
+			</cover-view>
+			<cover-view class="btns">
+				<button catchtap="closeSee" class="cancel">暂不需要</button>
+				<button catchtap="handleCall" data-phone="{{ad.mobile}}" class="ok" wx:if="{{has_phone}}">好的</button>
+				<button catchtap="handleCall" data-phone="{{ad.mobile}}" class="ok" wx:else>好的</button>
+			</cover-view>
+		</cover-view>
+	</cover-view>
+	<cover-view class="button-group {{isIpx?'fix-iphonex-button':''}}"></cover-view>
+</scroll-view>

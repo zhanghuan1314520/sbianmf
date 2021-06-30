@@ -37,7 +37,7 @@ Page({
     submit: function(a) {
         var e, i = this, s = this.data;
         if (s.cansettle && !s.isSubmit) {
-            if (0 == s.applytype) r = "提现到余额"; else if (1 == s.applytype) r = "提现到微信钱包"; else if (2 == s.applytype) r = "提现到支付宝"; else if (3 == s.applytype) var r = "提现到银行卡";
+            if (0 == s.applytype) var r = "提现到余额"; else if (1 == s.applytype) r = "提现到微信钱包"; else if (2 == s.applytype) r = "提现到支付宝"; else if (3 == s.applytype) r = "提现到银行卡";
             var l = {
                 type: s.applytype
             };

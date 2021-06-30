@@ -1,0 +1,282 @@
+/* pages/loan_analyse/loan_analyse.wxss */
+page {
+  height: 100%;
+  /* background: linear-gradient(1turn,#7b4e2f,#9d6b48); */
+  background-color: #f3f3f3;
+}
+
+.container {
+  box-sizing: border-box;
+}
+
+.container-dark {
+  background: #b5450f;
+}
+
+ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.switch-tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40rpx;
+  font-size: 32rpx;
+  color: #8A8D91;
+  line-height: 45rpx;
+}
+
+.switch-tab>view:first-child {
+  margin-right: 70rpx;
+}
+
+.switch-tab>view:last-child {
+  margin-left: 70rpx;
+  /* color: #8A8D91; */
+  font-size: 32rpx;
+}
+
+.switch-item {
+  transition: all .3S;
+  position: relative;
+  height: 50rpx;
+}
+
+.switch-item:after {
+  position: absolute;
+  left: 50%;
+  bottom: -20rpx;
+  content: "";
+  display: block;
+  height: 7rpx;
+  width: 0rpx;
+  background: #33408c;
+  border-radius: 4rpx;
+  transition: all .3S cubic-bezier(.175, .885, .32, 1.275);
+  transition-property: width, -webkit-transform;
+  transition-property: width, transform;
+  transition-property: width, transform, -webkit-transform;
+}
+
+.active {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #366AB3;
+  line-height: 50rpx;
+  font-weight: 600;
+}
+
+.active:after {
+  content: "";
+  width: 46rpx;
+  height: 7rpx;
+  transform: translateX(-50%);
+}
+
+.analyse-result {
+  width: 690rpx;
+  height: 756rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  margin: 50rpx auto 0;
+  position: relative;
+}
+
+.analyse-money-box {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  padding-top: 18rpx;
+}
+
+.analyse-money {
+  font-size: 40rpx;
+  font-family: DIN-Bold, DIN;
+  font-weight: 700;
+  color: #366AB3;
+  line-height: 73rpx;
+}
+
+.analyse-mon-cell {
+  font-size: 22rpx;
+  color: #999;
+  line-height: 22rpx;
+  margin-left: 4rpx;
+  margin-top: -3rpx;
+  position: relative;
+}
+
+.help {
+  position: absolute;
+  height: 28rpx;
+  width: 28rpx;
+  border-radius: 14rpx;
+  background-color: #ccc;
+  font-size: 20rpx;
+  line-height: 28rpx;
+  text-align: center;
+  color: #fff;
+  left: -3rpx;
+  top: -36rpx;
+}
+
+.relative {
+  position: relative;
+  line-height: 0;
+}
+
+.loan-type-info-bom {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.loan-type-info {
+  text-align: center;
+  font-size: 22rpx;
+  color: #8a969e;
+  line-height: 30rpx;
+}
+
+.loan-type-info-top {
+  padding-top: 69rpx;
+}
+
+.loan-type-info-val {
+  color: #fe630d;
+}
+
+.analyse-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 113rpx;
+}
+
+.ana-de-item {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.ana-de-item::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 40rpx;
+  background-color: #dce0e2;
+}
+
+.ana-de-name {
+  font-size: 22rpx;
+  color: #366AB3;
+  line-height: 30rpx;
+  margin-bottom: 10rpx;
+}
+
+.ana-de-val {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 37rpx;
+}
+
+.canvas-line {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ec-canvas-box {
+  height: 214rpx;
+  line-height: 214rpx;
+  width: 214rpx;
+  text-align: center;
+  margin: 60rpx 60rpx 60rpx 40rpx;
+  position: relative;
+}
+
+.mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 107px;
+  height: 107px;
+  z-index: 50;
+  background: red;
+}
+
+.loan-money,
+.loan-rate-money {
+  font-size: 26rpx;
+  color: #366AB3;
+  padding-left: 29rpx;
+  position: relative;
+}
+
+.loan-money {
+  margin-bottom: 21rpx;
+}
+
+.loan-money::before,
+.loan-rate-money::before {
+  content: "";
+  width: 10rpx;
+  height: 10rpx;
+  background-color: #ff9c20;
+  border-radius: 5rpx;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.loan-rate-money::before {
+  background-color: #ffd560;
+}
+
+.loan-money-val,
+.loan-rate-money-val {
+  color: #333;
+  padding-left: 7rpx;
+  line-height: 37rpx;
+}
+
+.main {
+  margin-top: 30rpx;
+}
+
+.footer {
+  margin: 0 30rpx;
+  padding: 39rpx 0 0;
+  box-sizing: border-box;
+}
+
+.footer-title {
+  color: #000;
+  font-size: 28rpx;
+  font-weight: 600;
+  margin-bottom: 24rpx;
+}
+
+.footer-main {
+  font-size: 24rpx;
+  color: #8A8D91;
+  line-height: 40rpx;
+}
+
+.warnning {
+  padding-left: 30rpx;
+  color: #ff2f2e;
+  font-size: 24rpx;
+  line-height: 33rpx;
+  margin-top: 16rpx;
+}
+
+.light-yellow {
+  color: #366AB3;
+}

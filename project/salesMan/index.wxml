@@ -1,0 +1,108 @@
+<view class="page">
+    <view class="post-card">
+        <image class="top-img" mode="aspectFill" ></image>
+        <view class="card-detail NO{{item.grade}}">
+
+            <navigator class="top-info" hoverClass="none" url="/subPackages/me/pages/businessCard?id={{sales_id}}">
+                <image catchtap="previewOnce" class="left-avatar" data-wpypreviewonce-a="{{item.avatar_url||defaultAvatar}}" lazyLoad="lazy-load" mode="aspectFill" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1571382636748&di=b41d203ea33f47c0384743c9e2b7d483&imgtype=0&src=http%3A%2F%2Fztd00.photos.bdimg.com%2Fztd%2Fw%3D700%3Bq%3D50%2Fsign%3D792fa7018e44ebf86d71663fe9c2a617%2Fd000baa1cd11728b555f1220c1fcc3cec3fd2c45.jpg"></image>
+                <view class="right-cont">
+                    <view class="name">
+                        <text class="left big_size-color">陆飞</text>
+                        <text class="right normal_size-color">资深贷款咨询师</text>
+                    </view>
+                    <view catchtap="weixinCopy" class="weixin normal_size-color" data-wpyweixincopy-a="{{item.wechat_code}}">
+                        <text>微信号：18969926543</text>
+                        <text class="iconfont icon-fuzhi1 fz-14"></text>
+                    </view>
+                </view>
+            </navigator>
+            <navigator class="self-log line-color" hoverClass="none" url="/subPackages/me/pages/businessCard?id={{sales_id}}">
+                <view class="line">
+                    <view class="top big_size-color">4.2%</view>
+                    <view class="bottom normal_size-color">1年先息、后本</view>
+                </view>
+                <view class="line">
+                    <view class="top big_size-color">4.75%</view>
+                    <view class="bottom normal_size-color">10年先息、后本</view>
+                </view>
+                <view class="line">
+                    <view class="top big_size-color">5.0%</view>
+                    <view class="bottom normal_size-color">20年等额本息</view>
+                </view>
+            </navigator>
+            <view catchtap="showProject" class="default-project normal_size-color">
+                <text>公司地址：杭州市江干区九三堡东方大厦A2016</text>
+                <text class="iconfont icon-tongyong-gengduo fz-11"></text>
+            </view>
+            <view catchtap="showProject" class="default-project normal_size-color">
+                <text>服务范围：杭州市、上海市</text>
+                <text class="iconfont icon-tongyong-gengduo fz-11"></text>
+            </view>
+        </view>
+        <view class="share-good-btn">
+            <button class="line" openType="share">
+                <view class="share-box">
+                    <wxc-icon color="font-size:32rpx; color:#ffffff;" size="32" type="share"></wxc-icon>
+                </view>
+                <text class="text">分享</text>
+            </button>
+            <view bindtap="imgYu" class="line">
+            
+                <view class="good-box">
+                    <wxc-icon color="font-size:32rpx; color:#ffffff;" size="32" type="weixin"></wxc-icon>
+                </view>
+                <text class="text"> 保存二维码</text>
+
+            </view>
+        </view>
+    </view>
+    <view class="sales-man-project">
+        <view class="title font-bold height-level-color">核心服务</view>
+
+        <view class="article-list">
+            <view class="question-cont question-cont-one">
+                <view class="lview">1对1贷款咨询</view>
+                <text class="ltext">专业咨询顾问会与您一对一面谈结合家庭资产配置整体目标，提供专业的贷款咨询服务。</text>
+                <view class="lview">对接贷款产品</view>
+                <text class="ltext">据您的需求与现有贷款产品进行匹配，并跟进落地方案。具体包括但不限于以下信贷产品:</text>
+                <view>
+                    <text class="lview">按揭贷款：</text>
+                    <text class="ltext">一手/二手/法拍房的房产按揭贷款</text>
+                </view>
+                <view>
+                    <text class="lview">抵押贷款：</text>
+                    <text class="ltext">个人消费/经营性贷款，一押/二押</text>
+                </view>
+                <view>
+                    <text class="lview">信用贷：</text>
+                    <text class="ltext">无抵押的信用贷款</text>
+                </view>
+            </view>
+        </view>
+
+    </view>
+
+
+</view>
+<cover-view class="nav-bottom2" style="bottom:{{isIpx?'68rpx':''}};">
+
+    <cover-view class="fun">
+        <cover-view class="guanzhu2 relative_class" data-phone="{{ad.mobile}}">
+            <cover-image class="images2" src="https://sbmf.ww2ss.com/dfimages/ad20191022153249.jpg" bindtap="imgYu" data-image="{{ad!=false?ad.images:'https://sbmf.ww2ss.com/dfimages/ad20191022153249.jpg'}}"></cover-image>
+
+        </cover-view>
+        <cover-view catchtap="goSee" class="guanzhu1 relative_class" data-phone="{{ad.mobile}}" wx:if="{{ad!=false}}">
+            <cover-view class="ntext" catchtap="goSee">{{ad.uname}}</cover-view>
+            <cover-view class="ntext1">{{ad.organization}}</cover-view>
+        </cover-view>
+        <cover-view class="guanzhu1 relative_class" wx:else>
+            <cover-view class="ntext">加买房群</cover-view>
+            <cover-view class="ntext1">{{ad.organization}}</cover-view>
+        </cover-view>
+    </cover-view>
+    <cover-view catchtap="handleCall" class="tell relative_class" data-phone="{{'18969926543'}}">
+        <cover-view>拔打电话</cover-view>
+    </cover-view>
+
+</cover-view>
+<cover-view class="button-group {{isIpx?'fix-iphonex-button':''}}"></cover-view>

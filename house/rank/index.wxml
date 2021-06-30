@@ -1,0 +1,73 @@
+<loading wx:if="{{!show}}">加载中...</loading>
+<view class="container">
+    <view class="container-top">
+        <view class="bar-content">
+            <view class="select-body">
+                杭州楼盘15天排行榜
+                <view class="icon icon--arrow-down" style="font-size:26rpx; color:#366AB3;"></view>
+            </view>
+        </view>
+        <view class="params-bar-content">
+            <view style="text-align: center"> 日期筛选：</view>
+            <view class="select-date-content">
+                <picker mode="date" fields="day" value="{{sdate}}" start="2016-01-01" end="2021-12-31" bindchange="getDateTimes">
+                    <view class="selectDate">
+                        {{sdate}}
+                    </view>
+                </picker>
+                <view style="width: 50rpx;text-align: center"> 至</view>
+                <picker mode="date" fields="day" value="{{edate}}" start="2016-01-01" end="2021-12-31" bindchange="getDateTimee">
+                    <view class="selectDate">
+                        {{edate}}
+                    </view>
+                </picker>
+            </view>
+
+        </view>
+        <view class="tab-content">
+
+            <wxc-tab activeLineColor="#EAE9E9" bind:tabchange="onClick" animate="{{true}}" activeTextColor="#ffffff" componentId="c1" textColor="#ffffff" defaultIndex="{{tabIndex}}">
+                <wxc-tab-panel tap-index="{{index}}" componentId="c1" label="{{tab.title}}" wx:for-item="tab" wx:for="{{tabs}}" wx:key="index"></wxc-tab-panel>
+            </wxc-tab>
+        </view>
+    </view>
+    <view class="container-body" wx:if="{{show}}">
+        <view class="list-content">
+            <scroll-view scrollX class="scroll-list-body" style=" height:100%">
+                <view class="list-header" id="list-header" style="width:100%">
+                    <view class="list-header-item" wx:for="{{rankList}}" wx:key="index" style="width:{{rankList[index].width}}rpx">
+                        <view class="name"> {{item.label}}</view>
+                        <view class="unit"> {{item.subLabel}}</view>
+                    </view>
+                </view>
+                <scroll-view scrollY scrollTop="200px" style="width:100%; height:600px">
+                    <view class="list-body">
+                        <view bindtap="goCommunity"  data-sobj="{{item}}" class="list-body-row" wx:for="{{deallist}}" wx:key="item">
+                            <block>
+                                <view class="list-body-row-item item-rank" style="width:{{rankList[0].width}}rpx;">{{index+1}}</view>
+                                <view class="list-body-row-item" style="width:{{rankList[1].width}}rpx;">
+                                    {{item.title}}
+                                </view>
+                                <view class="list-body-row-item" style="width:{{rankList[2].width}}rpx;">
+                                    {{item.areaname}}
+                                </view>
+                                <view class="list-body-row-item" style="width:{{rankList[3].width}}rpx;">
+                                    {{item.num}}
+                                </view>
+                                <view class="list-body-row-item" style="width:{{rankList[4].width}}rpx;">
+                                    {{item.sump}}
+                                </view>
+                                <view class="list-body-row-item" style="width:{{rankList[5].width}}rpx;">
+                                    {{item.junjia}}
+                                </view>
+                            </block>
+                            <view class="goto-icon icon icon--arrow-right" style="font-size:26rpx; color:#5F5F60;"></view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </scroll-view>
+        </view>
+    </view>
+
+    <button class="subscribe-btn" data-index="1" formType="submit" openType="share">分享</button>
+</view>

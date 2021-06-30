@@ -1,0 +1,28 @@
+<nav opts="{{navConf}}"></nav>
+<view class="container {{isIpx?'ipx_container':''}} {{data.is_gold?'gold':''}}" style="padding-top:{{statusH}}" wx:if="{{data.UserName}}">
+    <view class="desc">
+        <view class="li house_list {{data.is_gold?'gold':''}}">
+            <view class="t-box">
+                <image class="card" src="https://ssl.malmam.com/xiangju-static/dfs/16/554a6b0cf42900/card_gold.jpg" wx:if="{{data.is_gold}}"></image>
+                <image class="card" src="/image/card.png" wx:else></image>
+                <view class="info">
+                    <image class="avtor" src="{{data.UserInfo.Avatar}}"></image>
+                    <image class="zygw_gold" src="https://ssl.malmam.com/xiangju-static/dfs/17/55d9ff01b2229c/_E5_88_86_E7_BB_84_402x.png" wx:if="{{data.is_gold}}"></image>
+                    <view class="zygw_no_gold" wx:else>置业顾问</view>
+                    <view class="info-top">
+                        <view class="name">{{data.UserName}}</view>
+                    </view>
+                    <view class="info-bottom">
+                        <view>{{data.HouseName}}</view>
+                    </view>
+                    <view class="phone-number">手机号：{{data.Tel}}</view>
+                    <view class="wx-number">微信号：{{data.Wechat}}</view>
+                </view>
+                <image class="code" src="{{data.WechatImg}}"></image>
+            </view>
+        </view>
+    </view>
+    <button class="btn share {{data.is_gold?'gold':''}}" openType="share">分享给好友</button>
+    <view bindtap="_saveImg" class="btn save">保存为图片</view>
+    <view class="tips">若要修改名片信息，请联系“小助手”，提供资料进行修改</view>
+</view>

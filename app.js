@@ -1,27 +1,45 @@
-var e = require("utils/core.js");
-
-App({
-  onShow: function() {
+var e = require("utils/core.js"),chat= require("utils/chat/mimc.js"),
+base64= require("utils/chat/Base64.js");
+ 
+App({ 
+  onShow: function () {
+ 
     this.onLaunch();
+    this.globalData.userInfo= this.getCache("userinfo");
+    chat.init(this);//启动聊天
+    console.log("启动聊天"); 
+  
   },
-  onLaunch: function() {
+  onLaunch: function () {
+     
     var e = this;
     wx.getSystemInfo({
-      success: function(t) {
+      success: function (t) {
+        //console.log(t);
         "0" == t.model.indexOf("iPhone X") ? e.setCache("isIpx", t.model) : e.setCache("isIpx", "");
+        var sa = t.model;       
+        (sa.indexOf("iPhone X") > -1 || sa.indexOf("iPhone XS") > -1) && (e.globalData.isIpx = !0);
       }
     });
     var t = this;
     wx.getSystemInfo({
-      success: function(e) {
+      success: function (e) {
         wx.setStorageSync("systemInfo", e);
         var a = e.windowWidth,
           i = e.windowHeight;
         t.globalData.ww = a, t.globalData.hh = i;
       }
     });
+    
+    var e = wx.getSystemInfoSync();
+        this.globalData.navH = e.statusBarHeight + 45, this.globalData.deviceWidth = e.windowWidth, 
+        this.globalData.deviceHeight = e.windowHeight, this.globalData.screenHeight = e.screenHeight, 
+        this.globalData.statusBarHeight = e.statusBarHeight, this.globalData.SDKVersion = e.SDKVersion, 
+        this.globalData.isIpx = e.model.indexOf("iPhone X") > -1;
+        //, this.globalData.Notify = i
   },
-  checkAuth: function() {
+  checkAuth: function () {
+
     var t = "/pages/message/auth/index",
       a = getCurrentPages(),
       i = a[a.length - 1],
@@ -34,11 +52,17 @@ App({
         s = decodeURIComponent(n.params.scene).split("&").shift().split("=");
       o.id = s[1], n.params = o;
     }
+
+    console.log(n)
+
     this.setCache("routeData", n);
     var r = this.getCache("userinfo");
     wx.getSetting({
-      success: function(a) {
-        a.authSetting["scope.userInfo"] && r ? e.get("member", {}, function(e) {
+      success: function (a) {
+        console.log(a)
+
+        a.authSetting["scope.userInfo"] && r ? e.get("member", {}, function (e) {
+
           e.error && wx.redirectTo({
             url: t
           });
@@ -48,10 +72,13 @@ App({
       }
     });
   },
-  requirejs: function(e) {
+  requirejs: function (e) {
+  
+  
     return require("utils/" + e + ".js");
   },
-  getConfig: function() {
+  getConfig: function () {
+
     if (null !== this.globalData.api) return {
       api: this.globalData.api,
       approot: this.globalData.approot,
@@ -61,19 +88,22 @@ App({
     return this.globalData.api = e.config.api, this.globalData.approot = e.config.approot,
       this.globalData.appid = e.config.appid, e.config;
   },
-  getCache: function(e, t) {
+  getCache: function (e, t) {
+
     var a = +new Date() / 1e3,
       i = "";
     a = parseInt(a);
+ 
     try {
       (i = wx.getStorageSync(e + this.globalData.appid)).expire > a || 0 == i.expire ? i = i.value : (i = "",
         this.removeCache(e));
+       
     } catch (e) {
       i = void 0 === t ? "" : t;
     }
     return i = i || "";
   },
-  setCache: function(e, t, a) {
+  setCache: function (e, t, a) {  
     var i = +new Date() / 1e3,
       n = !0,
       o = {
@@ -87,7 +117,7 @@ App({
     }
     return n;
   },
-  removeCache: function(e) {
+  removeCache: function (e) {
     var t = !0;
     try {
       wx.removeStorageSync(e + this.globalData.appid);
@@ -96,23 +126,24 @@ App({
     }
     return t;
   },
-  close: function() {
+  close: function () {
     this.globalDataClose.flag = !0, wx.reLaunch({
       url: "/pages/index/index"
     });
   },
-  getSet: function() {
+  getSet: function () {
     var t = this;
-    "" == t.getCache("cacheset") && setTimeout(function() {
+    "" == t.getCache("cacheset") && setTimeout(function () {
       var a = t.getCache("cacheset");
       e.get("cacheset", {
         version: a.version
-      }, function(e) {
+      }, function (e) {
+        
         e.update && t.setCache("cacheset", e.data);
       });
     }, 10);
   },
-  url: function(e) {
+  url: function (e) {
     e = e || {};
     var t = {},
       a = "",
@@ -123,20 +154,20 @@ App({
     "" != n ? ("" != n.mid && void 0 !== n.mid || (t.mid = a), "" != n.merchid && void 0 !== n.merchid || (t.merchid = i)) : (t.mid = a,
       t.merchid = i), this.setCache("usermid", t);
   },
-  impower: function(e, t, a) {
+  impower: function (e, t, a) {
     wx.getSetting({
-      success: function(i) {
+      success: function (i) {
         i.authSetting["scope." + e] || wx.showModal({
           title: "用户未授权",
           content: "您点击了拒绝授权，暂时无法" + t + "，点击去设置可重新获取授权喔~",
           confirmText: "去设置",
-          success: function(e) {
+          success: function (e) {
             e.confirm ? wx.openSetting({
-              success: function(e) {}
+              success: function (e) {}
             }) : "route" == a ? wx.switchTab({
-              url: "/pages/index/index"
+              url: "/dfpage/index/index"
             }) : "details" == a || wx.navigateTo({
-              url: "/pages/index/index"
+              url: "/dfpage/index/index"
             });
           }
         });
@@ -148,9 +179,16 @@ App({
   },
   globalData: {
     appid: 'wx347cd7991f6a744e',
-    api: "https://sbmf.zhaokele.com/app/ewei_shopv2_api.php?i=1",
-    approot: "https://sbmf.zhaokele.com/addons/ewei_shopv2/",
-    userInfo: null
-
+    api: "https://sbmf.ww2ss.com/app/ewei_shopv2_api.php?i=1",
+    approot: "https://sbmf.ww2ss.com/addons/ewei_shopv2/",
+    userInfo: null,
+    hasChatNoReader: !1,
+    mimcUser: null,
+    hasChatLogin: !1,
+    navH: 0,
+    deviceWidth: 0,
+    concatList:null,
+    latitude:"",
+    longitude:""
   }
 });

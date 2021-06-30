@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "学区地图", 
+  "usingComponents": {  
+    "add-tips": "/components/weplug-add-tips/index",
+    "wxc-icon": "/min/@minui/wxc-icon/dist/index"
+  }
+}

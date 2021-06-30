@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+        "wxc-toast": "/min/@minui/wxc-toast/dist/index",
+        "wxc-icon": "/min/@minui/wxc-icon/dist/index",
+        "wxc-tab": "/min/@minui/wxc-tab/dist/index",
+        "wxc-tab-panel": "/min/@minui/wxc-tab/dist/panel",
+        "wxc-loading": "/min/@minui/wxc-loading/dist/index" 
+  },
+  "navigationBarTitleText": "报告中心",
+  "navigationBarBackgroundColor": "#366AB3",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#366AB3"
+  
+}
+ 

@@ -27,18 +27,18 @@ Page({
         }), this.get_list();
     },
     show_cycelbuydate: function() {
-        var t = this, e = r.getCurrentDayString(this, t.data.nowDate), a = [ "周日", "周一", "周二", "周三", "周四", "周五", "周六" ];
-        t.setData({
-            currentObj: e,
-            currentDate: e.getFullYear() + "年" + (e.getMonth() + 1) + "月" + e.getDate() + "日 " + a[e.getDay()],
-            currentYear: e.getFullYear(),
-            currentMonth: e.getMonth() + 1,
-            currentDay: e.getDate(),
-            initDate: Date.parse(e.getFullYear() + "/" + (e.getMonth() + 1) + "/" + e.getDate()),
-            checkedDate: Date.parse(e.getFullYear() + "/" + (e.getMonth() + 1) + "/" + e.getDate()),
-            maxday: t.data.maxday,
-            cycelbuy_periodic: t.data.cycelbuy_periodic,
-            period_index: t.data.period_index
+        var t = r.getCurrentDayString(this, this.data.nowDate);
+        this.setData({
+            currentObj: t,
+            currentDate: t.getFullYear() + "年" + (t.getMonth() + 1) + "月" + t.getDate() + "日 " + [ "周日", "周一", "周二", "周三", "周四", "周五", "周六" ][t.getDay()],
+            currentYear: t.getFullYear(),
+            currentMonth: t.getMonth() + 1,
+            currentDay: t.getDate(),
+            initDate: Date.parse(t.getFullYear() + "/" + (t.getMonth() + 1) + "/" + t.getDate()),
+            checkedDate: Date.parse(t.getFullYear() + "/" + (t.getMonth() + 1) + "/" + t.getDate()),
+            maxday: this.data.maxday,
+            cycelbuy_periodic: this.data.cycelbuy_periodic,
+            period_index: this.data.period_index
         });
     },
     cycle: function(t) {
@@ -55,14 +55,21 @@ Page({
         });
     },
     sycleconfirm: function() {
-        var t = this, a = t.data.cycelid, r = t.data.checkedDate / 1e3, c = t.data.orderid, s = t.data.isdelay;
+        var t = this, a = t.data.cycelid, r = t.data.checkedDate / 1e3, c = t.data.orderid, d = t.data.isdelay;
         e.get("order/do_deferred", {
             cycelid: a,
             time: r,
             orderid: c,
-            is_all: s
+            is_all: d
         }, function(e) {
             0 == e.error && i.toast(t, "修改成功");
+            var a = t.data.list, r = t.data.period_index;
+            console.log(t.data), a[r].receipttime = t.data.currentYear + "-" + (t.data.currentMonth < 10 ? "0" : "") + t.data.currentMonth + "-" + (t.data.currentDay < 10 ? "0" : "") + t.data.currentDay, 
+            a[r].week = t.data.week, console.log(a[r].receipttime), console.log(t.data.currentYear + "-" + t.data.currentMonth + "-" + t.data.currentDay), 
+            t.data.nowDate = t.data.currentYear + (t.data.currentMonth < 10 ? "0" : "") + t.data.currentMonth + (t.data.currentDay < 10 ? "0" : "") + t.data.currentDay, 
+            t.setData({
+                list: a
+            });
         }), this.setData({
             cycledate: !1
         });

@@ -1,18 +1,18 @@
-var n = getApp(), o = n.requirejs("core");
+var o = getApp(), n = o.requirejs("core");
 
-n.requirejs("icons"), n.requirejs("jquery");
+o.requirejs("icons"), o.requirejs("jquery");
 
 Page({
     data: {
         show: !0
     },
-    onLoad: function(n) {
+    onLoad: function(o) {
         var e = this;
-        o.get("package.get_list", {
-            goodsid: n.id
-        }, function(n) {
-            e.setData({
-                list: n.list
+        n.get("package.get_list", {
+            goodsid: o.id
+        }, function(o) {
+            console.log(o.list), e.setData({
+                list: o.list
             });
         });
     },

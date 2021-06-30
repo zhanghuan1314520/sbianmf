@@ -6,8 +6,7 @@
         <view class="row" style="font-size:34rpx">
             <view class="">{{order.statusstr}}{{order.refundstate>0&&order.refundstate!=3?'('+order.refundtext+')':''}}</view>
         </view>
-        <view class="order-price">订单金额(含运费):¥
-      <text>{{order.price}}</text>
+        <view class="order-price">订单金额(含运费):¥      <text>{{order.price}}</text>
         </view>
     </view>
     <view class="fui-cell-group nomargin cycle" wx:if="{{order.iscycelbuy==1}}">
@@ -19,28 +18,24 @@
             <view class="fui-cell-remark">剩余{{cycelUnderway}}期</view>
         </navigator>
         <view wx:if="{{cycelData.length==cycelUnderway}}">
-            <view class="cycle-underway" wx:if="{{index==0}}" wx:for="{{cycelData}}">
-                <view class="cycle-cell">第{{index+1}}次：
-          <text wx:if="{{item.status==0}}">未开始</text>
+            <view class="cycle-underway" wx:if="{{index==0}}" wx:for="{{cycelData}}" wx:key="{{index}}">
+                <view class="cycle-cell">第{{index+1}}次：          <text wx:if="{{item.status==0}}">未开始</text>
                     <text wx:if="{{item.status==1}}">配送中（可顺延）</text>
                     <text wx:if="{{item.status==2}}">已完成</text>
                 </view>
-                <view class="cycle-cell">物流详情：
-          <text wx:if="{{item.status==0}}">未发货</text>
+                <view class="cycle-cell">物流详情：          <text wx:if="{{item.status==0}}">未发货</text>
                     <text wx:else>{{item.expresscom}}{{item.expresssn}}</text>
                 </view>
                 <view class="cycle-cell">预计送达时间：{{item.receipttime}}</view>
             </view>
         </view>
         <view wx:else>
-            <view class="cycle-underway" wx:if="{{index==period_index}}" wx:for="{{cycelData}}">
-                <view class="cycle-cell">第{{index+1}}次：
-          <text wx:if="{{item.status==0}}">未开始</text>
+            <view class="cycle-underway" wx:if="{{index==period_index}}" wx:for="{{cycelData}}" wx:key="{{index}}">
+                <view class="cycle-cell">第{{index+1}}次：          <text wx:if="{{item.status==0}}">未开始</text>
                     <text wx:if="{{item.status==1}}">配送中（可顺延）</text>
                     <text wx:if="{{item.status==2}}">已完成</text>
                 </view>
-                <view class="cycle-cell">物流详情：
-          <text wx:if="{{item.status==0}}">未发货</text>
+                <view class="cycle-cell">物流详情：          <text wx:if="{{item.status==0}}">未发货</text>
                     <text wx:else>{{item.expresscom}}{{item.expresssn}}</text>
                 </view>
                 <view class="cycle-cell">预计送达时间：{{item.receipttime}}</view>
@@ -121,7 +116,7 @@
             </view>
             <text class="shop">{{shop.name=='null'?'':shop.name}}</text>
         </view>
-        <block wx:for="{{nogift}}">
+        <block wx:for="{{nogift}}" wx:key="{{index}}">
             <view class="fui-list goods-item">
                 <navigator class="fui-list-media" openType="redirect" url="/pages/goods/detail/index?id={{item.id}}">
                     <image class="goods_img" src="{{item.thumb}}"></image>
@@ -131,18 +126,16 @@
                     <view class="subtitle">{{item.optionname}}</view>
                 </navigator>
                 <view class="price text-right" style="height:140rpx;">
-                    <view class="text-right">¥
-            <text>{{item.price/item.total}}</text>
+                    <view class="text-right">¥            <text>{{item.price/item.total}}</text>
                     </view>
-                    <view class="text-right" style="color:#666;line-height:72rpx">x
-            <text>{{item.total}}</text>
+                    <view class="text-right" style="color:#666;line-height:72rpx">x            <text>{{item.total}}</text>
                     </view>
-                    <navigator class="text-right" style="color:#666" url="/pages/order/singlerefund/index?id={{item.ordergoodsid}}" wx:if="{{order.canrefund&&order.is_single_refund}}">
+                    <navigator class="text-right" style="color:#666" url="/pages/order/singlerefund/index?id={{item.ordergoodsid}}" wx:if="{{(item.refund||item.returngoods||item.exchange)&&order.is_single_refund}}">
                         <text class="refund-btn block btn btn-sm btn-default-o" wx:if="{{item.single_refundstate==8}}">已拒绝</text>
                         <text class="refund-btn block btn btn-sm btn-default-o" wx:if="{{item.single_refundstate==9}}">维权成功</text>
                         <text class="refund-btn block btn btn-sm btn-default-o" wx:if="{{item.single_refundstate==1}}">退款中</text>
                         <text class="refund-btn block btn btn-sm btn-default-o" wx:if="{{item.single_refundstate==2}}">退货中</text>
-                        <text class="refund-btn block btn btn-sm btn-default-o" wx:if="{{item.single_refundstate==0}}">{{order.status==1&&item.sendtime==0?'退款':'售后'}}</text>
+                        <text class="refund-btn block btn btn-sm btn-default-o" wx:if="{{item.single_refundstate==0&&item.single_refundstate==1}}">{{order.status==1&&item.sendtime==0?'售后':'售后'}}</text>
                     </navigator>
                 </view>
             </view>
@@ -157,7 +150,7 @@
                 <template is="diyform" data="{{diyform:item}}"></template>
             </view>
         </block>
-        <navigator url="/pages/goods/detail/index?id={{gitem.id}}" wx:if="{{index<2||all}}" wx:for="{{gift}}" wx:for-item="gitem">
+        <navigator url="/pages/goods/detail/index?id={{gitem.id}}" wx:if="{{index<2||all}}" wx:for="{{gift}}" wx:for-item="gitem" wx:key="{{index}}">
             <view class="fui-list no-border">
                 <view class="fui-list-media">
                     <image src="{{gitem.thumb}}"></image>
@@ -169,8 +162,7 @@
                     <view class="subtitle">{{gitem.optionname}}</view>
                 </view>
                 <view class="row-remark">
-                    <view>x
-              <text>{{gitem.total}}</text>
+                    <view>x              <text>{{gitem.total}}</text>
                     </view>
                     <view>
                         <text class="text-danger">免费赠品</text>
@@ -178,56 +170,51 @@
                 </view>
             </view>
         </navigator>
-        <view bindtap="more" class="fui-list no-border more" wx:if="{{gift.length>2&&!all}}">
-      查看更多赠品
-    </view>
-        <view class="fui-cell" style="display: flex;padding: 20rpx 24rpx 20rpx;" wx:if="{{fullbackgoods!=undefined}}">
+        <view bindtap="more" class="fui-list no-border more" wx:if="{{gift.length>2&&!all}}">      查看更多赠品    </view>
+        <view class="fui-cell" style="display: flex;padding: 20rpx 24rpx 20rpx;" wx:if="{{fullbackgoods!=null}}">
             <view class="fui-cell-label" style="display: inline-block;font-size: 26rpx;color: #666;">{{fullbacktext}}详情</view>
             <view class="fui-cell-info" style="text-align: right;flex: 1;color: #000;font-size: 24rpx;">
-                <i class="icox icox-xiaofei1" style="color: #ff5555;position: relative;top: 4rpx;margin-right: 5rpx;"></i>
-        总金额
-        <i style="color: #ff5555;">
+                <i class="icox icox-xiaofei1" style="color: #ff5555;position: relative;top: 4rpx;margin-right: 5rpx;"></i>        总金额        <i style="color: #ff5555;">
                     <block wx:if="{{fullbackgoods.type==0}}">￥{{fullbackgoods.maxallfullbackallprice}}</block>
                     <block wx:if="{{fullbackgoods.type==1}}">{{maxallfullbackallratio}}%</block>
-                </i>
-        ,每天返
-        <i style="color: #ff5555;">
+                </i>        ,每天返        <i style="color: #ff5555;">
                     <block wx:if="{{fullbackgoods.type==0}}">￥{{fullbackgoods.fullbackprice}}</block>
                     <block wx:if="{{fullbackgoods.type==1}}">{{fullbackratio}}%</block>
-                </i>
-        ，时间：
-        <i style="color: #ff5555;">{{fullbackgoods.day}}天</i>
+                </i>        ，时间：        <i style="color: #ff5555;">{{fullbackgoods.day}}天</i>
             </view>
         </view>
     </view>
     <block wx:if="{{order.virtual>0&&order.virtual_str!=''&&order.status==3}}">
         <block wx:if="{{ordervirtualtype&&ordervirtual.length>0}}">
-            <view class="fui-cell-group {{toggleCode?'toggleSend-group':''}}" wx:for="{{ordervirtual}}">
+            <view class="fui-cell-group {{toggleCode?'toggleSend-group':''}}" wx:for="{{ordervirtual}}" wx:key="index">
                 <view class="fui-cell-title">发货信息{{ordervirtual.length>1?index+1:''}}</view>
-                <view class="fui-cell" wx:for="{{item}}" wx:for-item="item2">
+                <view class="fui-cell" wx:for="{{item}}" wx:for-item="item2" wx:key="index">
                     <view class="fui-cell-label">
                         <text selectable="true">{{item2.key}}</text>
                     </view>
-                    <view class="wrapview">
-                        <text selectable="true">{{item2.value}}</text>
+                    <view class="wrapview" style="font-size:28rpx;color:#666;">
+                        <text selectable="true" wx:if="{{item2.value!=''&&item2.value!=null}}">{{item2.value}}</text>
                     </view>
+                    <view bindtap="bindCopy" class="pull-right copyText" data-content="{{item2}}" wx:if="{{item2.value!=''&&item2.value!=null}}">复制</view>
                 </view>
             </view>
         </block>
         <view class="fui-cell-group" wx:else>
-            <view class="fui-cell-title">发货信息</view>
+            <view class="fui-cell-title">发货信息          <view bindtap="bindCopyText" class="pull-right copyText" data-content="{{order.virtual_str}}">复制</view>
+            </view>
             <view class="fui-cell">
-                <view class="fui-cell-info" style="white-space:normal">
-                    <text selectable="true">{{order.virtual_str}}</text>
+                <view class="">
+                    <text selectable="true" style="color:#666;width:100%;font-size: 28rpx;">{{order.virtual_str}}</text>
                 </view>
             </view>
         </view>
     </block>
     <view class="fui-cell-group" wx:if="{{order.isvirtualsend>0&&order.virtualsend_info!=null}}">
-        <view class="fui-cell-title">发货信息</view>
+        <view class="fui-cell-title">发货信息      <view bindtap="bindCopyText" class="pull-right copyText" data-content="{{order.virtualsend_info}}">复制</view>
+        </view>
         <view class="fui-cell">
-            <view class="fui-cell-info" style="white-space:normal">
-                <text selectable="true">{{order.virtualsend_info}}</text>
+            <view class="">
+                <text selectable="true" style="color:#666;width:100%;font-size: 28rpx;">{{order.virtualsend_info}}</text>
             </view>
         </view>
     </view>
@@ -243,7 +230,7 @@
             <view class="fui-cell-remark"></view>
         </view>
         <block wx:if="{{order.status>0}}">
-            <view class="send-code" wx:for="{{order.verifyinfo}}">
+            <view class="send-code" wx:for="{{order.verifyinfo}}" wx:key="{{index}}">
                 <text selectable="true">{{item.verifycode}}</text>
                 <text class="pull-right fui-label {{item.verified==1&&'fui-label-danger'}}" selectable="true">{{item.status}}</text>
             </view>
@@ -264,7 +251,7 @@
             <view class="fui-cell-remark"></view>
         </view>
         <view class="send-code">
-            <view class="fui-list noclick" wx:for="{{stores}}">
+            <view class="fui-list noclick" wx:for="{{stores}}" wx:key="{{index}}">
                 <view class="fui-list-media">
                     <view class="fui-list-icon">
                         <text class="icox icox-dianpu1"></text>
@@ -301,7 +288,7 @@
             <view class="fui-cell-info"></view>
             <view class="fui-cell-remark noremark">-¥ {{membercard_info.card_dec_price}}</view>
         </view>
-        <view class="fui-cell">
+        <view class="fui-cell" wx:if="{{!order.verifyinfo}}">
             <view class="fui-cell-label">{{order.city_express_state=='1'?'同城运费':'运费'}}</view>
             <view class="fui-cell-info"></view>
             <view class="fui-cell-remark noremark" wx:if="{{order.iscycelbuy!=1}}">¥ {{order.dispatchprice}}</view>
@@ -358,6 +345,15 @@
                 </text>
             </view>
         </view>
+        <view class="fui-cell">
+            <view class="fui-cell-label" style="width:auto;">买家备注</view>
+            <view class="fui-cell-info"></view>
+            <view class="fui-cell-remark noremark">
+                <text class="text-danger">
+                    <text style="font-size:25rpx">{{order.ramark}}</text>
+                </text>
+            </view>
+        </view>
     </view>
     <view class="fui-cell-group">
         <view class="order-info">
@@ -380,9 +376,7 @@
     </view>
     <view class="fui-cell-group" wx:if="{{order.virtual>0&&virtualtemp&&virtualtemp.description!=''}}">
         <view class="explain-title">使用说明</view>
-        <view class="explain-content">
-      {{virtualtemp.description}}
-    </view>
+        <view class="explain-content">      {{virtualtemp.description}}    </view>
     </view>
     <view wx:if="{{order.diyformfields.length>0}}">
         <template is="diyform" data="{{diyform:order}}"></template>
@@ -405,10 +399,9 @@
     </view>
     <view class="fui-footer aa {{iphonexnavbar}}">
         <button class="btn btn-default btn-default-o pull-left" openType="contact" sessionFrom="weapp" showMessageCard="true" wx:if="{{customer==1}}">
-            <text class="icox icox-customerservice"></text>客服
-    </button>
+            <text class="icox icox-customerservice"></text>客服    </button>
         <block wx:if="{{!order.canrestore}}">
-            <view class="btn btn-default btn-default-o btn-sm" wx:if="{{order.cancancel}}">
+            <view class="btn btn-default btn-default-o btn-sm" wx:if="{{order.cancancel}}"> 
                 <picker bindchange="cancel" range="{{cancel}}" value="{{cancelindex}}">取消订单</picker>
             </view>
             <navigator class="btn btn-danger-o btn-sm" url="/pages/order/pay/index?id={{order.id}}" wx:if="{{order.canpay}}">支付订单</navigator>
@@ -418,6 +411,7 @@
             <navigator class="btn btn-default btn-default-o btn-sm" url="/pages/order/comment/index?id={{order.id}}" wx:if="{{order.cancomment2}}">追加评价</navigator>
             <navigator class="btn btn-default btn-default-o btn-sm" url="/pages/order/comment/index?id={{order.id}}" wx:if="{{order.cancomment}}">评价</navigator>
             <view bindtap="finish" class="btn btn-default btn-default-o btn-sm" wx:if="{{order.cancomplete&&order.iscycelbuy==0&&!order.isonlyverifygoods}}">确认收货</view>
+            <view bindtap="seeInvoice" class="btn btn-default btn-sm" wx:if="{{invoice.image}}">查看发票</view>
             <navigator class="btn btn-default btn-sm" url="/pages/order/refund/index?id={{order.id}}" wx:if="{{order.canrefund&&order.iscycelbuy==0&&order.refundstate!=3}}">{{order.refundtext}}</navigator>
             <block wx:if="{{order.refundstate!=3}}">
                 <navigator class="btn btn-default btn-sm" url="/pages/order/refund/index?id={{order.id}}" wx:if="{{order.canrefund&&order.iscycelbuy==1&&order.status==1}}">{{order.refundtext}}</navigator>
@@ -425,13 +419,14 @@
             </block>
         </block>
         <block wx:if="{{order.canrestore}}">
-            <view bindtap="delete" class="btn btn-default btn-default-o btn-sm" data-orderid="{{order.id}}" data-type="2">
-        彻底删除订单
-      </view>
-            <view bindtap="delete" class="btn btn-default btn-default-o btn-sm" data-orderid="{{order.id}}" data-type="0">
-        恢复订单 
-      </view>
+            <view bindtap="delete" class="btn btn-default btn-default-o btn-sm" data-orderid="{{order.id}}" data-type="2">        彻底删除订单      </view>
+            <view bindtap="delete" class="btn btn-default btn-default-o btn-sm" data-orderid="{{order.id}}" data-type="0">        恢复订单      </view>
         </block>
+    </view>
+    <view bindtap="closeInvoice" class="invoice" wx:if="{{showInvoice}}">
+        <view class="invoiceImg">
+            <image bindtap="previewImage" data-src="{{invoice.image}}" mode="aspectFit" src="{{invoice.image}}"></image>
+        </view>
     </view>
     <include src="/pages/order/public/verify.wxml"></include>
 </view>

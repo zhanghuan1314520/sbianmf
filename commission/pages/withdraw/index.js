@@ -6,12 +6,11 @@ Page({
     },
     onShow: function() {
         this.getData();
-        var a = this;
-        t.getCache("isIpx") ? a.setData({
+        t.getCache("isIpx") ? this.setData({
             isIpx: !0,
             iphonexnavbar: "fui-iphonex-navbar",
             paddingb: "padding-b"
-        }) : a.setData({
+        }) : this.setData({
             isIpx: !1,
             iphonexnavbar: "",
             paddingb: ""

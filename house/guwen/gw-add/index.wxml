@@ -1,0 +1,103 @@
+<view class="container {{isIpx?'ipx_container':''}}">
+    <view class="headt">
+        流程：1、提交资料 2、客服开通 3、上线
+    </view>
+    <view class="weixin" wx:if="{{!show}}">
+        <view class="content">
+            <view class="gzh" bindtap="copyText" data-text="{{'daydaybest88'}}">客服微信号：daydaybest88</view>
+            <view catchtap="previewImage" class="gzh-img" data-type="dingyue" data-url="{{'https://sbmf.ww2ss.com/dfimages/logo2.jpg'}}">
+           
+            <image src="https://sbmf.ww2ss.com/dfimages/zhongjian-kf.jpg"></image>
+                
+            </view>
+            <view class="gzh-tips">点击图片保存后扫码添加好友</view>
+            <view class="gzh-tips">或者复制微信号添加好友</view>
+        </view>
+    </view>
+    <form bindsubmit="postMsg" reportSubmit="true" wx:if="{{show}}">
+
+        <form bind:submit="copyText" reportSubmit="{{true}}" data-text="{{'daydaybest88'}}">
+		<view bindtap="copyText" class="lp__qrcode" data-text="{{'daydaybest88'}}">
+			<button class="formid__btn" formType="submit"></button>
+			<image class="lp__qrcode-icon" src="https://sbmf.ww2ss.com/dfimages/jiaoliu.png"></image>
+			<view class="lp__qrcode-content">
+				<view class="lp__qrcode-title">入驻审核客服</view>
+				<view class="lp__qrcode-text">
+					<text>入驻问题全解决</text>
+					<view class="lp__qrcode-btn">复制客服微信</view>
+				</view>
+			</view>
+			<image class="lp__qrcode-img" src="https://sbmf.ww2ss.com/dfimages/zhongjian-kf.jpg"></image>
+		</view>
+    </form>
+    
+        <view class="wrapper">
+
+
+
+            <view class="title">请填写信息</view>
+            <view class="box">
+                <view class="item">
+                    <view class="desc">机构名</view>
+                    <input class="input" bindinput="_input" name="organization" placeholder="请输入机构名称，如：我爱我家" placeholderClass="placeholder" type="text" value="{{organization}}"></input>
+                </view>
+                <view class="item">
+                    <view class="desc">姓名</view>
+                    <input class="input" bindinput="_input" name="uname" placeholder="请输入真实姓名" placeholderClass="placeholder" type="text" value="{{uname}}"></input>
+                </view>
+                <view class="item">
+                    <view class="desc">手机号</view>
+                    <input class="input" bindinput="_input" name="mobile" placeholder="请输入手机号" placeholderClass="placeholder" type="number" value="{{mobile}}"></input>
+                </view>
+                <view class="item">
+                    <view class="desc">微信号</view>
+                    <input class="input" bindinput="_input" name="wxname" placeholder="请输入微信号" placeholderClass="placeholder" type="text" value="{{wxname}}"></input>
+                </view>
+                <view class="item">
+                    <view class="desc">入驻时间</view>                   
+                    <radio bindinput="_input" name="period" bindtap="typeChange" data-period="1年" checked="{{period=='1年'?'checked':''}}" />1年
+                </view>
+                <view class="item">
+                    <view class="desc">{{ad_type}}名</view>
+                    <input bindfocus="foucs4" class="input" name="title" focus="{{focus4}}" placeholder="请输入所属{{ad_type}}" placeholderClass="placeholder" type="text" value="{{title}}"></input>
+                </view>
+
+            </view>
+        </view> 
+        <view class="wrapper">
+            <view class="title">二维码名片</view>
+            <view class="code">
+                <view catchtap="upload" class="upload" data-type="weixin_img" wx:if="{{imgs.length>0}}">
+                    <image catchtap="upload" data-type="weixin_img" mode="aspectFit" src="https://sbmf.ww2ss.com/attachment/{{imgs}}"></image>
+                </view>
+                <view catchtap="upload" class="upload" data-type="weixin_img" wx:if="{{imgs.length<1}}">
+                    <image class="add" src="https://sbmf.ww2ss.com/dfimages/select/uploads.png" catchtap="upload" data-type="weixin_img"></image>
+                    <view class="text" catchtap="upload" data-type="weixin_img">上传微信二维码</view>
+                </view>
+                <view catchtap="upload" data-type="other1_img" class="upload" data-type="other1_img" wx:if="{{other1imgs.length>0}}">
+                    <image catchtap="upload" data-type="other1_img" mode="aspectFit" src="https://sbmf.ww2ss.com/attachment/{{other1imgs}}"></image>
+                </view>
+                <view catchtap="upload" class="upload" data-type="other1_img" wx:else>
+                    <image catchtap="upload" data-type="other1_img" class="add" src="https://sbmf.ww2ss.com/dfimages/select/uploads.png"></image>
+                    <view catchtap="upload" data-type="other1_img" class="text">上传名片</view>
+                </view>
+                <view catchtap="upload" class="upload" data-type="other2_img" wx:if="{{other2imgs.length>0}}">
+                    <image catchtap="upload" data-type="other2_img" mode="aspectFit" src="https://sbmf.ww2ss.com/attachment/{{other2imgs}}"></image>
+                </view>
+                <view catchtap="upload" class="upload" data-type="other2_img" wx:else>
+                    <image catchtap="upload" data-type="other2_img" class="add" src="https://sbmf.ww2ss.com/dfimages/select/uploads.png"></image>
+                    <view catchtap="upload" data-type="other2_img" class="text">上传工牌</view>
+                </view>
+            </view>
+        </view>
+       
+        <view class="tips">
+            <view class="content">
+                <image src="/image/tips.png"></image>
+                <view class="text">为保证经纪人信息的真实，防止他人冒充，请保持身份信息的一致性。提交信息后，请主动与客服联系。</view>
+            </view>
+        </view>
+        <button class="submit" formType="submit">申请入驻展位</button>
+    </form>
+ 
+</view>

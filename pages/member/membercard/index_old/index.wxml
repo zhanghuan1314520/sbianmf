@@ -1,0 +1,77 @@
+<view class="page">
+    <view class="tab">
+        <view bindtap="tab" class="item {{cate=='all'?'active':''}}" data-cate="all">全部会员卡</view>
+        <view bindtap="tab" class="item {{cate=='my'?'active':''}}" data-cate="my">我的会员卡({{my_total}})</view>
+    </view>
+    <view class="card-list" >
+        <view class="card-blank" wx:if="{{cate=='my'&&total<=0&&!loading}}">
+            <i class="icox icox-queshengye"></i>
+            <view class="text">暂无可用会员卡</view>
+            <view bindtap="tab" class="cardbtn" data-cate="all" >去购买</view>
+        </view>
+        <view class="card-list-item {{item.card_style}}" wx:for="{{list}}" wx:key="key" wx:if="{{show}}">
+            <view class="shadow"></view>
+            <view bindtap="submit" class="title-r {{cate=='all'?'mycard':''}}" data-id="{{item.id}}" data-startbuy="{{item.startbuy}}" data-stock="{{item.stock}}" wx:if="{{item.startbuy!=-1}}">
+                <block wx:if="{{cate=='all'}}">
+                    <block wx:if="{{item.startbuy==1}}">购买</block>
+                    <block wx:if="{{item.startbuy==2}}">续费</block>
+                    <block wx:if="{{item.startbuy==0}}">续费</block>
+                    <block wx:if="{{item.startbuy==-1}}">永久有效</block>
+                </block>
+                <block wx:else>{{item.validate=='永久有效'?'永久有效':'购买'}}</block>
+            </view>
+            <navigator class="content {{item.card_style}}" hoverClass="none" openType="navigate" url="/pages/member/membercard/detail/index?id={{item.id}}&cate={{cate}}&page={{page-1}}">
+                <i class="iconbg icox icox-huiyuan"></i>
+                <view class="content-inner">
+                    <view class="content-title">
+                        <view class="title-l">
+                            <image src="/static/images/icon-white.png" style="height: 40rpx;width: 40rpx;position: reletive;top: -4rpx;margin-right: 10rpx;"></image>{{item.name}}</view>
+                    </view>
+                    <view class="price">{{item.price}}
+                        <span style="font-size: 30rpx;">元</span>
+                    </view>
+                    <view class="date">{{item.validate}}</view>
+                    <view class="equity">服务内容：1.历史成交数据 2.供应数据 3.带看数据等</view>
+                </view>
+            </navigator>
+        </view>
+         
+    </view>
+    <view class="fui-loading" wx:if="{{loading}}">
+        <view class="icon"></view>
+        <view class="text">正在加载</view>
+    </view>
+       <view class="card-group" >
+         
+        <view class="card-explain" style="white-space: pre-line">
+          <view class="left-item-l">
+                        <view class="left-item-l-top"> <image src="https://sbmf.ww2ss.com/dfimages/logo2.jpg" style="height: 180rpx; width: 180rpx;"  bindtap="imgYu"></image ></view>
+                        
+                    </view>
+         <view class="left-item-r">
+                        <view class="item-top">
+                            <view class="item-top-top" bindtap="copyText" data-text="{{'vxjbugcea'}}">客服微信号：vxjbugcea</view>                        
+                        </view>
+                        <view class="item-bottom">
+                            <view class="item-bottom-top" bindtap="copyText" data-text="{{'vxjbugcea'}}">点击复制微信号</view>
+                     
+                        </view>
+                    </view>
+        </view>
+    </view>
+
+    <view class="fui-loading empty" wx:if="{{list.length==total&&total>0}}">
+        <view class="text">没有更多了</view>
+    </view>
+    <view class="fui-loading empty" wx:if="{{cate!='my'&&total<=0&&!loading}}">
+        <view class="text">暂时没有任何服务</view>
+    </view>
+</view>
+
+ 
+<navigator class="fui-dot" hoverClass="none" openType="switchTab" url="/pages/member/index/index">
+    <text class="icox icox-huiyuan1" style="color:#fff;font-size:40rpx"></text>
+</navigator>
+<view class="fui-toast {{FoxUIToast.show?'in':'out'}}">
+    <view class="text">{{FoxUIToast.text}}</view>
+</view>

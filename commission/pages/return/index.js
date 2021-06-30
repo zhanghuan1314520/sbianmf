@@ -29,14 +29,20 @@ Page({
             };
             t.list.length > 0 && (e.page = a.data.page + 1, e.list = a.data.list.concat(t.list), 
             t.list.length < t.pagesize && (e.loaded = !0)), a.setData(e);
+        }), t.get("member.fullback.get_all", {}, function(t) {
+            !1 !== t.info.day ? a.setData({
+                info: t.info
+            }) : a.setData({
+                info: !1
+            });
         });
     },
     myTab: function(t) {
-        var a = this, e = t.currentTarget.dataset.type;
-        a.setData({
-            type: e,
+        var a = t.currentTarget.dataset.type;
+        this.setData({
+            type: a,
             page: 1,
             list: []
-        }), a.getList();
+        }), this.getList();
     }
 });

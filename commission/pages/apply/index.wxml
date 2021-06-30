@@ -19,9 +19,7 @@
                     <view class="fui-cell-icon">
                         <image alt="" src="/static/images/icon-white/ye.png"></image>
                     </view>
-                    <view class="fui-cell-info">
-                    {{item.title}}
-                </view>
+                    <view class="fui-cell-info">                    {{item.title}}                </view>
                     <view class="fui-cell-remark noremark">
                         <radio checked="{{applytype==0?'checked':''}}" class="fui-radio fui-radio-danger" color="#ff5555" data-type="0" id="applytype" value="1"></radio>
                     </view>
@@ -32,9 +30,7 @@
                     <view class="fui-cell-icon">
                         <image alt="" src="/static/images/icon-white/wx.png"></image>
                     </view>
-                    <view class="fui-cell-info">
-                    {{item.title}}
-                </view>
+                    <view class="fui-cell-info">                    {{item.title}}                </view>
                     <view class="fui-cell-remark noremark">
                         <radio checked="{{applytype==1?'checked':''}}" class="fui-radio fui-radio-danger" color="#ff5555" data-type="1" value="1"></radio>
                     </view>
@@ -45,9 +41,7 @@
                     <view class="fui-cell-icon">
                         <image alt="" src="/static/images/icon-white/zfb.png"></image>
                     </view>
-                    <view class="fui-cell-info">
-                    {{item.title}}
-                </view>
+                    <view class="fui-cell-info">                    {{item.title}}                </view>
                     <view class="fui-cell-remark noremark">
                         <radio checked="{{applytype==2?'checked':''}}" class="fui-radio fui-radio-danger" color="#ff5555" data-type="2" value="1"></radio>
                     </view>
@@ -78,9 +72,7 @@
                     <view class="fui-cell-icon">
                         <image alt="" src="/static/images/icon-white/yinhangka.png"></image>
                     </view>
-                    <view class="fui-cell-info">
-                    {{item.title}}
-                </view>
+                    <view class="fui-cell-info">                    {{item.title}}                </view>
                     <view class="fui-cell-remark noremark">
                         <radio checked="{{applytype==3?'checked':''}}" class="fui-radio fui-radio-danger" color="#ff5555" data-type="3" value="1"></radio>
                     </view>

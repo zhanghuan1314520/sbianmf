@@ -1,0 +1,11 @@
+<view class="page">
+    <image class="background" mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/5c9c7eee71ce1.png" ></image>
+    <view bindtap="preview" class="qrcode">
+        <image mode="widthFix" src="https://sbmf.ww2ss.com/dfimages/logo2.jpg" bindtap="imgYu"></image>
+    </view>
+    <view class="add-card">
+        <view class="text fz-20 font-bold">添加客服拉你入群</view>
+        <view bindtap="copyText" data-text="{{'vxjbugcea'}}"  class="btns white-color fz-14">复制客服微信</view>
+    </view>
+</view>
+ 

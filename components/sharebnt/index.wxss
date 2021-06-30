@@ -1,0 +1,29 @@
+
+.share-btn.data-v-13be682a {
+  position: fixed;
+  right: 32rpx;
+  bottom: 7%;
+  width: 112rpx;
+  height: 112rpx;
+  z-index: 1;
+}
+.share-btn image.data-v-13be682a {
+  width: 100%;
+  height: 100%;
+}
+button{
+  border: none;          
+}
+button::after{
+  border: none;  
+}
+.share-btn {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  border-radius: 0;
+}

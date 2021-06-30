@@ -31,11 +31,11 @@
             <view class="fui-list noclick">
                 <radio bindtap="selected" checked="{{val.selected==1?true:''}}" class="zoom-80" color="#ff5555" data-id="{{val.id}}" data-select="{{val.selected}}" wx:if="{{!edit}}"></radio>
                 <radio bindtap="edit_list" checked="{{edit_list[val.id]?true:''}}" class="zoom-80" color="#ff5555" data-id="{{val.id}}" wx:if="{{edit}}"></radio>
-                <view bindtap="url" class="fui-list-media" data-url="/pages/goods/detail/index?id={{val.goodsid}}">
+                <view bindtap="url" class="fui-list-media" data-url="/pages/order/detail/index?id={{val.goodsid}}">
                     <image class="" src="{{val.thumb}}"></image>
                 </view>
                 <view class="fui-list-inner">
-                    <navigator bindtap="url" data-url="/pages/goods/detail/index?id={{val.goodsid}}">
+                    <navigator bindtap="url" data-url="/pages/order/detail/index?id={{val.goodsid}}">
                         <view class="text">{{val.title}}</view>
                         <view class="subtitle cart-option" wx:if="{{val.optionid!=0}}">
                             <view class="choose-option">{{val.optiontitle}}</view>
@@ -73,7 +73,7 @@
                 <image class="" src="{{val.thumb}}"></image>
             </view>
             <view class="fui-list-inner">
-                <navigator bindtap="url" data-url="/pages/goods/detail/index?id={{val.goodsid}}">
+                <navigator bindtap="url" data-url="/pages/order/detail/index?id={{val.goodsid}}">
                     <view class="text">{{val.title}}</view>
                     <view class="subtitle cart-option" wx:if="{{val.optionid!=0}}">
                         <view class="choose-option">{{val.optiontitle}}</view>

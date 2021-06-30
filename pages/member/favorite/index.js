@@ -64,7 +64,7 @@ Page({
                 checkNum: l
             });
         } else wx.navigateTo({
-          url: "/dfpage/house/house?cid=" + s
+          url: "/house/house/house?cid=" + s
         });
     },
     btnClick: function(t) {

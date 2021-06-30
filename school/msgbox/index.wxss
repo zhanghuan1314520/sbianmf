@@ -1,0 +1,101 @@
+@import "../../school/wxss/xqbfront.wxss";
+
+.settled-status_wrap.data-v-102eff2d {
+    width: 100vw;
+    padding: 120rpx 30rpx 50rpx;
+    box-sizing: border-box;
+}
+
+.settled-status_wrap .icon.data-v-102eff2d {
+    height: 120rpx;
+    width: 120rpx;
+    font-size: 120rpx;
+    margin: 0 auto;
+    color: #0ac599;
+}
+
+.settled-status_wrap .title.data-v-102eff2d {
+    color: rgba(0,0,0,.85);
+    line-height: 52rpx;
+    text-align: center;
+    margin-top: 32rpx;
+}
+
+.settled-status_wrap .content.data-v-102eff2d {
+    margin-top: 116rpx;
+    color: #303133;
+    line-height: 44rpx;
+}
+
+.settled-status_wrap .content_wrap.data-v-102eff2d {
+    margin-top: 116rpx;
+}
+
+.settled-status_wrap .content_wrap .item.data-v-102eff2d {
+    margin-top: 28rpx;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.settled-status_wrap .content_wrap .item.data-v-102eff2d:first-of-type {
+    margin-top: 0;
+}
+
+.settled-status_wrap .content_wrap .item .label.data-v-102eff2d {
+    color: #909399;
+    width: 180rpx;
+    margin-right: 10rpx;
+    line-height: 44rpx;
+}
+
+.settled-status_wrap .content_wrap .item .txt.data-v-102eff2d {
+    color: #303133;
+    line-height: 44rpx;
+    word-break: break-all;
+    -webkit-box-flex: 1;
+    flex: 1;
+}
+
+.settled-status_wrap .btn.data-v-102eff2d {
+    width: 100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    text-align: center;
+    background: #1478ff;
+    box-shadow: 0rpx 4rpx 16rpx 0rpx rgba(20,120,255,.2);
+    border-radius: 8rpx;
+    margin-top: 160rpx;
+    color: #fff;
+}
+
+.settled-status_wrap .btn-fail.data-v-102eff2d {
+    margin-top: 374rpx;
+}
+
+.settled-status_wrap .bottom_wrap.data-v-102eff2d {
+    height: 36rpx;
+    margin-top: 100rpx;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.settled-status_wrap .bottom_wrap .tip.data-v-102eff2d {
+    color: #909399;
+    line-height: 36rpx;
+}
+
+.settled-status_wrap .bottom_wrap .contact-me.data-v-102eff2d {
+    height: 36rpx;
+    line-height: 36rpx;
+    background-color: unset;
+}
+
+.settled-status_wrap .bottom_wrap .contact-me text.data-v-102eff2d {
+    color: #1478ff;
+}
+
+.settled-status_wrap .fail.data-v-102eff2d {
+    color: #f03c50!important;
+}

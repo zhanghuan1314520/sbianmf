@@ -1,0 +1,39 @@
+<view class="content data-v-758fc162">
+  <view class="header data-v-758fc162" style="{{'background-size:cover;'+'background-image:'+'url('+data.src+')'+';'}}">
+    <!-- <view class="title data-v-758fc162">
+      <view bindtap="__e" class="left data-v-758fc162" data-event-opts="{{[ [ 'tap',[ [ 'back',['$event'] ] ] ] ]}}">
+        <image class="data-v-758fc162" src="https://cdn.lottery.okgoes.com/left.png"></image>
+      </view>楼盘详情
+    </view> -->
+    <view class="name data-v-758fc162">绿城·桂冠东方</view>
+    <view class="address data-v-758fc162">余杭区临平大道与长宁路交叉口江南国际新城博物馆</view>
+  </view>
+  <view class="body data-v-758fc162">
+    <view class="sigle data-v-758fc162">
+      <view class="block data-v-758fc162" wx:for="{{sigleData}}" wx:key="index">
+        <view class="block-left data-v-758fc162">{{item.name+': '}}</view>
+        <view class="block-right data-v-758fc162">{{''+item.title+''}}</view>
+      </view>
+    </view>
+    <view class="project data-v-758fc162">
+      <view class="title data-v-758fc162">项目简介</view>
+      <text class="project-text data-v-758fc162">
+        亚运村三子中,体量最大的一个,全盘建筑体量共有约56万m,且绝大多数为住宅,未来小区内居住氛围应该是最好。预计6月首开,可能首开13幢高层,约990套房源,户型
+        建面约110-220m,预计均价47000元/m,加上同一时期开盘的华润亚奥城以及万科日耀之城,可能第一批次供货量超过两千套,亚运三兄弟住宅加起来约4400套,以此推算
+        可能2到3次就会清盘了。可以预料,亚运村的开闸将是杭州购房史上的狂欢节。不过,幸运始终只属于极少数人。若干年后,中签者再回首,会发现一套房子可能改变了
+        他的一生。
+      </text>
+    </view>
+  </view>
+  <view class="footer data-v-758fc162">
+    <view class="follow_box data-v-758fc162">
+      <image bindtap="__e" class="follow data-v-758fc162"
+        data-event-opts="{{[ [ 'tap',[ [ 'toFocus',['$event'] ] ] ] ]}}"
+        src="{{'https://cdn.lottery.okgoes.com/follow'+(isFocus?'-active':'')+'.png'}}"></image>
+      <view class="follow_text data-v-758fc162">{{isFocus?'已关注':'关注'}}</view>
+    </view>
+    <view bindtap="__e" class="relation data-v-758fc162" data-event-opts="{{[ [ 'tap',[ [ 'chooseRoom',[0] ] ] ] ]}}">
+      联系置业顾问</view>
+    <button sessionFrom class="mes data-v-758fc162" openType="contact" plain="true">选房问清秋</button>
+  </view>
+</view>

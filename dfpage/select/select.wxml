@@ -1,0 +1,129 @@
+<loading wx:if="{{!show}}">加载中...</loading>
+<view wx:if="{{show}}">
+  <view class="box_nav">
+    <view class="box_nav_item">
+      <view>
+        <image src="https://sbmf.ww2ss.com/dfimages/select/select.png"></image>
+      </view>
+      <view style="color:#366AB3;padding-top: 4rpx;">自选</view>
+    </view>
+    
+    <view class="box_nav_item" bindtap="goxuequ">
+      <view>
+        <image src="https://sbmf.ww2ss.com/dfimages/select/xueq.png"></image>
+      </view>
+      <view style="padding-top: 4rpx;">学区</view>
+    </view>
+    <view class="box_nav_item" bindtap="house">
+      <view>
+        <image src="https://sbmf.ww2ss.com/dfimages/select/esf.png"></image>
+      </view>
+      <view style="padding-top: 4rpx;">二手房</view>
+    </view>
+    <view class="box_nav_item" bindtap="daily">
+      <view>
+        <image src="https://sbmf.ww2ss.com/dfimages/select/rb.png"></image>
+      </view>
+      <view style="padding-top: 4rpx;">日报</view>
+    </view>
+    <view class="box_nav_item" bindtap="select">
+      <view>
+        <image src="https://sbmf.ww2ss.com/dfimages/select/sou1.png"></image>
+      </view>
+      <view style="padding-top: 4rpx;">搜索</view>
+    </view>
+  </view>
+
+  <view class="box_header">
+    <view class="box_header_r">
+      <view class="box_header_item">
+        <view class="box_header_name">月成交</view>
+        <view class="box_header_number"><text class="test">{{chengjiao.month?chengjiao.month:'0'}}</text>套</view>
+      </view>
+      <view class="box_header_item">
+        <view class="box_header_name">今日成交</view>
+        <view class="box_header_number"><text class="test">{{market.taonume}}</text>套</view>
+      </view>
+      <view class="box_header_item">
+        <view class="box_header_name">今日挂牌</view>
+        <view class="box_header_number"><text class="test">{{market.todayregister}}</text>套</view>
+      </view>
+      <view class="box_header_item">
+        <view class="box_header_name">全市存量</view>
+        <view class="box_header_number"><text class="test">{{market.kucun}}</text>套</view>
+      </view>
+    </view>
+  </view>
+  <view>
+    <view class='table-module'>
+      <view style=" display: flex;">
+        <!-- 左侧固定 -->
+        <view class='left-policy-type'>
+          <view class='empty-box'>小区名称</view>
+          <view class='left-col-list' wx:for="{{list}}" wx:key="id" data-cid="{{item.fid}}" bindtap="house_list">
+            <view class="box_name">{{item.communityName}}</view>
+          </view>
+        </view>
+        <!-- 右侧表格滚动 -->
+        <scroll-view class="scroll-box" scroll-x="true">
+          <view class="scroll-view-item">
+            <view class='company-name'>
+              <view class="company-name-item">上季(环比)</view>
+              <view class="company-name-item">去年(同比)</view>
+              <view class="company-name-item" style="width:130rpx">[最近网签</view>
+              <view class="company-name-item" style="width:130rpx">网签面积</view>
+              <view class="company-name-item">网签单价</view>
+              <view class="company-name-item" style="width:120rpx">网签时间]</view>
+              <view class="company-name-item">挂牌均价</view>
+              <view class="company-name-item">最高挂牌</view>
+              <view class="company-name-item">最高网签</view>
+              <view class="company-name-item">库存</view>
+              
+             
+              <view class="company-name-item">90天成交</view>
+              <view class="company-name-item">90天成交均价</view> 
+            </view>
+            <view class='price-box' wx:for="{{list}}" wx:key="id" data-cid="{{item.fid}}" bindtap="house_list">
+              <view class="{{item.cjsale_huanbi_lv>0 ? 'red':'green'}}">{{item.cjsale_huanbi_lv}}%</view>
+              <view class="{{item.cjsale_tongbi_lv>0 ? 'red':'green'}}">{{item.cjsale_tongbi_lv}}%</view>
+              <view class="{{item.cjsale_huanbi_lv>0 ? 'red':'green'}}" style="width:130rpx">{{item.new_htje}}万</view>
+              <view class="price" style="width:130rpx">{{item.new_htmj}}㎡</view>
+              <view class="{{item.cjsale_huanbi_lv>0 ? 'red':'green'}}">{{item.new_cjsale}}元/㎡</view>
+              <view class="{{item.cjsale_huanbi_lv>0 ? 'red':'green'}}" style="width:120rpx">{{item.new_tjdate}}</view>
+              <view class="{{item.cjsale_huanbi_lv>0 ? 'red':'green'}}">{{item.gpsale}}元/㎡</view>
+              <view class="{{item.cjsale_huanbi_lv>0 ? 'red':'green'}}">{{item.max_gpsale}}元/㎡</view>
+              <view class="price">{{item.max_htje}}万</view>
+              <view class="price">{{item.gpcount}}套</view>
+               
+             
+              <view class="price">{{item.cjcount}}套</view>
+              <view class="price">{{item.cjsale}}元/㎡</view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+
+
+	
+
+  
+ 
+    <view class="add" wx:if="{{member.needbind==1 || member.error==10003}}">
+        <view class="add_img">
+          <image src="https://sbmf.ww2ss.com/dfimages/select/uploads.png"></image>
+        </view>
+        <button class="addbnt" open-type="getPhoneNumber" bindgetphonenumber="pn_getPhoneNumber">添加楼盘</button>
+      </view>
+   
+
+      <view class="add" bindtap="add" wx:else>
+        <view class="add_img">
+          <image src="https://sbmf.ww2ss.com/dfimages/select/uploads.png"></image>
+        </view>
+        <button class="addbnt" bindtap="add">添加楼盘</button>
+      </view>
+
+    </view>
+  </view>
+  
+</view>

@@ -20,6 +20,7 @@ Page({
             if (t.error) wx.redirectTo({
                 url: "/pages/member/index/index"
             }); else {
+                
                 var a = {
                     member: t.member,
                     binded: t.binded,

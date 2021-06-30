@@ -73,7 +73,7 @@ Page({
                         });
                     },
                     fail: function(e) {
-                        o.authSetting["scope.userLocation"] && wx.showModal({
+                        o.authSetting["scope.userLocation"] || wx.showModal({
                             title: "警告",
                             content: "位置信息获取受限，请点击确定打开授权页面,在打开的页面中开启位置信息授权",
                             success: function(e) {
@@ -86,6 +86,9 @@ Page({
                         });
                     }
                 });
+            },
+            fail: function(t) {
+                console.log(t);
             }
         });
     },
